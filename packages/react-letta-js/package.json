@@ -1,0 +1,35 @@
+{
+  "name": "react-letta-js",
+  "version": "0.0.1",
+  "description": "Letta's react library",
+  "main": "index.js",
+  "scripts": {
+    "demo:view-and-send-messages": "cd examples/view-and-send-messages && vite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/letta-ai/letta-typescript-web-clients.git"
+  },
+  "author": "Letta (https://letta.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/letta-ai/letta-typescript-web-clients/issues"
+  },
+  "homepage": "https://github.com/letta-ai/letta-typescript-web-clients#readme",
+  "peerDependencies": {
+    "@letta-ai/letta-client": ">=0.1.48",
+    "react": ">=16.8.0 <20.0.0",
+    "react-dom": ">=16.8.0 <20.0.0"
+  },
+  "resolutions": {
+    "@types/react": "18.0.5"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.2.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "jest-mock-extended": "^4.0.0-beta1",
+    "vite": "^6.2.0"
+  }
+}
