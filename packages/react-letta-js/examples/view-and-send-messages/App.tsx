@@ -1,6 +1,6 @@
 import React, { FormEvent, useCallback } from 'react';
 import { useState } from 'react';
-import { useAgentMessages } from '../../src/hooks/useAgentMessages/useAgentMessages';
+import { useAgentMessages } from '../../src';
 import './App.css';
 
 function App() {
