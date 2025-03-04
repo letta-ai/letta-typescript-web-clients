@@ -19,7 +19,7 @@ export function useAgentState(options: UseAgentStateOptions) {
   );
 
   const [isLoading, setIsLoading] = useState(true);
-  const [loadingError, setLoadingError] = useState<Error | null>(null);
+  const [loadingError, setLoadingError] = useState<unknown | null>(null);
   const hasInitialLoaded = useRef<boolean>(false);
 
   const getAgentState = useCallback(async () => {

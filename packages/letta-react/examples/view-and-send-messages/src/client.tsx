@@ -2,7 +2,7 @@ import React from 'react';
 import { StrictMode } from 'react';
 import { hydrateRoot } from 'react-dom/client';
 import App from './App';
-import { LettaProvider } from '../../src';
+import { LettaProvider } from '@letta/letta-react';
 
 interface DisableSSRProps {
   children: React.ReactNode;
@@ -24,7 +24,7 @@ hydrateRoot(
     <DisableSSR>
       <LettaProvider
         options={{
-          environment: 'http://localhost:8283',
+          baseUrl: 'http://localhost:8283',
         }}
       >
         <App />

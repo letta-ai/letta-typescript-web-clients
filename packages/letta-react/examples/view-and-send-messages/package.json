@@ -1,0 +1,15 @@
+{
+  "name": "view-and-send-messages",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite ./src --config vite.config.mts --port 3000"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "vite": "^6.2.0",
+    "vite-tsconfig-paths": "^5.1.4"
+  }
+}

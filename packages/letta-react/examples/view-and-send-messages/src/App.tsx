@@ -1,8 +1,7 @@
 import React, { FormEvent, useCallback } from 'react';
 import { useState } from 'react';
-import { useAgentMessages } from '../../src';
 import './App.css';
-import { useAgentState } from '../../src/hooks/useAgentState/useAgentState';
+import { useAgentMessages, useAgentState } from '@letta/letta-react';
 
 function App() {
   const [messageToSend, setMessageToSend] = useState<string>('');

@@ -1,7 +1,10 @@
 import { useGlobalLettaConfig } from '../useGlobalLettaConfig/useGlobalLettaConfig';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
-export function useCachedState<T>(key: string, defaultValue: T) {
+export function useCachedState<T>(
+  key: string,
+  defaultValue: T
+): [T, Dispatch<SetStateAction<T>>] {
   const { isProviderSet, cachedData, updateCache } = useGlobalLettaConfig();
 
   const [localState, setLocalState] = useState<T>(defaultValue);
@@ -23,5 +26,5 @@ export function useCachedState<T>(key: string, defaultValue: T) {
         };
       });
     },
-  ];
+  ] as [T, Dispatch<SetStateAction<T>>];
 }

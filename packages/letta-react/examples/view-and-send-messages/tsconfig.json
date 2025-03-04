@@ -1,6 +1,7 @@
 {
   "files": [],
   "include": ["src"],
+
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",
@@ -12,6 +13,9 @@
     "moduleResolution": "node",
     "skipLibCheck": true,
     "declaration": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+      "@letta/letta-react": ["../../../src/index.ts"]
+    }
   }
 }

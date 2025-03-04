@@ -59,10 +59,10 @@ export function useAgentMessages(options: UseAgentOptions) {
 
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
-  const [loadingError, setLoadingError] = useState<Error | null>(null);
+  const [loadingError, setLoadingError] = useState<unknown | null>(null);
 
   const [isSending, setIsSending] = useState(false);
-  const [sendingError, setSendingError] = useState<Error | null>(null);
+  const [sendingError, setSendingError] = useState<unknown | null>(null);
 
   const sendNonStreamedMessage = useCallback(
     async function sendNonStreamedMessage(
@@ -109,6 +109,7 @@ export function useAgentMessages(options: UseAgentOptions) {
           if (nextMessage.messageType === 'usage_statistics') {
             return;
           }
+          // @ts-expect-error - this is a correct lookup, id does exist
           if (!nextMessage?.id) {
             return;
           }
@@ -116,10 +117,16 @@ export function useAgentMessages(options: UseAgentOptions) {
           setLocalMessages((prevState) => {
             let hasExistingMessage = false;
             const nextMessages = prevState.messages.map((prevMessage) => {
+              if (nextMessage.messageType === 'usage_statistics') {
+                return prevMessage;
+              }
+
+              // @ts-expect-error - this is a correct lookup, id does exist
               if (!prevMessage?.id || !nextMessage?.id) {
                 return prevMessage;
               }
 
+              // @ts-expect-error - this is a correct lookup, id does exist
               if (prevMessage.id !== nextMessage.id) {
                 return prevMessage;
               }
@@ -222,7 +229,7 @@ export function useAgentMessages(options: UseAgentOptions) {
                       },
                     ]
                   : []),
-              ],
+              ] as LocalMessagesState['messages'],
             };
           });
         }
