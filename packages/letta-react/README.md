@@ -26,9 +26,7 @@ Then start your server.
 
 Setup a proxy server, below we are using [`express`](https://www.npmjs.com/package/express), [`http-proxy-middleware`](https://www.npmjs.com/package/http-proxy-middleware) and [`cors`](https://www.npmjs.com/package/cors)
 
-```
-// typescript
-
+```typescript
 import * as express from 'express';
 import type { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
@@ -111,7 +109,7 @@ const {
 Check out [this example](./examples/view-and-send-messages) for more detailed usage.
 
 ```typescript jsx
-const { agentState, error, isLoading, refresh } = agentState({
+const { agentState, error, isLoading, refresh } = useAgentState({
   agentId: `your-agent-id`,
 });
 ```
