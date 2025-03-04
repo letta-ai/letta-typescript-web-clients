@@ -1,11 +1,7 @@
-name: Release Letta React
+name: ci
 on:
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: 'Tag to release'
-        required: true
-        default: 'latest'
+  push:
+    branches: [main]
 
 jobs:
   compile:
@@ -35,21 +31,9 @@ jobs:
       - name: Test
         working-directory: ./packages/letta-react
         run: npm ci && npm test
-  update_version:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-      - name: Set up node
-        uses: actions/setup-node@v3
-      - name: Update version
-        working-directory: ./packages/letta-react
-        run: |
-          npm version ${{ github.event.inputs.tag }} -m "Release ${{ github.event.inputs.tag }}"
-          git push --follow-tags
+
   publish:
-    needs: [compile, test, update_version]
-    if: github.event_name == 'push'
+    needs: [compile, test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -62,10 +46,17 @@ jobs:
       - name: Build
         working-directory: ./packages/letta-react
         run: npm run build
+
       - name: Publish to npm
         working-directory: ./packages/letta-react
         run: |
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-          npm publish --access public --tag ${{ github.event.inputs.tag }}
+          if [[ ${GITHUB_REF} == *alpha* ]]; then
+            npm publish --access public --tag alpha
+          elif [[ ${GITHUB_REF} == *beta* ]]; then
+            npm publish --access public --tag beta
+          else
+            npm publish --access public
+          fi
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
