@@ -2,6 +2,7 @@ import React, { FormEvent, useCallback } from 'react';
 import { useState } from 'react';
 import { useAgentMessages } from '../../src';
 import './App.css';
+import { useAgentState } from '../../src/hooks/useAgentState/useAgentState';
 
 function App() {
   const [messageToSend, setMessageToSend] = useState<string>('');
@@ -14,6 +15,10 @@ function App() {
     isSending,
     sendMessage,
   } = useAgentMessages({
+    agentId: 'agent-ed85493d-2164-4404-b52e-119ccbc987b4',
+  });
+
+  const { agentState } = useAgentState({
     agentId: 'agent-ed85493d-2164-4404-b52e-119ccbc987b4',
   });
 
@@ -37,6 +42,7 @@ function App() {
 
   return (
     <main>
+      <header>Talking to: {agentState?.name}</header>
       {hasOlderMessages && (
         <button onClick={fetchOlderMessages} disabled={isFetching}>
           {isFetching ? 'Loading older messages' : 'Load older messages'}

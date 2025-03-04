@@ -5,7 +5,7 @@ import type { AgentState } from '@letta-ai/letta-client/api';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface UseAgentStateOptions {
-  client: LettaClient.Options;
+  client?: LettaClient.Options;
   agentId: string;
 }
 
