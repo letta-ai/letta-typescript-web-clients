@@ -5,10 +5,10 @@
   "projectType": "application",
   "tags": [],
   "targets": {
-    "type-check": {
+    "typecheck": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "tsc --noEmit -p apps/letta-react/tsconfig.app.json"
+        "command": "tsc --noEmit -p packages/letta-react/tsconfig.app.json"
       }
     },
     "build": {

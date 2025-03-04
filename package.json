@@ -7,8 +7,8 @@
     "format": "nx format:write",
     "lint": "npx nx run-many --all--skip-nx-cache --parallel --targets=lint",
     "prepare": "husky",
-    "type-check": "nx run-many --all --skip-nx-cache --parallel --targets=type-check",
-    "precommit": "concurrently  \"npx lint-staged --concurrent true --relative\" \"npm run type-check\""
+    "typecheck:all": "nx run-many --all --skip-nx-cache --parallel --targets=typecheck",
+    "precommit": "concurrently  \"npx lint-staged --concurrent true --relative\" \"npm run typecheck:all\""
   },
   "author": "",
   "license": "ISC",
