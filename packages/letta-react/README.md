@@ -85,7 +85,7 @@ root.render(
 
 ##### Sending and Reading Messages `useAgentMessages`
 
-Check out [this example](./examples/view-and-send-messages) for more detailed usage.
+Check out [this example](./packages/letta-react/examples/view-and-send-messages) for more detailed usage.
 
 ```typescript jsx
 const {
@@ -106,7 +106,7 @@ const {
 
 ##### Getting Agent State
 
-Check out [this example](./examples/view-and-send-messages) for more detailed usage.
+Check out [this example](./packages/letta-react/examples/view-and-send-messages) for more detailed usage.
 
 ```typescript jsx
 const { agentState, error, isLoading, refresh } = useAgentState({
