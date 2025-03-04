@@ -1,6 +1,6 @@
 module.exports = {
-  '*': ['nx format:write --files'],
+  '*': ['nx format:write'],
   '**/src/**/*.{js,jsx,ts,tsx}': (allStagedFiles) => {
-    return `nx lint ${allStagedFiles.join(' ')}`;
+    return `npx nx affected:lint`;
   },
 };

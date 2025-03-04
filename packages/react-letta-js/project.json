@@ -1,14 +1,14 @@
 {
-  "name": "letta-react",
+  "name": "react-letta-js",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/letta-react/src",
+  "sourceRoot": "packages/react-letta-js/src",
   "projectType": "application",
   "tags": [],
   "targets": {
     "typecheck": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "tsc --noEmit -p packages/letta-react/tsconfig.app.json"
+        "command": "tsc --noEmit -p packages/react-letta-js/tsconfig.app.json"
       }
     },
     "build": {
@@ -17,12 +17,12 @@
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
-        "outputPath": "dist/packages/letta-react",
+        "outputPath": "dist/packages/react-letta-js",
         "format": ["cjs"],
         "bundle": false,
-        "main": "packages/letta-react/src/main.ts",
-        "tsConfig": "packages/letta-react/tsconfig.app.json",
-        "assets": ["packages/letta-react/src/assets"],
+        "main": "packages/react-letta-js/src/main.ts",
+        "tsConfig": "packages/react-letta-js/tsconfig.app.json",
+        "assets": ["packages/react-letta-js/src/assets"],
         "generatePackageJson": true,
         "esbuildOptions": {
           "sourcemap": true,
@@ -48,15 +48,15 @@
       "defaultConfiguration": "development",
       "dependsOn": ["build"],
       "options": {
-        "buildTarget": "letta-react:build",
+        "buildTarget": "react-letta-js:build",
         "runBuildTargetDependencies": false
       },
       "configurations": {
         "development": {
-          "buildTarget": "letta-react:build:development"
+          "buildTarget": "react-letta-js:build:development"
         },
         "production": {
-          "buildTarget": "letta-react:build:production"
+          "buildTarget": "react-letta-js:build:production"
         }
       }
     },
