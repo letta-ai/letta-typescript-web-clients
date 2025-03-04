@@ -1,0 +1,8 @@
+
+
+{
+    "*.{js,ts,jsx,tsx,json}": [
+    "nx affected:lint  --files=${files.join(',')}",
+    "nx format:write --files=${files.join(',')}"
+    ]
+}

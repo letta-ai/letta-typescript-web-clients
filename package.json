@@ -1,0 +1,47 @@
+{
+  "name": "letta-typescript-web-clients",
+  "version": "1.0.0",
+  "description": "This is a monorepo for the Letta Web Clients. It contains the following packages: * [letta-react]",
+  "main": "index.js",
+  "scripts": {
+    "format": "nx format:write",
+    "lint": "npx nx run-many --all--skip-nx-cache --parallel --targets=lint",
+    "prepare": "husky",
+    "precommit": "concurrently  \"npx lint-staged --concurrent true --relative\" \"npm run type-check\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "@nx/esbuild": "20.4.6",
+    "@nx/eslint": "20.4.6",
+    "@nx/eslint-plugin": "20.4.6",
+    "@nx/jest": "20.4.6",
+    "@nx/js": "20.4.6",
+    "@nx/node": "20.4.6",
+    "@swc-node/register": "~1.9.1",
+    "@swc/core": "~1.5.7",
+    "@swc/helpers": "~0.5.11",
+    "@types/jest": "^29.5.12",
+    "@types/node": "~18.16.9",
+    "concurrently": "^9.1.2",
+    "esbuild": "^0.19.2",
+    "eslint": "^9.8.0",
+    "eslint-config-prettier": "^9.0.0",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "jest-environment-node": "^29.7.0",
+    "nx": "20.4.6",
+    "prettier": "^2.6.2",
+    "ts-jest": "^29.1.0",
+    "ts-node": "10.9.1",
+    "tslib": "^2.3.0",
+    "tslint": "^5.20.1",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.19.0"
+  },
+  "nx": {},
+  "dependencies": {
+    "lint-staged": "^15.4.3"
+  }
+}
