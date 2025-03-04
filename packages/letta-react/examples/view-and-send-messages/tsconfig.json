@@ -15,7 +15,7 @@
     "declaration": true,
     "esModuleInterop": true,
     "paths": {
-      "@letta/letta-react": ["../../../src/index.ts"]
+      "@letta-ai/letta-react": ["../../../src/index.ts"]
     }
   }
 }

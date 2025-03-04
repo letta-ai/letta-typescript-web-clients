@@ -2,7 +2,7 @@ import React from 'react';
 import { StrictMode } from 'react';
 import { hydrateRoot } from 'react-dom/client';
 import App from './App';
-import { LettaProvider } from '@letta/letta-react';
+import { LettaProvider } from '@letta-ai/letta-react';
 
 interface DisableSSRProps {
   children: React.ReactNode;

@@ -1,7 +1,7 @@
 import React, { FormEvent, useCallback } from 'react';
 import { useState } from 'react';
 import './App.css';
-import { useAgentMessages, useAgentState } from '@letta/letta-react';
+import { useAgentMessages, useAgentState } from '@letta-ai/letta-react';
 
 function App() {
   const [messageToSend, setMessageToSend] = useState<string>('');

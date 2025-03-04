@@ -15,7 +15,8 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Compile
-        run: yarn && yarn build
+        working-directory: ./packages/letta-react
+        run: npm ci && npm run build
 
   test:
     runs-on: ubuntu-latest
@@ -28,7 +29,8 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Test
-        run: yarn && yarn test --testPathIgnorePatterns tests/custom.test.ts
+        working-directory: ./packages/letta-react
+        run: npm ci && npm test
 
   publish:
     needs: [compile, test]
@@ -40,11 +42,14 @@ jobs:
       - name: Set up node
         uses: actions/setup-node@v3
       - name: Install dependencies
-        run: yarn install
+        working-directory: ./packages/letta-react
+        run: npm run dev
       - name: Build
-        run: yarn build
+        working-directory: ./packages/letta-react
+        run: npm run build
 
       - name: Publish to npm
+        working-directory: ./packages/letta-react
         run: |
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
           if [[ ${GITHUB_REF} == *alpha* ]]; then
