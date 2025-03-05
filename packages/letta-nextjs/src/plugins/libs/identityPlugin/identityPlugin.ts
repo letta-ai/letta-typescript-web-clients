@@ -57,7 +57,7 @@ export function identityPlugin(options: IdentityPluginOptions) {
         });
       }
 
-      if ((agent.identityIds || []).includes(identity)) {
+      if ((agent.identityIds || []).includes(identity.identityId)) {
         return;
       }
 
