@@ -91,19 +91,45 @@ See the [`letta-react`](https://www.npmjs.com/package/@letta-ai/letta-react) doc
 All you would need to do is use the hooks provided in that library.
 
 ```typescript jsx
+'use client';
 import { useAgentMessages } from '@letta-ai/letta-react';
+import { useState } from 'react';
 
 export default function Home() {
+  const [message, setMessage] = useState('');
   const { messages, sendMessage } = useAgentMessages({
     agentId: 'agent-id',
   });
 
   return (
     <div>
-      {messages.map((message) => (
-        <div key={message.id}>{message.text}</div>
-      ))}
-      <button onClick={() => sendMessage('Hello, Letta!')}>Send Message</button>
+      {messages.map((message) => {
+        if (message.messageType !== 'assistant_message') {
+          return null;
+        }
+
+        if (typeof message.content !== 'string') {
+          return null;
+        }
+
+        return (
+          <div key={`${message.id}${message.messageType}`}>
+            {message.content}
+          </div>
+        );
+      })}
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          sendMessage({
+            messages: [{ content: message, role: 'user' }],
+          });
+          setMessage('');
+        }}
+      >
+        <input value={message} onChange={(e) => setMessage(e.target.value)} />
+        <button>Send Message</button>
+      </form>
     </div>
   );
 }

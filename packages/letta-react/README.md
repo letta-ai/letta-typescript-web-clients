@@ -8,11 +8,13 @@ npm install @letta-ai/letta-react
 
 ## Documentation
 
-📚[Letta React Documentation](https://docs.letta.com/guides/letta-react)
-
 ### Minimal Example
 
 #### Server-side configuration
+
+#### Next.js
+
+Try out [`@letta-ai/letta-nextjs`](https://www.npmjs.com/package/@letta-ai/letta-nextjs) for a more streamlined setup.
 
 ##### Local Letta Instance
 
