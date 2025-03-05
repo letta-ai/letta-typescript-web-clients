@@ -39,10 +39,16 @@ export default function Home() {
   );
 
   return (
-    <main>
-      <header>Talking to: {agentState?.name}</header>
+    <main className="messages max-w-[800px]  mx-auto">
+      <header className="p-1 bg-gray-100 rounded">
+        Talking to: {agentState?.name}
+      </header>
       {hasOlderMessages && (
-        <button onClick={fetchOlderMessages} disabled={isFetching}>
+        <button
+          className="border w-full"
+          onClick={fetchOlderMessages}
+          disabled={isFetching}
+        >
           {isFetching ? 'Loading older messages' : 'Load older messages'}
         </button>
       )}
@@ -50,15 +56,17 @@ export default function Home() {
       {isLoading ? (
         <div>Loading messages!</div>
       ) : (
-        <ul className="messages">
+        <ul className="">
           {messages.map((message) => {
             if (message.messageType === 'user_message') {
               return (
-                <li key={`${message.id}${message.messageType}`}>
+                <li
+                  className="w-full p-1"
+                  key={`${message.id}${message.messageType}`}
+                >
                   {typeof message.content === 'string'
                     ? message.content
                     : 'Image'}
-                  {message.id}
                 </li>
               );
             }
@@ -69,7 +77,6 @@ export default function Home() {
                   {typeof message.content === 'string'
                     ? message.content
                     : 'Image'}
-                  {message.id}
                 </li>
               );
             }
@@ -79,8 +86,9 @@ export default function Home() {
         </ul>
       )}
       {isSending ? 'Sending message...' : null}
-      <form onSubmit={handleSubmit} className="send-message">
+      <form onSubmit={handleSubmit} className="flex flex-col">
         <input
+          className="border p-1"
           placeholder="Send a message"
           value={messageToSend}
           onChange={(e) => {

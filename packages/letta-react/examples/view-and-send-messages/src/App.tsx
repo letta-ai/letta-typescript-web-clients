@@ -57,7 +57,6 @@ function App() {
               return (
                 <li key={`${message.id}${message.messageType}`}>
                   {message.content}
-                  {message.id}
                 </li>
               );
             }
