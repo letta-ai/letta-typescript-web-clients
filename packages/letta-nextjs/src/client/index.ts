@@ -1,1 +1,1 @@
-export * from './getLettaProviderConfig/getLettaProviderConfig';
+export * from './NextLettaProvider/NextLettaProvider';

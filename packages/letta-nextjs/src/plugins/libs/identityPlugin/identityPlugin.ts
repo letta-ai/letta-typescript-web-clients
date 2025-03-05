@@ -35,7 +35,7 @@ export function identityPlugin(options: IdentityPluginOptions) {
       const identity = await getIdentity(req);
 
       if (!identity) {
-        return new NextResponse(null, {
+        return NextResponse.next({
           status: errorCodeOnUnauthorized,
         });
       }
@@ -44,7 +44,7 @@ export function identityPlugin(options: IdentityPluginOptions) {
 
       const agentId = AgentRegex.exec(payload.pathname)?.[1];
       if (!agentId) {
-        return new NextResponse(null, {
+        return NextResponse.next({
           status: errorCodeOnNotFound,
         });
       }
@@ -52,7 +52,7 @@ export function identityPlugin(options: IdentityPluginOptions) {
       const agent = await client.agents.retrieve(agentId);
 
       if (!agent) {
-        return new NextResponse(null, {
+        return NextResponse.next({
           status: errorCodeOnNotFound,
         });
       }
@@ -61,7 +61,7 @@ export function identityPlugin(options: IdentityPluginOptions) {
         return;
       }
 
-      return new NextResponse(null, {
+      return NextResponse.next({
         status: errorCodeOnUnauthorized,
       });
     };

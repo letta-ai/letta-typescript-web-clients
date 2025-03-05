@@ -34,6 +34,24 @@ function extendContent(
   }
 }
 
+function dedupeMessages(
+  messages: LocalMessagesState['messages']
+): LocalMessagesState['messages'] {
+  const messageIndex = new Set(
+    messages.map((message) => `${message.id}${message.messageType}`)
+  );
+
+  return messages.filter((message) => {
+    // if we have seen this message before, return false
+    if (messageIndex.has(`${message.id}${message.messageType}`)) {
+      messageIndex.delete(`${message.id}${message.messageType}`);
+      return true;
+    }
+
+    return false;
+  }, []);
+}
+
 interface SendMessagePayload {
   messages: LettaRequest['messages'];
 }
@@ -278,7 +296,7 @@ export function useAgentMessages(options: UseAgentOptions) {
 
         setLocalMessages((prevState) => ({
           ...prevState,
-          messages: [...messagesToAdd, ...prevState.messages],
+          messages: dedupeMessages([...messagesToAdd, ...prevState.messages]),
           nextCursor: nextCursor?.id,
         }));
       } catch (e) {

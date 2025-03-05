@@ -20,6 +20,7 @@
     ],
     "paths": {
       "end-to-end/*": ["./src/*"],
+      "@letta-ai/letta-react": ["../../../letta-react/src/index.ts"],
       "@letta-ai/letta-nextjs/server": ["../../src/server/index.ts"],
       "@letta-ai/letta-nextjs/client": ["../../src/client/index.ts"],
       "@letta-ai/letta-nextjs/plugins": ["../../src/plugins/index.ts"]
