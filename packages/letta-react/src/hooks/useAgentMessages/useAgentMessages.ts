@@ -98,41 +98,63 @@ export function useAgentMessages(options: UseAgentOptions) {
     async function sendNonStreamedMessage(
       sendMessagePayload: SendMessagePayload
     ) {
+      let originalMessageState: LocalMessagesState = localMessages;
       try {
         setIsSending(true);
         setSendingError(null);
+
+        const newMessages = messageCreateToMessageUnion(
+          sendMessagePayload.messages
+        );
+
+        setLocalMessages((prevState) => {
+          originalMessageState = prevState;
+
+          return {
+            ...prevState,
+            messages: [...prevState.messages, ...newMessages],
+          };
+        });
 
         const response = await localClient.agents.messages.create(agentId, {
           ...sendMessagePayload,
           ...messageOptions,
         });
 
-        const newMessages = messageCreateToMessageUnion(
-          sendMessagePayload.messages
-        );
-
         setLocalMessages((prevState) => ({
           ...prevState,
-          messages: [
-            ...prevState.messages,
-            ...newMessages,
-            ...response.messages,
-          ],
+          messages: [...prevState.messages, ...response.messages],
         }));
       } catch (e) {
+        setLocalMessages(originalMessageState);
         setSendingError(e);
       } finally {
         setIsSending(false);
       }
     },
-    [localClient]
+    [localClient, localMessages]
   );
 
   const sendStreamedMessage = useCallback(
     async function sendStreamedMessage(sendMessagePayload: SendMessagePayload) {
+      let originalMessageState: LocalMessagesState = localMessages;
+
       try {
         setIsSending(true);
         setSendingError(null);
+
+        const newMessages = messageCreateToMessageUnion(
+          sendMessagePayload.messages
+        );
+
+        setLocalMessages((prevState) => {
+          originalMessageState = prevState;
+
+          return {
+            ...prevState,
+            messages: [...prevState.messages, ...newMessages],
+          };
+        });
 
         const response = await localClient.agents.messages.createStream(
           agentId,
@@ -143,14 +165,6 @@ export function useAgentMessages(options: UseAgentOptions) {
           }
         );
 
-        const newMessages = messageCreateToMessageUnion(
-          sendMessagePayload.messages
-        );
-
-        setLocalMessages((prevState) => ({
-          ...prevState,
-          messages: [...prevState.messages, ...newMessages],
-        }));
         for await (const nextMessage of response) {
           if (nextMessage.messageType === 'usage_statistics') {
             return;
