@@ -1,10 +1,26 @@
 {
-  "name": "@letta-ai/letta-react",
-  "version": "0.0.4",
-  "description": "Letta's react library",
+  "name": "@letta-ai/letta-nextjs",
+  "version": "0.0.1",
+  "description": "Letta's NextJS library",
   "private": false,
   "main": "./index.js",
-  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "require": "./index.js"
+    },
+    "./client": {
+      "types": "./client/index.d.ts",
+      "import": "./client/index.js",
+      "require": "./client/index.js"
+    },
+    "./server": {
+      "types": "./server/index.d.ts",
+      "import": "./server/index.js",
+      "require": "./server/index.js"
+    }
+  },
   "scripts": {
     "build": "tsc",
     "test": "echo \"Pls set up tests\" && exit 0",
@@ -22,8 +38,10 @@
   "homepage": "https://github.com/letta-ai/letta-typescript-web-clients#readme",
   "peerDependencies": {
     "@letta-ai/letta-client": ">=0.1.48 <0.2.0",
+    "@letta-ai/letta-react": ">=0.0.3 <0.1.0",
     "react": ">=16.8.0 <20.0.0",
-    "react-dom": ">=16.8.0 <20.0.0"
+    "react-dom": ">=16.8.0 <20.0.0",
+    "next": ">=15.0.0"
   },
   "resolutions": {
     "@types/react": "18.0.5"

@@ -1,0 +1,16 @@
+{
+  "include": ["src"],
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": "src",
+    "jsx": "react",
+    "extendedDiagnostics": true,
+    "strict": true,
+    "target": "ES6",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "declaration": true,
+    "esModuleInterop": true
+  }
+}

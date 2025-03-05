@@ -2,6 +2,10 @@
 
 A Letta react library full of the hooks you need to talk to Letta instantly
 
+```bash
+npm install @letta-ai/letta-react
+```
+
 ## Documentation
 
 📚[Letta React Documentation](https://docs.letta.com/guides/letta-react)
