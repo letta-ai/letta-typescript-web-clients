@@ -2,6 +2,17 @@
 
 A Letta-Nextjs library full of functions that should make it easier to build applications on top of Letta and Next.js
 
+## Table of Contents
+
+- [Documentation](#documentation)
+  - [Minimal Example](#minimal-example)
+    - [Before you start](#before-you-start)
+    - [Server-side configuration](#server-side-configuration)
+    - [Client Side Usage](#client-side-usage)
+      - [Set up the `<LettaProvider />`](#set-up-the-lettaprovider-)
+    - [Sending, Reading and Interacting with Agents](#sending-reading-and-interacting-with-agents)
+- [Plugins](#plugins)
+
 ## Documentation
 
 ### Minimal Example
@@ -140,4 +151,51 @@ export default function Home() {
     </div>
   );
 }
+```
+
+# Plugins
+
+There is a plugin that you can use to extend the functionality of Letta-Nextjs. Right now there is an `identityPlugin` that you can use to better secure your application.
+
+### Identity Plugin
+
+```typescript jsx
+import { type NextRequest } from 'next/server';
+import { lettaMiddleware } from '@letta-ai/letta-nextjs/server';
+import { identityPlugin } from '@letta-ai/letta-nextjs/plugins';
+
+export function middleware(request: NextRequest) {
+  const response = lettaMiddleware(request, {
+    baseUrl: 'http://localhost:3000',
+    apiKey: process.env.LETTA_API_KEY,
+    plugins: [
+      identityPlugin({
+        getIdentity: async (req: NextRequest) => {
+          // Replace this with your own identity logic
+          // you can return a identity id and Letta will only allow access to the agent if the agent is owned by the identity
+          const cookie = request.cookies.get('letta-identity-id');
+
+          return cookie;
+        },
+      }),
+    ],
+  });
+
+  if (response) {
+    return response;
+  }
+}
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico, sitemap.xml, robots.txt (metadata files)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+  ],
+};
 ```

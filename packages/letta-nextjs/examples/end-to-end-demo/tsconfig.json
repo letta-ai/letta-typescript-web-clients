@@ -21,7 +21,8 @@
     "paths": {
       "end-to-end/*": ["./src/*"],
       "@letta-ai/letta-nextjs/server": ["../../src/server/index.ts"],
-      "@letta-ai/letta-nextjs/client": ["../../src/client/index.ts"]
+      "@letta-ai/letta-nextjs/client": ["../../src/client/index.ts"],
+      "@letta-ai/letta-nextjs/plugins": ["../../src/plugins/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

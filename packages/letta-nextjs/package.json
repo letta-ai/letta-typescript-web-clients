@@ -1,6 +1,6 @@
 {
   "name": "@letta-ai/letta-nextjs",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Letta's NextJS library",
   "private": false,
   "main": "./index.js",
@@ -19,11 +19,16 @@
       "types": "./server/index.d.ts",
       "import": "./server/index.js",
       "require": "./server/index.js"
+    },
+    "./plugins": {
+      "types": "./plugins/index.d.ts",
+      "import": "./plugins/index.js",
+      "require": "./plugins/index.js"
     }
   },
   "scripts": {
     "build": "tsc",
-    "test": "echo \"Pls set up tests\" && exit 0",
+    "test": "jest",
     "prepack": "cp -rv dist/. ."
   },
   "repository": {
