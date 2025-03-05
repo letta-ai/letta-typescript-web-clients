@@ -74,7 +74,7 @@ The code above has been written so you can add additional middleware if you need
 Inside your root layout file, import the `NextLettaProvider` component and wrap it around your application.
 
 ```typescript jsx
-import NextLettaProvider from '@letta-ai/letta-nextjs/client';
+import { NextLettaProvider } from '@letta-ai/letta-nextjs/client';
 
 export default function RootLayout({ children }) {
   return <NextLettaProvider>{children}</NextLettaProvider>;
