@@ -69,36 +69,15 @@ The code above has been written so you can add additional middleware if you need
 
 #### Client Side Usage
 
-##### Set up the `<LettaProvider />`
+##### Set up the `<NextLettaProvider />`
 
-Create a file called ClientComponents and add the `<LettaProvider />`
-
-```typescript jsx
-'use client';
-
-import { LettaProvider } from '@letta-ai/letta-react';
-import { getLettaProviderConfig } from '@letta-ai/letta-nextjs/client';
-
-interface ClientLayoutProps {
-  children: React.ReactNode;
-}
-
-export default function ClientLayout(props: ClientLayoutProps) {
-  const { children } = props;
-
-  return (
-    <LettaProvider options={getLettaProviderConfig()}>{children}</LettaProvider>
-  );
-}
-```
-
-Inside your root layout file, import the `ClientLayout` component and wrap it around your application.
+Inside your root layout file, import the `NextLettaProvider` component and wrap it around your application.
 
 ```typescript jsx
-import ClientLayout from './ClientLayout';
+import NextLettaProvider from '@letta-ai/letta-nextjs/client';
 
 export default function RootLayout({ children }) {
-  return <ClientLayout>{children}</ClientLayout>;
+  return <NextLettaProvider>{children}</NextLettaProvider>;
 }
 ```
 
@@ -164,8 +143,8 @@ import { type NextRequest } from 'next/server';
 import { lettaMiddleware } from '@letta-ai/letta-nextjs/server';
 import { identityPlugin } from '@letta-ai/letta-nextjs/plugins';
 
-export function middleware(request: NextRequest) {
-  const response = lettaMiddleware(request, {
+export async function middleware(request: NextRequest) {
+  const response = await lettaMiddleware(request, {
     baseUrl: 'http://localhost:3000',
     apiKey: process.env.LETTA_API_KEY,
     plugins: [
