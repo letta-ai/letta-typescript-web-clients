@@ -3,7 +3,13 @@ import { LettaClient } from '@letta-ai/letta-client';
 import type { PluginType } from '../types';
 
 interface IdentityPluginOptions {
-  getIdentity: (req: NextRequest) => Promise<string | null | undefined>;
+  getIdentity: (req: NextRequest) => Promise<
+    | {
+        identityId: string;
+      }
+    | undefined
+    | null
+  >;
   errorCodeOnNotFound?: number;
   errorCodeOnUnauthorized?: number;
 }

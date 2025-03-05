@@ -20,7 +20,9 @@ describe('identityPlugin', () => {
     }));
 
     const { operation } = identityPlugin({
-      getIdentity: () => Promise.resolve('identity'),
+      getIdentity: async () => ({
+        identityId: 'identity',
+      }),
     });
 
     expect(
@@ -45,7 +47,9 @@ describe('identityPlugin', () => {
     }));
 
     const { operation } = identityPlugin({
-      getIdentity: () => Promise.resolve('identity'),
+      getIdentity: async () => ({
+        identityId: 'identity',
+      }),
     });
 
     expect(
@@ -70,7 +74,9 @@ describe('identityPlugin', () => {
     }));
 
     const { operation } = identityPlugin({
-      getIdentity: () => Promise.resolve('identity'),
+      getIdentity: async () => ({
+        identityId: 'identity',
+      }),
     });
 
     expect(

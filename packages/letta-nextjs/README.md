@@ -175,7 +175,9 @@ export function middleware(request: NextRequest) {
           // you can return a identity id and Letta will only allow access to the agent if the agent is owned by the identity
           const cookie = req.cookies.get('letta-identity-id');
 
-          return cookie;
+          return {
+            identityId: cookie,
+          };
         },
       }),
     ],

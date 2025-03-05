@@ -10,7 +10,9 @@ export function middleware(request: NextRequest) {
       identityPlugin({
         getIdentity: async () => {
           // Replace this with your own identity logic
-          return 'identity-dd11e6be-3ce0-48fe-8e12-6b6bf5e2b9f9';
+          return {
+            identityId: 'identity-dd11e6be-3ce0-48fe-8e12-6b6bf5e2b9f9',
+          };
         },
       }),
     ],
