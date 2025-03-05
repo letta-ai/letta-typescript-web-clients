@@ -16,6 +16,13 @@ npm install @letta-ai/letta-nextjs @letta-ai/letta-react
 
 #### Server-side configuration
 
+First create or update your `.env` file in the root of your project and add the following environment variables:
+
+```bash
+LETTA_BASE_URL=https://api.letta.com
+LETTA_API_KEY=your-api-key-optional
+```
+
 Create or visit your `middleware.ts` file in root or `src` directory and add the following code:
 
 ```typescript
@@ -24,7 +31,7 @@ import { lettaMiddleware } from '@letta-ai/letta-nextjs/server';
 
 export function middleware(request: NextRequest) {
   const response = lettaMiddleware(request, {
-    baseUrl: 'http://localhost:3000',
+    baseUrl: process.env.LETTA_BASE_URL,
     apiKey: process.env.LETTA_API_KEY,
   });
 
