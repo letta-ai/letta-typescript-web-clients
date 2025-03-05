@@ -44,9 +44,9 @@
   "peerDependencies": {
     "@letta-ai/letta-client": ">=0.1.48 <0.2.0",
     "@letta-ai/letta-react": ">=0.0.3 <0.1.0",
+    "next": ">=15.0.0",
     "react": ">=16.8.0 <20.0.0",
-    "react-dom": ">=16.8.0 <20.0.0",
-    "next": ">=15.0.0"
+    "react-dom": ">=16.8.0 <20.0.0"
   },
   "resolutions": {
     "@types/react": "18.0.5"
@@ -54,9 +54,12 @@
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.2.0",
+    "@types/jest": "^29.5.14",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "jest-mock-extended": "^4.0.0-beta1",
+    "ts-jest": "^29.2.6",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   }
 }
