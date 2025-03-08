@@ -31,6 +31,13 @@ export async function lettaMiddleware(
     url.protocol = baseUrl.startsWith('https') ? 'https:' : 'http:';
 
     url.host = baseUrl.replace(/(^\w+:|^)\/\//, '');
+
+    if (baseUrl === 'https://api.letta.com') {
+      url.host = 'api.letta.com';
+      url.port = '';
+      url.protocol = 'https:';
+    }
+
     url.pathname = url.pathname.replace(new RegExp(`^${LETTA_PATH}`), '');
 
     for (const plugin of preRequestPlugins) {
