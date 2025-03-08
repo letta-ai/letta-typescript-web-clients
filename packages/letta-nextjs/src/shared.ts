@@ -1,1 +1,1 @@
-export const LETTA_PATH = '/letta-xx';
+export const LETTA_PATH = '/letta-middleware-route';

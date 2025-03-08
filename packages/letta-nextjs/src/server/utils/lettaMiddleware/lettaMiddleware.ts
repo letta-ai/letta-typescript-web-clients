@@ -2,6 +2,7 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { LETTA_PATH } from '../../../shared';
 import { PluginType } from '../../../plugins';
+import { NextURL } from 'next/dist/server/web/next-url';
 
 interface LettaMiddlewareOptions {
   baseUrl: string;
@@ -20,18 +21,20 @@ export async function lettaMiddleware(
   );
 
   if (request.nextUrl.pathname.startsWith(LETTA_PATH)) {
-    const url = request.nextUrl.clone();
-
     const requestHeaders = new Headers(request.headers);
 
     if (apiKey) {
       requestHeaders.set('Authorization', `Bearer ${apiKey}`);
     }
 
-    url.protocol = baseUrl.startsWith('https') ? 'https:' : 'http:';
+    const existingUrl = request.nextUrl.clone();
 
-    url.host = baseUrl.replace(/(^\w+:|^)\/\//, '');
-    url.pathname = url.pathname.replace(new RegExp(`^${LETTA_PATH}`), '');
+    const pathname = existingUrl.pathname.replace(LETTA_PATH, '');
+    const query = existingUrl.searchParams;
+
+    const url = new NextURL(`${baseUrl}${pathname}`);
+
+    url.search = query.toString();
 
     for (const plugin of preRequestPlugins) {
       const response = await plugin.operation(
