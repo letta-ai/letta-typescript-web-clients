@@ -21,23 +21,20 @@ export async function lettaMiddleware(
   );
 
   if (request.nextUrl.pathname.startsWith(LETTA_PATH)) {
-    let url = request.nextUrl.clone();
-
     const requestHeaders = new Headers(request.headers);
 
     if (apiKey) {
       requestHeaders.set('Authorization', `Bearer ${apiKey}`);
     }
 
-    url.protocol = baseUrl.startsWith('https') ? 'https:' : 'http:';
+    const existingUrl = request.nextUrl.clone();
 
-    url.host = baseUrl.replace(/(^\w+:|^)\/\//, '');
+    const pathname = existingUrl.pathname.replace(LETTA_PATH, '');
+    const query = existingUrl.searchParams;
 
-    if (baseUrl === 'https://api.letta.com') {
-      url = new NextURL('https://api.letta.com');
-    }
+    const url = new NextURL(`${baseUrl}${pathname}`);
 
-    url.pathname = url.pathname.replace(new RegExp(`^${LETTA_PATH}`), '');
+    url.search = query.toString();
 
     for (const plugin of preRequestPlugins) {
       const response = await plugin.operation(
