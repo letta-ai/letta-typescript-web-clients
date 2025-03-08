@@ -2,6 +2,7 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { LETTA_PATH } from '../../../shared';
 import { PluginType } from '../../../plugins';
+import { NextURL } from 'next/dist/server/web/next-url';
 
 interface LettaMiddlewareOptions {
   baseUrl: string;
@@ -20,7 +21,7 @@ export async function lettaMiddleware(
   );
 
   if (request.nextUrl.pathname.startsWith(LETTA_PATH)) {
-    const url = request.nextUrl.clone();
+    let url = request.nextUrl.clone();
 
     const requestHeaders = new Headers(request.headers);
 
@@ -33,9 +34,7 @@ export async function lettaMiddleware(
     url.host = baseUrl.replace(/(^\w+:|^)\/\//, '');
 
     if (baseUrl === 'https://api.letta.com') {
-      url.host = 'api.letta.com';
-      url.port = '';
-      url.protocol = 'https:';
+      url = new NextURL('https://api.letta.com');
     }
 
     url.pathname = url.pathname.replace(new RegExp(`^${LETTA_PATH}`), '');
