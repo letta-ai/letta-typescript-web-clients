@@ -1,6 +1,6 @@
 {
   "name": "@letta-ai/letta-react",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Letta's react library",
   "private": false,
   "main": "./index.js",

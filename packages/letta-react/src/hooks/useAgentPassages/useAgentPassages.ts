@@ -20,7 +20,7 @@ export function useAgentPassages(options: UseAgentStateOptions) {
   );
 
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoadingError, setIsLoadingError] = useState<unknown | null>(null);
+  const [loadingError, setLoadingError] = useState<unknown | null>(null);
 
   const getAgentPassages = useCallback(async () => {
     try {
@@ -28,7 +28,7 @@ export function useAgentPassages(options: UseAgentStateOptions) {
 
       setLocalState(state);
     } catch (error) {
-      setIsLoadingError(error);
+      setLoadingError(error);
     } finally {
       setIsLoading(false);
     }
@@ -44,7 +44,8 @@ export function useAgentPassages(options: UseAgentStateOptions) {
 
   return {
     isLoading,
-    isLoadingError,
+    loadingError,
+    isLoadingError: !!loadingError,
     passages: localState,
     refresh: getAgentPassages,
   };
