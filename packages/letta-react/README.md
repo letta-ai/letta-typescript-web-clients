@@ -110,12 +110,29 @@ const {
 });
 ```
 
-##### Getting Agent State
+##### Getting/Setting Agent State
 
 Check out [this example](./packages/letta-react/examples/view-and-send-messages) for more detailed usage.
 
 ```typescript jsx
-const { agentState, error, isLoading, refresh } = useAgentState({
+const {
+  agentState,
+  loadingError,
+  isLoading,
+  refresh,
+  updateAgentState,
+  isUpdating,
+  updatingError,
+} = useAgentState({
   agentId: `your-agent-id`,
 });
+```
+
+##### Listing Agent Passages
+
+```typescript jsx
+const { passages, loadingError, isLoadingError, isLoading, refresh } =
+  useAgentPassages({
+    agentId: `your-agent-id`,
+  });
 ```
