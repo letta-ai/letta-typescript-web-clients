@@ -1,6 +1,10 @@
 'use client';
-import { useAgentMessages, useAgentState } from '@letta-ai/letta-react';
-import { FormEvent, useCallback, useState } from 'react';
+import {
+  useAgentMessages,
+  useAgentPassages,
+  useAgentState,
+} from '@letta-ai/letta-react';
+import React, { FormEvent, useCallback, useState } from 'react';
 
 export default function Home() {
   const [messageToSend, setMessageToSend] = useState<string>('');
@@ -13,11 +17,15 @@ export default function Home() {
     isSending,
     sendMessage,
   } = useAgentMessages({
-    agentId: 'agent-db79f7fb-e86e-4820-a5d6-a75215433fcc',
+    agentId: 'agent-0d07e901-64de-4bbd-8a7c-268ce88bc6cb',
+  });
+
+  const { passages, isLoading: isPassagesLoading } = useAgentPassages({
+    agentId: 'agent-0d07e901-64de-4bbd-8a7c-268ce88bc6cb',
   });
 
   const { agentState } = useAgentState({
-    agentId: 'agent-db79f7fb-e86e-4820-a5d6-a75215433fcc',
+    agentId: 'agent-0d07e901-64de-4bbd-8a7c-268ce88bc6cb',
   });
 
   const handleSubmit = useCallback(
@@ -43,6 +51,15 @@ export default function Home() {
       <header className="p-1 bg-gray-100 rounded">
         Talking to: {agentState?.name}
       </header>
+      {isPassagesLoading ? (
+        <div>Loading passages!</div>
+      ) : (
+        <ul className="passages">
+          {passages?.map((passage) => (
+            <li key={passage.id}>{passage.text}</li>
+          ))}
+        </ul>
+      )}
       {hasOlderMessages && (
         <button
           className="border w-full"

@@ -1,6 +1,6 @@
 {
   "name": "@letta-ai/letta-nextjs",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Letta's NextJS library",
   "private": false,
   "main": "./index.js",

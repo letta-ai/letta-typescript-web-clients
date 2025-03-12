@@ -1,7 +1,7 @@
 import { useLettaClient } from '../useLettaClient/useLettaClient';
 import type { LettaClient } from '@letta-ai/letta-client';
 import { useCachedState } from '../useCachedState/useCachedState';
-import type { AgentState } from '@letta-ai/letta-client/api';
+import type { AgentState, UpdateAgent } from '@letta-ai/letta-client/api';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface UseAgentStateOptions {
@@ -19,8 +19,10 @@ export function useAgentState(options: UseAgentStateOptions) {
   );
 
   const [isLoading, setIsLoading] = useState(true);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [updatingError, setUpdatingError] = useState<unknown | null>(null);
   const [loadingError, setLoadingError] = useState<unknown | null>(null);
-  const hasInitialLoaded = useRef<boolean>(false);
+  const loadedAgentId = useRef<string | null>(null);
 
   const getAgentState = useCallback(async () => {
     try {
@@ -34,21 +36,36 @@ export function useAgentState(options: UseAgentStateOptions) {
     }
   }, [agentId, localClient, setLocalState]);
 
+  const updateAgentState = useCallback(
+    async (state: Partial<UpdateAgent>) => {
+      setIsUpdating(true);
+      try {
+        const response = await localClient.agents.modify(agentId, state);
+
+        setLocalState(response);
+      } catch (error) {
+        setUpdatingError(error);
+      } finally {
+        setIsUpdating(false);
+      }
+    },
+    [agentId, localClient, setLocalState]
+  );
+
   useEffect(() => {
-    if (hasInitialLoaded.current) {
-      return;
+    if (agentId !== loadedAgentId.current) {
+      setIsLoading(true);
+      void getAgentState();
+      loadedAgentId.current = agentId;
     }
-
-    hasInitialLoaded.current = true;
-
-    setIsLoading(true);
-
-    getAgentState();
-  }, []);
+  }, [agentId]);
 
   return {
     isLoading,
-    error: loadingError,
+    updateAgentState,
+    isUpdating,
+    updatingError,
+    loadingError,
     agentState: localState,
     refresh: getAgentState,
   };
