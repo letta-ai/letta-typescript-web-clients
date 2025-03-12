@@ -1,7 +1,11 @@
 import React, { FormEvent, useCallback } from 'react';
 import { useState } from 'react';
 import './App.css';
-import { useAgentMessages, useAgentState } from '@letta-ai/letta-react';
+import {
+  useAgentMessages,
+  useAgentPassages,
+  useAgentState,
+} from '@letta-ai/letta-react';
 
 function App() {
   const [messageToSend, setMessageToSend] = useState<string>('');
@@ -14,11 +18,15 @@ function App() {
     isSending,
     sendMessage,
   } = useAgentMessages({
-    agentId: 'agent-ed85493d-2164-4404-b52e-119ccbc987b4',
+    agentId: 'agent-0d07e901-64de-4bbd-8a7c-268ce88bc6cb',
+  });
+
+  const { passages, isLoading: isPassagesLoading } = useAgentPassages({
+    agentId: 'agent-0d07e901-64de-4bbd-8a7c-268ce88bc6cb',
   });
 
   const { agentState } = useAgentState({
-    agentId: 'agent-ed85493d-2164-4404-b52e-119ccbc987b4',
+    agentId: 'agent-0d07e901-64de-4bbd-8a7c-268ce88bc6cb',
   });
 
   const handleSubmit = useCallback(
@@ -42,6 +50,16 @@ function App() {
   return (
     <main>
       <header>Talking to: {agentState?.name}</header>
+      {isPassagesLoading ? (
+        <div>Loading passages!</div>
+      ) : (
+        <ul className="passages">
+          {passages?.map((passage) => (
+            <li key={passage.id}>{passage.text}</li>
+          ))}
+        </ul>
+      )}
+
       {hasOlderMessages && (
         <button onClick={fetchOlderMessages} disabled={isFetching}>
           {isFetching ? 'Loading older messages' : 'Load older messages'}

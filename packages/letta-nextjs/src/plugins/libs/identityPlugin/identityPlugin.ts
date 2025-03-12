@@ -20,7 +20,7 @@ interface IdentityPluginOptions {
  */
 
 // url starts with /v1/agents but can be followed by any string
-const AgentRegex = new RegExp('/v1/agents/([a-zA-Z0-9-]+)/?');
+const AgentRegex = new RegExp('/v1/agents/([a-zA-Z0-9-]+)(/?|^)');
 
 export function identityPlugin(options: IdentityPluginOptions) {
   const { errorCodeOnNotFound = 404, errorCodeOnUnauthorized = 401 } = options;

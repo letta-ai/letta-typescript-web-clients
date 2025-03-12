@@ -85,7 +85,7 @@ export function useAgentMessages(options: UseAgentOptions) {
     }
   );
 
-  const hasInitialLoaded = useRef<boolean>(false);
+  const agentIdMessagesLoadedRef = useRef(false);
 
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
@@ -371,15 +371,11 @@ export function useAgentMessages(options: UseAgentOptions) {
   }, [getMessages]);
 
   useEffect(() => {
-    if (hasInitialLoaded.current) {
-      return;
+    if (!agentIdMessagesLoadedRef.current) {
+      setIsLoading(true);
+      void getMessages();
+      agentIdMessagesLoadedRef.current = true;
     }
-
-    hasInitialLoaded.current = true;
-
-    setIsLoading(true);
-
-    getMessages();
   }, []);
 
   return {

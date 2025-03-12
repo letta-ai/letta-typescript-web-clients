@@ -4,18 +4,9 @@ import { identityPlugin } from '@letta-ai/letta-nextjs/plugins';
 
 export function middleware(request: NextRequest) {
   const response = lettaMiddleware(request, {
-    baseUrl: 'http://localhost:3000',
+    baseUrl: 'https://app.letta.com',
     apiKey: process.env.LETTA_API_KEY,
-    plugins: [
-      identityPlugin({
-        getIdentity: async () => {
-          // Replace this with your own identity logic
-          return {
-            identityId: 'identity-dd11e6be-3ce0-48fe-8e12-6b6bf5e2b9f9',
-          };
-        },
-      }),
-    ],
+    plugins: [],
   });
 
   if (response) {
