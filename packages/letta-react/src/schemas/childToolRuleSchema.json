@@ -1,0 +1,15 @@
+{
+  "properties": {
+    "tool_name": { "type": "string", "title": "Tool Name" },
+    "type": { "type": "string", "title": "Type" },
+    "children": {
+      "items": { "type": "string" },
+      "type": "array",
+      "title": "Children"
+    }
+  },
+  "type": "object",
+  "required": ["tool_name", "type", "children"],
+  "title": "ChildToolRuleSchema",
+  "x-readme-ref-name": "ChildToolRuleSchema"
+}

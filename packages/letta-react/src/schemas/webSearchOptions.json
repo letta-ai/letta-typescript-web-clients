@@ -1,0 +1,41 @@
+{
+  "properties": {
+    "search_context_size": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "title": "Search Context Size"
+    },
+    "user_location": {
+      "anyOf": [
+        {
+          "properties": {
+            "approximate": {
+              "properties": {
+                "city": { "type": "string", "title": "City" },
+                "country": { "type": "string", "title": "Country" },
+                "region": { "type": "string", "title": "Region" },
+                "timezone": { "type": "string", "title": "Timezone" }
+              },
+              "type": "object",
+              "title": "WebSearchOptionsUserLocationApproximate",
+              "x-readme-ref-name": "WebSearchOptionsUserLocationApproximate"
+            },
+            "type": {
+              "type": "string",
+              "const": "approximate",
+              "title": "Type"
+            }
+          },
+          "type": "object",
+          "required": ["approximate", "type"],
+          "title": "WebSearchOptionsUserLocation",
+          "x-readme-ref-name": "WebSearchOptionsUserLocation"
+        },
+        { "type": "null" }
+      ]
+    }
+  },
+  "type": "object",
+  "title": "WebSearchOptions",
+  "x-readme-ref-name": "WebSearchOptions"
+}

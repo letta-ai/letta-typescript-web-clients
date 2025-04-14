@@ -1,0 +1,21 @@
+{
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "omitted_reasoning",
+      "title": "Type",
+      "description": "Indicates this is an omitted reasoning step.",
+      "default": "omitted_reasoning",
+      "enum": ["omitted_reasoning"]
+    },
+    "tokens": {
+      "type": "integer",
+      "title": "Tokens",
+      "description": "The reasoning token count for intermediate reasoning content."
+    }
+  },
+  "type": "object",
+  "required": ["tokens", "type"],
+  "title": "OmittedReasoningContent",
+  "x-readme-ref-name": "OmittedReasoningContent"
+}

@@ -1,0 +1,106 @@
+{
+  "properties": {
+    "content": {
+      "anyOf": [
+        { "type": "string" },
+        {
+          "items": {
+            "anyOf": [
+              {
+                "properties": {
+                  "text": { "type": "string", "title": "Text" },
+                  "type": { "type": "string", "const": "text", "title": "Type" }
+                },
+                "type": "object",
+                "required": ["text", "type"],
+                "title": "ChatCompletionContentPartTextParam",
+                "x-readme-ref-name": "ChatCompletionContentPartTextParam"
+              },
+              {
+                "properties": {
+                  "image_url": {
+                    "properties": {
+                      "url": { "type": "string", "title": "Url" },
+                      "detail": {
+                        "type": "string",
+                        "enum": ["auto", "low", "high"],
+                        "title": "Detail"
+                      }
+                    },
+                    "type": "object",
+                    "required": ["url"],
+                    "title": "ImageURL",
+                    "x-readme-ref-name": "ImageURL"
+                  },
+                  "type": {
+                    "type": "string",
+                    "const": "image_url",
+                    "title": "Type"
+                  }
+                },
+                "type": "object",
+                "required": ["image_url", "type"],
+                "title": "ChatCompletionContentPartImageParam",
+                "x-readme-ref-name": "ChatCompletionContentPartImageParam"
+              },
+              {
+                "properties": {
+                  "input_audio": {
+                    "properties": {
+                      "data": { "type": "string", "title": "Data" },
+                      "format": {
+                        "type": "string",
+                        "enum": ["wav", "mp3"],
+                        "title": "Format"
+                      }
+                    },
+                    "type": "object",
+                    "required": ["data", "format"],
+                    "title": "InputAudio",
+                    "x-readme-ref-name": "InputAudio"
+                  },
+                  "type": {
+                    "type": "string",
+                    "const": "input_audio",
+                    "title": "Type"
+                  }
+                },
+                "type": "object",
+                "required": ["input_audio", "type"],
+                "title": "ChatCompletionContentPartInputAudioParam",
+                "x-readme-ref-name": "ChatCompletionContentPartInputAudioParam"
+              },
+              {
+                "properties": {
+                  "file": {
+                    "properties": {
+                      "file_data": { "type": "string", "title": "File Data" },
+                      "file_id": { "type": "string", "title": "File Id" },
+                      "filename": { "type": "string", "title": "Filename" }
+                    },
+                    "type": "object",
+                    "title": "FileFile",
+                    "x-readme-ref-name": "FileFile"
+                  },
+                  "type": { "type": "string", "const": "file", "title": "Type" }
+                },
+                "type": "object",
+                "required": ["file", "type"],
+                "title": "File",
+                "x-readme-ref-name": "File"
+              }
+            ]
+          },
+          "type": "array"
+        }
+      ],
+      "title": "Content"
+    },
+    "role": { "type": "string", "const": "user", "title": "Role" },
+    "name": { "type": "string", "title": "Name" }
+  },
+  "type": "object",
+  "required": ["content", "role"],
+  "title": "ChatCompletionUserMessageParam",
+  "x-readme-ref-name": "ChatCompletionUserMessageParam"
+}

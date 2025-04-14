@@ -1,0 +1,19 @@
+{
+  "properties": {
+    "message_type": {
+      "type": "string",
+      "const": "system_message",
+      "title": "Message Type",
+      "default": "system_message"
+    },
+    "content": {
+      "type": "string",
+      "title": "Content",
+      "description": "The message content sent by the system (can be a string or an array of multi-modal content parts)"
+    }
+  },
+  "type": "object",
+  "required": ["content"],
+  "title": "UpdateSystemMessage",
+  "x-readme-ref-name": "UpdateSystemMessage"
+}

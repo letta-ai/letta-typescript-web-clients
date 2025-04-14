@@ -1,0 +1,16 @@
+{
+  "properties": {
+    "created_at": { "type": "string", "title": "Created At" },
+    "description": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Description"
+    },
+    "key": { "type": "string", "title": "Key" },
+    "updated_at": { "type": "string", "title": "Updated At" },
+    "value": { "type": "string", "title": "Value" }
+  },
+  "type": "object",
+  "required": ["created_at", "description", "key", "updated_at", "value"],
+  "title": "ToolEnvVarSchema",
+  "x-readme-ref-name": "ToolEnvVarSchema"
+}

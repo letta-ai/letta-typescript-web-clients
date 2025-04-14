@@ -12,3 +12,6 @@ TAG := env_var_or_default("TAG", "latest")
 @react-install:
     echo "🚧 Installing dependencies for letta-react..."
     cd letta-react && npm install
+
+@generate-packages:
+    node ./scripts/generate-packages.js

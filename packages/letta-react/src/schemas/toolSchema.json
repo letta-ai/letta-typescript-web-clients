@@ -1,0 +1,99 @@
+{
+  "properties": {
+    "args_json_schema": {
+      "anyOf": [{}, { "type": "null" }],
+      "title": "Args Json Schema"
+    },
+    "created_at": { "type": "string", "title": "Created At" },
+    "description": { "type": "string", "title": "Description" },
+    "json_schema": {
+      "properties": {
+        "name": { "type": "string", "title": "Name" },
+        "description": { "type": "string", "title": "Description" },
+        "parameters": {
+          "properties": {
+            "type": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Type",
+              "default": "object"
+            },
+            "properties": {
+              "additionalProperties": {
+                "properties": {
+                  "type": { "type": "string", "title": "Type" },
+                  "description": {
+                    "anyOf": [{ "type": "string" }, { "type": "null" }],
+                    "title": "Description"
+                  }
+                },
+                "type": "object",
+                "required": ["type"],
+                "title": "ParameterProperties",
+                "x-readme-ref-name": "ParameterProperties"
+              },
+              "type": "object",
+              "title": "Properties"
+            },
+            "required": {
+              "items": { "type": "string" },
+              "type": "array",
+              "title": "Required"
+            }
+          },
+          "type": "object",
+          "required": ["properties"],
+          "title": "ParametersSchema",
+          "x-readme-ref-name": "ParametersSchema"
+        },
+        "type": {
+          "anyOf": [{ "type": "string" }, { "type": "null" }],
+          "title": "Type"
+        },
+        "required": {
+          "anyOf": [
+            { "items": { "type": "string" }, "type": "array" },
+            { "type": "null" }
+          ],
+          "title": "Required"
+        }
+      },
+      "type": "object",
+      "required": ["name", "description", "parameters"],
+      "title": "ToolJSONSchema",
+      "x-readme-ref-name": "ToolJSONSchema"
+    },
+    "name": { "type": "string", "title": "Name" },
+    "return_char_limit": { "type": "integer", "title": "Return Char Limit" },
+    "source_code": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Source Code"
+    },
+    "source_type": { "type": "string", "title": "Source Type" },
+    "tags": { "items": { "type": "string" }, "type": "array", "title": "Tags" },
+    "tool_type": { "type": "string", "title": "Tool Type" },
+    "updated_at": { "type": "string", "title": "Updated At" },
+    "metadata_": {
+      "anyOf": [
+        { "additionalProperties": true, "type": "object" },
+        { "type": "null" }
+      ],
+      "title": "Metadata"
+    }
+  },
+  "type": "object",
+  "required": [
+    "args_json_schema",
+    "created_at",
+    "description",
+    "json_schema",
+    "name",
+    "return_char_limit",
+    "source_code",
+    "source_type",
+    "tags",
+    "tool_type",
+    "updated_at"
+  ],
+  "title": "ToolSchema",
+  "x-readme-ref-name": "ToolSchema"
+}

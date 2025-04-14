@@ -1,0 +1,93 @@
+{
+  "properties": {
+    "name": { "type": "string", "title": "Name" },
+    "description": { "type": "string", "title": "Description" },
+    "parameters": {
+      "properties": {
+        "properties": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Properties"
+        },
+        "title": { "type": "string", "title": "Title" },
+        "type": { "type": "string", "title": "Type" },
+        "required": {
+          "anyOf": [
+            { "items": { "type": "string" }, "type": "array" },
+            { "type": "null" }
+          ],
+          "title": "Required"
+        },
+        "examples": {
+          "anyOf": [{ "items": {}, "type": "array" }, { "type": "null" }],
+          "title": "Examples"
+        }
+      },
+      "type": "object",
+      "required": ["properties", "title", "type"],
+      "title": "ActionParametersModel",
+      "description": "Action parameter data models.",
+      "x-readme-ref-name": "ActionParametersModel"
+    },
+    "response": {
+      "properties": {
+        "properties": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Properties"
+        },
+        "title": { "type": "string", "title": "Title" },
+        "type": { "type": "string", "title": "Type" },
+        "required": {
+          "anyOf": [
+            { "items": { "type": "string" }, "type": "array" },
+            { "type": "null" }
+          ],
+          "title": "Required"
+        },
+        "examples": {
+          "anyOf": [{ "items": {}, "type": "array" }, { "type": "null" }],
+          "title": "Examples"
+        }
+      },
+      "type": "object",
+      "required": ["properties", "title", "type"],
+      "title": "ActionResponseModel",
+      "description": "Action response data model.",
+      "x-readme-ref-name": "ActionResponseModel"
+    },
+    "appName": { "type": "string", "title": "Appname" },
+    "appId": { "type": "string", "title": "Appid" },
+    "version": { "type": "string", "title": "Version" },
+    "available_versions": {
+      "items": { "type": "string" },
+      "type": "array",
+      "title": "Available Versions"
+    },
+    "tags": { "items": { "type": "string" }, "type": "array", "title": "Tags" },
+    "logo": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Logo"
+    },
+    "display_name": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Display Name"
+    },
+    "enabled": { "type": "boolean", "title": "Enabled", "default": false }
+  },
+  "type": "object",
+  "required": [
+    "name",
+    "description",
+    "parameters",
+    "response",
+    "appName",
+    "appId",
+    "version",
+    "available_versions",
+    "tags"
+  ],
+  "title": "ActionModel",
+  "description": "Action data model.",
+  "x-readme-ref-name": "ActionModel"
+}

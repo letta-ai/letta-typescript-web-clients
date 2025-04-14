@@ -1,0 +1,18 @@
+{
+  "properties": {
+    "completion_tokens": {
+      "type": "integer",
+      "title": "Completion Tokens",
+      "default": 0
+    },
+    "prompt_tokens": {
+      "type": "integer",
+      "title": "Prompt Tokens",
+      "default": 0
+    },
+    "total_tokens": { "type": "integer", "title": "Total Tokens", "default": 0 }
+  },
+  "type": "object",
+  "title": "UsageStatistics",
+  "x-readme-ref-name": "UsageStatistics"
+}

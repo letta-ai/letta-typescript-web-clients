@@ -1,0 +1,82 @@
+{
+  "properties": {
+    "created_by_id": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Created By Id",
+      "description": "The id of the user that made this object."
+    },
+    "last_updated_by_id": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Last Updated By Id",
+      "description": "The id of the user that made this object."
+    },
+    "created_at": {
+      "anyOf": [
+        { "type": "string", "format": "date-time" },
+        { "type": "null" }
+      ],
+      "title": "Created At",
+      "description": "The timestamp when the object was created."
+    },
+    "updated_at": {
+      "anyOf": [
+        { "type": "string", "format": "date-time" },
+        { "type": "null" }
+      ],
+      "title": "Updated At",
+      "description": "The timestamp when the object was last updated."
+    },
+    "status": {
+      "description": "The status of the job.",
+      "default": "created",
+      "type": "string",
+      "enum": [
+        "not_started",
+        "created",
+        "running",
+        "completed",
+        "failed",
+        "pending",
+        "cancelled"
+      ],
+      "title": "JobStatus",
+      "x-readme-ref-name": "JobStatus"
+    },
+    "completed_at": {
+      "anyOf": [
+        { "type": "string", "format": "date-time" },
+        { "type": "null" }
+      ],
+      "title": "Completed At",
+      "description": "The unix timestamp of when the job was completed."
+    },
+    "metadata": {
+      "anyOf": [
+        { "additionalProperties": true, "type": "object" },
+        { "type": "null" }
+      ],
+      "title": "Metadata",
+      "description": "The metadata of the job."
+    },
+    "job_type": {
+      "description": "The type of the job.",
+      "default": "job",
+      "type": "string",
+      "enum": ["job", "run"],
+      "title": "JobType",
+      "x-readme-ref-name": "JobType"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^(job|run)-[a-fA-F0-9]{8}",
+      "title": "Id",
+      "description": "The human-friendly ID of the Job",
+      "examples": ["job-123e4567-e89b-12d3-a456-426614174000"]
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "title": "Job",
+  "description": "Representation of offline jobs, used for tracking status of data loading tasks (involving parsing and embedding files).\n\nParameters:\n    id (str): The unique identifier of the job.\n    status (JobStatus): The status of the job.\n    created_at (datetime): The unix timestamp of when the job was created.\n    completed_at (datetime): The unix timestamp of when the job was completed.\n    user_id (str): The unique identifier of the user associated with the.",
+  "x-readme-ref-name": "Job"
+}

@@ -1,0 +1,26 @@
+{
+  "properties": {
+    "tool_name": {
+      "type": "string",
+      "title": "Tool Name",
+      "description": "The name of the tool. Must exist in the database for the user's organization."
+    },
+    "type": {
+      "type": "string",
+      "const": "max_count_per_step",
+      "title": "Type",
+      "default": "max_count_per_step"
+    },
+    "max_count_limit": {
+      "type": "integer",
+      "title": "Max Count Limit",
+      "description": "The max limit for the total number of times this tool can be invoked in a single step."
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "required": ["tool_name", "max_count_limit"],
+  "title": "MaxCountPerStepToolRule",
+  "description": "Represents a tool rule configuration which constrains the total number of times this tool can be invoked in a single step.",
+  "x-readme-ref-name": "MaxCountPerStepToolRule"
+}

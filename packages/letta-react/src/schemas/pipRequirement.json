@@ -1,0 +1,19 @@
+{
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "title": "Name",
+      "description": "Name of the pip package."
+    },
+    "version": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Version",
+      "description": "Optional version of the package, following semantic versioning."
+    }
+  },
+  "type": "object",
+  "required": ["name"],
+  "title": "PipRequirement",
+  "x-readme-ref-name": "PipRequirement"
+}
