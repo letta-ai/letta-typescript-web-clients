@@ -1,11 +1,10 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import { LETTA_PATH } from '../../../shared';
 import { PluginType } from '../../../plugins';
 import { NextURL } from 'next/dist/server/web/next-url';
 
 interface LettaMiddlewareOptions {
-  baseUrl: string;
+  baseUrl?: string;
   apiKey?: string;
   plugins?: PluginType[];
 }
@@ -14,13 +13,17 @@ export async function lettaMiddleware(
   request: NextRequest,
   options: LettaMiddlewareOptions
 ) {
-  const { baseUrl, apiKey, plugins = [] } = options;
+  const {
+    baseUrl = process.env.BASE_URL,
+    apiKey = process.env.LETTA_API_KEY,
+    plugins = [],
+  } = options;
 
   const preRequestPlugins = plugins.filter(
     (plugin) => plugin.triggeredAt === 'prerequest'
   );
 
-  if (request.nextUrl.pathname.startsWith(LETTA_PATH)) {
+  if (request.nextUrl.pathname.startsWith('/v1')) {
     const requestHeaders = new Headers(request.headers);
 
     if (apiKey) {
@@ -29,10 +32,9 @@ export async function lettaMiddleware(
 
     const existingUrl = request.nextUrl.clone();
 
-    const pathname = existingUrl.pathname.replace(LETTA_PATH, '');
     const query = existingUrl.searchParams;
 
-    const url = new NextURL(`${baseUrl}${pathname}`);
+    const url = new NextURL(`${baseUrl}${existingUrl.pathname}`);
 
     url.search = query.toString();
 
