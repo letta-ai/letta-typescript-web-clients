@@ -3,16 +3,38 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { ListMcpToolsByServerQueryResponse, ListMcpToolsByServerPathParams, ListMcpToolsByServer422 } from '../../types/ListMcpToolsByServer.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  ListMcpToolsByServerQueryResponse,
+  ListMcpToolsByServerPathParams,
+  ListMcpToolsByServer422,
+} from '../../types/ListMcpToolsByServer.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  UseSuspenseQueryOptions,
+  UseSuspenseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 
-export const listMcpToolsByServerSuspenseQueryKey = (mcp_server_name: ListMcpToolsByServerPathParams['mcp_server_name']) =>
-  [{ url: '/v1/tools/mcp/servers/:mcp_server_name/tools', params: { mcp_server_name: mcp_server_name } }] as const
+export const listMcpToolsByServerSuspenseQueryKey = (
+  mcp_server_name: ListMcpToolsByServerPathParams['mcp_server_name']
+) =>
+  [
+    {
+      url: '/v1/tools/mcp/servers/:mcp_server_name/tools',
+      params: { mcp_server_name: mcp_server_name },
+    },
+  ] as const;
 
-export type ListMcpToolsByServerSuspenseQueryKey = ReturnType<typeof listMcpToolsByServerSuspenseQueryKey>
+export type ListMcpToolsByServerSuspenseQueryKey = ReturnType<
+  typeof listMcpToolsByServerSuspenseQueryKey
+>;
 
 /**
  * @description Get a list of all tools for a specific MCP server
@@ -21,23 +43,27 @@ export type ListMcpToolsByServerSuspenseQueryKey = ReturnType<typeof listMcpTool
  */
 export async function listMcpToolsByServerSuspense(
   mcp_server_name: ListMcpToolsByServerPathParams['mcp_server_name'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<ListMcpToolsByServerQueryResponse, ResponseErrorConfig<ListMcpToolsByServer422>, unknown>({
+  const res = await request<
+    ListMcpToolsByServerQueryResponse,
+    ResponseErrorConfig<ListMcpToolsByServer422>,
+    unknown
+  >({
     method: 'GET',
     url: `/v1/tools/mcp/servers/${mcp_server_name}/tools`,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 export function listMcpToolsByServerSuspenseQueryOptions(
   mcp_server_name: ListMcpToolsByServerPathParams['mcp_server_name'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const queryKey = listMcpToolsByServerSuspenseQueryKey(mcp_server_name)
+  const queryKey = listMcpToolsByServerSuspenseQueryKey(mcp_server_name);
   return queryOptions<
     ResponseConfig<ListMcpToolsByServerQueryResponse>,
     ResponseErrorConfig<ListMcpToolsByServer422>,
@@ -47,10 +73,10 @@ export function listMcpToolsByServerSuspenseQueryOptions(
     enabled: !!mcp_server_name,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return listMcpToolsByServerSuspense(mcp_server_name, config)
+      config.signal = signal;
+      return listMcpToolsByServerSuspense(mcp_server_name, config);
     },
-  })
+  });
 }
 
 /**
@@ -61,29 +87,45 @@ export function listMcpToolsByServerSuspenseQueryOptions(
 export function useListMcpToolsByServerSuspense<
   TData = ResponseConfig<ListMcpToolsByServerQueryResponse>,
   TQueryData = ResponseConfig<ListMcpToolsByServerQueryResponse>,
-  TQueryKey extends QueryKey = ListMcpToolsByServerSuspenseQueryKey,
+  TQueryKey extends QueryKey = ListMcpToolsByServerSuspenseQueryKey
 >(
   mcp_server_name: ListMcpToolsByServerPathParams['mcp_server_name'],
   options: {
     query?: Partial<
-      UseSuspenseQueryOptions<ResponseConfig<ListMcpToolsByServerQueryResponse>, ResponseErrorConfig<ListMcpToolsByServer422>, TData, TQueryKey>
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+      UseSuspenseQueryOptions<
+        ResponseConfig<ListMcpToolsByServerQueryResponse>,
+        ResponseErrorConfig<ListMcpToolsByServer422>,
+        TData,
+        TQueryKey
+      >
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? listMcpToolsByServerSuspenseQueryKey(mcp_server_name)
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey =
+    queryOptions?.queryKey ??
+    listMcpToolsByServerSuspenseQueryKey(mcp_server_name);
 
   const query = useSuspenseQuery(
     {
-      ...(listMcpToolsByServerSuspenseQueryOptions(mcp_server_name, config) as unknown as UseSuspenseQueryOptions),
+      ...(listMcpToolsByServerSuspenseQueryOptions(
+        mcp_server_name,
+        config
+      ) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<ListMcpToolsByServer422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseSuspenseQueryResult<
+    TData,
+    ResponseErrorConfig<ListMcpToolsByServer422>
+  > & { queryKey: TQueryKey };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

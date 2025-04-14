@@ -1,1 +1,7 @@
-{"properties":{"tag":{"type":"string","title":"Tag"}},"type":"object","required":["tag"],"title":"TagSchema","x-readme-ref-name":"TagSchema"}
+{
+  "properties": { "tag": { "type": "string", "title": "Tag" } },
+  "type": "object",
+  "required": ["tag"],
+  "title": "TagSchema",
+  "x-readme-ref-name": "TagSchema"
+}

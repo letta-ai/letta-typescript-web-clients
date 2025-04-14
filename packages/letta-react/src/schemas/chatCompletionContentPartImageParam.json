@@ -1,1 +1,23 @@
-{"properties":{"image_url":{"properties":{"url":{"type":"string","title":"Url"},"detail":{"type":"string","enum":["auto","low","high"],"title":"Detail"}},"type":"object","required":["url"],"title":"ImageURL","x-readme-ref-name":"ImageURL"},"type":{"type":"string","const":"image_url","title":"Type"}},"type":"object","required":["image_url","type"],"title":"ChatCompletionContentPartImageParam","x-readme-ref-name":"ChatCompletionContentPartImageParam"}
+{
+  "properties": {
+    "image_url": {
+      "properties": {
+        "url": { "type": "string", "title": "Url" },
+        "detail": {
+          "type": "string",
+          "enum": ["auto", "low", "high"],
+          "title": "Detail"
+        }
+      },
+      "type": "object",
+      "required": ["url"],
+      "title": "ImageURL",
+      "x-readme-ref-name": "ImageURL"
+    },
+    "type": { "type": "string", "const": "image_url", "title": "Type" }
+  },
+  "type": "object",
+  "required": ["image_url", "type"],
+  "title": "ChatCompletionContentPartImageParam",
+  "x-readme-ref-name": "ChatCompletionContentPartImageParam"
+}

@@ -7,5 +7,5 @@ export type OpenaiTypesChatChatCompletionNamedToolChoiceParamFunction = {
   /**
    * @type string
    */
-  name: string
-}
+  name: string;
+};

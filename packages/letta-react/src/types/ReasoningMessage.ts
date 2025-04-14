@@ -5,16 +5,18 @@
 
 export const reasoningMessageMessageTypeEnum = {
   reasoning_message: 'reasoning_message',
-} as const
+} as const;
 
-export type ReasoningMessageMessageTypeEnum = (typeof reasoningMessageMessageTypeEnum)[keyof typeof reasoningMessageMessageTypeEnum]
+export type ReasoningMessageMessageTypeEnum =
+  (typeof reasoningMessageMessageTypeEnum)[keyof typeof reasoningMessageMessageTypeEnum];
 
 export const reasoningMessageSourceEnum = {
   reasoner_model: 'reasoner_model',
   non_reasoner_model: 'non_reasoner_model',
-} as const
+} as const;
 
-export type ReasoningMessageSourceEnum = (typeof reasoningMessageSourceEnum)[keyof typeof reasoningMessageSourceEnum]
+export type ReasoningMessageSourceEnum =
+  (typeof reasoningMessageSourceEnum)[keyof typeof reasoningMessageSourceEnum];
 
 /**
  * @description Representation of an agent\'s internal reasoning.\n\nArgs:\n    id (str): The ID of the message\n    date (datetime): The date the message was created in ISO format\n    name (Optional[str]): The name of the sender of the message\n    source (Literal[\"reasoner_model\", \"non_reasoner_model\"]): Whether the reasoning\n        content was generated natively by a reasoner model or derived via prompting\n    reasoning (str): The internal reasoning of the agent\n    signature (Optional[str]): The model-generated signature of the reasoning step
@@ -23,26 +25,26 @@ export type ReasoningMessage = {
   /**
    * @type string
    */
-  id: string
+  id: string;
   /**
    * @type string, date-time
    */
-  date: string
-  name?: string | null
-  otid?: string | null
+  date: string;
+  name?: string | null;
+  otid?: string | null;
   /**
    * @default "reasoning_message"
    * @type string
    */
-  message_type: ReasoningMessageMessageTypeEnum
+  message_type: ReasoningMessageMessageTypeEnum;
   /**
    * @default "non_reasoner_model"
    * @type string | undefined
    */
-  source?: ReasoningMessageSourceEnum
+  source?: ReasoningMessageSourceEnum;
   /**
    * @type string
    */
-  reasoning: string
-  signature?: string | null
-}
+  reasoning: string;
+  signature?: string | null;
+};

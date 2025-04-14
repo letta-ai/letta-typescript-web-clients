@@ -3,29 +3,29 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
 
 export type DeleteAgentPathParams = {
   /**
    * @type string
    */
-  agent_id: string
-}
+  agent_id: string;
+};
 
 /**
  * @description Successful Response
  */
-export type DeleteAgent200 = any
+export type DeleteAgent200 = any;
 
 /**
  * @description Validation Error
  */
-export type DeleteAgent422 = HTTPValidationError
+export type DeleteAgent422 = HTTPValidationError;
 
-export type DeleteAgentMutationResponse = DeleteAgent200
+export type DeleteAgentMutationResponse = DeleteAgent200;
 
 export type DeleteAgentMutation = {
-  Response: DeleteAgent200
-  PathParams: DeleteAgentPathParams
-  Errors: DeleteAgent422
-}
+  Response: DeleteAgent200;
+  PathParams: DeleteAgentPathParams;
+  Errors: DeleteAgent422;
+};

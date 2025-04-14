@@ -5,9 +5,10 @@
 
 export const redactedReasoningContentTypeEnum = {
   redacted_reasoning: 'redacted_reasoning',
-} as const
+} as const;
 
-export type RedactedReasoningContentTypeEnum = (typeof redactedReasoningContentTypeEnum)[keyof typeof redactedReasoningContentTypeEnum]
+export type RedactedReasoningContentTypeEnum =
+  (typeof redactedReasoningContentTypeEnum)[keyof typeof redactedReasoningContentTypeEnum];
 
 export type RedactedReasoningContent = {
   /**
@@ -15,10 +16,10 @@ export type RedactedReasoningContent = {
    * @default "redacted_reasoning"
    * @type string
    */
-  type: RedactedReasoningContentTypeEnum
+  type: RedactedReasoningContentTypeEnum;
   /**
    * @description The redacted or filtered intermediate reasoning content.
    * @type string
    */
-  data: string
-}
+  data: string;
+};

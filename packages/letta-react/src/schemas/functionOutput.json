@@ -1,1 +1,11 @@
-{"properties":{"arguments":{"type":"string","title":"Arguments"},"name":{"type":"string","title":"Name"}},"additionalProperties":true,"type":"object","required":["arguments","name"],"title":"Function","x-readme-ref-name":"Function-Output"}
+{
+  "properties": {
+    "arguments": { "type": "string", "title": "Arguments" },
+    "name": { "type": "string", "title": "Name" }
+  },
+  "additionalProperties": true,
+  "type": "object",
+  "required": ["arguments", "name"],
+  "title": "Function",
+  "x-readme-ref-name": "Function-Output"
+}

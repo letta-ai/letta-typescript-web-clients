@@ -3,15 +3,25 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { CreateSourceMutationRequest, CreateSourceMutationResponse, CreateSource422 } from '../../types/CreateSource.ts'
-import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
-import { useMutation } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  CreateSourceMutationRequest,
+  CreateSourceMutationResponse,
+  CreateSource422,
+} from '../../types/CreateSource.ts';
+import type {
+  RequestConfig,
+  ResponseConfig,
+  ResponseErrorConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-export const createSourceMutationKey = () => [{ url: '/v1/sources/' }] as const
+export const createSourceMutationKey = () => [{ url: '/v1/sources/' }] as const;
 
-export type CreateSourceMutationKey = ReturnType<typeof createSourceMutationKey>
+export type CreateSourceMutationKey = ReturnType<
+  typeof createSourceMutationKey
+>;
 
 /**
  * @description Create a new data source.
@@ -20,17 +30,23 @@ export type CreateSourceMutationKey = ReturnType<typeof createSourceMutationKey>
  */
 export async function createSource(
   data: CreateSourceMutationRequest,
-  config: Partial<RequestConfig<CreateSourceMutationRequest>> & { client?: typeof client } = {},
+  config: Partial<RequestConfig<CreateSourceMutationRequest>> & {
+    client?: typeof client;
+  } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<CreateSourceMutationResponse, ResponseErrorConfig<CreateSource422>, CreateSourceMutationRequest>({
+  const res = await request<
+    CreateSourceMutationResponse,
+    ResponseErrorConfig<CreateSource422>,
+    CreateSourceMutationRequest
+  >({
     method: 'POST',
     url: `/v1/sources/`,
     data,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 /**
@@ -45,21 +61,31 @@ export function useCreateSource<TContext>(
       ResponseErrorConfig<CreateSource422>,
       { data: CreateSourceMutationRequest },
       TContext
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig<CreateSourceMutationRequest>> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig<CreateSourceMutationRequest>> & {
+      client?: typeof client;
+    };
+  } = {}
 ) {
-  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
-  const mutationKey = mutationOptions?.mutationKey ?? createSourceMutationKey()
+  const {
+    mutation: { client: queryClient, ...mutationOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const mutationKey = mutationOptions?.mutationKey ?? createSourceMutationKey();
 
-  return useMutation<ResponseConfig<CreateSourceMutationResponse>, ResponseErrorConfig<CreateSource422>, { data: CreateSourceMutationRequest }, TContext>(
+  return useMutation<
+    ResponseConfig<CreateSourceMutationResponse>,
+    ResponseErrorConfig<CreateSource422>,
+    { data: CreateSourceMutationRequest },
+    TContext
+  >(
     {
       mutationFn: async ({ data }) => {
-        return createSource(data, config)
+        return createSource(data, config);
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient,
-  )
+    queryClient
+  );
 }

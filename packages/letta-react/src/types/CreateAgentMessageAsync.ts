@@ -3,34 +3,35 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { LettaRequest } from './LettaRequest.ts'
-import type { Run } from './Run.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { LettaRequest } from './LettaRequest.ts';
+import type { Run } from './Run.ts';
 
 export type CreateAgentMessageAsyncPathParams = {
   /**
    * @type string
    */
-  agent_id: string
-}
+  agent_id: string;
+};
 
 /**
  * @description Successful Response
  */
-export type CreateAgentMessageAsync200 = Run
+export type CreateAgentMessageAsync200 = Run;
 
 /**
  * @description Validation Error
  */
-export type CreateAgentMessageAsync422 = HTTPValidationError
+export type CreateAgentMessageAsync422 = HTTPValidationError;
 
-export type CreateAgentMessageAsyncMutationRequest = LettaRequest
+export type CreateAgentMessageAsyncMutationRequest = LettaRequest;
 
-export type CreateAgentMessageAsyncMutationResponse = CreateAgentMessageAsync200
+export type CreateAgentMessageAsyncMutationResponse =
+  CreateAgentMessageAsync200;
 
 export type CreateAgentMessageAsyncMutation = {
-  Response: CreateAgentMessageAsync200
-  Request: CreateAgentMessageAsyncMutationRequest
-  PathParams: CreateAgentMessageAsyncPathParams
-  Errors: CreateAgentMessageAsync422
-}
+  Response: CreateAgentMessageAsync200;
+  Request: CreateAgentMessageAsyncMutationRequest;
+  PathParams: CreateAgentMessageAsyncPathParams;
+  Errors: CreateAgentMessageAsync422;
+};

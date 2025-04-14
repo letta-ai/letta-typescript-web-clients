@@ -1,1 +1,11 @@
-{"properties":{"name":{"type":"string","title":"Name"},"arguments":{"type":"string","title":"Arguments"},"tool_call_id":{"type":"string","title":"Tool Call Id"}},"type":"object","required":["name","arguments","tool_call_id"],"title":"ToolCall","x-readme-ref-name":"ToolCall"}
+{
+  "properties": {
+    "name": { "type": "string", "title": "Name" },
+    "arguments": { "type": "string", "title": "Arguments" },
+    "tool_call_id": { "type": "string", "title": "Tool Call Id" }
+  },
+  "type": "object",
+  "required": ["name", "arguments", "tool_call_id"],
+  "title": "ToolCall",
+  "x-readme-ref-name": "ToolCall"
+}

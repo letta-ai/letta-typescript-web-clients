@@ -7,20 +7,20 @@ export type ConditionalToolRuleSchema = {
   /**
    * @type string
    */
-  tool_name: string
+  tool_name: string;
   /**
    * @type string
    */
-  type: string
-  default_child: string | null
+  type: string;
+  default_child: string | null;
   /**
    * @type object
    */
   child_output_mapping: {
-    [key: string]: string
-  }
+    [key: string]: string;
+  };
   /**
    * @type boolean
    */
-  require_output_mapping: boolean
-}
+  require_output_mapping: boolean;
+};

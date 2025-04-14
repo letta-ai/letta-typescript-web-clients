@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { MCPTool } from './MCPTool.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { MCPTool } from './MCPTool.ts';
 
 export type ListMcpToolsByServerPathParams = {
   /**
    * @type string
    */
-  mcp_server_name: string
-}
+  mcp_server_name: string;
+};
 
 /**
  * @description Successful Response
  */
-export type ListMcpToolsByServer200 = MCPTool[]
+export type ListMcpToolsByServer200 = MCPTool[];
 
 /**
  * @description Validation Error
  */
-export type ListMcpToolsByServer422 = HTTPValidationError
+export type ListMcpToolsByServer422 = HTTPValidationError;
 
-export type ListMcpToolsByServerQueryResponse = ListMcpToolsByServer200
+export type ListMcpToolsByServerQueryResponse = ListMcpToolsByServer200;
 
 export type ListMcpToolsByServerQuery = {
-  Response: ListMcpToolsByServer200
-  PathParams: ListMcpToolsByServerPathParams
-  Errors: ListMcpToolsByServer422
-}
+  Response: ListMcpToolsByServer200;
+  PathParams: ListMcpToolsByServerPathParams;
+  Errors: ListMcpToolsByServer422;
+};

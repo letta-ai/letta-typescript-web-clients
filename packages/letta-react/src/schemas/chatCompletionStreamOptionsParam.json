@@ -1,1 +1,8 @@
-{"properties":{"include_usage":{"type":"boolean","title":"Include Usage"}},"type":"object","title":"ChatCompletionStreamOptionsParam","x-readme-ref-name":"ChatCompletionStreamOptionsParam"}
+{
+  "properties": {
+    "include_usage": { "type": "boolean", "title": "Include Usage" }
+  },
+  "type": "object",
+  "title": "ChatCompletionStreamOptionsParam",
+  "x-readme-ref-name": "ChatCompletionStreamOptionsParam"
+}

@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { Tool } from './Tool.ts'
-import type { ToolUpdate } from './ToolUpdate.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Tool } from './Tool.ts';
+import type { ToolUpdate } from './ToolUpdate.ts';
 
 export type ModifyToolPathParams = {
   /**
    * @type string
    */
-  tool_id: string
-}
+  tool_id: string;
+};
 
 /**
  * @description Successful Response
  */
-export type ModifyTool200 = Tool
+export type ModifyTool200 = Tool;
 
 /**
  * @description Validation Error
  */
-export type ModifyTool422 = HTTPValidationError
+export type ModifyTool422 = HTTPValidationError;
 
-export type ModifyToolMutationRequest = ToolUpdate
+export type ModifyToolMutationRequest = ToolUpdate;
 
-export type ModifyToolMutationResponse = ModifyTool200
+export type ModifyToolMutationResponse = ModifyTool200;
 
 export type ModifyToolMutation = {
-  Response: ModifyTool200
-  Request: ModifyToolMutationRequest
-  PathParams: ModifyToolPathParams
-  Errors: ModifyTool422
-}
+  Response: ModifyTool200;
+  Request: ModifyToolMutationRequest;
+  PathParams: ModifyToolPathParams;
+  Errors: ModifyTool422;
+};

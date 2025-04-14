@@ -3,39 +3,62 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { ListSourcesQueryResponse, ListSources422 } from '../../types/ListSources.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  ListSourcesQueryResponse,
+  ListSources422,
+} from '../../types/ListSources.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  QueryObserverOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
-export const listSourcesQueryKey = () => [{ url: '/v1/sources/' }] as const
+export const listSourcesQueryKey = () => [{ url: '/v1/sources/' }] as const;
 
-export type ListSourcesQueryKey = ReturnType<typeof listSourcesQueryKey>
+export type ListSourcesQueryKey = ReturnType<typeof listSourcesQueryKey>;
 
 /**
  * @description List all data sources created by a user.
  * @summary List Sources
  * {@link /v1/sources/}
  */
-export async function listSources(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const { client: request = client, ...requestConfig } = config
+export async function listSources(
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<ListSourcesQueryResponse, ResponseErrorConfig<ListSources422>, unknown>({ method: 'GET', url: `/v1/sources/`, ...requestConfig })
-  return res
+  const res = await request<
+    ListSourcesQueryResponse,
+    ResponseErrorConfig<ListSources422>,
+    unknown
+  >({ method: 'GET', url: `/v1/sources/`, ...requestConfig });
+  return res;
 }
 
-export function listSourcesQueryOptions(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const queryKey = listSourcesQueryKey()
-  return queryOptions<ResponseConfig<ListSourcesQueryResponse>, ResponseErrorConfig<ListSources422>, ResponseConfig<ListSourcesQueryResponse>, typeof queryKey>(
-    {
-      queryKey,
-      queryFn: async ({ signal }) => {
-        config.signal = signal
-        return listSources(config)
-      },
+export function listSourcesQueryOptions(
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const queryKey = listSourcesQueryKey();
+  return queryOptions<
+    ResponseConfig<ListSourcesQueryResponse>,
+    ResponseErrorConfig<ListSources422>,
+    ResponseConfig<ListSourcesQueryResponse>,
+    typeof queryKey
+  >({
+    queryKey,
+    queryFn: async ({ signal }) => {
+      config.signal = signal;
+      return listSources(config);
     },
-  )
+  });
 }
 
 /**
@@ -46,17 +69,28 @@ export function listSourcesQueryOptions(config: Partial<RequestConfig> & { clien
 export function useListSources<
   TData = ResponseConfig<ListSourcesQueryResponse>,
   TQueryData = ResponseConfig<ListSourcesQueryResponse>,
-  TQueryKey extends QueryKey = ListSourcesQueryKey,
+  TQueryKey extends QueryKey = ListSourcesQueryKey
 >(
   options: {
-    query?: Partial<QueryObserverOptions<ResponseConfig<ListSourcesQueryResponse>, ResponseErrorConfig<ListSources422>, TData, TQueryData, TQueryKey>> & {
-      client?: QueryClient
-    }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    query?: Partial<
+      QueryObserverOptions<
+        ResponseConfig<ListSourcesQueryResponse>,
+        ResponseErrorConfig<ListSources422>,
+        TData,
+        TQueryData,
+        TQueryKey
+      >
+    > & {
+      client?: QueryClient;
+    };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? listSourcesQueryKey()
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey = queryOptions?.queryKey ?? listSourcesQueryKey();
 
   const query = useQuery(
     {
@@ -64,10 +98,12 @@ export function useListSources<
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseQueryResult<TData, ResponseErrorConfig<ListSources422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseQueryResult<TData, ResponseErrorConfig<ListSources422>> & {
+    queryKey: TQueryKey;
+  };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

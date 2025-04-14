@@ -11,10 +11,10 @@ export type InitToolRule = {
    * @description The name of the tool. Must exist in the database for the user\'s organization.
    * @type string
    */
-  tool_name: string
+  tool_name: string;
   /**
    * @default "run_first"
    * @type string | undefined
    */
-  type?: 'run_first'
-}
+  type?: 'run_first';
+};

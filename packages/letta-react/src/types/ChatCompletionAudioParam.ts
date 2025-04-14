@@ -9,9 +9,10 @@ export const chatCompletionAudioParamFormatEnum = {
   flac: 'flac',
   opus: 'opus',
   pcm16: 'pcm16',
-} as const
+} as const;
 
-export type ChatCompletionAudioParamFormatEnum = (typeof chatCompletionAudioParamFormatEnum)[keyof typeof chatCompletionAudioParamFormatEnum]
+export type ChatCompletionAudioParamFormatEnum =
+  (typeof chatCompletionAudioParamFormatEnum)[keyof typeof chatCompletionAudioParamFormatEnum];
 
 export const chatCompletionAudioParamVoiceEnum = {
   alloy: 'alloy',
@@ -25,14 +26,15 @@ export const chatCompletionAudioParamVoiceEnum = {
   sage: 'sage',
   shimmer: 'shimmer',
   verse: 'verse',
-} as const
+} as const;
 
-export type ChatCompletionAudioParamVoiceEnum = (typeof chatCompletionAudioParamVoiceEnum)[keyof typeof chatCompletionAudioParamVoiceEnum]
+export type ChatCompletionAudioParamVoiceEnum =
+  (typeof chatCompletionAudioParamVoiceEnum)[keyof typeof chatCompletionAudioParamVoiceEnum];
 
 export type ChatCompletionAudioParam = {
   /**
    * @type string
    */
-  format: ChatCompletionAudioParamFormatEnum
-  voice: string | ChatCompletionAudioParamVoiceEnum
-}
+  format: ChatCompletionAudioParamFormatEnum;
+  voice: string | ChatCompletionAudioParamVoiceEnum;
+};

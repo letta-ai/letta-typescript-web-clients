@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
 
 export type DeleteProviderQueryParams = {
   /**
    * @description The provider_id key to be deleted.
    * @type string
    */
-  provider_id: string
-}
+  provider_id: string;
+};
 
 /**
  * @description Successful Response
  */
-export type DeleteProvider200 = any
+export type DeleteProvider200 = any;
 
 /**
  * @description Validation Error
  */
-export type DeleteProvider422 = HTTPValidationError
+export type DeleteProvider422 = HTTPValidationError;
 
-export type DeleteProviderMutationResponse = DeleteProvider200
+export type DeleteProviderMutationResponse = DeleteProvider200;
 
 export type DeleteProviderMutation = {
-  Response: DeleteProvider200
-  QueryParams: DeleteProviderQueryParams
-  Errors: DeleteProvider422
-}
+  Response: DeleteProvider200;
+  QueryParams: DeleteProviderQueryParams;
+  Errors: DeleteProvider422;
+};

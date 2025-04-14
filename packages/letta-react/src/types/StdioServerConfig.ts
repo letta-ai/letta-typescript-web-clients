@@ -3,32 +3,32 @@
  * Do not edit manually.
  */
 
-import type { MCPServerType } from './MCPServerType.ts'
+import type { MCPServerType } from './MCPServerType.ts';
 
 export type StdioServerConfig = {
   /**
    * @description The name of the server
    * @type string
    */
-  server_name: string
+  server_name: string;
   /**
    * @type string | undefined
    */
-  type?: MCPServerType
+  type?: MCPServerType;
   /**
    * @description The command to run (MCP \'local\' client will run this command)
    * @type string
    */
-  command: string
+  command: string;
   /**
    * @description The arguments to pass to the command
    * @type array
    */
-  args: string[]
+  args: string[];
   /**
    * @description Environment variables to set
    */
   env?: {
-    [key: string]: string
-  } | null
-}
+    [key: string]: string;
+  } | null;
+};

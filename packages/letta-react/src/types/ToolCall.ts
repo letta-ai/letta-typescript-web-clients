@@ -7,13 +7,13 @@ export type ToolCall = {
   /**
    * @type string
    */
-  name: string
+  name: string;
   /**
    * @type string
    */
-  arguments: string
+  arguments: string;
   /**
    * @type string
    */
-  tool_call_id: string
-}
+  tool_call_id: string;
+};

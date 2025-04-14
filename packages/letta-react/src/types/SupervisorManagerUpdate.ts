@@ -8,6 +8,6 @@ export type SupervisorManagerUpdate = {
    * @default "supervisor"
    * @type string | undefined
    */
-  manager_type?: 'supervisor'
-  manager_agent_id: string | null
-}
+  manager_type?: 'supervisor';
+  manager_agent_id: string | null;
+};

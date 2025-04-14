@@ -3,37 +3,37 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { Identity } from './Identity.ts'
-import type { IdentityType } from './IdentityType.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Identity } from './Identity.ts';
+import type { IdentityType } from './IdentityType.ts';
 
 export type ListIdentitiesQueryParams = {
-  name?: string | null
-  project_id?: string | null
-  identifier_key?: string | null
-  identity_type?: IdentityType | null
-  before?: string | null
-  after?: string | null
+  name?: string | null;
+  project_id?: string | null;
+  identifier_key?: string | null;
+  identity_type?: IdentityType | null;
+  before?: string | null;
+  after?: string | null;
   /**
    * @default 50
    */
-  limit?: number | null
-}
+  limit?: number | null;
+};
 
 /**
  * @description Successful Response
  */
-export type ListIdentities200 = Identity[]
+export type ListIdentities200 = Identity[];
 
 /**
  * @description Validation Error
  */
-export type ListIdentities422 = HTTPValidationError
+export type ListIdentities422 = HTTPValidationError;
 
-export type ListIdentitiesQueryResponse = ListIdentities200
+export type ListIdentitiesQueryResponse = ListIdentities200;
 
 export type ListIdentitiesQuery = {
-  Response: ListIdentities200
-  QueryParams: ListIdentitiesQueryParams
-  Errors: ListIdentities422
-}
+  Response: ListIdentities200;
+  QueryParams: ListIdentitiesQueryParams;
+  Errors: ListIdentities422;
+};

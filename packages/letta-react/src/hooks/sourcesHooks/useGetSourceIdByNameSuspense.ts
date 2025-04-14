@@ -3,16 +3,38 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { GetSourceIdByNameQueryResponse, GetSourceIdByNamePathParams, GetSourceIdByName422 } from '../../types/GetSourceIdByName.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  GetSourceIdByNameQueryResponse,
+  GetSourceIdByNamePathParams,
+  GetSourceIdByName422,
+} from '../../types/GetSourceIdByName.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  UseSuspenseQueryOptions,
+  UseSuspenseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 
-export const getSourceIdByNameSuspenseQueryKey = (source_name: GetSourceIdByNamePathParams['source_name']) =>
-  [{ url: '/v1/sources/name/:source_name', params: { source_name: source_name } }] as const
+export const getSourceIdByNameSuspenseQueryKey = (
+  source_name: GetSourceIdByNamePathParams['source_name']
+) =>
+  [
+    {
+      url: '/v1/sources/name/:source_name',
+      params: { source_name: source_name },
+    },
+  ] as const;
 
-export type GetSourceIdByNameSuspenseQueryKey = ReturnType<typeof getSourceIdByNameSuspenseQueryKey>
+export type GetSourceIdByNameSuspenseQueryKey = ReturnType<
+  typeof getSourceIdByNameSuspenseQueryKey
+>;
 
 /**
  * @description Get a source by name
@@ -21,23 +43,27 @@ export type GetSourceIdByNameSuspenseQueryKey = ReturnType<typeof getSourceIdByN
  */
 export async function getSourceIdByNameSuspense(
   source_name: GetSourceIdByNamePathParams['source_name'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<GetSourceIdByNameQueryResponse, ResponseErrorConfig<GetSourceIdByName422>, unknown>({
+  const res = await request<
+    GetSourceIdByNameQueryResponse,
+    ResponseErrorConfig<GetSourceIdByName422>,
+    unknown
+  >({
     method: 'GET',
     url: `/v1/sources/name/${source_name}`,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 export function getSourceIdByNameSuspenseQueryOptions(
   source_name: GetSourceIdByNamePathParams['source_name'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const queryKey = getSourceIdByNameSuspenseQueryKey(source_name)
+  const queryKey = getSourceIdByNameSuspenseQueryKey(source_name);
   return queryOptions<
     ResponseConfig<GetSourceIdByNameQueryResponse>,
     ResponseErrorConfig<GetSourceIdByName422>,
@@ -47,10 +73,10 @@ export function getSourceIdByNameSuspenseQueryOptions(
     enabled: !!source_name,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return getSourceIdByNameSuspense(source_name, config)
+      config.signal = signal;
+      return getSourceIdByNameSuspense(source_name, config);
     },
-  })
+  });
 }
 
 /**
@@ -61,29 +87,46 @@ export function getSourceIdByNameSuspenseQueryOptions(
 export function useGetSourceIdByNameSuspense<
   TData = ResponseConfig<GetSourceIdByNameQueryResponse>,
   TQueryData = ResponseConfig<GetSourceIdByNameQueryResponse>,
-  TQueryKey extends QueryKey = GetSourceIdByNameSuspenseQueryKey,
+  TQueryKey extends QueryKey = GetSourceIdByNameSuspenseQueryKey
 >(
   source_name: GetSourceIdByNamePathParams['source_name'],
   options: {
-    query?: Partial<UseSuspenseQueryOptions<ResponseConfig<GetSourceIdByNameQueryResponse>, ResponseErrorConfig<GetSourceIdByName422>, TData, TQueryKey>> & {
-      client?: QueryClient
-    }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    query?: Partial<
+      UseSuspenseQueryOptions<
+        ResponseConfig<GetSourceIdByNameQueryResponse>,
+        ResponseErrorConfig<GetSourceIdByName422>,
+        TData,
+        TQueryKey
+      >
+    > & {
+      client?: QueryClient;
+    };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? getSourceIdByNameSuspenseQueryKey(source_name)
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey =
+    queryOptions?.queryKey ?? getSourceIdByNameSuspenseQueryKey(source_name);
 
   const query = useSuspenseQuery(
     {
-      ...(getSourceIdByNameSuspenseQueryOptions(source_name, config) as unknown as UseSuspenseQueryOptions),
+      ...(getSourceIdByNameSuspenseQueryOptions(
+        source_name,
+        config
+      ) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<GetSourceIdByName422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseSuspenseQueryResult<
+    TData,
+    ResponseErrorConfig<GetSourceIdByName422>
+  > & { queryKey: TQueryKey };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

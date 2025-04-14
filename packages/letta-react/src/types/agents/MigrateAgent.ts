@@ -7,14 +7,15 @@ export type AgentsMigrateAgentPathParams = {
   /**
    * @type string
    */
-  agent_id: string
-}
+  agent_id: string;
+};
 
 export const agentsMigrateAgent200SuccessEnum = {
   true: true,
-} as const
+} as const;
 
-export type AgentsMigrateAgent200SuccessEnum = (typeof agentsMigrateAgent200SuccessEnum)[keyof typeof agentsMigrateAgent200SuccessEnum]
+export type AgentsMigrateAgent200SuccessEnum =
+  (typeof agentsMigrateAgent200SuccessEnum)[keyof typeof agentsMigrateAgent200SuccessEnum];
 
 /**
  * @description 200
@@ -23,16 +24,18 @@ export type AgentsMigrateAgent200 = {
   /**
    * @type boolean
    */
-  success: AgentsMigrateAgent200SuccessEnum
-}
+  success: AgentsMigrateAgent200SuccessEnum;
+};
 
 export const agentsMigrateAgent404MessageEnum = {
   'Agent provided is a template or not found, you can only migrate deployed agents':
     'Agent provided is a template or not found, you can only migrate deployed agents',
-  'Template version provided does not exist': 'Template version provided does not exist',
-} as const
+  'Template version provided does not exist':
+    'Template version provided does not exist',
+} as const;
 
-export type AgentsMigrateAgent404MessageEnum = (typeof agentsMigrateAgent404MessageEnum)[keyof typeof agentsMigrateAgent404MessageEnum]
+export type AgentsMigrateAgent404MessageEnum =
+  (typeof agentsMigrateAgent404MessageEnum)[keyof typeof agentsMigrateAgent404MessageEnum];
 
 /**
  * @description 404
@@ -41,15 +44,16 @@ export type AgentsMigrateAgent404 = {
   /**
    * @type string
    */
-  message: AgentsMigrateAgent404MessageEnum
-}
+  message: AgentsMigrateAgent404MessageEnum;
+};
 
 export const agentsMigrateAgent409MessageEnum = {
   'You can only migrate agents to a new versioned agent template that belongs to the same project':
     'You can only migrate agents to a new versioned agent template that belongs to the same project',
-} as const
+} as const;
 
-export type AgentsMigrateAgent409MessageEnum = (typeof agentsMigrateAgent409MessageEnum)[keyof typeof agentsMigrateAgent409MessageEnum]
+export type AgentsMigrateAgent409MessageEnum =
+  (typeof agentsMigrateAgent409MessageEnum)[keyof typeof agentsMigrateAgent409MessageEnum];
 
 /**
  * @description 409
@@ -58,14 +62,15 @@ export type AgentsMigrateAgent409 = {
   /**
    * @type string
    */
-  message: AgentsMigrateAgent409MessageEnum
-}
+  message: AgentsMigrateAgent409MessageEnum;
+};
 
 export const agentsMigrateAgent500MessageEnum = {
   'Migration failed': 'Migration failed',
-} as const
+} as const;
 
-export type AgentsMigrateAgent500MessageEnum = (typeof agentsMigrateAgent500MessageEnum)[keyof typeof agentsMigrateAgent500MessageEnum]
+export type AgentsMigrateAgent500MessageEnum =
+  (typeof agentsMigrateAgent500MessageEnum)[keyof typeof agentsMigrateAgent500MessageEnum];
 
 /**
  * @description 500
@@ -74,8 +79,8 @@ export type AgentsMigrateAgent500 = {
   /**
    * @type string
    */
-  message: AgentsMigrateAgent500MessageEnum
-}
+  message: AgentsMigrateAgent500MessageEnum;
+};
 
 /**
  * @description Body
@@ -84,25 +89,25 @@ export type AgentsMigrateAgentMutationRequest = {
   /**
    * @type string
    */
-  to_template: string
+  to_template: string;
   /**
    * @description If you chose to not preserve core memories, you should provide the new variables for the core memories
    * @type object | undefined
    */
   variables?: {
-    [key: string]: string
-  }
+    [key: string]: string;
+  };
   /**
    * @type boolean
    */
-  preserve_core_memories: boolean
-}
+  preserve_core_memories: boolean;
+};
 
-export type AgentsMigrateAgentMutationResponse = AgentsMigrateAgent200
+export type AgentsMigrateAgentMutationResponse = AgentsMigrateAgent200;
 
 export type AgentsMigrateAgentMutation = {
-  Response: AgentsMigrateAgent200
-  Request: AgentsMigrateAgentMutationRequest
-  PathParams: AgentsMigrateAgentPathParams
-  Errors: AgentsMigrateAgent404 | AgentsMigrateAgent409 | AgentsMigrateAgent500
-}
+  Response: AgentsMigrateAgent200;
+  Request: AgentsMigrateAgentMutationRequest;
+  PathParams: AgentsMigrateAgentPathParams;
+  Errors: AgentsMigrateAgent404 | AgentsMigrateAgent409 | AgentsMigrateAgent500;
+};

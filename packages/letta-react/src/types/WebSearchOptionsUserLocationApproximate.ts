@@ -7,17 +7,17 @@ export type WebSearchOptionsUserLocationApproximate = {
   /**
    * @type string | undefined
    */
-  city?: string
+  city?: string;
   /**
    * @type string | undefined
    */
-  country?: string
+  country?: string;
   /**
    * @type string | undefined
    */
-  region?: string
+  region?: string;
   /**
    * @type string | undefined
    */
-  timezone?: string
-}
+  timezone?: string;
+};

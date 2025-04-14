@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { Tool } from './Tool.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Tool } from './Tool.ts';
 
 export type AddMcpToolPathParams = {
   /**
    * @type string
    */
-  mcp_server_name: string
+  mcp_server_name: string;
   /**
    * @type string
    */
-  mcp_tool_name: string
-}
+  mcp_tool_name: string;
+};
 
 /**
  * @description Successful Response
  */
-export type AddMcpTool200 = Tool
+export type AddMcpTool200 = Tool;
 
 /**
  * @description Validation Error
  */
-export type AddMcpTool422 = HTTPValidationError
+export type AddMcpTool422 = HTTPValidationError;
 
-export type AddMcpToolMutationResponse = AddMcpTool200
+export type AddMcpToolMutationResponse = AddMcpTool200;
 
 export type AddMcpToolMutation = {
-  Response: AddMcpTool200
-  PathParams: AddMcpToolPathParams
-  Errors: AddMcpTool422
-}
+  Response: AddMcpTool200;
+  PathParams: AddMcpToolPathParams;
+  Errors: AddMcpTool422;
+};

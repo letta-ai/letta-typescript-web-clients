@@ -1,1 +1,6 @@
-{"type":"string","enum":["sse","stdio"],"title":"MCPServerType","x-readme-ref-name":"MCPServerType"}
+{
+  "type": "string",
+  "enum": ["sse", "stdio"],
+  "title": "MCPServerType",
+  "x-readme-ref-name": "MCPServerType"
+}

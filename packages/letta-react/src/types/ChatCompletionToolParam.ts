@@ -3,15 +3,15 @@
  * Do not edit manually.
  */
 
-import type { FunctionDefinitionInput } from './FunctionDefinitionInput.ts'
+import type { FunctionDefinitionInput } from './FunctionDefinitionInput.ts';
 
 export type ChatCompletionToolParam = {
   /**
    * @type object
    */
-  function: FunctionDefinitionInput
+  function: FunctionDefinitionInput;
   /**
    * @type string
    */
-  type: 'function'
-}
+  type: 'function';
+};

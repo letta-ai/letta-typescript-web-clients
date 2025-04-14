@@ -7,5 +7,5 @@ export type BodyUploadFileToSource = {
   /**
    * @type string, binary
    */
-  file: Blob
-}
+  file: Blob;
+};

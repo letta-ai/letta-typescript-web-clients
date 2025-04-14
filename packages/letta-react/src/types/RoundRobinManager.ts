@@ -8,6 +8,6 @@ export type RoundRobinManager = {
    * @default "round_robin"
    * @type string | undefined
    */
-  manager_type?: 'round_robin'
-  max_turns?: number | null
-}
+  manager_type?: 'round_robin';
+  max_turns?: number | null;
+};

@@ -7,5 +7,5 @@ export type BodyImportAgentSerialized = {
   /**
    * @type string, binary
    */
-  file: Blob
-}
+  file: Blob;
+};

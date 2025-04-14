@@ -8,10 +8,10 @@ export type UpdateSystemMessage = {
    * @default "system_message"
    * @type string | undefined
    */
-  message_type?: 'system_message'
+  message_type?: 'system_message';
   /**
    * @description The message content sent by the system (can be a string or an array of multi-modal content parts)
    * @type string
    */
-  content: string
-}
+  content: string;
+};

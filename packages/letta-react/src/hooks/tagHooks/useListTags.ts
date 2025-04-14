@@ -3,37 +3,66 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { ListTagsQueryResponse, ListTagsQueryParams, ListTags422 } from '../../types/ListTags.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  ListTagsQueryResponse,
+  ListTagsQueryParams,
+  ListTags422,
+} from '../../types/ListTags.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  QueryObserverOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
-export const listTagsQueryKey = (params?: ListTagsQueryParams) => [{ url: '/v1/tags/' }, ...(params ? [params] : [])] as const
+export const listTagsQueryKey = (params?: ListTagsQueryParams) =>
+  [{ url: '/v1/tags/' }, ...(params ? [params] : [])] as const;
 
-export type ListTagsQueryKey = ReturnType<typeof listTagsQueryKey>
+export type ListTagsQueryKey = ReturnType<typeof listTagsQueryKey>;
 
 /**
  * @description Get a list of all tags in the database
  * @summary List Tags
  * {@link /v1/tags/}
  */
-export async function listTags(params?: ListTagsQueryParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const { client: request = client, ...requestConfig } = config
+export async function listTags(
+  params?: ListTagsQueryParams,
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<ListTagsQueryResponse, ResponseErrorConfig<ListTags422>, unknown>({ method: 'GET', url: `/v1/tags/`, params, ...requestConfig })
-  return res
+  const res = await request<
+    ListTagsQueryResponse,
+    ResponseErrorConfig<ListTags422>,
+    unknown
+  >({ method: 'GET', url: `/v1/tags/`, params, ...requestConfig });
+  return res;
 }
 
-export function listTagsQueryOptions(params?: ListTagsQueryParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const queryKey = listTagsQueryKey(params)
-  return queryOptions<ResponseConfig<ListTagsQueryResponse>, ResponseErrorConfig<ListTags422>, ResponseConfig<ListTagsQueryResponse>, typeof queryKey>({
+export function listTagsQueryOptions(
+  params?: ListTagsQueryParams,
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const queryKey = listTagsQueryKey(params);
+  return queryOptions<
+    ResponseConfig<ListTagsQueryResponse>,
+    ResponseErrorConfig<ListTags422>,
+    ResponseConfig<ListTagsQueryResponse>,
+    typeof queryKey
+  >({
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return listTags(params, config)
+      config.signal = signal;
+      return listTags(params, config);
     },
-  })
+  });
 }
 
 /**
@@ -44,29 +73,45 @@ export function listTagsQueryOptions(params?: ListTagsQueryParams, config: Parti
 export function useListTags<
   TData = ResponseConfig<ListTagsQueryResponse>,
   TQueryData = ResponseConfig<ListTagsQueryResponse>,
-  TQueryKey extends QueryKey = ListTagsQueryKey,
+  TQueryKey extends QueryKey = ListTagsQueryKey
 >(
   params?: ListTagsQueryParams,
   options: {
-    query?: Partial<QueryObserverOptions<ResponseConfig<ListTagsQueryResponse>, ResponseErrorConfig<ListTags422>, TData, TQueryData, TQueryKey>> & {
-      client?: QueryClient
-    }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    query?: Partial<
+      QueryObserverOptions<
+        ResponseConfig<ListTagsQueryResponse>,
+        ResponseErrorConfig<ListTags422>,
+        TData,
+        TQueryData,
+        TQueryKey
+      >
+    > & {
+      client?: QueryClient;
+    };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? listTagsQueryKey(params)
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey = queryOptions?.queryKey ?? listTagsQueryKey(params);
 
   const query = useQuery(
     {
-      ...(listTagsQueryOptions(params, config) as unknown as QueryObserverOptions),
+      ...(listTagsQueryOptions(
+        params,
+        config
+      ) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseQueryResult<TData, ResponseErrorConfig<ListTags422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseQueryResult<TData, ResponseErrorConfig<ListTags422>> & {
+    queryKey: TQueryKey;
+  };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

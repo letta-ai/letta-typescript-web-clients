@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import type { AgentState } from '../AgentState.ts'
+import type { AgentState } from '../AgentState.ts';
 
 /**
  * @description 200
@@ -12,62 +12,69 @@ export type AgentsSearchDeployedAgents200 = {
   /**
    * @type array
    */
-  agents: AgentState[]
+  agents: AgentState[];
   /**
    * @type string
    */
-  nextCursor?: string | null
-}
+  nextCursor?: string | null;
+};
 
 export const searchFieldEnum = {
   version: 'version',
-} as const
+} as const;
 
-export type SearchFieldEnum = (typeof searchFieldEnum)[keyof typeof searchFieldEnum]
+export type SearchFieldEnum =
+  (typeof searchFieldEnum)[keyof typeof searchFieldEnum];
 
 export const searchFieldEnum2 = {
   name: 'name',
-} as const
+} as const;
 
-export type SearchFieldEnum2 = (typeof searchFieldEnum2)[keyof typeof searchFieldEnum2]
+export type SearchFieldEnum2 =
+  (typeof searchFieldEnum2)[keyof typeof searchFieldEnum2];
 
 export const searchOperatorEnum = {
   eq: 'eq',
   contains: 'contains',
-} as const
+} as const;
 
-export type SearchOperatorEnum = (typeof searchOperatorEnum)[keyof typeof searchOperatorEnum]
+export type SearchOperatorEnum =
+  (typeof searchOperatorEnum)[keyof typeof searchOperatorEnum];
 
 export const searchFieldEnum3 = {
   tags: 'tags',
-} as const
+} as const;
 
-export type SearchFieldEnum3 = (typeof searchFieldEnum3)[keyof typeof searchFieldEnum3]
+export type SearchFieldEnum3 =
+  (typeof searchFieldEnum3)[keyof typeof searchFieldEnum3];
 
 export const searchOperatorEnum2 = {
   contains: 'contains',
-} as const
+} as const;
 
-export type SearchOperatorEnum2 = (typeof searchOperatorEnum2)[keyof typeof searchOperatorEnum2]
+export type SearchOperatorEnum2 =
+  (typeof searchOperatorEnum2)[keyof typeof searchOperatorEnum2];
 
 export const searchFieldEnum4 = {
   identity: 'identity',
-} as const
+} as const;
 
-export type SearchFieldEnum4 = (typeof searchFieldEnum4)[keyof typeof searchFieldEnum4]
+export type SearchFieldEnum4 =
+  (typeof searchFieldEnum4)[keyof typeof searchFieldEnum4];
 
 export const searchOperatorEnum3 = {
   eq: 'eq',
-} as const
+} as const;
 
-export type SearchOperatorEnum3 = (typeof searchOperatorEnum3)[keyof typeof searchOperatorEnum3]
+export type SearchOperatorEnum3 =
+  (typeof searchOperatorEnum3)[keyof typeof searchOperatorEnum3];
 
 export const agentsSearchDeployedAgentsMutationRequestCombinatorEnum = {
   AND: 'AND',
-} as const
+} as const;
 
 export type AgentsSearchDeployedAgentsMutationRequestCombinatorEnum =
-  (typeof agentsSearchDeployedAgentsMutationRequestCombinatorEnum)[keyof typeof agentsSearchDeployedAgentsMutationRequestCombinatorEnum]
+  (typeof agentsSearchDeployedAgentsMutationRequestCombinatorEnum)[keyof typeof agentsSearchDeployedAgentsMutationRequestCombinatorEnum];
 
 /**
  * @description Body
@@ -81,77 +88,78 @@ export type AgentsSearchDeployedAgentsMutationRequest = {
         /**
          * @type string
          */
-        field: SearchFieldEnum
+        field: SearchFieldEnum;
         /**
          * @type string
          */
-        value: string
+        value: string;
       }
     | {
         /**
          * @type string
          */
-        field: SearchFieldEnum2
+        field: SearchFieldEnum2;
         /**
          * @type string
          */
-        operator: SearchOperatorEnum
+        operator: SearchOperatorEnum;
         /**
          * @type string
          */
-        value: string
+        value: string;
       }
     | {
         /**
          * @type string
          */
-        field: SearchFieldEnum3
+        field: SearchFieldEnum3;
         /**
          * @type string
          */
-        operator: SearchOperatorEnum2
+        operator: SearchOperatorEnum2;
         /**
          * @type array
          */
-        value: string[]
+        value: string[];
       }
     | {
         /**
          * @type string
          */
-        field: SearchFieldEnum4
+        field: SearchFieldEnum4;
         /**
          * @type string
          */
-        operator: SearchOperatorEnum3
+        operator: SearchOperatorEnum3;
         /**
          * @type string
          */
-        value: string
+        value: string;
       }
-  )[]
+  )[];
   /**
    * @type string | undefined
    */
-  project_id?: string
+  project_id?: string;
   /**
    * @type string | undefined
    */
-  combinator?: AgentsSearchDeployedAgentsMutationRequestCombinatorEnum
+  combinator?: AgentsSearchDeployedAgentsMutationRequestCombinatorEnum;
   /**
    * @type number | undefined
    */
-  limit?: number
+  limit?: number;
   /**
    * @type string
    */
-  after?: string | null
-}
+  after?: string | null;
+};
 
-export type AgentsSearchDeployedAgentsMutationResponse = AgentsSearchDeployedAgents200
+export type AgentsSearchDeployedAgentsMutationResponse =
+  AgentsSearchDeployedAgents200;
 
 export type AgentsSearchDeployedAgentsMutation = {
-  Response: AgentsSearchDeployedAgents200
-  Request: AgentsSearchDeployedAgentsMutationRequest
-  Errors: any
-}
+  Response: AgentsSearchDeployedAgents200;
+  Request: AgentsSearchDeployedAgentsMutationRequest;
+  Errors: any;
+};

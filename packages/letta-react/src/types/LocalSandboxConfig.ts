@@ -3,28 +3,28 @@
  * Do not edit manually.
  */
 
-import type { PipRequirement } from './PipRequirement.ts'
+import type { PipRequirement } from './PipRequirement.ts';
 
 export type LocalSandboxConfig = {
   /**
    * @description Directory for the sandbox environment.
    */
-  sandbox_dir?: string | null
+  sandbox_dir?: string | null;
   /**
    * @description Whether or not to use the venv, or run directly in the same run loop.
    * @default false
    * @type boolean | undefined
    */
-  use_venv?: boolean
+  use_venv?: boolean;
   /**
    * @description The name for the venv in the sandbox directory. We first search for an existing venv with this name, otherwise, we make it from the requirements.txt.
    * @default "venv"
    * @type string | undefined
    */
-  venv_name?: string
+  venv_name?: string;
   /**
    * @description List of pip packages to install with mandatory name and optional version following semantic versioning. This only is considered when use_venv is True.
    * @type array | undefined
    */
-  pip_requirements?: PipRequirement[]
-}
+  pip_requirements?: PipRequirement[];
+};

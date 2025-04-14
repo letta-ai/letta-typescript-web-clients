@@ -3,19 +3,26 @@
  * Do not edit manually.
  */
 
-import type { ChatCompletionContentPartImageParam } from './ChatCompletionContentPartImageParam.ts'
-import type { ChatCompletionContentPartInputAudioParam } from './ChatCompletionContentPartInputAudioParam.ts'
-import type { ChatCompletionContentPartTextParam } from './ChatCompletionContentPartTextParam.ts'
-import type { File } from './File.ts'
+import type { ChatCompletionContentPartImageParam } from './ChatCompletionContentPartImageParam.ts';
+import type { ChatCompletionContentPartInputAudioParam } from './ChatCompletionContentPartInputAudioParam.ts';
+import type { ChatCompletionContentPartTextParam } from './ChatCompletionContentPartTextParam.ts';
+import type { File } from './File.ts';
 
 export type ChatCompletionUserMessageParam = {
-  content: string | (ChatCompletionContentPartTextParam | ChatCompletionContentPartImageParam | ChatCompletionContentPartInputAudioParam | File)[]
+  content:
+    | string
+    | (
+        | ChatCompletionContentPartTextParam
+        | ChatCompletionContentPartImageParam
+        | ChatCompletionContentPartInputAudioParam
+        | File
+      )[];
   /**
    * @type string
    */
-  role: 'user'
+  role: 'user';
   /**
    * @type string | undefined
    */
-  name?: string
-}
+  name?: string;
+};

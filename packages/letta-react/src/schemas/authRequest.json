@@ -1,1 +1,12 @@
-{"properties":{"password":{"type":"string","title":"Password","description":"Admin password provided when starting the Letta server"}},"type":"object","title":"AuthRequest","x-readme-ref-name":"AuthRequest"}
+{
+  "properties": {
+    "password": {
+      "type": "string",
+      "title": "Password",
+      "description": "Admin password provided when starting the Letta server"
+    }
+  },
+  "type": "object",
+  "title": "AuthRequest",
+  "x-readme-ref-name": "AuthRequest"
+}

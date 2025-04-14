@@ -7,9 +7,9 @@ export type ChatCompletionContentPartRefusalParam = {
   /**
    * @type string
    */
-  refusal: string
+  refusal: string;
   /**
    * @type string
    */
-  type: 'refusal'
-}
+  type: 'refusal';
+};

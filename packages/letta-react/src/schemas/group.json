@@ -1,1 +1,69 @@
-{"properties":{"id":{"type":"string","title":"Id","description":"The id of the group. Assigned by the database."},"manager_type":{"description":"","type":"string","enum":["round_robin","supervisor","dynamic","sleeptime","swarm"],"title":"ManagerType","x-readme-ref-name":"ManagerType"},"agent_ids":{"items":{"type":"string"},"type":"array","title":"Agent Ids","description":""},"description":{"type":"string","title":"Description","description":""},"shared_block_ids":{"items":{"type":"string"},"type":"array","title":"Shared Block Ids","description":"","default":[]},"manager_agent_id":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Manager Agent Id","description":""},"termination_token":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Termination Token","description":""},"max_turns":{"anyOf":[{"type":"integer"},{"type":"null"}],"title":"Max Turns","description":""},"sleeptime_agent_frequency":{"anyOf":[{"type":"integer"},{"type":"null"}],"title":"Sleeptime Agent Frequency","description":""},"turns_counter":{"anyOf":[{"type":"integer"},{"type":"null"}],"title":"Turns Counter","description":""},"last_processed_message_id":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Last Processed Message Id","description":""}},"additionalProperties":false,"type":"object","required":["id","manager_type","agent_ids","description"],"title":"Group","x-readme-ref-name":"Group"}
+{
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "Id",
+      "description": "The id of the group. Assigned by the database."
+    },
+    "manager_type": {
+      "description": "",
+      "type": "string",
+      "enum": ["round_robin", "supervisor", "dynamic", "sleeptime", "swarm"],
+      "title": "ManagerType",
+      "x-readme-ref-name": "ManagerType"
+    },
+    "agent_ids": {
+      "items": { "type": "string" },
+      "type": "array",
+      "title": "Agent Ids",
+      "description": ""
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": ""
+    },
+    "shared_block_ids": {
+      "items": { "type": "string" },
+      "type": "array",
+      "title": "Shared Block Ids",
+      "description": "",
+      "default": []
+    },
+    "manager_agent_id": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Manager Agent Id",
+      "description": ""
+    },
+    "termination_token": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Termination Token",
+      "description": ""
+    },
+    "max_turns": {
+      "anyOf": [{ "type": "integer" }, { "type": "null" }],
+      "title": "Max Turns",
+      "description": ""
+    },
+    "sleeptime_agent_frequency": {
+      "anyOf": [{ "type": "integer" }, { "type": "null" }],
+      "title": "Sleeptime Agent Frequency",
+      "description": ""
+    },
+    "turns_counter": {
+      "anyOf": [{ "type": "integer" }, { "type": "null" }],
+      "title": "Turns Counter",
+      "description": ""
+    },
+    "last_processed_message_id": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Last Processed Message Id",
+      "description": ""
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "required": ["id", "manager_type", "agent_ids", "description"],
+  "title": "Group",
+  "x-readme-ref-name": "Group"
+}

@@ -10,26 +10,26 @@ export type AuthSchemeField = {
   /**
    * @type string
    */
-  name: string
-  display_name?: string | null
+  name: string;
+  display_name?: string | null;
   /**
    * @type string
    */
-  description: string
+  description: string;
   /**
    * @type string
    */
-  type: string
-  default?: string | null
+  type: string;
+  default?: string | null;
   /**
    * @default false
    * @type boolean | undefined
    */
-  required?: boolean
+  required?: boolean;
   /**
    * @default true
    * @type boolean | undefined
    */
-  expected_from_customer?: boolean
-  get_current_user_endpoint?: string | null
-}
+  expected_from_customer?: boolean;
+  get_current_user_endpoint?: string | null;
+};

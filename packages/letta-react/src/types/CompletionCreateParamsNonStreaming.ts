@@ -3,23 +3,23 @@
  * Do not edit manually.
  */
 
-import type { ChatCompletionAssistantMessageParam } from './ChatCompletionAssistantMessageParam.ts'
-import type { ChatCompletionAudioParam } from './ChatCompletionAudioParam.ts'
-import type { ChatCompletionDeveloperMessageParam } from './ChatCompletionDeveloperMessageParam.ts'
-import type { ChatCompletionFunctionCallOptionParam } from './ChatCompletionFunctionCallOptionParam.ts'
-import type { ChatCompletionFunctionMessageParam } from './ChatCompletionFunctionMessageParam.ts'
-import type { ChatCompletionNamedToolChoiceParam } from './ChatCompletionNamedToolChoiceParam.ts'
-import type { ChatCompletionPredictionContentParam } from './ChatCompletionPredictionContentParam.ts'
-import type { ChatCompletionStreamOptionsParam } from './ChatCompletionStreamOptionsParam.ts'
-import type { ChatCompletionSystemMessageParam } from './ChatCompletionSystemMessageParam.ts'
-import type { ChatCompletionToolMessageParam } from './ChatCompletionToolMessageParam.ts'
-import type { ChatCompletionToolParam } from './ChatCompletionToolParam.ts'
-import type { ChatCompletionUserMessageParam } from './ChatCompletionUserMessageParam.ts'
-import type { OpenaiTypesChatCompletionCreateParamsFunction } from './OpenaiTypesChatCompletionCreateParamsFunction.ts'
-import type { ResponseFormatJSONObject } from './ResponseFormatJSONObject.ts'
-import type { ResponseFormatJSONSchema } from './ResponseFormatJSONSchema.ts'
-import type { ResponseFormatText } from './ResponseFormatText.ts'
-import type { WebSearchOptions } from './WebSearchOptions.ts'
+import type { ChatCompletionAssistantMessageParam } from './ChatCompletionAssistantMessageParam.ts';
+import type { ChatCompletionAudioParam } from './ChatCompletionAudioParam.ts';
+import type { ChatCompletionDeveloperMessageParam } from './ChatCompletionDeveloperMessageParam.ts';
+import type { ChatCompletionFunctionCallOptionParam } from './ChatCompletionFunctionCallOptionParam.ts';
+import type { ChatCompletionFunctionMessageParam } from './ChatCompletionFunctionMessageParam.ts';
+import type { ChatCompletionNamedToolChoiceParam } from './ChatCompletionNamedToolChoiceParam.ts';
+import type { ChatCompletionPredictionContentParam } from './ChatCompletionPredictionContentParam.ts';
+import type { ChatCompletionStreamOptionsParam } from './ChatCompletionStreamOptionsParam.ts';
+import type { ChatCompletionSystemMessageParam } from './ChatCompletionSystemMessageParam.ts';
+import type { ChatCompletionToolMessageParam } from './ChatCompletionToolMessageParam.ts';
+import type { ChatCompletionToolParam } from './ChatCompletionToolParam.ts';
+import type { ChatCompletionUserMessageParam } from './ChatCompletionUserMessageParam.ts';
+import type { OpenaiTypesChatCompletionCreateParamsFunction } from './OpenaiTypesChatCompletionCreateParamsFunction.ts';
+import type { ResponseFormatJSONObject } from './ResponseFormatJSONObject.ts';
+import type { ResponseFormatJSONSchema } from './ResponseFormatJSONSchema.ts';
+import type { ResponseFormatText } from './ResponseFormatText.ts';
+import type { WebSearchOptions } from './WebSearchOptions.ts';
 
 export const completionCreateParamsNonStreamingModelEnum = {
   'o3-mini': 'o3-mini',
@@ -38,11 +38,13 @@ export const completionCreateParamsNonStreamingModelEnum = {
   'gpt-4o-audio-preview-2024-10-01': 'gpt-4o-audio-preview-2024-10-01',
   'gpt-4o-audio-preview-2024-12-17': 'gpt-4o-audio-preview-2024-12-17',
   'gpt-4o-mini-audio-preview': 'gpt-4o-mini-audio-preview',
-  'gpt-4o-mini-audio-preview-2024-12-17': 'gpt-4o-mini-audio-preview-2024-12-17',
+  'gpt-4o-mini-audio-preview-2024-12-17':
+    'gpt-4o-mini-audio-preview-2024-12-17',
   'gpt-4o-search-preview': 'gpt-4o-search-preview',
   'gpt-4o-mini-search-preview': 'gpt-4o-mini-search-preview',
   'gpt-4o-search-preview-2025-03-11': 'gpt-4o-search-preview-2025-03-11',
-  'gpt-4o-mini-search-preview-2025-03-11': 'gpt-4o-mini-search-preview-2025-03-11',
+  'gpt-4o-mini-search-preview-2025-03-11':
+    'gpt-4o-mini-search-preview-2025-03-11',
   'chatgpt-4o-latest': 'chatgpt-4o-latest',
   'gpt-4o-mini': 'gpt-4o-mini',
   'gpt-4o-mini-2024-07-18': 'gpt-4o-mini-2024-07-18',
@@ -65,52 +67,52 @@ export const completionCreateParamsNonStreamingModelEnum = {
   'gpt-3.5-turbo-1106': 'gpt-3.5-turbo-1106',
   'gpt-3.5-turbo-0125': 'gpt-3.5-turbo-0125',
   'gpt-3.5-turbo-16k-0613': 'gpt-3.5-turbo-16k-0613',
-} as const
+} as const;
 
 export type CompletionCreateParamsNonStreamingModelEnum =
-  (typeof completionCreateParamsNonStreamingModelEnum)[keyof typeof completionCreateParamsNonStreamingModelEnum]
+  (typeof completionCreateParamsNonStreamingModelEnum)[keyof typeof completionCreateParamsNonStreamingModelEnum];
 
 export const completionCreateParamsNonStreamingFunctionCallEnum = {
   none: 'none',
   auto: 'auto',
-} as const
+} as const;
 
 export type CompletionCreateParamsNonStreamingFunctionCallEnum =
-  (typeof completionCreateParamsNonStreamingFunctionCallEnum)[keyof typeof completionCreateParamsNonStreamingFunctionCallEnum]
+  (typeof completionCreateParamsNonStreamingFunctionCallEnum)[keyof typeof completionCreateParamsNonStreamingFunctionCallEnum];
 
 export const completionCreateParamsNonStreamingModalitiesEnum = {
   text: 'text',
   audio: 'audio',
-} as const
+} as const;
 
 export type CompletionCreateParamsNonStreamingModalitiesEnum =
-  (typeof completionCreateParamsNonStreamingModalitiesEnum)[keyof typeof completionCreateParamsNonStreamingModalitiesEnum]
+  (typeof completionCreateParamsNonStreamingModalitiesEnum)[keyof typeof completionCreateParamsNonStreamingModalitiesEnum];
 
 export const completionCreateParamsNonStreamingReasoningEffortEnum = {
   low: 'low',
   medium: 'medium',
   high: 'high',
-} as const
+} as const;
 
 export type CompletionCreateParamsNonStreamingReasoningEffortEnum =
-  (typeof completionCreateParamsNonStreamingReasoningEffortEnum)[keyof typeof completionCreateParamsNonStreamingReasoningEffortEnum]
+  (typeof completionCreateParamsNonStreamingReasoningEffortEnum)[keyof typeof completionCreateParamsNonStreamingReasoningEffortEnum];
 
 export const completionCreateParamsNonStreamingServiceTierEnum = {
   auto: 'auto',
   default: 'default',
-} as const
+} as const;
 
 export type CompletionCreateParamsNonStreamingServiceTierEnum =
-  (typeof completionCreateParamsNonStreamingServiceTierEnum)[keyof typeof completionCreateParamsNonStreamingServiceTierEnum]
+  (typeof completionCreateParamsNonStreamingServiceTierEnum)[keyof typeof completionCreateParamsNonStreamingServiceTierEnum];
 
 export const completionCreateParamsNonStreamingToolChoiceEnum = {
   none: 'none',
   auto: 'auto',
   required: 'required',
-} as const
+} as const;
 
 export type CompletionCreateParamsNonStreamingToolChoiceEnum =
-  (typeof completionCreateParamsNonStreamingToolChoiceEnum)[keyof typeof completionCreateParamsNonStreamingToolChoiceEnum]
+  (typeof completionCreateParamsNonStreamingToolChoiceEnum)[keyof typeof completionCreateParamsNonStreamingToolChoiceEnum];
 
 export type CompletionCreateParamsNonStreaming = {
   /**
@@ -123,54 +125,61 @@ export type CompletionCreateParamsNonStreaming = {
     | ChatCompletionAssistantMessageParam
     | ChatCompletionToolMessageParam
     | ChatCompletionFunctionMessageParam
-  )[]
-  model: string | CompletionCreateParamsNonStreamingModelEnum
-  audio?: ChatCompletionAudioParam | null
-  frequency_penalty?: number | null
-  function_call?: CompletionCreateParamsNonStreamingFunctionCallEnum | ChatCompletionFunctionCallOptionParam
+  )[];
+  model: string | CompletionCreateParamsNonStreamingModelEnum;
+  audio?: ChatCompletionAudioParam | null;
+  frequency_penalty?: number | null;
+  function_call?:
+    | CompletionCreateParamsNonStreamingFunctionCallEnum
+    | ChatCompletionFunctionCallOptionParam;
   /**
    * @type array | undefined
    */
-  functions?: OpenaiTypesChatCompletionCreateParamsFunction[]
+  functions?: OpenaiTypesChatCompletionCreateParamsFunction[];
   logit_bias?: {
-    [key: string]: number
-  } | null
-  logprobs?: boolean | null
-  max_completion_tokens?: number | null
-  max_tokens?: number | null
+    [key: string]: number;
+  } | null;
+  logprobs?: boolean | null;
+  max_completion_tokens?: number | null;
+  max_tokens?: number | null;
   metadata?: {
-    [key: string]: string
-  } | null
-  modalities?: CompletionCreateParamsNonStreamingModalitiesEnum[] | null
-  n?: number | null
+    [key: string]: string;
+  } | null;
+  modalities?: CompletionCreateParamsNonStreamingModalitiesEnum[] | null;
+  n?: number | null;
   /**
    * @type boolean | undefined
    */
-  parallel_tool_calls?: boolean
-  prediction?: ChatCompletionPredictionContentParam | null
-  presence_penalty?: number | null
-  reasoning_effort?: CompletionCreateParamsNonStreamingReasoningEffortEnum | null
-  response_format?: ResponseFormatText | ResponseFormatJSONSchema | ResponseFormatJSONObject
-  seed?: number | null
-  service_tier?: CompletionCreateParamsNonStreamingServiceTierEnum | null
-  stop?: string | string[] | null
-  store?: boolean | null
-  stream_options?: ChatCompletionStreamOptionsParam | null
-  temperature?: number | null
-  tool_choice?: CompletionCreateParamsNonStreamingToolChoiceEnum | ChatCompletionNamedToolChoiceParam
+  parallel_tool_calls?: boolean;
+  prediction?: ChatCompletionPredictionContentParam | null;
+  presence_penalty?: number | null;
+  reasoning_effort?: CompletionCreateParamsNonStreamingReasoningEffortEnum | null;
+  response_format?:
+    | ResponseFormatText
+    | ResponseFormatJSONSchema
+    | ResponseFormatJSONObject;
+  seed?: number | null;
+  service_tier?: CompletionCreateParamsNonStreamingServiceTierEnum | null;
+  stop?: string | string[] | null;
+  store?: boolean | null;
+  stream_options?: ChatCompletionStreamOptionsParam | null;
+  temperature?: number | null;
+  tool_choice?:
+    | CompletionCreateParamsNonStreamingToolChoiceEnum
+    | ChatCompletionNamedToolChoiceParam;
   /**
    * @type array | undefined
    */
-  tools?: ChatCompletionToolParam[]
-  top_logprobs?: number | null
-  top_p?: number | null
+  tools?: ChatCompletionToolParam[];
+  top_logprobs?: number | null;
+  top_p?: number | null;
   /**
    * @type string | undefined
    */
-  user?: string
+  user?: string;
   /**
    * @type object | undefined
    */
-  web_search_options?: WebSearchOptions
-  stream?: null | null
-}
+  web_search_options?: WebSearchOptions;
+  stream?: null | null;
+};

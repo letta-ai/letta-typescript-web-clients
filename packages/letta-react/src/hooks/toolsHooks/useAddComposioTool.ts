@@ -3,15 +3,26 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { AddComposioToolMutationResponse, AddComposioToolPathParams, AddComposioTool422 } from '../../types/AddComposioTool.ts'
-import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
-import { useMutation } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  AddComposioToolMutationResponse,
+  AddComposioToolPathParams,
+  AddComposioTool422,
+} from '../../types/AddComposioTool.ts';
+import type {
+  RequestConfig,
+  ResponseConfig,
+  ResponseErrorConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-export const addComposioToolMutationKey = () => [{ url: '/v1/tools/composio/{composio_action_name}' }] as const
+export const addComposioToolMutationKey = () =>
+  [{ url: '/v1/tools/composio/{composio_action_name}' }] as const;
 
-export type AddComposioToolMutationKey = ReturnType<typeof addComposioToolMutationKey>
+export type AddComposioToolMutationKey = ReturnType<
+  typeof addComposioToolMutationKey
+>;
 
 /**
  * @description Add a new Composio tool by action name (Composio refers to each tool as an `Action`)
@@ -20,16 +31,20 @@ export type AddComposioToolMutationKey = ReturnType<typeof addComposioToolMutati
  */
 export async function addComposioTool(
   composio_action_name: AddComposioToolPathParams['composio_action_name'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<AddComposioToolMutationResponse, ResponseErrorConfig<AddComposioTool422>, unknown>({
+  const res = await request<
+    AddComposioToolMutationResponse,
+    ResponseErrorConfig<AddComposioTool422>,
+    unknown
+  >({
     method: 'POST',
     url: `/v1/tools/composio/${composio_action_name}`,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 /**
@@ -42,14 +57,20 @@ export function useAddComposioTool<TContext>(
     mutation?: UseMutationOptions<
       ResponseConfig<AddComposioToolMutationResponse>,
       ResponseErrorConfig<AddComposioTool422>,
-      { composio_action_name: AddComposioToolPathParams['composio_action_name'] },
+      {
+        composio_action_name: AddComposioToolPathParams['composio_action_name'];
+      },
       TContext
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
-  const mutationKey = mutationOptions?.mutationKey ?? addComposioToolMutationKey()
+  const {
+    mutation: { client: queryClient, ...mutationOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const mutationKey =
+    mutationOptions?.mutationKey ?? addComposioToolMutationKey();
 
   return useMutation<
     ResponseConfig<AddComposioToolMutationResponse>,
@@ -59,11 +80,11 @@ export function useAddComposioTool<TContext>(
   >(
     {
       mutationFn: async ({ composio_action_name }) => {
-        return addComposioTool(composio_action_name, config)
+        return addComposioTool(composio_action_name, config);
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient,
-  )
+    queryClient
+  );
 }

@@ -3,20 +3,27 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
+import client from '@kubb/plugin-client/clients/axios';
 import type {
   ImportAgentSerializedMutationRequest,
   ImportAgentSerializedMutationResponse,
   ImportAgentSerializedQueryParams,
   ImportAgentSerialized422,
-} from '../../types/ImportAgentSerialized.ts'
-import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
-import { useMutation } from '@tanstack/react-query'
+} from '../../types/ImportAgentSerialized.ts';
+import type {
+  RequestConfig,
+  ResponseConfig,
+  ResponseErrorConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-export const importAgentSerializedMutationKey = () => [{ url: '/v1/agents/import' }] as const
+export const importAgentSerializedMutationKey = () =>
+  [{ url: '/v1/agents/import' }] as const;
 
-export type ImportAgentSerializedMutationKey = ReturnType<typeof importAgentSerializedMutationKey>
+export type ImportAgentSerializedMutationKey = ReturnType<
+  typeof importAgentSerializedMutationKey
+>;
 
 /**
  * @description Import a serialized agent file and recreate the agent in the system.
@@ -26,28 +33,40 @@ export type ImportAgentSerializedMutationKey = ReturnType<typeof importAgentSeri
 export async function importAgentSerialized(
   data: ImportAgentSerializedMutationRequest,
   params?: ImportAgentSerializedQueryParams,
-  config: Partial<RequestConfig<ImportAgentSerializedMutationRequest>> & { client?: typeof client } = {},
+  config: Partial<RequestConfig<ImportAgentSerializedMutationRequest>> & {
+    client?: typeof client;
+  } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const formData = new FormData()
+  const formData = new FormData();
   if (data) {
     Object.keys(data).forEach((key) => {
-      const value = data[key as keyof typeof data]
-      if (typeof key === 'string' && (typeof value === 'string' || (value as Blob) instanceof Blob)) {
-        formData.append(key, value as unknown as string)
+      const value = data[key as keyof typeof data];
+      if (
+        typeof key === 'string' &&
+        (typeof value === 'string' || (value as Blob) instanceof Blob)
+      ) {
+        formData.append(key, value as unknown as string);
       }
-    })
+    });
   }
-  const res = await request<ImportAgentSerializedMutationResponse, ResponseErrorConfig<ImportAgentSerialized422>, ImportAgentSerializedMutationRequest>({
+  const res = await request<
+    ImportAgentSerializedMutationResponse,
+    ResponseErrorConfig<ImportAgentSerialized422>,
+    ImportAgentSerializedMutationRequest
+  >({
     method: 'POST',
     url: `/v1/agents/import`,
     params,
     data: formData,
     ...requestConfig,
-    headers: { 'Content-Type': 'multipart/form-data', ...requestConfig.headers },
-  })
-  return res
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      ...requestConfig.headers,
+    },
+  });
+  return res;
 }
 
 /**
@@ -60,28 +79,40 @@ export function useImportAgentSerialized<TContext>(
     mutation?: UseMutationOptions<
       ResponseConfig<ImportAgentSerializedMutationResponse>,
       ResponseErrorConfig<ImportAgentSerialized422>,
-      { data: ImportAgentSerializedMutationRequest; params?: ImportAgentSerializedQueryParams },
+      {
+        data: ImportAgentSerializedMutationRequest;
+        params?: ImportAgentSerializedQueryParams;
+      },
       TContext
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig<ImportAgentSerializedMutationRequest>> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig<ImportAgentSerializedMutationRequest>> & {
+      client?: typeof client;
+    };
+  } = {}
 ) {
-  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
-  const mutationKey = mutationOptions?.mutationKey ?? importAgentSerializedMutationKey()
+  const {
+    mutation: { client: queryClient, ...mutationOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const mutationKey =
+    mutationOptions?.mutationKey ?? importAgentSerializedMutationKey();
 
   return useMutation<
     ResponseConfig<ImportAgentSerializedMutationResponse>,
     ResponseErrorConfig<ImportAgentSerialized422>,
-    { data: ImportAgentSerializedMutationRequest; params?: ImportAgentSerializedQueryParams },
+    {
+      data: ImportAgentSerializedMutationRequest;
+      params?: ImportAgentSerializedQueryParams;
+    },
     TContext
   >(
     {
       mutationFn: async ({ data, params }) => {
-        return importAgentSerialized(data, params, config)
+        return importAgentSerialized(data, params, config);
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient,
-  )
+    queryClient
+  );
 }

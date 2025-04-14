@@ -1,1 +1,44 @@
-{"properties":{"id":{"type":"string","pattern":"^user-[a-fA-F0-9]{8}","title":"Id","description":"The human-friendly ID of the User","examples":["user-123e4567-e89b-12d3-a456-426614174000"]},"name":{"type":"string","title":"Name","description":"The name of the user."},"created_at":{"anyOf":[{"type":"string","format":"date-time"},{"type":"null"}],"title":"Created At","description":"The creation date of the user."},"updated_at":{"anyOf":[{"type":"string","format":"date-time"},{"type":"null"}],"title":"Updated At","description":"The update date of the user."},"is_deleted":{"type":"boolean","title":"Is Deleted","description":"Whether this user is deleted or not.","default":false}},"additionalProperties":false,"type":"object","required":["name"],"title":"User","description":"Representation of a user.\n\nParameters:\n    id (str): The unique identifier of the user.\n    name (str): The name of the user.\n    created_at (datetime): The creation date of the user.","x-readme-ref-name":"User"}
+{
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^user-[a-fA-F0-9]{8}",
+      "title": "Id",
+      "description": "The human-friendly ID of the User",
+      "examples": ["user-123e4567-e89b-12d3-a456-426614174000"]
+    },
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "description": "The name of the user."
+    },
+    "created_at": {
+      "anyOf": [
+        { "type": "string", "format": "date-time" },
+        { "type": "null" }
+      ],
+      "title": "Created At",
+      "description": "The creation date of the user."
+    },
+    "updated_at": {
+      "anyOf": [
+        { "type": "string", "format": "date-time" },
+        { "type": "null" }
+      ],
+      "title": "Updated At",
+      "description": "The update date of the user."
+    },
+    "is_deleted": {
+      "type": "boolean",
+      "title": "Is Deleted",
+      "description": "Whether this user is deleted or not.",
+      "default": false
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "required": ["name"],
+  "title": "User",
+  "description": "Representation of a user.\n\nParameters:\n    id (str): The unique identifier of the user.\n    name (str): The name of the user.\n    created_at (datetime): The creation date of the user.",
+  "x-readme-ref-name": "User"
+}

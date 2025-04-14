@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { MessageCreate } from './MessageCreate.ts'
+import type { MessageCreate } from './MessageCreate.ts';
 
 export type LettaRequest = {
   /**
    * @description The messages to be sent to the agent.
    * @type array
    */
-  messages: MessageCreate[]
+  messages: MessageCreate[];
   /**
    * @description Whether the server should parse specific tool call arguments (default `send_message`) as `AssistantMessage` objects.
    * @default true
    * @type boolean | undefined
    */
-  use_assistant_message?: boolean
+  use_assistant_message?: boolean;
   /**
    * @description The name of the designated message tool.
    * @default "send_message"
    * @type string | undefined
    */
-  assistant_message_tool_name?: string
+  assistant_message_tool_name?: string;
   /**
    * @description The name of the message argument in the designated message tool.
    * @default "message"
    * @type string | undefined
    */
-  assistant_message_tool_kwarg?: string
-}
+  assistant_message_tool_kwarg?: string;
+};

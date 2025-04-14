@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import type { EmbeddingConfig } from './EmbeddingConfig.ts'
+import type { EmbeddingConfig } from './EmbeddingConfig.ts';
 
 /**
  * @description Representation of a passage, which is stored in archival memory.\n\nParameters:\n    text (str): The text of the passage.\n    embedding (List[float]): The embedding of the passage.\n    embedding_config (EmbeddingConfig): The embedding configuration used by the passage.\n    created_at (datetime): The creation date of the passage.\n    user_id (str): The unique identifier of the user associated with the passage.\n    agent_id (str): The unique identifier of the agent associated with the passage.\n    source_id (str): The data source of the passage.\n    file_id (str): The unique identifier of the file associated with the passage.
@@ -12,62 +12,62 @@ export type Passage = {
   /**
    * @description The id of the user that made this object.
    */
-  created_by_id?: string | null
+  created_by_id?: string | null;
   /**
    * @description The id of the user that made this object.
    */
-  last_updated_by_id?: string | null
+  last_updated_by_id?: string | null;
   /**
    * @description The creation date of the passage.
    * @type string | undefined, date-time
    */
-  created_at?: string
+  created_at?: string;
   /**
    * @description The timestamp when the object was last updated.
    */
-  updated_at?: string | null
+  updated_at?: string | null;
   /**
    * @description Whether this passage is deleted or not.
    * @default false
    * @type boolean | undefined
    */
-  is_deleted?: boolean
+  is_deleted?: boolean;
   /**
    * @description The unique identifier of the agent associated with the passage.
    */
-  agent_id?: string | null
+  agent_id?: string | null;
   /**
    * @description The data source of the passage.
    */
-  source_id?: string | null
+  source_id?: string | null;
   /**
    * @description The unique identifier of the file associated with the passage.
    */
-  file_id?: string | null
+  file_id?: string | null;
   /**
    * @description The metadata of the passage.
    * @default [object Object]
    */
   metadata?: {
-    [key: string]: any
-  } | null
+    [key: string]: any;
+  } | null;
   /**
    * @description The human-friendly ID of the Passage
    * @pattern ^passage-[a-fA-F0-9]{8}
    * @type string | undefined
    */
-  id?: string
+  id?: string;
   /**
    * @description The text of the passage.
    * @type string
    */
-  text: string
+  text: string;
   /**
    * @description The embedding of the passage.
    */
-  embedding: number[] | null
+  embedding: number[] | null;
   /**
    * @description The embedding configuration used by the passage.
    */
-  embedding_config: EmbeddingConfig | null
-}
+  embedding_config: EmbeddingConfig | null;
+};

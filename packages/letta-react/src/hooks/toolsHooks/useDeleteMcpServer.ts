@@ -3,15 +3,26 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { DeleteMcpServerMutationResponse, DeleteMcpServerPathParams, DeleteMcpServer422 } from '../../types/DeleteMcpServer.ts'
-import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
-import { useMutation } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  DeleteMcpServerMutationResponse,
+  DeleteMcpServerPathParams,
+  DeleteMcpServer422,
+} from '../../types/DeleteMcpServer.ts';
+import type {
+  RequestConfig,
+  ResponseConfig,
+  ResponseErrorConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-export const deleteMcpServerMutationKey = () => [{ url: '/v1/tools/mcp/servers/{mcp_server_name}' }] as const
+export const deleteMcpServerMutationKey = () =>
+  [{ url: '/v1/tools/mcp/servers/{mcp_server_name}' }] as const;
 
-export type DeleteMcpServerMutationKey = ReturnType<typeof deleteMcpServerMutationKey>
+export type DeleteMcpServerMutationKey = ReturnType<
+  typeof deleteMcpServerMutationKey
+>;
 
 /**
  * @description Add a new MCP server to the Letta MCP server config
@@ -20,16 +31,20 @@ export type DeleteMcpServerMutationKey = ReturnType<typeof deleteMcpServerMutati
  */
 export async function deleteMcpServer(
   mcp_server_name: DeleteMcpServerPathParams['mcp_server_name'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<DeleteMcpServerMutationResponse, ResponseErrorConfig<DeleteMcpServer422>, unknown>({
+  const res = await request<
+    DeleteMcpServerMutationResponse,
+    ResponseErrorConfig<DeleteMcpServer422>,
+    unknown
+  >({
     method: 'DELETE',
     url: `/v1/tools/mcp/servers/${mcp_server_name}`,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 /**
@@ -44,12 +59,16 @@ export function useDeleteMcpServer<TContext>(
       ResponseErrorConfig<DeleteMcpServer422>,
       { mcp_server_name: DeleteMcpServerPathParams['mcp_server_name'] },
       TContext
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
-  const mutationKey = mutationOptions?.mutationKey ?? deleteMcpServerMutationKey()
+  const {
+    mutation: { client: queryClient, ...mutationOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const mutationKey =
+    mutationOptions?.mutationKey ?? deleteMcpServerMutationKey();
 
   return useMutation<
     ResponseConfig<DeleteMcpServerMutationResponse>,
@@ -59,11 +78,11 @@ export function useDeleteMcpServer<TContext>(
   >(
     {
       mutationFn: async ({ mcp_server_name }) => {
-        return deleteMcpServer(mcp_server_name, config)
+        return deleteMcpServer(mcp_server_name, config);
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient,
-  )
+    queryClient
+  );
 }

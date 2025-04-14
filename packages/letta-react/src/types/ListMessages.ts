@@ -3,70 +3,70 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { LettaMessageUnion } from './LettaMessageUnion.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { LettaMessageUnion } from './LettaMessageUnion.ts';
 
 export type ListMessagesPathParams = {
   /**
    * @type string
    */
-  agent_id: string
-}
+  agent_id: string;
+};
 
 export type ListMessagesQueryParams = {
   /**
    * @description Message after which to retrieve the returned messages.
    */
-  after?: string | null
+  after?: string | null;
   /**
    * @description Message before which to retrieve the returned messages.
    */
-  before?: string | null
+  before?: string | null;
   /**
    * @description Maximum number of messages to retrieve.
    * @default 10
    * @type integer | undefined
    */
-  limit?: number
+  limit?: number;
   /**
    * @description Group ID to filter messages by.
    */
-  group_id?: string | null
+  group_id?: string | null;
   /**
    * @description Whether to use assistant messages
    * @default true
    * @type boolean | undefined
    */
-  use_assistant_message?: boolean
+  use_assistant_message?: boolean;
   /**
    * @description The name of the designated message tool.
    * @default "send_message"
    * @type string | undefined
    */
-  assistant_message_tool_name?: string
+  assistant_message_tool_name?: string;
   /**
    * @description The name of the message argument.
    * @default "message"
    * @type string | undefined
    */
-  assistant_message_tool_kwarg?: string
-}
+  assistant_message_tool_kwarg?: string;
+};
 
 /**
  * @description Successful Response
  */
-export type ListMessages200 = LettaMessageUnion[]
+export type ListMessages200 = LettaMessageUnion[];
 
 /**
  * @description Validation Error
  */
-export type ListMessages422 = HTTPValidationError
+export type ListMessages422 = HTTPValidationError;
 
-export type ListMessagesQueryResponse = ListMessages200
+export type ListMessagesQueryResponse = ListMessages200;
 
 export type ListMessagesQuery = {
-  Response: ListMessages200
-  PathParams: ListMessagesPathParams
-  QueryParams: ListMessagesQueryParams
-  Errors: ListMessages422
-}
+  Response: ListMessages200;
+  PathParams: ListMessagesPathParams;
+  QueryParams: ListMessagesQueryParams;
+  Errors: ListMessages422;
+};

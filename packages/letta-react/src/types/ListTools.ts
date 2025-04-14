@@ -3,32 +3,32 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { Tool } from './Tool.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Tool } from './Tool.ts';
 
 export type ListToolsQueryParams = {
-  after?: string | null
+  after?: string | null;
   /**
    * @default 50
    */
-  limit?: number | null
-  name?: string | null
-}
+  limit?: number | null;
+  name?: string | null;
+};
 
 /**
  * @description Successful Response
  */
-export type ListTools200 = Tool[]
+export type ListTools200 = Tool[];
 
 /**
  * @description Validation Error
  */
-export type ListTools422 = HTTPValidationError
+export type ListTools422 = HTTPValidationError;
 
-export type ListToolsQueryResponse = ListTools200
+export type ListToolsQueryResponse = ListTools200;
 
 export type ListToolsQuery = {
-  Response: ListTools200
-  QueryParams: ListToolsQueryParams
-  Errors: ListTools422
-}
+  Response: ListTools200;
+  QueryParams: ListToolsQueryParams;
+  Errors: ListTools422;
+};

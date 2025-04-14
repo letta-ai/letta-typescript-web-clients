@@ -3,20 +3,20 @@
  * Do not edit manually.
  */
 
-import type { FunctionOutput } from './FunctionOutput.ts'
+import type { FunctionOutput } from './FunctionOutput.ts';
 
 export type ChatCompletionMessageToolCall = {
   /**
    * @type string
    */
-  id: string
+  id: string;
   /**
    * @type object
    */
-  function: FunctionOutput
+  function: FunctionOutput;
   /**
    * @type string
    */
-  type: 'function'
-  [key: string]: any
-}
+  type: 'function';
+  [key: string]: any;
+};

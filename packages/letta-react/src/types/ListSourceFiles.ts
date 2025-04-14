@@ -3,15 +3,15 @@
  * Do not edit manually.
  */
 
-import type { FileMetadata } from './FileMetadata.ts'
-import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { FileMetadata } from './FileMetadata.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts';
 
 export type ListSourceFilesPathParams = {
   /**
    * @type string
    */
-  source_id: string
-}
+  source_id: string;
+};
 
 export type ListSourceFilesQueryParams = {
   /**
@@ -19,28 +19,28 @@ export type ListSourceFilesQueryParams = {
    * @default 1000
    * @type integer | undefined
    */
-  limit?: number
+  limit?: number;
   /**
    * @description Pagination cursor to fetch the next set of results
    */
-  after?: string | null
-}
+  after?: string | null;
+};
 
 /**
  * @description Successful Response
  */
-export type ListSourceFiles200 = FileMetadata[]
+export type ListSourceFiles200 = FileMetadata[];
 
 /**
  * @description Validation Error
  */
-export type ListSourceFiles422 = HTTPValidationError
+export type ListSourceFiles422 = HTTPValidationError;
 
-export type ListSourceFilesQueryResponse = ListSourceFiles200
+export type ListSourceFilesQueryResponse = ListSourceFiles200;
 
 export type ListSourceFilesQuery = {
-  Response: ListSourceFiles200
-  PathParams: ListSourceFilesPathParams
-  QueryParams: ListSourceFilesQueryParams
-  Errors: ListSourceFiles422
-}
+  Response: ListSourceFiles200;
+  PathParams: ListSourceFilesPathParams;
+  QueryParams: ListSourceFilesQueryParams;
+  Errors: ListSourceFiles422;
+};

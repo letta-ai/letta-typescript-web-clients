@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { Tool } from './Tool.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Tool } from './Tool.ts';
 
 export type AddComposioToolPathParams = {
   /**
    * @type string
    */
-  composio_action_name: string
-}
+  composio_action_name: string;
+};
 
 /**
  * @description Successful Response
  */
-export type AddComposioTool200 = Tool
+export type AddComposioTool200 = Tool;
 
 /**
  * @description Validation Error
  */
-export type AddComposioTool422 = HTTPValidationError
+export type AddComposioTool422 = HTTPValidationError;
 
-export type AddComposioToolMutationResponse = AddComposioTool200
+export type AddComposioToolMutationResponse = AddComposioTool200;
 
 export type AddComposioToolMutation = {
-  Response: AddComposioTool200
-  PathParams: AddComposioToolPathParams
-  Errors: AddComposioTool422
-}
+  Response: AddComposioTool200;
+  PathParams: AddComposioToolPathParams;
+  Errors: AddComposioTool422;
+};

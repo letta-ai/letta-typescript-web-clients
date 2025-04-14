@@ -3,36 +3,61 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { ListModelsQueryResponse } from '../../types/ListModels.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type { ListModelsQueryResponse } from '../../types/ListModels.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  UseSuspenseQueryOptions,
+  UseSuspenseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 
-export const listModelsSuspenseQueryKey = () => [{ url: '/v1/models/' }] as const
+export const listModelsSuspenseQueryKey = () =>
+  [{ url: '/v1/models/' }] as const;
 
-export type ListModelsSuspenseQueryKey = ReturnType<typeof listModelsSuspenseQueryKey>
+export type ListModelsSuspenseQueryKey = ReturnType<
+  typeof listModelsSuspenseQueryKey
+>;
 
 /**
  * @summary List Llm Backends
  * {@link /v1/models/}
  */
-export async function listModelsSuspense(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const { client: request = client, ...requestConfig } = config
+export async function listModelsSuspense(
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<ListModelsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method: 'GET', url: `/v1/models/`, ...requestConfig })
-  return res
+  const res = await request<
+    ListModelsQueryResponse,
+    ResponseErrorConfig<Error>,
+    unknown
+  >({ method: 'GET', url: `/v1/models/`, ...requestConfig });
+  return res;
 }
 
-export function listModelsSuspenseQueryOptions(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const queryKey = listModelsSuspenseQueryKey()
-  return queryOptions<ResponseConfig<ListModelsQueryResponse>, ResponseErrorConfig<Error>, ResponseConfig<ListModelsQueryResponse>, typeof queryKey>({
+export function listModelsSuspenseQueryOptions(
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const queryKey = listModelsSuspenseQueryKey();
+  return queryOptions<
+    ResponseConfig<ListModelsQueryResponse>,
+    ResponseErrorConfig<Error>,
+    ResponseConfig<ListModelsQueryResponse>,
+    typeof queryKey
+  >({
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return listModelsSuspense(config)
+      config.signal = signal;
+      return listModelsSuspense(config);
     },
-  })
+  });
 }
 
 /**
@@ -42,26 +67,40 @@ export function listModelsSuspenseQueryOptions(config: Partial<RequestConfig> & 
 export function useListModelsSuspense<
   TData = ResponseConfig<ListModelsQueryResponse>,
   TQueryData = ResponseConfig<ListModelsQueryResponse>,
-  TQueryKey extends QueryKey = ListModelsSuspenseQueryKey,
+  TQueryKey extends QueryKey = ListModelsSuspenseQueryKey
 >(
   options: {
-    query?: Partial<UseSuspenseQueryOptions<ResponseConfig<ListModelsQueryResponse>, ResponseErrorConfig<Error>, TData, TQueryKey>> & { client?: QueryClient }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    query?: Partial<
+      UseSuspenseQueryOptions<
+        ResponseConfig<ListModelsQueryResponse>,
+        ResponseErrorConfig<Error>,
+        TData,
+        TQueryKey
+      >
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? listModelsSuspenseQueryKey()
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey = queryOptions?.queryKey ?? listModelsSuspenseQueryKey();
 
   const query = useSuspenseQuery(
     {
-      ...(listModelsSuspenseQueryOptions(config) as unknown as UseSuspenseQueryOptions),
+      ...(listModelsSuspenseQueryOptions(
+        config
+      ) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<Error>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<Error>> & {
+    queryKey: TQueryKey;
+  };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

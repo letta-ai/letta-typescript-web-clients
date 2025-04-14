@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { Block } from './Block.ts'
-import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Block } from './Block.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts';
 
 export type RetrieveCoreMemoryBlockPathParams = {
   /**
    * @type string
    */
-  agent_id: string
+  agent_id: string;
   /**
    * @type string
    */
-  block_label: string
-}
+  block_label: string;
+};
 
 /**
  * @description Successful Response
  */
-export type RetrieveCoreMemoryBlock200 = Block
+export type RetrieveCoreMemoryBlock200 = Block;
 
 /**
  * @description Validation Error
  */
-export type RetrieveCoreMemoryBlock422 = HTTPValidationError
+export type RetrieveCoreMemoryBlock422 = HTTPValidationError;
 
-export type RetrieveCoreMemoryBlockQueryResponse = RetrieveCoreMemoryBlock200
+export type RetrieveCoreMemoryBlockQueryResponse = RetrieveCoreMemoryBlock200;
 
 export type RetrieveCoreMemoryBlockQuery = {
-  Response: RetrieveCoreMemoryBlock200
-  PathParams: RetrieveCoreMemoryBlockPathParams
-  Errors: RetrieveCoreMemoryBlock422
-}
+  Response: RetrieveCoreMemoryBlock200;
+  PathParams: RetrieveCoreMemoryBlockPathParams;
+  Errors: RetrieveCoreMemoryBlock422;
+};

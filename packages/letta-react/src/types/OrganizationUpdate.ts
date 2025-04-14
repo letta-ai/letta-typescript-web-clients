@@ -7,10 +7,10 @@ export type OrganizationUpdate = {
   /**
    * @description The name of the organization.
    */
-  name?: string | null
+  name?: string | null;
   /**
    * @description Whether the organization has access to privileged tools.
    * @default false
    */
-  privileged_tools?: boolean | null
-}
+  privileged_tools?: boolean | null;
+};

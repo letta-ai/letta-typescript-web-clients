@@ -1,1 +1,10 @@
-{"properties":{"refusal":{"type":"string","title":"Refusal"},"type":{"type":"string","const":"refusal","title":"Type"}},"type":"object","required":["refusal","type"],"title":"ChatCompletionContentPartRefusalParam","x-readme-ref-name":"ChatCompletionContentPartRefusalParam"}
+{
+  "properties": {
+    "refusal": { "type": "string", "title": "Refusal" },
+    "type": { "type": "string", "const": "refusal", "title": "Type" }
+  },
+  "type": "object",
+  "required": ["refusal", "type"],
+  "title": "ChatCompletionContentPartRefusalParam",
+  "x-readme-ref-name": "ChatCompletionContentPartRefusalParam"
+}

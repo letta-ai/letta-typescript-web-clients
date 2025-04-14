@@ -3,19 +3,27 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
+import client from '@kubb/plugin-client/clients/axios';
 import type {
   ClientSideAccessTokensCreateClientSideAccessTokenMutationRequest,
   ClientSideAccessTokensCreateClientSideAccessTokenMutationResponse,
   ClientSideAccessTokensCreateClientSideAccessToken400,
-} from '../../../types/clientSideAccessTokens/CreateClientSideAccessToken.ts'
-import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
-import { useMutation } from '@tanstack/react-query'
+} from '../../../types/clientSideAccessTokens/CreateClientSideAccessToken.ts';
+import type {
+  RequestConfig,
+  ResponseConfig,
+  ResponseErrorConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-export const clientSideAccessTokensCreateClientSideAccessTokenMutationKey = () => [{ url: '/v1/client-side-access-tokens' }] as const
+export const clientSideAccessTokensCreateClientSideAccessTokenMutationKey =
+  () => [{ url: '/v1/client-side-access-tokens' }] as const;
 
-export type ClientSideAccessTokensCreateClientSideAccessTokenMutationKey = ReturnType<typeof clientSideAccessTokensCreateClientSideAccessTokenMutationKey>
+export type ClientSideAccessTokensCreateClientSideAccessTokenMutationKey =
+  ReturnType<
+    typeof clientSideAccessTokensCreateClientSideAccessTokenMutationKey
+  >;
 
 /**
  * @description Create a new client side access token with the specified configuration.
@@ -24,16 +32,23 @@ export type ClientSideAccessTokensCreateClientSideAccessTokenMutationKey = Retur
  */
 export async function clientSideAccessTokensCreateClientSideAccessToken(
   data: ClientSideAccessTokensCreateClientSideAccessTokenMutationRequest,
-  config: Partial<RequestConfig<ClientSideAccessTokensCreateClientSideAccessTokenMutationRequest>> & { client?: typeof client } = {},
+  config: Partial<
+    RequestConfig<ClientSideAccessTokensCreateClientSideAccessTokenMutationRequest>
+  > & { client?: typeof client } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
   const res = await request<
     ClientSideAccessTokensCreateClientSideAccessTokenMutationResponse,
     ResponseErrorConfig<ClientSideAccessTokensCreateClientSideAccessToken400>,
     ClientSideAccessTokensCreateClientSideAccessTokenMutationRequest
-  >({ method: 'POST', url: `/v1/client-side-access-tokens`, data, ...requestConfig })
-  return res
+  >({
+    method: 'POST',
+    url: `/v1/client-side-access-tokens`,
+    data,
+    ...requestConfig,
+  });
+  return res;
 }
 
 /**
@@ -46,14 +61,23 @@ export function useClientSideAccessTokensCreateClientSideAccessToken<TContext>(
     mutation?: UseMutationOptions<
       ResponseConfig<ClientSideAccessTokensCreateClientSideAccessTokenMutationResponse>,
       ResponseErrorConfig<ClientSideAccessTokensCreateClientSideAccessToken400>,
-      { data: ClientSideAccessTokensCreateClientSideAccessTokenMutationRequest },
+      {
+        data: ClientSideAccessTokensCreateClientSideAccessTokenMutationRequest;
+      },
       TContext
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig<ClientSideAccessTokensCreateClientSideAccessTokenMutationRequest>> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<
+      RequestConfig<ClientSideAccessTokensCreateClientSideAccessTokenMutationRequest>
+    > & { client?: typeof client };
+  } = {}
 ) {
-  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
-  const mutationKey = mutationOptions?.mutationKey ?? clientSideAccessTokensCreateClientSideAccessTokenMutationKey()
+  const {
+    mutation: { client: queryClient, ...mutationOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const mutationKey =
+    mutationOptions?.mutationKey ??
+    clientSideAccessTokensCreateClientSideAccessTokenMutationKey();
 
   return useMutation<
     ResponseConfig<ClientSideAccessTokensCreateClientSideAccessTokenMutationResponse>,
@@ -63,11 +87,11 @@ export function useClientSideAccessTokensCreateClientSideAccessToken<TContext>(
   >(
     {
       mutationFn: async ({ data }) => {
-        return clientSideAccessTokensCreateClientSideAccessToken(data, config)
+        return clientSideAccessTokensCreateClientSideAccessToken(data, config);
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient,
-  )
+    queryClient
+  );
 }

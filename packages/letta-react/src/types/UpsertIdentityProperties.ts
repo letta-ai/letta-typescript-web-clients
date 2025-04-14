@@ -3,33 +3,34 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { IdentityProperty } from './IdentityProperty.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { IdentityProperty } from './IdentityProperty.ts';
 
 export type UpsertIdentityPropertiesPathParams = {
   /**
    * @type string
    */
-  identity_id: string
-}
+  identity_id: string;
+};
 
 /**
  * @description Successful Response
  */
-export type UpsertIdentityProperties200 = any
+export type UpsertIdentityProperties200 = any;
 
 /**
  * @description Validation Error
  */
-export type UpsertIdentityProperties422 = HTTPValidationError
+export type UpsertIdentityProperties422 = HTTPValidationError;
 
-export type UpsertIdentityPropertiesMutationRequest = IdentityProperty[]
+export type UpsertIdentityPropertiesMutationRequest = IdentityProperty[];
 
-export type UpsertIdentityPropertiesMutationResponse = UpsertIdentityProperties200
+export type UpsertIdentityPropertiesMutationResponse =
+  UpsertIdentityProperties200;
 
 export type UpsertIdentityPropertiesMutation = {
-  Response: UpsertIdentityProperties200
-  Request: UpsertIdentityPropertiesMutationRequest
-  PathParams: UpsertIdentityPropertiesPathParams
-  Errors: UpsertIdentityProperties422
-}
+  Response: UpsertIdentityProperties200;
+  Request: UpsertIdentityPropertiesMutationRequest;
+  PathParams: UpsertIdentityPropertiesPathParams;
+  Errors: UpsertIdentityProperties422;
+};

@@ -1,1 +1,13 @@
-{"properties":{"type":{"type":"string","title":"Type"},"description":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Description"}},"type":"object","required":["type"],"title":"ParameterProperties","x-readme-ref-name":"ParameterProperties"}
+{
+  "properties": {
+    "type": { "type": "string", "title": "Type" },
+    "description": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Description"
+    }
+  },
+  "type": "object",
+  "required": ["type"],
+  "title": "ParameterProperties",
+  "x-readme-ref-name": "ParameterProperties"
+}

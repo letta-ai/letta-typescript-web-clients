@@ -1,1 +1,6 @@
-{"type":"string","enum":["e2b","local"],"title":"SandboxType","x-readme-ref-name":"SandboxType"}
+{
+  "type": "string",
+  "enum": ["e2b", "local"],
+  "title": "SandboxType",
+  "x-readme-ref-name": "SandboxType"
+}

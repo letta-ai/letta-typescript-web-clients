@@ -3,36 +3,58 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { ListModelsQueryResponse } from '../../types/ListModels.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type { ListModelsQueryResponse } from '../../types/ListModels.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  QueryObserverOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
-export const listModelsQueryKey = () => [{ url: '/v1/models/' }] as const
+export const listModelsQueryKey = () => [{ url: '/v1/models/' }] as const;
 
-export type ListModelsQueryKey = ReturnType<typeof listModelsQueryKey>
+export type ListModelsQueryKey = ReturnType<typeof listModelsQueryKey>;
 
 /**
  * @summary List Llm Backends
  * {@link /v1/models/}
  */
-export async function listModels(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const { client: request = client, ...requestConfig } = config
+export async function listModels(
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<ListModelsQueryResponse, ResponseErrorConfig<Error>, unknown>({ method: 'GET', url: `/v1/models/`, ...requestConfig })
-  return res
+  const res = await request<
+    ListModelsQueryResponse,
+    ResponseErrorConfig<Error>,
+    unknown
+  >({ method: 'GET', url: `/v1/models/`, ...requestConfig });
+  return res;
 }
 
-export function listModelsQueryOptions(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const queryKey = listModelsQueryKey()
-  return queryOptions<ResponseConfig<ListModelsQueryResponse>, ResponseErrorConfig<Error>, ResponseConfig<ListModelsQueryResponse>, typeof queryKey>({
+export function listModelsQueryOptions(
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const queryKey = listModelsQueryKey();
+  return queryOptions<
+    ResponseConfig<ListModelsQueryResponse>,
+    ResponseErrorConfig<Error>,
+    ResponseConfig<ListModelsQueryResponse>,
+    typeof queryKey
+  >({
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return listModels(config)
+      config.signal = signal;
+      return listModels(config);
     },
-  })
+  });
 }
 
 /**
@@ -42,17 +64,28 @@ export function listModelsQueryOptions(config: Partial<RequestConfig> & { client
 export function useListModels<
   TData = ResponseConfig<ListModelsQueryResponse>,
   TQueryData = ResponseConfig<ListModelsQueryResponse>,
-  TQueryKey extends QueryKey = ListModelsQueryKey,
+  TQueryKey extends QueryKey = ListModelsQueryKey
 >(
   options: {
-    query?: Partial<QueryObserverOptions<ResponseConfig<ListModelsQueryResponse>, ResponseErrorConfig<Error>, TData, TQueryData, TQueryKey>> & {
-      client?: QueryClient
-    }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    query?: Partial<
+      QueryObserverOptions<
+        ResponseConfig<ListModelsQueryResponse>,
+        ResponseErrorConfig<Error>,
+        TData,
+        TQueryData,
+        TQueryKey
+      >
+    > & {
+      client?: QueryClient;
+    };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? listModelsQueryKey()
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey = queryOptions?.queryKey ?? listModelsQueryKey();
 
   const query = useQuery(
     {
@@ -60,10 +93,12 @@ export function useListModels<
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseQueryResult<TData, ResponseErrorConfig<Error>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseQueryResult<TData, ResponseErrorConfig<Error>> & {
+    queryKey: TQueryKey;
+  };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

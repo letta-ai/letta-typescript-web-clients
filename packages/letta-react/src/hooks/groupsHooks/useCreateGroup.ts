@@ -3,15 +3,24 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { CreateGroupMutationRequest, CreateGroupMutationResponse, CreateGroupHeaderParams, CreateGroup422 } from '../../types/CreateGroup.ts'
-import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
-import { useMutation } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  CreateGroupMutationRequest,
+  CreateGroupMutationResponse,
+  CreateGroupHeaderParams,
+  CreateGroup422,
+} from '../../types/CreateGroup.ts';
+import type {
+  RequestConfig,
+  ResponseConfig,
+  ResponseErrorConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-export const createGroupMutationKey = () => [{ url: '/v1/groups/' }] as const
+export const createGroupMutationKey = () => [{ url: '/v1/groups/' }] as const;
 
-export type CreateGroupMutationKey = ReturnType<typeof createGroupMutationKey>
+export type CreateGroupMutationKey = ReturnType<typeof createGroupMutationKey>;
 
 /**
  * @description Create a new multi-agent group with the specified configuration.
@@ -21,18 +30,24 @@ export type CreateGroupMutationKey = ReturnType<typeof createGroupMutationKey>
 export async function createGroup(
   data: CreateGroupMutationRequest,
   headers?: CreateGroupHeaderParams,
-  config: Partial<RequestConfig<CreateGroupMutationRequest>> & { client?: typeof client } = {},
+  config: Partial<RequestConfig<CreateGroupMutationRequest>> & {
+    client?: typeof client;
+  } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<CreateGroupMutationResponse, ResponseErrorConfig<CreateGroup422>, CreateGroupMutationRequest>({
+  const res = await request<
+    CreateGroupMutationResponse,
+    ResponseErrorConfig<CreateGroup422>,
+    CreateGroupMutationRequest
+  >({
     method: 'POST',
     url: `/v1/groups/`,
     data,
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  })
-  return res
+  });
+  return res;
 }
 
 /**
@@ -47,12 +62,17 @@ export function useCreateGroup<TContext>(
       ResponseErrorConfig<CreateGroup422>,
       { data: CreateGroupMutationRequest; headers?: CreateGroupHeaderParams },
       TContext
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig<CreateGroupMutationRequest>> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig<CreateGroupMutationRequest>> & {
+      client?: typeof client;
+    };
+  } = {}
 ) {
-  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
-  const mutationKey = mutationOptions?.mutationKey ?? createGroupMutationKey()
+  const {
+    mutation: { client: queryClient, ...mutationOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const mutationKey = mutationOptions?.mutationKey ?? createGroupMutationKey();
 
   return useMutation<
     ResponseConfig<CreateGroupMutationResponse>,
@@ -62,11 +82,11 @@ export function useCreateGroup<TContext>(
   >(
     {
       mutationFn: async ({ data, headers }) => {
-        return createGroup(data, headers, config)
+        return createGroup(data, headers, config);
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient,
-  )
+    queryClient
+  );
 }

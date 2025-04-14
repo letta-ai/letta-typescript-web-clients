@@ -8,7 +8,7 @@ export type SleeptimeManagerUpdate = {
    * @default "sleeptime"
    * @type string | undefined
    */
-  manager_type?: 'sleeptime'
-  manager_agent_id?: string | null
-  sleeptime_agent_frequency?: number | null
-}
+  manager_type?: 'sleeptime';
+  manager_agent_id?: string | null;
+  sleeptime_agent_frequency?: number | null;
+};

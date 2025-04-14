@@ -1,1 +1,28 @@
-{"properties":{"json_schema":{"properties":{"name":{"type":"string","title":"Name"},"description":{"type":"string","title":"Description"},"schema":{"additionalProperties":true,"type":"object","title":"Schema"},"strict":{"anyOf":[{"type":"boolean"},{"type":"null"}],"title":"Strict"}},"type":"object","required":["name"],"title":"JSONSchema","x-readme-ref-name":"JSONSchema"},"type":{"type":"string","const":"json_schema","title":"Type"}},"type":"object","required":["json_schema","type"],"title":"ResponseFormatJSONSchema","x-readme-ref-name":"ResponseFormatJSONSchema"}
+{
+  "properties": {
+    "json_schema": {
+      "properties": {
+        "name": { "type": "string", "title": "Name" },
+        "description": { "type": "string", "title": "Description" },
+        "schema": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Schema"
+        },
+        "strict": {
+          "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+          "title": "Strict"
+        }
+      },
+      "type": "object",
+      "required": ["name"],
+      "title": "JSONSchema",
+      "x-readme-ref-name": "JSONSchema"
+    },
+    "type": { "type": "string", "const": "json_schema", "title": "Type" }
+  },
+  "type": "object",
+  "required": ["json_schema", "type"],
+  "title": "ResponseFormatJSONSchema",
+  "x-readme-ref-name": "ResponseFormatJSONSchema"
+}

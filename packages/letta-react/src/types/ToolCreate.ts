@@ -7,39 +7,39 @@ export type ToolCreate = {
   /**
    * @description The description of the tool.
    */
-  description?: string | null
+  description?: string | null;
   /**
    * @description Metadata tags.
    * @type array | undefined
    */
-  tags?: string[]
+  tags?: string[];
   /**
    * @description The source code of the function.
    * @type string
    */
-  source_code: string
+  source_code: string;
   /**
    * @description The source type of the function.
    * @default "python"
    * @type string | undefined
    */
-  source_type?: string
+  source_type?: string;
   /**
    * @description The JSON schema of the function (auto-generated from source_code if not provided)
    */
   json_schema?: {
-    [key: string]: any
-  } | null
+    [key: string]: any;
+  } | null;
   /**
    * @description The args JSON schema of the function.
    */
   args_json_schema?: {
-    [key: string]: any
-  } | null
+    [key: string]: any;
+  } | null;
   /**
    * @description The maximum number of characters in the response.
    * @default 6000
    * @type integer | undefined
    */
-  return_char_limit?: number
-}
+  return_char_limit?: number;
+};

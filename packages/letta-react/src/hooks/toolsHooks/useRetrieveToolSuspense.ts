@@ -3,35 +3,61 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { RetrieveToolQueryResponse, RetrieveToolPathParams, RetrieveTool422 } from '../../types/RetrieveTool.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  RetrieveToolQueryResponse,
+  RetrieveToolPathParams,
+  RetrieveTool422,
+} from '../../types/RetrieveTool.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  UseSuspenseQueryOptions,
+  UseSuspenseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 
-export const retrieveToolSuspenseQueryKey = (tool_id: RetrieveToolPathParams['tool_id']) =>
-  [{ url: '/v1/tools/:tool_id', params: { tool_id: tool_id } }] as const
+export const retrieveToolSuspenseQueryKey = (
+  tool_id: RetrieveToolPathParams['tool_id']
+) => [{ url: '/v1/tools/:tool_id', params: { tool_id: tool_id } }] as const;
 
-export type RetrieveToolSuspenseQueryKey = ReturnType<typeof retrieveToolSuspenseQueryKey>
+export type RetrieveToolSuspenseQueryKey = ReturnType<
+  typeof retrieveToolSuspenseQueryKey
+>;
 
 /**
  * @description Get a tool by ID
  * @summary Retrieve Tool
  * {@link /v1/tools/:tool_id}
  */
-export async function retrieveToolSuspense(tool_id: RetrieveToolPathParams['tool_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const { client: request = client, ...requestConfig } = config
+export async function retrieveToolSuspense(
+  tool_id: RetrieveToolPathParams['tool_id'],
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<RetrieveToolQueryResponse, ResponseErrorConfig<RetrieveTool422>, unknown>({
+  const res = await request<
+    RetrieveToolQueryResponse,
+    ResponseErrorConfig<RetrieveTool422>,
+    unknown
+  >({
     method: 'GET',
     url: `/v1/tools/${tool_id}`,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
-export function retrieveToolSuspenseQueryOptions(tool_id: RetrieveToolPathParams['tool_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const queryKey = retrieveToolSuspenseQueryKey(tool_id)
+export function retrieveToolSuspenseQueryOptions(
+  tool_id: RetrieveToolPathParams['tool_id'],
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const queryKey = retrieveToolSuspenseQueryKey(tool_id);
   return queryOptions<
     ResponseConfig<RetrieveToolQueryResponse>,
     ResponseErrorConfig<RetrieveTool422>,
@@ -41,10 +67,10 @@ export function retrieveToolSuspenseQueryOptions(tool_id: RetrieveToolPathParams
     enabled: !!tool_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return retrieveToolSuspense(tool_id, config)
+      config.signal = signal;
+      return retrieveToolSuspense(tool_id, config);
     },
-  })
+  });
 }
 
 /**
@@ -55,29 +81,45 @@ export function retrieveToolSuspenseQueryOptions(tool_id: RetrieveToolPathParams
 export function useRetrieveToolSuspense<
   TData = ResponseConfig<RetrieveToolQueryResponse>,
   TQueryData = ResponseConfig<RetrieveToolQueryResponse>,
-  TQueryKey extends QueryKey = RetrieveToolSuspenseQueryKey,
+  TQueryKey extends QueryKey = RetrieveToolSuspenseQueryKey
 >(
   tool_id: RetrieveToolPathParams['tool_id'],
   options: {
-    query?: Partial<UseSuspenseQueryOptions<ResponseConfig<RetrieveToolQueryResponse>, ResponseErrorConfig<RetrieveTool422>, TData, TQueryKey>> & {
-      client?: QueryClient
-    }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    query?: Partial<
+      UseSuspenseQueryOptions<
+        ResponseConfig<RetrieveToolQueryResponse>,
+        ResponseErrorConfig<RetrieveTool422>,
+        TData,
+        TQueryKey
+      >
+    > & {
+      client?: QueryClient;
+    };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? retrieveToolSuspenseQueryKey(tool_id)
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey =
+    queryOptions?.queryKey ?? retrieveToolSuspenseQueryKey(tool_id);
 
   const query = useSuspenseQuery(
     {
-      ...(retrieveToolSuspenseQueryOptions(tool_id, config) as unknown as UseSuspenseQueryOptions),
+      ...(retrieveToolSuspenseQueryOptions(
+        tool_id,
+        config
+      ) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<RetrieveTool422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<RetrieveTool422>> & {
+    queryKey: TQueryKey;
+  };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

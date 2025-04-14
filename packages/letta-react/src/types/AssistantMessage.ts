@@ -3,13 +3,14 @@
  * Do not edit manually.
  */
 
-import type { LettaAssistantMessageContentUnion } from './LettaAssistantMessageContentUnion.ts'
+import type { LettaAssistantMessageContentUnion } from './LettaAssistantMessageContentUnion.ts';
 
 export const assistantMessageMessageTypeEnum = {
   assistant_message: 'assistant_message',
-} as const
+} as const;
 
-export type AssistantMessageMessageTypeEnum = (typeof assistantMessageMessageTypeEnum)[keyof typeof assistantMessageMessageTypeEnum]
+export type AssistantMessageMessageTypeEnum =
+  (typeof assistantMessageMessageTypeEnum)[keyof typeof assistantMessageMessageTypeEnum];
 
 /**
  * @description A message sent by the LLM in response to user input. Used in the LLM context.\n\nArgs:\n    id (str): The ID of the message\n    date (datetime): The date the message was created in ISO format\n    name (Optional[str]): The name of the sender of the message\n    content (Union[str, List[LettaAssistantMessageContentUnion]]): The message content sent by the agent (can be a string or an array of content parts)
@@ -18,20 +19,20 @@ export type AssistantMessage = {
   /**
    * @type string
    */
-  id: string
+  id: string;
   /**
    * @type string, date-time
    */
-  date: string
-  name?: string | null
-  otid?: string | null
+  date: string;
+  name?: string | null;
+  otid?: string | null;
   /**
    * @default "assistant_message"
    * @type string
    */
-  message_type: AssistantMessageMessageTypeEnum
+  message_type: AssistantMessageMessageTypeEnum;
   /**
    * @description The message content sent by the agent (can be a string or an array of content parts)
    */
-  content: LettaAssistantMessageContentUnion[] | string
-}
+  content: LettaAssistantMessageContentUnion[] | string;
+};

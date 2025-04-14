@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import type { EmbeddingConfig } from './EmbeddingConfig.ts'
+import type { EmbeddingConfig } from './EmbeddingConfig.ts';
 
 /**
  * @description Schema for creating a new Source.
@@ -13,27 +13,27 @@ export type SourceCreate = {
    * @description The name of the source.
    * @type string
    */
-  name: string
+  name: string;
   /**
    * @description The hande for the embedding config used by the source.
    */
-  embedding?: string | null
+  embedding?: string | null;
   /**
    * @description The chunk size of the embedding.
    */
-  embedding_chunk_size?: number | null
+  embedding_chunk_size?: number | null;
   /**
    * @description (Legacy) The embedding configuration used by the source.
    */
-  embedding_config?: EmbeddingConfig | null
+  embedding_config?: EmbeddingConfig | null;
   /**
    * @description The description of the source.
    */
-  description?: string | null
+  description?: string | null;
   /**
    * @description Metadata associated with the source.
    */
   metadata?: {
-    [key: string]: any
-  } | null
-}
+    [key: string]: any;
+  } | null;
+};

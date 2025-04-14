@@ -9,9 +9,9 @@ export type PipRequirement = {
    * @minLength 1
    * @type string
    */
-  name: string
+  name: string;
   /**
    * @description Optional version of the package, following semantic versioning.
    */
-  version?: string | null
-}
+  version?: string | null;
+};

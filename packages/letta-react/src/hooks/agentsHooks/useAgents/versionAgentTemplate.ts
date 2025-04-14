@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
+import client from '@kubb/plugin-client/clients/axios';
 import type {
   AgentsVersionAgentTemplateMutationRequest,
   AgentsVersionAgentTemplateMutationResponse,
@@ -11,14 +11,21 @@ import type {
   AgentsVersionAgentTemplateQueryParams,
   AgentsVersionAgentTemplate404,
   AgentsVersionAgentTemplate500,
-} from '../../../types/agents/VersionAgentTemplate.ts'
-import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
-import { useMutation } from '@tanstack/react-query'
+} from '../../../types/agents/VersionAgentTemplate.ts';
+import type {
+  RequestConfig,
+  ResponseConfig,
+  ResponseErrorConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-export const agentsVersionAgentTemplateMutationKey = () => [{ url: '/v1/agents/{agent_id}/version-template' }] as const
+export const agentsVersionAgentTemplateMutationKey = () =>
+  [{ url: '/v1/agents/{agent_id}/version-template' }] as const;
 
-export type AgentsVersionAgentTemplateMutationKey = ReturnType<typeof agentsVersionAgentTemplateMutationKey>
+export type AgentsVersionAgentTemplateMutationKey = ReturnType<
+  typeof agentsVersionAgentTemplateMutationKey
+>;
 
 /**
  * @description Creates a versioned version of an agent
@@ -29,16 +36,26 @@ export async function agentsVersionAgentTemplate(
   agent_id: AgentsVersionAgentTemplatePathParams['agent_id'],
   data?: AgentsVersionAgentTemplateMutationRequest,
   params?: AgentsVersionAgentTemplateQueryParams,
-  config: Partial<RequestConfig<AgentsVersionAgentTemplateMutationRequest>> & { client?: typeof client } = {},
+  config: Partial<RequestConfig<AgentsVersionAgentTemplateMutationRequest>> & {
+    client?: typeof client;
+  } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
   const res = await request<
     AgentsVersionAgentTemplateMutationResponse,
-    ResponseErrorConfig<AgentsVersionAgentTemplate404 | AgentsVersionAgentTemplate500>,
+    ResponseErrorConfig<
+      AgentsVersionAgentTemplate404 | AgentsVersionAgentTemplate500
+    >,
     AgentsVersionAgentTemplateMutationRequest
-  >({ method: 'POST', url: `/v1/agents/${agent_id}/version-template`, params, data, ...requestConfig })
-  return res
+  >({
+    method: 'POST',
+    url: `/v1/agents/${agent_id}/version-template`,
+    params,
+    data,
+    ...requestConfig,
+  });
+  return res;
 }
 
 /**
@@ -50,37 +67,47 @@ export function useAgentsVersionAgentTemplate<TContext>(
   options: {
     mutation?: UseMutationOptions<
       ResponseConfig<AgentsVersionAgentTemplateMutationResponse>,
-      ResponseErrorConfig<AgentsVersionAgentTemplate404 | AgentsVersionAgentTemplate500>,
+      ResponseErrorConfig<
+        AgentsVersionAgentTemplate404 | AgentsVersionAgentTemplate500
+      >,
       {
-        agent_id: AgentsVersionAgentTemplatePathParams['agent_id']
-        data?: AgentsVersionAgentTemplateMutationRequest
-        params?: AgentsVersionAgentTemplateQueryParams
+        agent_id: AgentsVersionAgentTemplatePathParams['agent_id'];
+        data?: AgentsVersionAgentTemplateMutationRequest;
+        params?: AgentsVersionAgentTemplateQueryParams;
       },
       TContext
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig<AgentsVersionAgentTemplateMutationRequest>> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<
+      RequestConfig<AgentsVersionAgentTemplateMutationRequest>
+    > & { client?: typeof client };
+  } = {}
 ) {
-  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
-  const mutationKey = mutationOptions?.mutationKey ?? agentsVersionAgentTemplateMutationKey()
+  const {
+    mutation: { client: queryClient, ...mutationOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const mutationKey =
+    mutationOptions?.mutationKey ?? agentsVersionAgentTemplateMutationKey();
 
   return useMutation<
     ResponseConfig<AgentsVersionAgentTemplateMutationResponse>,
-    ResponseErrorConfig<AgentsVersionAgentTemplate404 | AgentsVersionAgentTemplate500>,
+    ResponseErrorConfig<
+      AgentsVersionAgentTemplate404 | AgentsVersionAgentTemplate500
+    >,
     {
-      agent_id: AgentsVersionAgentTemplatePathParams['agent_id']
-      data?: AgentsVersionAgentTemplateMutationRequest
-      params?: AgentsVersionAgentTemplateQueryParams
+      agent_id: AgentsVersionAgentTemplatePathParams['agent_id'];
+      data?: AgentsVersionAgentTemplateMutationRequest;
+      params?: AgentsVersionAgentTemplateQueryParams;
     },
     TContext
   >(
     {
       mutationFn: async ({ agent_id, data, params }) => {
-        return agentsVersionAgentTemplate(agent_id, data, params, config)
+        return agentsVersionAgentTemplate(agent_id, data, params, config);
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient,
-  )
+    queryClient
+  );
 }

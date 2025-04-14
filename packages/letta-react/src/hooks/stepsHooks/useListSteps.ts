@@ -3,37 +3,66 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { ListStepsQueryResponse, ListStepsQueryParams, ListSteps422 } from '../../types/ListSteps.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  ListStepsQueryResponse,
+  ListStepsQueryParams,
+  ListSteps422,
+} from '../../types/ListSteps.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  QueryObserverOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
-export const listStepsQueryKey = (params?: ListStepsQueryParams) => [{ url: '/v1/steps' }, ...(params ? [params] : [])] as const
+export const listStepsQueryKey = (params?: ListStepsQueryParams) =>
+  [{ url: '/v1/steps' }, ...(params ? [params] : [])] as const;
 
-export type ListStepsQueryKey = ReturnType<typeof listStepsQueryKey>
+export type ListStepsQueryKey = ReturnType<typeof listStepsQueryKey>;
 
 /**
  * @description List steps with optional pagination and date filters.Dates should be provided in ISO 8601 format (e.g. 2025-01-29T15:01:19-08:00)
  * @summary List Steps
  * {@link /v1/steps}
  */
-export async function listSteps(params?: ListStepsQueryParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const { client: request = client, ...requestConfig } = config
+export async function listSteps(
+  params?: ListStepsQueryParams,
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<ListStepsQueryResponse, ResponseErrorConfig<ListSteps422>, unknown>({ method: 'GET', url: `/v1/steps`, params, ...requestConfig })
-  return res
+  const res = await request<
+    ListStepsQueryResponse,
+    ResponseErrorConfig<ListSteps422>,
+    unknown
+  >({ method: 'GET', url: `/v1/steps`, params, ...requestConfig });
+  return res;
 }
 
-export function listStepsQueryOptions(params?: ListStepsQueryParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const queryKey = listStepsQueryKey(params)
-  return queryOptions<ResponseConfig<ListStepsQueryResponse>, ResponseErrorConfig<ListSteps422>, ResponseConfig<ListStepsQueryResponse>, typeof queryKey>({
+export function listStepsQueryOptions(
+  params?: ListStepsQueryParams,
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const queryKey = listStepsQueryKey(params);
+  return queryOptions<
+    ResponseConfig<ListStepsQueryResponse>,
+    ResponseErrorConfig<ListSteps422>,
+    ResponseConfig<ListStepsQueryResponse>,
+    typeof queryKey
+  >({
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return listSteps(params, config)
+      config.signal = signal;
+      return listSteps(params, config);
     },
-  })
+  });
 }
 
 /**
@@ -44,29 +73,45 @@ export function listStepsQueryOptions(params?: ListStepsQueryParams, config: Par
 export function useListSteps<
   TData = ResponseConfig<ListStepsQueryResponse>,
   TQueryData = ResponseConfig<ListStepsQueryResponse>,
-  TQueryKey extends QueryKey = ListStepsQueryKey,
+  TQueryKey extends QueryKey = ListStepsQueryKey
 >(
   params?: ListStepsQueryParams,
   options: {
-    query?: Partial<QueryObserverOptions<ResponseConfig<ListStepsQueryResponse>, ResponseErrorConfig<ListSteps422>, TData, TQueryData, TQueryKey>> & {
-      client?: QueryClient
-    }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    query?: Partial<
+      QueryObserverOptions<
+        ResponseConfig<ListStepsQueryResponse>,
+        ResponseErrorConfig<ListSteps422>,
+        TData,
+        TQueryData,
+        TQueryKey
+      >
+    > & {
+      client?: QueryClient;
+    };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? listStepsQueryKey(params)
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey = queryOptions?.queryKey ?? listStepsQueryKey(params);
 
   const query = useQuery(
     {
-      ...(listStepsQueryOptions(params, config) as unknown as QueryObserverOptions),
+      ...(listStepsQueryOptions(
+        params,
+        config
+      ) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseQueryResult<TData, ResponseErrorConfig<ListSteps422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseQueryResult<TData, ResponseErrorConfig<ListSteps422>> & {
+    queryKey: TQueryKey;
+  };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

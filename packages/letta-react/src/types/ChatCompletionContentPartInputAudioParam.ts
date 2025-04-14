@@ -3,15 +3,15 @@
  * Do not edit manually.
  */
 
-import type { InputAudio } from './InputAudio.ts'
+import type { InputAudio } from './InputAudio.ts';
 
 export type ChatCompletionContentPartInputAudioParam = {
   /**
    * @type object
    */
-  input_audio: InputAudio
+  input_audio: InputAudio;
   /**
    * @type string
    */
-  type: 'input_audio'
-}
+  type: 'input_audio';
+};

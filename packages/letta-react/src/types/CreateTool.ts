@@ -3,26 +3,26 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { Tool } from './Tool.ts'
-import type { ToolCreate } from './ToolCreate.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Tool } from './Tool.ts';
+import type { ToolCreate } from './ToolCreate.ts';
 
 /**
  * @description Successful Response
  */
-export type CreateTool200 = Tool
+export type CreateTool200 = Tool;
 
 /**
  * @description Validation Error
  */
-export type CreateTool422 = HTTPValidationError
+export type CreateTool422 = HTTPValidationError;
 
-export type CreateToolMutationRequest = ToolCreate
+export type CreateToolMutationRequest = ToolCreate;
 
-export type CreateToolMutationResponse = CreateTool200
+export type CreateToolMutationResponse = CreateTool200;
 
 export type CreateToolMutation = {
-  Response: CreateTool200
-  Request: CreateToolMutationRequest
-  Errors: CreateTool422
-}
+  Response: CreateTool200;
+  Request: CreateToolMutationRequest;
+  Errors: CreateTool422;
+};

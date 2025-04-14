@@ -3,48 +3,48 @@
  * Do not edit manually.
  */
 
-import type { ToolJSONSchema } from './ToolJSONSchema.ts'
+import type { ToolJSONSchema } from './ToolJSONSchema.ts';
 
 export type ToolSchema = {
-  args_json_schema: null
+  args_json_schema: null;
   /**
    * @type string
    */
-  created_at: string
+  created_at: string;
   /**
    * @type string
    */
-  description: string
+  description: string;
   /**
    * @type object
    */
-  json_schema: ToolJSONSchema
+  json_schema: ToolJSONSchema;
   /**
    * @type string
    */
-  name: string
+  name: string;
   /**
    * @type integer
    */
-  return_char_limit: number
-  source_code: string | null
+  return_char_limit: number;
+  source_code: string | null;
   /**
    * @type string
    */
-  source_type: string
+  source_type: string;
   /**
    * @type array
    */
-  tags: string[]
+  tags: string[];
   /**
    * @type string
    */
-  tool_type: string
+  tool_type: string;
   /**
    * @type string
    */
-  updated_at: string
+  updated_at: string;
   metadata_?: {
-    [key: string]: any
-  } | null
-}
+    [key: string]: any;
+  } | null;
+};

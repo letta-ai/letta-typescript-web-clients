@@ -3,16 +3,38 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { RetrieveIdentityQueryResponse, RetrieveIdentityPathParams, RetrieveIdentity422 } from '../../types/RetrieveIdentity.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  RetrieveIdentityQueryResponse,
+  RetrieveIdentityPathParams,
+  RetrieveIdentity422,
+} from '../../types/RetrieveIdentity.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  QueryObserverOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
-export const retrieveIdentityQueryKey = (identity_id: RetrieveIdentityPathParams['identity_id']) =>
-  [{ url: '/v1/identities/:identity_id', params: { identity_id: identity_id } }] as const
+export const retrieveIdentityQueryKey = (
+  identity_id: RetrieveIdentityPathParams['identity_id']
+) =>
+  [
+    {
+      url: '/v1/identities/:identity_id',
+      params: { identity_id: identity_id },
+    },
+  ] as const;
 
-export type RetrieveIdentityQueryKey = ReturnType<typeof retrieveIdentityQueryKey>
+export type RetrieveIdentityQueryKey = ReturnType<
+  typeof retrieveIdentityQueryKey
+>;
 
 /**
  * @summary Retrieve Identity
@@ -20,23 +42,27 @@ export type RetrieveIdentityQueryKey = ReturnType<typeof retrieveIdentityQueryKe
  */
 export async function retrieveIdentity(
   identity_id: RetrieveIdentityPathParams['identity_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<RetrieveIdentityQueryResponse, ResponseErrorConfig<RetrieveIdentity422>, unknown>({
+  const res = await request<
+    RetrieveIdentityQueryResponse,
+    ResponseErrorConfig<RetrieveIdentity422>,
+    unknown
+  >({
     method: 'GET',
     url: `/v1/identities/${identity_id}`,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 export function retrieveIdentityQueryOptions(
   identity_id: RetrieveIdentityPathParams['identity_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const queryKey = retrieveIdentityQueryKey(identity_id)
+  const queryKey = retrieveIdentityQueryKey(identity_id);
   return queryOptions<
     ResponseConfig<RetrieveIdentityQueryResponse>,
     ResponseErrorConfig<RetrieveIdentity422>,
@@ -46,10 +72,10 @@ export function retrieveIdentityQueryOptions(
     enabled: !!identity_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return retrieveIdentity(identity_id, config)
+      config.signal = signal;
+      return retrieveIdentity(identity_id, config);
     },
-  })
+  });
 }
 
 /**
@@ -59,29 +85,44 @@ export function retrieveIdentityQueryOptions(
 export function useRetrieveIdentity<
   TData = ResponseConfig<RetrieveIdentityQueryResponse>,
   TQueryData = ResponseConfig<RetrieveIdentityQueryResponse>,
-  TQueryKey extends QueryKey = RetrieveIdentityQueryKey,
+  TQueryKey extends QueryKey = RetrieveIdentityQueryKey
 >(
   identity_id: RetrieveIdentityPathParams['identity_id'],
   options: {
     query?: Partial<
-      QueryObserverOptions<ResponseConfig<RetrieveIdentityQueryResponse>, ResponseErrorConfig<RetrieveIdentity422>, TData, TQueryData, TQueryKey>
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+      QueryObserverOptions<
+        ResponseConfig<RetrieveIdentityQueryResponse>,
+        ResponseErrorConfig<RetrieveIdentity422>,
+        TData,
+        TQueryData,
+        TQueryKey
+      >
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? retrieveIdentityQueryKey(identity_id)
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey =
+    queryOptions?.queryKey ?? retrieveIdentityQueryKey(identity_id);
 
   const query = useQuery(
     {
-      ...(retrieveIdentityQueryOptions(identity_id, config) as unknown as QueryObserverOptions),
+      ...(retrieveIdentityQueryOptions(
+        identity_id,
+        config
+      ) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseQueryResult<TData, ResponseErrorConfig<RetrieveIdentity422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseQueryResult<TData, ResponseErrorConfig<RetrieveIdentity422>> & {
+    queryKey: TQueryKey;
+  };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

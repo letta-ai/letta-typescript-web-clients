@@ -3,29 +3,29 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
 
 export type GetSourceIdByNamePathParams = {
   /**
    * @type string
    */
-  source_name: string
-}
+  source_name: string;
+};
 
 /**
  * @description Successful Response
  */
-export type GetSourceIdByName200 = string
+export type GetSourceIdByName200 = string;
 
 /**
  * @description Validation Error
  */
-export type GetSourceIdByName422 = HTTPValidationError
+export type GetSourceIdByName422 = HTTPValidationError;
 
-export type GetSourceIdByNameQueryResponse = GetSourceIdByName200
+export type GetSourceIdByNameQueryResponse = GetSourceIdByName200;
 
 export type GetSourceIdByNameQuery = {
-  Response: GetSourceIdByName200
-  PathParams: GetSourceIdByNamePathParams
-  Errors: GetSourceIdByName422
-}
+  Response: GetSourceIdByName200;
+  PathParams: GetSourceIdByNamePathParams;
+  Errors: GetSourceIdByName422;
+};

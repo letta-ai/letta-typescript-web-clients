@@ -3,31 +3,31 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
 
 export type ListTagsQueryParams = {
-  after?: string | null
+  after?: string | null;
   /**
    * @default 50
    */
-  limit?: number | null
-  query_text?: string | null
-}
+  limit?: number | null;
+  query_text?: string | null;
+};
 
 /**
  * @description Successful Response
  */
-export type ListTags200 = string[]
+export type ListTags200 = string[];
 
 /**
  * @description Validation Error
  */
-export type ListTags422 = HTTPValidationError
+export type ListTags422 = HTTPValidationError;
 
-export type ListTagsQueryResponse = ListTags200
+export type ListTagsQueryResponse = ListTags200;
 
 export type ListTagsQuery = {
-  Response: ListTags200
-  QueryParams: ListTagsQueryParams
-  Errors: ListTags422
-}
+  Response: ListTags200;
+  QueryParams: ListTagsQueryParams;
+  Errors: ListTags422;
+};

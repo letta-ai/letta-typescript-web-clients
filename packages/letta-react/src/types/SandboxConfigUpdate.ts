@@ -3,8 +3,8 @@
  * Do not edit manually.
  */
 
-import type { E2BSandboxConfig } from './E2BSandboxConfig.ts'
-import type { LocalSandboxConfig } from './LocalSandboxConfig.ts'
+import type { E2BSandboxConfig } from './E2BSandboxConfig.ts';
+import type { LocalSandboxConfig } from './LocalSandboxConfig.ts';
 
 /**
  * @description Pydantic model for updating SandboxConfig fields.
@@ -13,5 +13,5 @@ export type SandboxConfigUpdate = {
   /**
    * @description The JSON configuration data for the sandbox.
    */
-  config?: LocalSandboxConfig | E2BSandboxConfig
-}
+  config?: LocalSandboxConfig | E2BSandboxConfig;
+};

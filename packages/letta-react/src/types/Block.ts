@@ -11,50 +11,50 @@ export type Block = {
    * @description Value of the block.
    * @type string
    */
-  value: string
+  value: string;
   /**
    * @description Character limit of the block.
    * @default 5000
    * @type integer | undefined
    */
-  limit?: number
+  limit?: number;
   /**
    * @description Name of the block if it is a template.
    */
-  name?: string | null
+  name?: string | null;
   /**
    * @description Whether the block is a template (e.g. saved human/persona options).
    * @default false
    * @type boolean | undefined
    */
-  is_template?: boolean
+  is_template?: boolean;
   /**
    * @description Label of the block (e.g. \'human\', \'persona\') in the context window.
    */
-  label?: string | null
+  label?: string | null;
   /**
    * @description Description of the block.
    */
-  description?: string | null
+  description?: string | null;
   /**
    * @description Metadata of the block.
    * @default [object Object]
    */
   metadata?: {
-    [key: string]: any
-  } | null
+    [key: string]: any;
+  } | null;
   /**
    * @description The human-friendly ID of the Block
    * @pattern ^block-[a-fA-F0-9]{8}
    * @type string | undefined
    */
-  id?: string
+  id?: string;
   /**
    * @description The id of the user that made this Block.
    */
-  created_by_id?: string | null
+  created_by_id?: string | null;
   /**
    * @description The id of the user that last updated this Block.
    */
-  last_updated_by_id?: string | null
-}
+  last_updated_by_id?: string | null;
+};

@@ -1,1 +1,32 @@
-{"properties":{"type":{"type":"string","const":"tool_call","title":"Type","description":"Indicates this content represents a tool call event.","default":"tool_call","enum":["tool_call","tool_return"]},"id":{"type":"string","title":"Id","description":"A unique identifier for this specific tool call instance."},"name":{"type":"string","title":"Name","description":"The name of the tool being called."},"input":{"additionalProperties":true,"type":"object","title":"Input","description":"The parameters being passed to the tool, structured as a dictionary of parameter names to values."}},"type":"object","required":["id","name","input","type","type"],"title":"ToolCallContent","x-readme-ref-name":"ToolCallContent"}
+{
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "tool_call",
+      "title": "Type",
+      "description": "Indicates this content represents a tool call event.",
+      "default": "tool_call",
+      "enum": ["tool_call", "tool_return"]
+    },
+    "id": {
+      "type": "string",
+      "title": "Id",
+      "description": "A unique identifier for this specific tool call instance."
+    },
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "description": "The name of the tool being called."
+    },
+    "input": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Input",
+      "description": "The parameters being passed to the tool, structured as a dictionary of parameter names to values."
+    }
+  },
+  "type": "object",
+  "required": ["id", "name", "input", "type", "type"],
+  "title": "ToolCallContent",
+  "x-readme-ref-name": "ToolCallContent"
+}

@@ -3,38 +3,38 @@
  * Do not edit manually.
  */
 
-import type { IdentityProperty } from './IdentityProperty.ts'
-import type { IdentityType } from './IdentityType.ts'
+import type { IdentityProperty } from './IdentityProperty.ts';
+import type { IdentityType } from './IdentityType.ts';
 
 export type IdentityCreate = {
   /**
    * @description External, user-generated identifier key of the identity.
    * @type string
    */
-  identifier_key: string
+  identifier_key: string;
   /**
    * @description The name of the identity.
    * @type string
    */
-  name: string
+  name: string;
   /**
    * @type string
    */
-  identity_type: IdentityType
+  identity_type: IdentityType;
   /**
    * @description The project id of the identity, if applicable.
    */
-  project_id?: string | null
+  project_id?: string | null;
   /**
    * @description The agent ids that are associated with the identity.
    */
-  agent_ids?: string[] | null
+  agent_ids?: string[] | null;
   /**
    * @description The IDs of the blocks associated with the identity.
    */
-  block_ids?: string[] | null
+  block_ids?: string[] | null;
   /**
    * @description List of properties associated with the identity.
    */
-  properties?: IdentityProperty[] | null
-}
+  properties?: IdentityProperty[] | null;
+};
