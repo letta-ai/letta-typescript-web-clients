@@ -21,11 +21,12 @@
   },
   "homepage": "https://github.com/letta-ai/letta-typescript-web-clients#readme",
   "peerDependencies": {
+    "@kubb/plugin-client": ">=3.0.0 <4.0.0",
     "@letta-ai/letta-client": ">=0.1.48 <0.2.0",
     "@tanstack/react-query": ">=5.0.0 <6.0.0",
     "react": ">=16.8.0 <20.0.0",
     "react-dom": ">=16.8.0 <20.0.0",
-    "@kubb/plugin-client": ">=3.0.0 <4.0.0"
+    "axios": ">= ^1.5.0 <2.0.0"
   },
   "resolutions": {
     "@types/react": "18.0.5"
