@@ -6,7 +6,7 @@
   "main": "./index.js",
   "types": "./index.d.ts",
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --platform=browser --outdir=dist --format=esm --sourcemap --external:react --external:react-dom && tsc",
+    "build": "esbuild src/index.ts --bundle --platform=browser --outdir=dist --format=esm --sourcemap --external:@tanstack/react-query --external:react --external:react-dom && tsc",
     "test": "echo \"Pls set up tests\" && exit 0",
     "prepack": "cp -rv dist/. ."
   },
@@ -22,12 +22,12 @@
   "homepage": "https://github.com/letta-ai/letta-typescript-web-clients#readme",
   "peerDependencies": {
     "react": ">=16.8.0 <20.0.0",
-    "react-dom": ">=16.8.0 <20.0.0"
+    "react-dom": ">=16.8.0 <20.0.0",
+    "@tanstack/react-query": ">=5.0.0 <6.0.0"
   },
   "dependencies": {
     "@kubb/plugin-client": "^3.9.0",
     "@letta-ai/letta-client": "^0.1.87",
-    "@tanstack/react-query": "^5.74.3",
     "axios": "^1.8.4"
   },
   "resolutions": {
