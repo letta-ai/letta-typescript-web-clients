@@ -11,6 +11,8 @@
     "moduleResolution": "node",
     "skipLibCheck": true,
     "declaration": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": true
   }
 }
