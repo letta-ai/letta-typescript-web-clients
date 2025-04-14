@@ -27,7 +27,7 @@ describe('lettaMiddleware', () => {
   });
 
   it('should return a response with a rewritten URL', async () => {
-    const req = new NextRequest(new URL(`http://localhost:3000$/v1/agents`));
+    const req = new NextRequest(new URL(`http://localhost:3000/v1/agents`));
 
     const response = await lettaMiddleware(req, {
       baseUrl: 'http://localhost:8000',
