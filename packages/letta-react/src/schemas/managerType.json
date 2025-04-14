@@ -1,0 +1,6 @@
+{
+  "type": "string",
+  "enum": ["round_robin", "supervisor", "dynamic", "sleeptime", "swarm"],
+  "title": "ManagerType",
+  "x-readme-ref-name": "ManagerType"
+}

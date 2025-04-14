@@ -1,0 +1,19 @@
+{
+  "properties": {
+    "name": { "type": "string", "title": "Name" },
+    "description": { "type": "string", "title": "Description" },
+    "parameters": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Parameters"
+    },
+    "strict": {
+      "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+      "title": "Strict"
+    }
+  },
+  "type": "object",
+  "required": ["name"],
+  "title": "FunctionDefinition",
+  "x-readme-ref-name": "FunctionDefinition-Input"
+}

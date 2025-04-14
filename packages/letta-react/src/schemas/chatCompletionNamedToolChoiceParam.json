@@ -1,0 +1,16 @@
+{
+  "properties": {
+    "function": {
+      "properties": { "name": { "type": "string", "title": "Name" } },
+      "type": "object",
+      "required": ["name"],
+      "title": "Function",
+      "x-readme-ref-name": "openai__types__chat__chat_completion_named_tool_choice_param__Function"
+    },
+    "type": { "type": "string", "const": "function", "title": "Type" }
+  },
+  "type": "object",
+  "required": ["function", "type"],
+  "title": "ChatCompletionNamedToolChoiceParam",
+  "x-readme-ref-name": "ChatCompletionNamedToolChoiceParam"
+}

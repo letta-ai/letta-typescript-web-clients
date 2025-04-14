@@ -1,0 +1,14 @@
+{
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "description": "The name of the user."
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "required": ["name", "organization_id"],
+  "title": "UserCreate",
+  "x-readme-ref-name": "UserCreate"
+}

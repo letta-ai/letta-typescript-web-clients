@@ -1,0 +1,62 @@
+{
+  "properties": {
+    "created_by_id": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Created By Id",
+      "description": "The id of the user that made this object."
+    },
+    "last_updated_by_id": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Last Updated By Id",
+      "description": "The id of the user that made this object."
+    },
+    "created_at": {
+      "anyOf": [
+        { "type": "string", "format": "date-time" },
+        { "type": "null" }
+      ],
+      "title": "Created At",
+      "description": "The timestamp when the object was created."
+    },
+    "updated_at": {
+      "anyOf": [
+        { "type": "string", "format": "date-time" },
+        { "type": "null" }
+      ],
+      "title": "Updated At",
+      "description": "The timestamp when the object was last updated."
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^agent-env-[a-fA-F0-9]{8}",
+      "title": "Id",
+      "description": "The human-friendly ID of the Agent-env",
+      "examples": ["agent-env-123e4567-e89b-12d3-a456-426614174000"]
+    },
+    "key": {
+      "type": "string",
+      "title": "Key",
+      "description": "The name of the environment variable."
+    },
+    "value": {
+      "type": "string",
+      "title": "Value",
+      "description": "The value of the environment variable."
+    },
+    "description": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Description",
+      "description": "An optional description of the environment variable."
+    },
+    "agent_id": {
+      "type": "string",
+      "title": "Agent Id",
+      "description": "The ID of the agent this environment variable belongs to."
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "required": ["key", "value", "agent_id"],
+  "title": "AgentEnvironmentVariable",
+  "x-readme-ref-name": "AgentEnvironmentVariable"
+}

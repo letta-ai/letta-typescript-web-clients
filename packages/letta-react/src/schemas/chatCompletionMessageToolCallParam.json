@@ -1,0 +1,20 @@
+{
+  "properties": {
+    "id": { "type": "string", "title": "Id" },
+    "function": {
+      "properties": {
+        "arguments": { "type": "string", "title": "Arguments" },
+        "name": { "type": "string", "title": "Name" }
+      },
+      "type": "object",
+      "required": ["arguments", "name"],
+      "title": "Function",
+      "x-readme-ref-name": "openai__types__chat__chat_completion_message_tool_call_param__Function"
+    },
+    "type": { "type": "string", "const": "function", "title": "Type" }
+  },
+  "type": "object",
+  "required": ["id", "function", "type"],
+  "title": "ChatCompletionMessageToolCallParam",
+  "x-readme-ref-name": "ChatCompletionMessageToolCallParam"
+}

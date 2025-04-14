@@ -1,0 +1,27 @@
+{
+  "properties": {
+    "properties": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Properties"
+    },
+    "title": { "type": "string", "title": "Title" },
+    "type": { "type": "string", "title": "Type" },
+    "required": {
+      "anyOf": [
+        { "items": { "type": "string" }, "type": "array" },
+        { "type": "null" }
+      ],
+      "title": "Required"
+    },
+    "examples": {
+      "anyOf": [{ "items": {}, "type": "array" }, { "type": "null" }],
+      "title": "Examples"
+    }
+  },
+  "type": "object",
+  "required": ["properties", "title", "type"],
+  "title": "ActionParametersModel",
+  "description": "Action parameter data models.",
+  "x-readme-ref-name": "ActionParametersModel"
+}

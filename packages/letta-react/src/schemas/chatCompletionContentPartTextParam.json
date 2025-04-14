@@ -1,0 +1,10 @@
+{
+  "properties": {
+    "text": { "type": "string", "title": "Text" },
+    "type": { "type": "string", "const": "text", "title": "Type" }
+  },
+  "type": "object",
+  "required": ["text", "type"],
+  "title": "ChatCompletionContentPartTextParam",
+  "x-readme-ref-name": "ChatCompletionContentPartTextParam"
+}

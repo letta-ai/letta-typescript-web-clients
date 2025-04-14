@@ -1,0 +1,93 @@
+{
+  "properties": {
+    "model": {
+      "type": "string",
+      "title": "Model",
+      "description": "LLM model name. "
+    },
+    "model_endpoint_type": {
+      "type": "string",
+      "enum": [
+        "openai",
+        "anthropic",
+        "cohere",
+        "google_ai",
+        "google_vertex",
+        "azure",
+        "groq",
+        "ollama",
+        "webui",
+        "webui-legacy",
+        "lmstudio",
+        "lmstudio-legacy",
+        "lmstudio-chatcompletions",
+        "llamacpp",
+        "koboldcpp",
+        "vllm",
+        "hugging-face",
+        "mistral",
+        "together",
+        "bedrock",
+        "deepseek",
+        "xai"
+      ],
+      "title": "Model Endpoint Type",
+      "description": "The endpoint type for the model."
+    },
+    "model_endpoint": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Model Endpoint",
+      "description": "The endpoint for the model."
+    },
+    "model_wrapper": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Model Wrapper",
+      "description": "The wrapper for the model."
+    },
+    "context_window": {
+      "type": "integer",
+      "title": "Context Window",
+      "description": "The context window size for the model."
+    },
+    "put_inner_thoughts_in_kwargs": {
+      "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+      "title": "Put Inner Thoughts In Kwargs",
+      "description": "Puts 'inner_thoughts' as a kwarg in the function call if this is set to True. This helps with function calling performance and also the generation of inner thoughts.",
+      "default": true
+    },
+    "handle": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Handle",
+      "description": "The handle for this config, in the format provider/model-name."
+    },
+    "temperature": {
+      "type": "number",
+      "title": "Temperature",
+      "description": "The temperature to use when generating text with the model. A higher temperature will result in more random text.",
+      "default": 0.7
+    },
+    "max_tokens": {
+      "anyOf": [{ "type": "integer" }, { "type": "null" }],
+      "title": "Max Tokens",
+      "description": "The maximum number of tokens to generate. If not set, the model will use its default value.",
+      "default": 4096
+    },
+    "enable_reasoner": {
+      "type": "boolean",
+      "title": "Enable Reasoner",
+      "description": "Whether or not the model should use extended thinking if it is a 'reasoning' style model",
+      "default": false
+    },
+    "max_reasoning_tokens": {
+      "type": "integer",
+      "title": "Max Reasoning Tokens",
+      "description": "Configurable thinking budget for extended thinking, only used if enable_reasoner is True. Minimum value is 1024.",
+      "default": 0
+    }
+  },
+  "type": "object",
+  "required": ["model", "model_endpoint_type", "context_window"],
+  "title": "LLMConfig",
+  "description": "Configuration for a Language Model (LLM) model. This object specifies all the information necessary to access an LLM model to usage with Letta, except for secret keys.\n\nAttributes:\n    model (str): The name of the LLM model.\n    model_endpoint_type (str): The endpoint type for the model.\n    model_endpoint (str): The endpoint for the model.\n    model_wrapper (str): The wrapper for the model. This is used to wrap additional text around the input/output of the model. This is useful for text-to-text completions, such as the Completions API in OpenAI.\n    context_window (int): The context window size for the model.\n    put_inner_thoughts_in_kwargs (bool): Puts `inner_thoughts` as a kwarg in the function call if this is set to True. This helps with function calling performance and also the generation of inner thoughts.\n    temperature (float): The temperature to use when generating text with the model. A higher temperature will result in more random text.\n    max_tokens (int): The maximum number of tokens to generate.",
+  "x-readme-ref-name": "LLMConfig"
+}

@@ -1,0 +1,7 @@
+{
+  "properties": { "id": { "type": "string", "title": "Id" } },
+  "type": "object",
+  "required": ["id"],
+  "title": "Audio",
+  "x-readme-ref-name": "Audio"
+}

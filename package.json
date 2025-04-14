@@ -14,6 +14,12 @@
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.8.0",
+    "@kubb/cli": "^3.9.0",
+    "@kubb/core": "^3.9.0",
+    "@kubb/plugin-client": "^3.9.0",
+    "@kubb/plugin-oas": "^3.9.0",
+    "@kubb/plugin-react-query": "^3.9.0",
+    "@kubb/plugin-ts": "^3.9.0",
     "@nx/esbuild": "20.4.6",
     "@nx/eslint": "20.4.6",
     "@nx/eslint-plugin": "20.4.6",

@@ -1,0 +1,11 @@
+{
+  "properties": {
+    "city": { "type": "string", "title": "City" },
+    "country": { "type": "string", "title": "Country" },
+    "region": { "type": "string", "title": "Region" },
+    "timezone": { "type": "string", "title": "Timezone" }
+  },
+  "type": "object",
+  "title": "WebSearchOptionsUserLocationApproximate",
+  "x-readme-ref-name": "WebSearchOptionsUserLocationApproximate"
+}

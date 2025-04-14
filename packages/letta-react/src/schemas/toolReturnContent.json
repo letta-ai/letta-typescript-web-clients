@@ -1,0 +1,30 @@
+{
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "tool_return",
+      "title": "Type",
+      "description": "Indicates this content represents a tool return event.",
+      "default": "tool_return"
+    },
+    "tool_call_id": {
+      "type": "string",
+      "title": "Tool Call Id",
+      "description": "References the ID of the ToolCallContent that initiated this tool call."
+    },
+    "content": {
+      "type": "string",
+      "title": "Content",
+      "description": "The content returned by the tool execution."
+    },
+    "is_error": {
+      "type": "boolean",
+      "title": "Is Error",
+      "description": "Indicates whether the tool execution resulted in an error."
+    }
+  },
+  "type": "object",
+  "required": ["tool_call_id", "content", "is_error"],
+  "title": "ToolReturnContent",
+  "x-readme-ref-name": "ToolReturnContent"
+}

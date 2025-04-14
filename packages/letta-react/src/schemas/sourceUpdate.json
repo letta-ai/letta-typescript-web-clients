@@ -1,0 +1,113 @@
+{
+  "properties": {
+    "name": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Name",
+      "description": "The name of the source."
+    },
+    "description": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Description",
+      "description": "The description of the source."
+    },
+    "metadata": {
+      "anyOf": [
+        { "additionalProperties": true, "type": "object" },
+        { "type": "null" }
+      ],
+      "title": "Metadata",
+      "description": "Metadata associated with the source."
+    },
+    "embedding_config": {
+      "anyOf": [
+        {
+          "properties": {
+            "embedding_endpoint_type": {
+              "type": "string",
+              "enum": [
+                "openai",
+                "anthropic",
+                "bedrock",
+                "cohere",
+                "google_ai",
+                "google_vertex",
+                "azure",
+                "groq",
+                "ollama",
+                "webui",
+                "webui-legacy",
+                "lmstudio",
+                "lmstudio-legacy",
+                "llamacpp",
+                "koboldcpp",
+                "vllm",
+                "hugging-face",
+                "mistral",
+                "together"
+              ],
+              "title": "Embedding Endpoint Type",
+              "description": "The endpoint type for the model."
+            },
+            "embedding_endpoint": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Embedding Endpoint",
+              "description": "The endpoint for the model (`None` if local)."
+            },
+            "embedding_model": {
+              "type": "string",
+              "title": "Embedding Model",
+              "description": "The model for the embedding."
+            },
+            "embedding_dim": {
+              "type": "integer",
+              "title": "Embedding Dim",
+              "description": "The dimension of the embedding."
+            },
+            "embedding_chunk_size": {
+              "anyOf": [{ "type": "integer" }, { "type": "null" }],
+              "title": "Embedding Chunk Size",
+              "description": "The chunk size of the embedding.",
+              "default": 300
+            },
+            "handle": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Handle",
+              "description": "The handle for this config, in the format provider/model-name."
+            },
+            "azure_endpoint": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Azure Endpoint",
+              "description": "The Azure endpoint for the model."
+            },
+            "azure_version": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Azure Version",
+              "description": "The Azure version for the model."
+            },
+            "azure_deployment": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Azure Deployment",
+              "description": "The Azure deployment for the model."
+            }
+          },
+          "type": "object",
+          "required": [
+            "embedding_endpoint_type",
+            "embedding_model",
+            "embedding_dim"
+          ],
+          "title": "EmbeddingConfig",
+          "description": "Embedding model configuration. This object specifies all the information necessary to access an embedding model to usage with Letta, except for secret keys.\n\nAttributes:\n    embedding_endpoint_type (str): The endpoint type for the model.\n    embedding_endpoint (str): The endpoint for the model.\n    embedding_model (str): The model for the embedding.\n    embedding_dim (int): The dimension of the embedding.\n    embedding_chunk_size (int): The chunk size of the embedding.\n    azure_endpoint (:obj:`str`, optional): The Azure endpoint for the model (Azure only).\n    azure_version (str): The Azure version for the model (Azure only).\n    azure_deployment (str): The Azure deployment for the model (Azure only).",
+          "x-readme-ref-name": "EmbeddingConfig"
+        },
+        { "type": "null" }
+      ],
+      "description": "The embedding configuration used by the source."
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "title": "SourceUpdate",
+  "description": "Schema for updating an existing Source.",
+  "x-readme-ref-name": "SourceUpdate"
+}

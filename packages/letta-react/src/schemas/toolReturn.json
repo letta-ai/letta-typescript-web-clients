@@ -1,0 +1,30 @@
+{
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["success", "error"],
+      "title": "Status",
+      "description": "The status of the tool call"
+    },
+    "stdout": {
+      "anyOf": [
+        { "items": { "type": "string" }, "type": "array" },
+        { "type": "null" }
+      ],
+      "title": "Stdout",
+      "description": "Captured stdout (e.g. prints, logs) from the tool invocation"
+    },
+    "stderr": {
+      "anyOf": [
+        { "items": { "type": "string" }, "type": "array" },
+        { "type": "null" }
+      ],
+      "title": "Stderr",
+      "description": "Captured stderr from the tool invocation"
+    }
+  },
+  "type": "object",
+  "required": ["status"],
+  "title": "ToolReturn",
+  "x-readme-ref-name": "ToolReturn"
+}

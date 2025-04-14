@@ -1,0 +1,13 @@
+{
+  "properties": {
+    "text": {
+      "type": "string",
+      "title": "Text",
+      "description": "Text to write to archival memory."
+    }
+  },
+  "type": "object",
+  "required": ["text"],
+  "title": "CreateArchivalMemory",
+  "x-readme-ref-name": "CreateArchivalMemory"
+}

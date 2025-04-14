@@ -1,0 +1,33 @@
+{
+  "properties": {
+    "key": {
+      "type": "string",
+      "title": "Key",
+      "description": "The key of the property"
+    },
+    "value": {
+      "anyOf": [
+        { "type": "string" },
+        { "type": "integer" },
+        { "type": "number" },
+        { "type": "boolean" },
+        { "additionalProperties": true, "type": "object" }
+      ],
+      "title": "Value",
+      "description": "The value of the property"
+    },
+    "type": {
+      "description": "The type of the property",
+      "type": "string",
+      "enum": ["string", "number", "boolean", "json"],
+      "title": "IdentityPropertyType",
+      "x-readme-ref-name": "IdentityPropertyType"
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "required": ["key", "value", "type"],
+  "title": "IdentityProperty",
+  "description": "A property of an identity",
+  "x-readme-ref-name": "IdentityProperty"
+}

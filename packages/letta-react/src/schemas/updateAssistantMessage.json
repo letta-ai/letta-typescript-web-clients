@@ -1,0 +1,55 @@
+{
+  "properties": {
+    "message_type": {
+      "type": "string",
+      "const": "assistant_message",
+      "title": "Message Type",
+      "default": "assistant_message"
+    },
+    "content": {
+      "anyOf": [
+        {
+          "items": {
+            "oneOf": [
+              {
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "text",
+                    "title": "Type",
+                    "description": "The type of the message.",
+                    "default": "text",
+                    "enum": ["text"]
+                  },
+                  "text": {
+                    "type": "string",
+                    "title": "Text",
+                    "description": "The text content of the message."
+                  }
+                },
+                "type": "object",
+                "required": ["text", "type", "type", "type"],
+                "title": "TextContent",
+                "x-readme-ref-name": "TextContent"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "type",
+              "mapping": { "text": "#/components/schemas/TextContent" }
+            },
+            "x-readme-ref-name": "LettaAssistantMessageContentUnion",
+            "properties": { "type": { "enum": ["text"] } }
+          },
+          "type": "array"
+        },
+        { "type": "string" }
+      ],
+      "title": "Content",
+      "description": "The message content sent by the assistant (can be a string or an array of content parts)"
+    }
+  },
+  "type": "object",
+  "required": ["content"],
+  "title": "UpdateAssistantMessage",
+  "x-readme-ref-name": "UpdateAssistantMessage"
+}
