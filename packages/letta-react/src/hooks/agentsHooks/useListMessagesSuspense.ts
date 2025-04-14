@@ -3,38 +3,16 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  ListMessagesQueryResponse,
-  ListMessagesPathParams,
-  ListMessagesQueryParams,
-  ListMessages422,
-} from '../../types/ListMessages.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  UseSuspenseQueryOptions,
-  UseSuspenseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { ListMessagesQueryResponse, ListMessagesPathParams, ListMessagesQueryParams, ListMessages422 } from '../../types/ListMessages.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 
-export const listMessagesSuspenseQueryKey = (
-  agent_id: ListMessagesPathParams['agent_id'],
-  params?: ListMessagesQueryParams
-) =>
-  [
-    { url: '/v1/agents/:agent_id/messages', params: { agent_id: agent_id } },
-    ...(params ? [params] : []),
-  ] as const;
+export const listMessagesSuspenseQueryKey = (agent_id: ListMessagesPathParams['agent_id'], params?: ListMessagesQueryParams) =>
+  [{ url: '/v1/agents/:agent_id/messages', params: { agent_id: agent_id } }, ...(params ? [params] : [])] as const
 
-export type ListMessagesSuspenseQueryKey = ReturnType<
-  typeof listMessagesSuspenseQueryKey
->;
+export type ListMessagesSuspenseQueryKey = ReturnType<typeof listMessagesSuspenseQueryKey>
 
 /**
  * @description Retrieve message history for an agent.
@@ -44,29 +22,25 @@ export type ListMessagesSuspenseQueryKey = ReturnType<
 export async function listMessagesSuspense(
   agent_id: ListMessagesPathParams['agent_id'],
   params?: ListMessagesQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    ListMessagesQueryResponse,
-    ResponseErrorConfig<ListMessages422>,
-    unknown
-  >({
+  const res = await request<ListMessagesQueryResponse, ResponseErrorConfig<ListMessages422>, unknown>({
     method: 'GET',
     url: `/v1/agents/${agent_id}/messages`,
     params,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 export function listMessagesSuspenseQueryOptions(
   agent_id: ListMessagesPathParams['agent_id'],
   params?: ListMessagesQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const queryKey = listMessagesSuspenseQueryKey(agent_id, params);
+  const queryKey = listMessagesSuspenseQueryKey(agent_id, params)
   return queryOptions<
     ResponseConfig<ListMessagesQueryResponse>,
     ResponseErrorConfig<ListMessages422>,
@@ -76,10 +50,10 @@ export function listMessagesSuspenseQueryOptions(
     enabled: !!agent_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return listMessagesSuspense(agent_id, params, config);
+      config.signal = signal
+      return listMessagesSuspense(agent_id, params, config)
     },
-  });
+  })
 }
 
 /**
@@ -90,47 +64,30 @@ export function listMessagesSuspenseQueryOptions(
 export function useListMessagesSuspense<
   TData = ResponseConfig<ListMessagesQueryResponse>,
   TQueryData = ResponseConfig<ListMessagesQueryResponse>,
-  TQueryKey extends QueryKey = ListMessagesSuspenseQueryKey
+  TQueryKey extends QueryKey = ListMessagesSuspenseQueryKey,
 >(
   agent_id: ListMessagesPathParams['agent_id'],
   params?: ListMessagesQueryParams,
   options: {
-    query?: Partial<
-      UseSuspenseQueryOptions<
-        ResponseConfig<ListMessagesQueryResponse>,
-        ResponseErrorConfig<ListMessages422>,
-        TData,
-        TQueryKey
-      >
-    > & {
-      client?: QueryClient;
-    };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    query?: Partial<UseSuspenseQueryOptions<ResponseConfig<ListMessagesQueryResponse>, ResponseErrorConfig<ListMessages422>, TData, TQueryKey>> & {
+      client?: QueryClient
+    }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey =
-    queryOptions?.queryKey ?? listMessagesSuspenseQueryKey(agent_id, params);
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? listMessagesSuspenseQueryKey(agent_id, params)
 
   const query = useSuspenseQuery(
     {
-      ...(listMessagesSuspenseQueryOptions(
-        agent_id,
-        params,
-        config
-      ) as unknown as UseSuspenseQueryOptions),
+      ...(listMessagesSuspenseQueryOptions(agent_id, params, config) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<ListMessages422>> & {
-    queryKey: TQueryKey;
-  };
+    queryClient,
+  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<ListMessages422>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

@@ -3,61 +3,36 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type { HealthCheckQueryResponse } from '../../types/HealthCheck.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  UseSuspenseQueryOptions,
-  UseSuspenseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { HealthCheckQueryResponse } from '../../types/HealthCheck.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 
-export const healthCheckSuspenseQueryKey = () =>
-  [{ url: '/v1/health/' }] as const;
+export const healthCheckSuspenseQueryKey = () => [{ url: '/v1/health/' }] as const
 
-export type HealthCheckSuspenseQueryKey = ReturnType<
-  typeof healthCheckSuspenseQueryKey
->;
+export type HealthCheckSuspenseQueryKey = ReturnType<typeof healthCheckSuspenseQueryKey>
 
 /**
  * @summary Health Check
  * {@link /v1/health/}
  */
-export async function healthCheckSuspense(
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function healthCheckSuspense(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    HealthCheckQueryResponse,
-    ResponseErrorConfig<Error>,
-    unknown
-  >({ method: 'GET', url: `/v1/health/`, ...requestConfig });
-  return res;
+  const res = await request<HealthCheckQueryResponse, ResponseErrorConfig<Error>, unknown>({ method: 'GET', url: `/v1/health/`, ...requestConfig })
+  return res
 }
 
-export function healthCheckSuspenseQueryOptions(
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const queryKey = healthCheckSuspenseQueryKey();
-  return queryOptions<
-    ResponseConfig<HealthCheckQueryResponse>,
-    ResponseErrorConfig<Error>,
-    ResponseConfig<HealthCheckQueryResponse>,
-    typeof queryKey
-  >({
+export function healthCheckSuspenseQueryOptions(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const queryKey = healthCheckSuspenseQueryKey()
+  return queryOptions<ResponseConfig<HealthCheckQueryResponse>, ResponseErrorConfig<Error>, ResponseConfig<HealthCheckQueryResponse>, typeof queryKey>({
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return healthCheckSuspense(config);
+      config.signal = signal
+      return healthCheckSuspense(config)
     },
-  });
+  })
 }
 
 /**
@@ -67,40 +42,26 @@ export function healthCheckSuspenseQueryOptions(
 export function useHealthCheckSuspense<
   TData = ResponseConfig<HealthCheckQueryResponse>,
   TQueryData = ResponseConfig<HealthCheckQueryResponse>,
-  TQueryKey extends QueryKey = HealthCheckSuspenseQueryKey
+  TQueryKey extends QueryKey = HealthCheckSuspenseQueryKey,
 >(
   options: {
-    query?: Partial<
-      UseSuspenseQueryOptions<
-        ResponseConfig<HealthCheckQueryResponse>,
-        ResponseErrorConfig<Error>,
-        TData,
-        TQueryKey
-      >
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    query?: Partial<UseSuspenseQueryOptions<ResponseConfig<HealthCheckQueryResponse>, ResponseErrorConfig<Error>, TData, TQueryKey>> & { client?: QueryClient }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey = queryOptions?.queryKey ?? healthCheckSuspenseQueryKey();
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? healthCheckSuspenseQueryKey()
 
   const query = useSuspenseQuery(
     {
-      ...(healthCheckSuspenseQueryOptions(
-        config
-      ) as unknown as UseSuspenseQueryOptions),
+      ...(healthCheckSuspenseQueryOptions(config) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<Error>> & {
-    queryKey: TQueryKey;
-  };
+    queryClient,
+  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<Error>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

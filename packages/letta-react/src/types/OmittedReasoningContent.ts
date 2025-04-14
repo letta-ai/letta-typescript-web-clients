@@ -5,10 +5,9 @@
 
 export const omittedReasoningContentTypeEnum = {
   omitted_reasoning: 'omitted_reasoning',
-} as const;
+} as const
 
-export type OmittedReasoningContentTypeEnum =
-  (typeof omittedReasoningContentTypeEnum)[keyof typeof omittedReasoningContentTypeEnum];
+export type OmittedReasoningContentTypeEnum = (typeof omittedReasoningContentTypeEnum)[keyof typeof omittedReasoningContentTypeEnum]
 
 export type OmittedReasoningContent = {
   /**
@@ -16,10 +15,10 @@ export type OmittedReasoningContent = {
    * @default "omitted_reasoning"
    * @type string
    */
-  type: OmittedReasoningContentTypeEnum;
+  type: OmittedReasoningContentTypeEnum
   /**
    * @description The reasoning token count for intermediate reasoning content.
    * @type integer
    */
-  tokens: number;
-};
+  tokens: number
+}

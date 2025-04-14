@@ -3,64 +3,38 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  ListAgentSourcesQueryResponse,
-  ListAgentSourcesPathParams,
-  ListAgentSources422,
-} from '../../types/ListAgentSources.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  QueryObserverOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { ListAgentSourcesQueryResponse, ListAgentSourcesPathParams, ListAgentSources422 } from '../../types/ListAgentSources.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useQuery } from '@tanstack/react-query'
 
-export const listAgentSourcesQueryKey = (
-  agent_id: ListAgentSourcesPathParams['agent_id']
-) =>
-  [
-    { url: '/v1/agents/:agent_id/sources', params: { agent_id: agent_id } },
-  ] as const;
+export const listAgentSourcesQueryKey = (agent_id: ListAgentSourcesPathParams['agent_id']) =>
+  [{ url: '/v1/agents/:agent_id/sources', params: { agent_id: agent_id } }] as const
 
-export type ListAgentSourcesQueryKey = ReturnType<
-  typeof listAgentSourcesQueryKey
->;
+export type ListAgentSourcesQueryKey = ReturnType<typeof listAgentSourcesQueryKey>
 
 /**
  * @description Get the sources associated with an agent.
  * @summary List Agent Sources
  * {@link /v1/agents/:agent_id/sources}
  */
-export async function listAgentSources(
-  agent_id: ListAgentSourcesPathParams['agent_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function listAgentSources(agent_id: ListAgentSourcesPathParams['agent_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    ListAgentSourcesQueryResponse,
-    ResponseErrorConfig<ListAgentSources422>,
-    unknown
-  >({
+  const res = await request<ListAgentSourcesQueryResponse, ResponseErrorConfig<ListAgentSources422>, unknown>({
     method: 'GET',
     url: `/v1/agents/${agent_id}/sources`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 export function listAgentSourcesQueryOptions(
   agent_id: ListAgentSourcesPathParams['agent_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const queryKey = listAgentSourcesQueryKey(agent_id);
+  const queryKey = listAgentSourcesQueryKey(agent_id)
   return queryOptions<
     ResponseConfig<ListAgentSourcesQueryResponse>,
     ResponseErrorConfig<ListAgentSources422>,
@@ -70,10 +44,10 @@ export function listAgentSourcesQueryOptions(
     enabled: !!agent_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return listAgentSources(agent_id, config);
+      config.signal = signal
+      return listAgentSources(agent_id, config)
     },
-  });
+  })
 }
 
 /**
@@ -84,43 +58,29 @@ export function listAgentSourcesQueryOptions(
 export function useListAgentSources<
   TData = ResponseConfig<ListAgentSourcesQueryResponse>,
   TQueryData = ResponseConfig<ListAgentSourcesQueryResponse>,
-  TQueryKey extends QueryKey = ListAgentSourcesQueryKey
+  TQueryKey extends QueryKey = ListAgentSourcesQueryKey,
 >(
   agent_id: ListAgentSourcesPathParams['agent_id'],
   options: {
     query?: Partial<
-      QueryObserverOptions<
-        ResponseConfig<ListAgentSourcesQueryResponse>,
-        ResponseErrorConfig<ListAgentSources422>,
-        TData,
-        TQueryData,
-        TQueryKey
-      >
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+      QueryObserverOptions<ResponseConfig<ListAgentSourcesQueryResponse>, ResponseErrorConfig<ListAgentSources422>, TData, TQueryData, TQueryKey>
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey = queryOptions?.queryKey ?? listAgentSourcesQueryKey(agent_id);
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? listAgentSourcesQueryKey(agent_id)
 
   const query = useQuery(
     {
-      ...(listAgentSourcesQueryOptions(
-        agent_id,
-        config
-      ) as unknown as QueryObserverOptions),
+      ...(listAgentSourcesQueryOptions(agent_id, config) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseQueryResult<TData, ResponseErrorConfig<ListAgentSources422>> & {
-    queryKey: TQueryKey;
-  };
+    queryClient,
+  ) as UseQueryResult<TData, ResponseErrorConfig<ListAgentSources422>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

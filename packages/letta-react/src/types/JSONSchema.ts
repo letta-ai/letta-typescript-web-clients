@@ -7,16 +7,16 @@ export type JSONSchema = {
   /**
    * @type string
    */
-  name: string;
+  name: string
   /**
    * @type string | undefined
    */
-  description?: string;
+  description?: string
   /**
    * @type object | undefined
    */
   schema?: {
-    [key: string]: any;
-  };
-  strict?: boolean | null;
-};
+    [key: string]: any
+  }
+  strict?: boolean | null
+}

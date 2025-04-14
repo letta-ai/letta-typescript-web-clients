@@ -8,39 +8,39 @@ export type ToolRunFromSource = {
    * @description The source code of the function.
    * @type string
    */
-  source_code: string;
+  source_code: string
   /**
    * @description The arguments to pass to the tool.
    * @type object
    */
   args: {
-    [key: string]: any;
-  };
+    [key: string]: any
+  }
   /**
    * @description The environment variables to pass to the tool.
    * @type object | undefined
    */
   env_vars?: {
-    [key: string]: string;
-  };
+    [key: string]: string
+  }
   /**
    * @description The name of the tool to run.
    */
-  name?: string | null;
+  name?: string | null
   /**
    * @description The type of the source code.
    */
-  source_type?: string | null;
+  source_type?: string | null
   /**
    * @description The args JSON schema of the function.
    */
   args_json_schema?: {
-    [key: string]: any;
-  } | null;
+    [key: string]: any
+  } | null
   /**
    * @description The JSON schema of the function (auto-generated from source_code if not provided)
    */
   json_schema?: {
-    [key: string]: any;
-  } | null;
-};
+    [key: string]: any
+  } | null
+}

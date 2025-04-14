@@ -7,13 +7,13 @@ export type ChildToolRuleSchema = {
   /**
    * @type string
    */
-  tool_name: string;
+  tool_name: string
   /**
    * @type string
    */
-  type: string;
+  type: string
   /**
    * @type array
    */
-  children: string[];
-};
+  children: string[]
+}

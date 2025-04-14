@@ -3,27 +3,20 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
+import client from '@kubb/plugin-client/clients/axios'
 import type {
   UpsertIdentityMutationRequest,
   UpsertIdentityMutationResponse,
   UpsertIdentityHeaderParams,
   UpsertIdentity422,
-} from '../../types/UpsertIdentity.ts';
-import type {
-  RequestConfig,
-  ResponseConfig,
-  ResponseErrorConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
+} from '../../types/UpsertIdentity.ts'
+import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
-export const upsertIdentityMutationKey = () =>
-  [{ url: '/v1/identities/' }] as const;
+export const upsertIdentityMutationKey = () => [{ url: '/v1/identities/' }] as const
 
-export type UpsertIdentityMutationKey = ReturnType<
-  typeof upsertIdentityMutationKey
->;
+export type UpsertIdentityMutationKey = ReturnType<typeof upsertIdentityMutationKey>
 
 /**
  * @summary Upsert Identity
@@ -32,24 +25,18 @@ export type UpsertIdentityMutationKey = ReturnType<
 export async function upsertIdentity(
   data: UpsertIdentityMutationRequest,
   headers?: UpsertIdentityHeaderParams,
-  config: Partial<RequestConfig<UpsertIdentityMutationRequest>> & {
-    client?: typeof client;
-  } = {}
+  config: Partial<RequestConfig<UpsertIdentityMutationRequest>> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    UpsertIdentityMutationResponse,
-    ResponseErrorConfig<UpsertIdentity422>,
-    UpsertIdentityMutationRequest
-  >({
+  const res = await request<UpsertIdentityMutationResponse, ResponseErrorConfig<UpsertIdentity422>, UpsertIdentityMutationRequest>({
     method: 'PUT',
     url: `/v1/identities/`,
     data,
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  });
-  return res;
+  })
+  return res
 }
 
 /**
@@ -61,40 +48,28 @@ export function useUpsertIdentity<TContext>(
     mutation?: UseMutationOptions<
       ResponseConfig<UpsertIdentityMutationResponse>,
       ResponseErrorConfig<UpsertIdentity422>,
-      {
-        data: UpsertIdentityMutationRequest;
-        headers?: UpsertIdentityHeaderParams;
-      },
+      { data: UpsertIdentityMutationRequest; headers?: UpsertIdentityHeaderParams },
       TContext
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig<UpsertIdentityMutationRequest>> & {
-      client?: typeof client;
-    };
-  } = {}
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig<UpsertIdentityMutationRequest>> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    mutation: { client: queryClient, ...mutationOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const mutationKey =
-    mutationOptions?.mutationKey ?? upsertIdentityMutationKey();
+  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
+  const mutationKey = mutationOptions?.mutationKey ?? upsertIdentityMutationKey()
 
   return useMutation<
     ResponseConfig<UpsertIdentityMutationResponse>,
     ResponseErrorConfig<UpsertIdentity422>,
-    {
-      data: UpsertIdentityMutationRequest;
-      headers?: UpsertIdentityHeaderParams;
-    },
+    { data: UpsertIdentityMutationRequest; headers?: UpsertIdentityHeaderParams },
     TContext
   >(
     {
       mutationFn: async ({ data, headers }) => {
-        return upsertIdentity(data, headers, config);
+        return upsertIdentity(data, headers, config)
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
-  );
+    queryClient,
+  )
 }

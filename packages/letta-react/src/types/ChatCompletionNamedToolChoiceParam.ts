@@ -3,15 +3,15 @@
  * Do not edit manually.
  */
 
-import type { OpenaiTypesChatChatCompletionNamedToolChoiceParamFunction } from './OpenaiTypesChatChatCompletionNamedToolChoiceParamFunction.ts';
+import type { OpenaiTypesChatChatCompletionNamedToolChoiceParamFunction } from './OpenaiTypesChatChatCompletionNamedToolChoiceParamFunction.ts'
 
 export type ChatCompletionNamedToolChoiceParam = {
   /**
    * @type object
    */
-  function: OpenaiTypesChatChatCompletionNamedToolChoiceParamFunction;
+  function: OpenaiTypesChatChatCompletionNamedToolChoiceParamFunction
   /**
    * @type string
    */
-  type: 'function';
-};
+  type: 'function'
+}

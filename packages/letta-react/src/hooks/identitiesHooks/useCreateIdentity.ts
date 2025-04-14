@@ -3,27 +3,20 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
+import client from '@kubb/plugin-client/clients/axios'
 import type {
   CreateIdentityMutationRequest,
   CreateIdentityMutationResponse,
   CreateIdentityHeaderParams,
   CreateIdentity422,
-} from '../../types/CreateIdentity.ts';
-import type {
-  RequestConfig,
-  ResponseConfig,
-  ResponseErrorConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
+} from '../../types/CreateIdentity.ts'
+import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
-export const createIdentityMutationKey = () =>
-  [{ url: '/v1/identities/' }] as const;
+export const createIdentityMutationKey = () => [{ url: '/v1/identities/' }] as const
 
-export type CreateIdentityMutationKey = ReturnType<
-  typeof createIdentityMutationKey
->;
+export type CreateIdentityMutationKey = ReturnType<typeof createIdentityMutationKey>
 
 /**
  * @summary Create Identity
@@ -32,24 +25,18 @@ export type CreateIdentityMutationKey = ReturnType<
 export async function createIdentity(
   data: CreateIdentityMutationRequest,
   headers?: CreateIdentityHeaderParams,
-  config: Partial<RequestConfig<CreateIdentityMutationRequest>> & {
-    client?: typeof client;
-  } = {}
+  config: Partial<RequestConfig<CreateIdentityMutationRequest>> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    CreateIdentityMutationResponse,
-    ResponseErrorConfig<CreateIdentity422>,
-    CreateIdentityMutationRequest
-  >({
+  const res = await request<CreateIdentityMutationResponse, ResponseErrorConfig<CreateIdentity422>, CreateIdentityMutationRequest>({
     method: 'POST',
     url: `/v1/identities/`,
     data,
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  });
-  return res;
+  })
+  return res
 }
 
 /**
@@ -61,40 +48,28 @@ export function useCreateIdentity<TContext>(
     mutation?: UseMutationOptions<
       ResponseConfig<CreateIdentityMutationResponse>,
       ResponseErrorConfig<CreateIdentity422>,
-      {
-        data: CreateIdentityMutationRequest;
-        headers?: CreateIdentityHeaderParams;
-      },
+      { data: CreateIdentityMutationRequest; headers?: CreateIdentityHeaderParams },
       TContext
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig<CreateIdentityMutationRequest>> & {
-      client?: typeof client;
-    };
-  } = {}
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig<CreateIdentityMutationRequest>> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    mutation: { client: queryClient, ...mutationOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const mutationKey =
-    mutationOptions?.mutationKey ?? createIdentityMutationKey();
+  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
+  const mutationKey = mutationOptions?.mutationKey ?? createIdentityMutationKey()
 
   return useMutation<
     ResponseConfig<CreateIdentityMutationResponse>,
     ResponseErrorConfig<CreateIdentity422>,
-    {
-      data: CreateIdentityMutationRequest;
-      headers?: CreateIdentityHeaderParams;
-    },
+    { data: CreateIdentityMutationRequest; headers?: CreateIdentityHeaderParams },
     TContext
   >(
     {
       mutationFn: async ({ data, headers }) => {
-        return createIdentity(data, headers, config);
+        return createIdentity(data, headers, config)
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
-  );
+    queryClient,
+  )
 }

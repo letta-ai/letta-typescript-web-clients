@@ -3,61 +3,38 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  RetrieveGroupQueryResponse,
-  RetrieveGroupPathParams,
-  RetrieveGroup422,
-} from '../../types/RetrieveGroup.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  UseSuspenseQueryOptions,
-  UseSuspenseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { RetrieveGroupQueryResponse, RetrieveGroupPathParams, RetrieveGroup422 } from '../../types/RetrieveGroup.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 
-export const retrieveGroupSuspenseQueryKey = (
-  group_id: RetrieveGroupPathParams['group_id']
-) => [{ url: '/v1/groups/:group_id', params: { group_id: group_id } }] as const;
+export const retrieveGroupSuspenseQueryKey = (group_id: RetrieveGroupPathParams['group_id']) =>
+  [{ url: '/v1/groups/:group_id', params: { group_id: group_id } }] as const
 
-export type RetrieveGroupSuspenseQueryKey = ReturnType<
-  typeof retrieveGroupSuspenseQueryKey
->;
+export type RetrieveGroupSuspenseQueryKey = ReturnType<typeof retrieveGroupSuspenseQueryKey>
 
 /**
  * @description Retrieve the group by id.
  * @summary Retrieve Group
  * {@link /v1/groups/:group_id}
  */
-export async function retrieveGroupSuspense(
-  group_id: RetrieveGroupPathParams['group_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function retrieveGroupSuspense(group_id: RetrieveGroupPathParams['group_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    RetrieveGroupQueryResponse,
-    ResponseErrorConfig<RetrieveGroup422>,
-    unknown
-  >({
+  const res = await request<RetrieveGroupQueryResponse, ResponseErrorConfig<RetrieveGroup422>, unknown>({
     method: 'GET',
     url: `/v1/groups/${group_id}`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 export function retrieveGroupSuspenseQueryOptions(
   group_id: RetrieveGroupPathParams['group_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const queryKey = retrieveGroupSuspenseQueryKey(group_id);
+  const queryKey = retrieveGroupSuspenseQueryKey(group_id)
   return queryOptions<
     ResponseConfig<RetrieveGroupQueryResponse>,
     ResponseErrorConfig<RetrieveGroup422>,
@@ -67,10 +44,10 @@ export function retrieveGroupSuspenseQueryOptions(
     enabled: !!group_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return retrieveGroupSuspense(group_id, config);
+      config.signal = signal
+      return retrieveGroupSuspense(group_id, config)
     },
-  });
+  })
 }
 
 /**
@@ -81,45 +58,29 @@ export function retrieveGroupSuspenseQueryOptions(
 export function useRetrieveGroupSuspense<
   TData = ResponseConfig<RetrieveGroupQueryResponse>,
   TQueryData = ResponseConfig<RetrieveGroupQueryResponse>,
-  TQueryKey extends QueryKey = RetrieveGroupSuspenseQueryKey
+  TQueryKey extends QueryKey = RetrieveGroupSuspenseQueryKey,
 >(
   group_id: RetrieveGroupPathParams['group_id'],
   options: {
-    query?: Partial<
-      UseSuspenseQueryOptions<
-        ResponseConfig<RetrieveGroupQueryResponse>,
-        ResponseErrorConfig<RetrieveGroup422>,
-        TData,
-        TQueryKey
-      >
-    > & {
-      client?: QueryClient;
-    };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    query?: Partial<UseSuspenseQueryOptions<ResponseConfig<RetrieveGroupQueryResponse>, ResponseErrorConfig<RetrieveGroup422>, TData, TQueryKey>> & {
+      client?: QueryClient
+    }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey =
-    queryOptions?.queryKey ?? retrieveGroupSuspenseQueryKey(group_id);
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? retrieveGroupSuspenseQueryKey(group_id)
 
   const query = useSuspenseQuery(
     {
-      ...(retrieveGroupSuspenseQueryOptions(
-        group_id,
-        config
-      ) as unknown as UseSuspenseQueryOptions),
+      ...(retrieveGroupSuspenseQueryOptions(group_id, config) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<RetrieveGroup422>> & {
-    queryKey: TQueryKey;
-  };
+    queryClient,
+  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<RetrieveGroup422>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

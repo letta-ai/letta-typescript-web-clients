@@ -3,16 +3,16 @@
  * Do not edit manually.
  */
 
-import type { LettaUserMessageContentUnion } from './LettaUserMessageContentUnion.ts';
+import type { LettaUserMessageContentUnion } from './LettaUserMessageContentUnion.ts'
 
 export type UpdateUserMessage = {
   /**
    * @default "user_message"
    * @type string | undefined
    */
-  message_type?: 'user_message';
+  message_type?: 'user_message'
   /**
    * @description The message content sent by the user (can be a string or an array of multi-modal content parts)
    */
-  content: LettaUserMessageContentUnion[] | string;
-};
+  content: LettaUserMessageContentUnion[] | string
+}

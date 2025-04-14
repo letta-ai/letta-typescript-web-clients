@@ -3,48 +3,31 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  UpsertToolMutationRequest,
-  UpsertToolMutationResponse,
-  UpsertTool422,
-} from '../../types/UpsertTool.ts';
-import type {
-  RequestConfig,
-  ResponseConfig,
-  ResponseErrorConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { UpsertToolMutationRequest, UpsertToolMutationResponse, UpsertTool422 } from '../../types/UpsertTool.ts'
+import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
-export const upsertToolMutationKey = () => [{ url: '/v1/tools/' }] as const;
+export const upsertToolMutationKey = () => [{ url: '/v1/tools/' }] as const
 
-export type UpsertToolMutationKey = ReturnType<typeof upsertToolMutationKey>;
+export type UpsertToolMutationKey = ReturnType<typeof upsertToolMutationKey>
 
 /**
  * @description Create or update a tool
  * @summary Upsert Tool
  * {@link /v1/tools/}
  */
-export async function upsertTool(
-  data: UpsertToolMutationRequest,
-  config: Partial<RequestConfig<UpsertToolMutationRequest>> & {
-    client?: typeof client;
-  } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function upsertTool(data: UpsertToolMutationRequest, config: Partial<RequestConfig<UpsertToolMutationRequest>> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    UpsertToolMutationResponse,
-    ResponseErrorConfig<UpsertTool422>,
-    UpsertToolMutationRequest
-  >({
+  const res = await request<UpsertToolMutationResponse, ResponseErrorConfig<UpsertTool422>, UpsertToolMutationRequest>({
     method: 'PUT',
     url: `/v1/tools/`,
     data,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 /**
@@ -59,31 +42,21 @@ export function useUpsertTool<TContext>(
       ResponseErrorConfig<UpsertTool422>,
       { data: UpsertToolMutationRequest },
       TContext
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig<UpsertToolMutationRequest>> & {
-      client?: typeof client;
-    };
-  } = {}
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig<UpsertToolMutationRequest>> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    mutation: { client: queryClient, ...mutationOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const mutationKey = mutationOptions?.mutationKey ?? upsertToolMutationKey();
+  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
+  const mutationKey = mutationOptions?.mutationKey ?? upsertToolMutationKey()
 
-  return useMutation<
-    ResponseConfig<UpsertToolMutationResponse>,
-    ResponseErrorConfig<UpsertTool422>,
-    { data: UpsertToolMutationRequest },
-    TContext
-  >(
+  return useMutation<ResponseConfig<UpsertToolMutationResponse>, ResponseErrorConfig<UpsertTool422>, { data: UpsertToolMutationRequest }, TContext>(
     {
       mutationFn: async ({ data }) => {
-        return upsertTool(data, config);
+        return upsertTool(data, config)
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
-  );
+    queryClient,
+  )
 }

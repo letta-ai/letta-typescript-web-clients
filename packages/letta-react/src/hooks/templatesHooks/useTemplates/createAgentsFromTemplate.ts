@@ -3,26 +3,19 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
+import client from '@kubb/plugin-client/clients/axios'
 import type {
   TemplatesCreateAgentsFromTemplateMutationRequest,
   TemplatesCreateAgentsFromTemplateMutationResponse,
   TemplatesCreateAgentsFromTemplatePathParams,
-} from '../../../types/templates/CreateAgentsFromTemplate.ts';
-import type {
-  RequestConfig,
-  ResponseConfig,
-  ResponseErrorConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
+} from '../../../types/templates/CreateAgentsFromTemplate.ts'
+import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
-export const templatesCreateAgentsFromTemplateMutationKey = () =>
-  [{ url: '/v1/templates/{project}/{template_version}/agents' }] as const;
+export const templatesCreateAgentsFromTemplateMutationKey = () => [{ url: '/v1/templates/{project}/{template_version}/agents' }] as const
 
-export type TemplatesCreateAgentsFromTemplateMutationKey = ReturnType<
-  typeof templatesCreateAgentsFromTemplateMutationKey
->;
+export type TemplatesCreateAgentsFromTemplateMutationKey = ReturnType<typeof templatesCreateAgentsFromTemplateMutationKey>
 
 /**
  * @description Creates an Agent or multiple Agents from a template
@@ -33,23 +26,17 @@ export async function templatesCreateAgentsFromTemplate(
   project: TemplatesCreateAgentsFromTemplatePathParams['project'],
   template_version: TemplatesCreateAgentsFromTemplatePathParams['template_version'],
   data?: TemplatesCreateAgentsFromTemplateMutationRequest,
-  config: Partial<
-    RequestConfig<TemplatesCreateAgentsFromTemplateMutationRequest>
-  > & { client?: typeof client } = {}
+  config: Partial<RequestConfig<TemplatesCreateAgentsFromTemplateMutationRequest>> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    TemplatesCreateAgentsFromTemplateMutationResponse,
-    ResponseErrorConfig<Error>,
-    TemplatesCreateAgentsFromTemplateMutationRequest
-  >({
+  const res = await request<TemplatesCreateAgentsFromTemplateMutationResponse, ResponseErrorConfig<Error>, TemplatesCreateAgentsFromTemplateMutationRequest>({
     method: 'POST',
     url: `/v1/templates/${project}/${template_version}/agents`,
     data,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 /**
@@ -63,47 +50,35 @@ export function useTemplatesCreateAgentsFromTemplate<TContext>(
       ResponseConfig<TemplatesCreateAgentsFromTemplateMutationResponse>,
       ResponseErrorConfig<Error>,
       {
-        project: TemplatesCreateAgentsFromTemplatePathParams['project'];
-        template_version: TemplatesCreateAgentsFromTemplatePathParams['template_version'];
-        data?: TemplatesCreateAgentsFromTemplateMutationRequest;
+        project: TemplatesCreateAgentsFromTemplatePathParams['project']
+        template_version: TemplatesCreateAgentsFromTemplatePathParams['template_version']
+        data?: TemplatesCreateAgentsFromTemplateMutationRequest
       },
       TContext
-    > & { client?: QueryClient };
-    client?: Partial<
-      RequestConfig<TemplatesCreateAgentsFromTemplateMutationRequest>
-    > & { client?: typeof client };
-  } = {}
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig<TemplatesCreateAgentsFromTemplateMutationRequest>> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    mutation: { client: queryClient, ...mutationOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const mutationKey =
-    mutationOptions?.mutationKey ??
-    templatesCreateAgentsFromTemplateMutationKey();
+  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
+  const mutationKey = mutationOptions?.mutationKey ?? templatesCreateAgentsFromTemplateMutationKey()
 
   return useMutation<
     ResponseConfig<TemplatesCreateAgentsFromTemplateMutationResponse>,
     ResponseErrorConfig<Error>,
     {
-      project: TemplatesCreateAgentsFromTemplatePathParams['project'];
-      template_version: TemplatesCreateAgentsFromTemplatePathParams['template_version'];
-      data?: TemplatesCreateAgentsFromTemplateMutationRequest;
+      project: TemplatesCreateAgentsFromTemplatePathParams['project']
+      template_version: TemplatesCreateAgentsFromTemplatePathParams['template_version']
+      data?: TemplatesCreateAgentsFromTemplateMutationRequest
     },
     TContext
   >(
     {
       mutationFn: async ({ project, template_version, data }) => {
-        return templatesCreateAgentsFromTemplate(
-          project,
-          template_version,
-          data,
-          config
-        );
+        return templatesCreateAgentsFromTemplate(project, template_version, data, config)
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
-  );
+    queryClient,
+  )
 }

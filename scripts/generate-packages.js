@@ -32,11 +32,6 @@ async function buildLettaReact() {
           mutation: {
             methods: ['post', 'put', 'delete'],
           },
-          infinite: {
-            queryParam: 'next_page',
-            initialPageParam: 0,
-            cursorParam: 'nextCursor',
-          },
           query: {
             methods: ['get'],
             importPath: '@tanstack/react-query',

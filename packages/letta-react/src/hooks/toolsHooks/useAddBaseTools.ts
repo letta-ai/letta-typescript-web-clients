@@ -3,46 +3,30 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  AddBaseToolsMutationResponse,
-  AddBaseTools422,
-} from '../../types/AddBaseTools.ts';
-import type {
-  RequestConfig,
-  ResponseConfig,
-  ResponseErrorConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { AddBaseToolsMutationResponse, AddBaseTools422 } from '../../types/AddBaseTools.ts'
+import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
-export const addBaseToolsMutationKey = () =>
-  [{ url: '/v1/tools/add-base-tools' }] as const;
+export const addBaseToolsMutationKey = () => [{ url: '/v1/tools/add-base-tools' }] as const
 
-export type AddBaseToolsMutationKey = ReturnType<
-  typeof addBaseToolsMutationKey
->;
+export type AddBaseToolsMutationKey = ReturnType<typeof addBaseToolsMutationKey>
 
 /**
  * @description Upsert base tools
  * @summary Upsert Base Tools
  * {@link /v1/tools/add-base-tools}
  */
-export async function addBaseTools(
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function addBaseTools(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    AddBaseToolsMutationResponse,
-    ResponseErrorConfig<AddBaseTools422>,
-    unknown
-  >({
+  const res = await request<AddBaseToolsMutationResponse, ResponseErrorConfig<AddBaseTools422>, unknown>({
     method: 'POST',
     url: `/v1/tools/add-base-tools`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 /**
@@ -52,34 +36,21 @@ export async function addBaseTools(
  */
 export function useAddBaseTools<TContext>(
   options: {
-    mutation?: UseMutationOptions<
-      ResponseConfig<AddBaseToolsMutationResponse>,
-      ResponseErrorConfig<AddBaseTools422>,
-      void,
-      TContext
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    mutation?: UseMutationOptions<ResponseConfig<AddBaseToolsMutationResponse>, ResponseErrorConfig<AddBaseTools422>, void, TContext> & { client?: QueryClient }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    mutation: { client: queryClient, ...mutationOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const mutationKey = mutationOptions?.mutationKey ?? addBaseToolsMutationKey();
+  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
+  const mutationKey = mutationOptions?.mutationKey ?? addBaseToolsMutationKey()
 
-  return useMutation<
-    ResponseConfig<AddBaseToolsMutationResponse>,
-    ResponseErrorConfig<AddBaseTools422>,
-    void,
-    TContext
-  >(
+  return useMutation<ResponseConfig<AddBaseToolsMutationResponse>, ResponseErrorConfig<AddBaseTools422>, void, TContext>(
     {
       mutationFn: async () => {
-        return addBaseTools(config);
+        return addBaseTools(config)
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
-  );
+    queryClient,
+  )
 }

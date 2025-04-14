@@ -3,62 +3,35 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  RetrieveSourceQueryResponse,
-  RetrieveSourcePathParams,
-  RetrieveSource422,
-} from '../../types/RetrieveSource.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  QueryObserverOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { RetrieveSourceQueryResponse, RetrieveSourcePathParams, RetrieveSource422 } from '../../types/RetrieveSource.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useQuery } from '@tanstack/react-query'
 
-export const retrieveSourceQueryKey = (
-  source_id: RetrieveSourcePathParams['source_id']
-) =>
-  [
-    { url: '/v1/sources/:source_id', params: { source_id: source_id } },
-  ] as const;
+export const retrieveSourceQueryKey = (source_id: RetrieveSourcePathParams['source_id']) =>
+  [{ url: '/v1/sources/:source_id', params: { source_id: source_id } }] as const
 
-export type RetrieveSourceQueryKey = ReturnType<typeof retrieveSourceQueryKey>;
+export type RetrieveSourceQueryKey = ReturnType<typeof retrieveSourceQueryKey>
 
 /**
  * @description Get all sources
  * @summary Retrieve Source
  * {@link /v1/sources/:source_id}
  */
-export async function retrieveSource(
-  source_id: RetrieveSourcePathParams['source_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function retrieveSource(source_id: RetrieveSourcePathParams['source_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    RetrieveSourceQueryResponse,
-    ResponseErrorConfig<RetrieveSource422>,
-    unknown
-  >({
+  const res = await request<RetrieveSourceQueryResponse, ResponseErrorConfig<RetrieveSource422>, unknown>({
     method: 'GET',
     url: `/v1/sources/${source_id}`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
-export function retrieveSourceQueryOptions(
-  source_id: RetrieveSourcePathParams['source_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const queryKey = retrieveSourceQueryKey(source_id);
+export function retrieveSourceQueryOptions(source_id: RetrieveSourcePathParams['source_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const queryKey = retrieveSourceQueryKey(source_id)
   return queryOptions<
     ResponseConfig<RetrieveSourceQueryResponse>,
     ResponseErrorConfig<RetrieveSource422>,
@@ -68,10 +41,10 @@ export function retrieveSourceQueryOptions(
     enabled: !!source_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return retrieveSource(source_id, config);
+      config.signal = signal
+      return retrieveSource(source_id, config)
     },
-  });
+  })
 }
 
 /**
@@ -82,45 +55,29 @@ export function retrieveSourceQueryOptions(
 export function useRetrieveSource<
   TData = ResponseConfig<RetrieveSourceQueryResponse>,
   TQueryData = ResponseConfig<RetrieveSourceQueryResponse>,
-  TQueryKey extends QueryKey = RetrieveSourceQueryKey
+  TQueryKey extends QueryKey = RetrieveSourceQueryKey,
 >(
   source_id: RetrieveSourcePathParams['source_id'],
   options: {
-    query?: Partial<
-      QueryObserverOptions<
-        ResponseConfig<RetrieveSourceQueryResponse>,
-        ResponseErrorConfig<RetrieveSource422>,
-        TData,
-        TQueryData,
-        TQueryKey
-      >
-    > & {
-      client?: QueryClient;
-    };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    query?: Partial<QueryObserverOptions<ResponseConfig<RetrieveSourceQueryResponse>, ResponseErrorConfig<RetrieveSource422>, TData, TQueryData, TQueryKey>> & {
+      client?: QueryClient
+    }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey = queryOptions?.queryKey ?? retrieveSourceQueryKey(source_id);
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? retrieveSourceQueryKey(source_id)
 
   const query = useQuery(
     {
-      ...(retrieveSourceQueryOptions(
-        source_id,
-        config
-      ) as unknown as QueryObserverOptions),
+      ...(retrieveSourceQueryOptions(source_id, config) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseQueryResult<TData, ResponseErrorConfig<RetrieveSource422>> & {
-    queryKey: TQueryKey;
-  };
+    queryClient,
+  ) as UseQueryResult<TData, ResponseErrorConfig<RetrieveSource422>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

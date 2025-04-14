@@ -7,9 +7,9 @@ export type OpenaiTypesChatChatCompletionMessageToolCallParamFunction = {
   /**
    * @type string
    */
-  arguments: string;
+  arguments: string
   /**
    * @type string
    */
-  name: string;
-};
+  name: string
+}

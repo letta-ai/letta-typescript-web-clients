@@ -3,19 +3,19 @@
  * Do not edit manually.
  */
 
-import type { OpenaiTypesChatChatCompletionMessageToolCallParamFunction } from './OpenaiTypesChatChatCompletionMessageToolCallParamFunction.ts';
+import type { OpenaiTypesChatChatCompletionMessageToolCallParamFunction } from './OpenaiTypesChatChatCompletionMessageToolCallParamFunction.ts'
 
 export type ChatCompletionMessageToolCallParam = {
   /**
    * @type string
    */
-  id: string;
+  id: string
   /**
    * @type object
    */
-  function: OpenaiTypesChatChatCompletionMessageToolCallParamFunction;
+  function: OpenaiTypesChatChatCompletionMessageToolCallParamFunction
   /**
    * @type string
    */
-  type: 'function';
-};
+  type: 'function'
+}

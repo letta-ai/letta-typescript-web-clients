@@ -3,39 +3,16 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  ListPassagesQueryResponse,
-  ListPassagesPathParams,
-  ListPassagesQueryParams,
-  ListPassages422,
-} from '../../types/ListPassages.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  QueryObserverOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { ListPassagesQueryResponse, ListPassagesPathParams, ListPassagesQueryParams, ListPassages422 } from '../../types/ListPassages.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useQuery } from '@tanstack/react-query'
 
-export const listPassagesQueryKey = (
-  agent_id: ListPassagesPathParams['agent_id'],
-  params?: ListPassagesQueryParams
-) =>
-  [
-    {
-      url: '/v1/agents/:agent_id/archival-memory',
-      params: { agent_id: agent_id },
-    },
-    ...(params ? [params] : []),
-  ] as const;
+export const listPassagesQueryKey = (agent_id: ListPassagesPathParams['agent_id'], params?: ListPassagesQueryParams) =>
+  [{ url: '/v1/agents/:agent_id/archival-memory', params: { agent_id: agent_id } }, ...(params ? [params] : [])] as const
 
-export type ListPassagesQueryKey = ReturnType<typeof listPassagesQueryKey>;
+export type ListPassagesQueryKey = ReturnType<typeof listPassagesQueryKey>
 
 /**
  * @description Retrieve the memories in an agent's archival memory store (paginated query).
@@ -45,29 +22,25 @@ export type ListPassagesQueryKey = ReturnType<typeof listPassagesQueryKey>;
 export async function listPassages(
   agent_id: ListPassagesPathParams['agent_id'],
   params?: ListPassagesQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    ListPassagesQueryResponse,
-    ResponseErrorConfig<ListPassages422>,
-    unknown
-  >({
+  const res = await request<ListPassagesQueryResponse, ResponseErrorConfig<ListPassages422>, unknown>({
     method: 'GET',
     url: `/v1/agents/${agent_id}/archival-memory`,
     params,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 export function listPassagesQueryOptions(
   agent_id: ListPassagesPathParams['agent_id'],
   params?: ListPassagesQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const queryKey = listPassagesQueryKey(agent_id, params);
+  const queryKey = listPassagesQueryKey(agent_id, params)
   return queryOptions<
     ResponseConfig<ListPassagesQueryResponse>,
     ResponseErrorConfig<ListPassages422>,
@@ -77,10 +50,10 @@ export function listPassagesQueryOptions(
     enabled: !!agent_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return listPassages(agent_id, params, config);
+      config.signal = signal
+      return listPassages(agent_id, params, config)
     },
-  });
+  })
 }
 
 /**
@@ -91,48 +64,30 @@ export function listPassagesQueryOptions(
 export function useListPassages<
   TData = ResponseConfig<ListPassagesQueryResponse>,
   TQueryData = ResponseConfig<ListPassagesQueryResponse>,
-  TQueryKey extends QueryKey = ListPassagesQueryKey
+  TQueryKey extends QueryKey = ListPassagesQueryKey,
 >(
   agent_id: ListPassagesPathParams['agent_id'],
   params?: ListPassagesQueryParams,
   options: {
-    query?: Partial<
-      QueryObserverOptions<
-        ResponseConfig<ListPassagesQueryResponse>,
-        ResponseErrorConfig<ListPassages422>,
-        TData,
-        TQueryData,
-        TQueryKey
-      >
-    > & {
-      client?: QueryClient;
-    };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    query?: Partial<QueryObserverOptions<ResponseConfig<ListPassagesQueryResponse>, ResponseErrorConfig<ListPassages422>, TData, TQueryData, TQueryKey>> & {
+      client?: QueryClient
+    }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey =
-    queryOptions?.queryKey ?? listPassagesQueryKey(agent_id, params);
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? listPassagesQueryKey(agent_id, params)
 
   const query = useQuery(
     {
-      ...(listPassagesQueryOptions(
-        agent_id,
-        params,
-        config
-      ) as unknown as QueryObserverOptions),
+      ...(listPassagesQueryOptions(agent_id, params, config) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseQueryResult<TData, ResponseErrorConfig<ListPassages422>> & {
-    queryKey: TQueryKey;
-  };
+    queryClient,
+  ) as UseQueryResult<TData, ResponseErrorConfig<ListPassages422>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

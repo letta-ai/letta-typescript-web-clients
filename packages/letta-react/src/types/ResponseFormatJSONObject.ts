@@ -7,5 +7,5 @@ export type ResponseFormatJSONObject = {
   /**
    * @type string
    */
-  type: 'json_object';
-};
+  type: 'json_object'
+}

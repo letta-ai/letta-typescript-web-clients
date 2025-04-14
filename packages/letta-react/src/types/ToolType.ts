@@ -12,8 +12,8 @@ export const toolTypeEnum = {
   external_composio: 'external_composio',
   external_langchain: 'external_langchain',
   external_mcp: 'external_mcp',
-} as const;
+} as const
 
-export type ToolTypeEnum = (typeof toolTypeEnum)[keyof typeof toolTypeEnum];
+export type ToolTypeEnum = (typeof toolTypeEnum)[keyof typeof toolTypeEnum]
 
-export type ToolType = ToolTypeEnum;
+export type ToolType = ToolTypeEnum

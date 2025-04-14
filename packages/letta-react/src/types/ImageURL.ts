@@ -7,18 +7,17 @@ export const imageURLDetailEnum = {
   auto: 'auto',
   low: 'low',
   high: 'high',
-} as const;
+} as const
 
-export type ImageURLDetailEnum =
-  (typeof imageURLDetailEnum)[keyof typeof imageURLDetailEnum];
+export type ImageURLDetailEnum = (typeof imageURLDetailEnum)[keyof typeof imageURLDetailEnum]
 
 export type ImageURL = {
   /**
    * @type string
    */
-  url: string;
+  url: string
   /**
    * @type string | undefined
    */
-  detail?: ImageURLDetailEnum;
-};
+  detail?: ImageURLDetailEnum
+}

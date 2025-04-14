@@ -3,53 +3,33 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type { ListEmbeddingModelsQueryResponse } from '../../types/ListEmbeddingModels.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  UseSuspenseQueryOptions,
-  UseSuspenseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { ListEmbeddingModelsQueryResponse } from '../../types/ListEmbeddingModels.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 
-export const listEmbeddingModelsSuspenseQueryKey = () =>
-  [{ url: '/v1/models/embedding' }] as const;
+export const listEmbeddingModelsSuspenseQueryKey = () => [{ url: '/v1/models/embedding' }] as const
 
-export type ListEmbeddingModelsSuspenseQueryKey = ReturnType<
-  typeof listEmbeddingModelsSuspenseQueryKey
->;
+export type ListEmbeddingModelsSuspenseQueryKey = ReturnType<typeof listEmbeddingModelsSuspenseQueryKey>
 
 /**
  * @summary List Embedding Backends
  * {@link /v1/models/embedding}
  */
-export async function listEmbeddingModelsSuspense(
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function listEmbeddingModelsSuspense(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    ListEmbeddingModelsQueryResponse,
-    ResponseErrorConfig<Error>,
-    unknown
-  >({
+  const res = await request<ListEmbeddingModelsQueryResponse, ResponseErrorConfig<Error>, unknown>({
     method: 'GET',
     url: `/v1/models/embedding`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
-export function listEmbeddingModelsSuspenseQueryOptions(
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const queryKey = listEmbeddingModelsSuspenseQueryKey();
+export function listEmbeddingModelsSuspenseQueryOptions(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const queryKey = listEmbeddingModelsSuspenseQueryKey()
   return queryOptions<
     ResponseConfig<ListEmbeddingModelsQueryResponse>,
     ResponseErrorConfig<Error>,
@@ -58,10 +38,10 @@ export function listEmbeddingModelsSuspenseQueryOptions(
   >({
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return listEmbeddingModelsSuspense(config);
+      config.signal = signal
+      return listEmbeddingModelsSuspense(config)
     },
-  });
+  })
 }
 
 /**
@@ -71,43 +51,28 @@ export function listEmbeddingModelsSuspenseQueryOptions(
 export function useListEmbeddingModelsSuspense<
   TData = ResponseConfig<ListEmbeddingModelsQueryResponse>,
   TQueryData = ResponseConfig<ListEmbeddingModelsQueryResponse>,
-  TQueryKey extends QueryKey = ListEmbeddingModelsSuspenseQueryKey
+  TQueryKey extends QueryKey = ListEmbeddingModelsSuspenseQueryKey,
 >(
   options: {
-    query?: Partial<
-      UseSuspenseQueryOptions<
-        ResponseConfig<ListEmbeddingModelsQueryResponse>,
-        ResponseErrorConfig<Error>,
-        TData,
-        TQueryKey
-      >
-    > & {
-      client?: QueryClient;
-    };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    query?: Partial<UseSuspenseQueryOptions<ResponseConfig<ListEmbeddingModelsQueryResponse>, ResponseErrorConfig<Error>, TData, TQueryKey>> & {
+      client?: QueryClient
+    }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey =
-    queryOptions?.queryKey ?? listEmbeddingModelsSuspenseQueryKey();
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? listEmbeddingModelsSuspenseQueryKey()
 
   const query = useSuspenseQuery(
     {
-      ...(listEmbeddingModelsSuspenseQueryOptions(
-        config
-      ) as unknown as UseSuspenseQueryOptions),
+      ...(listEmbeddingModelsSuspenseQueryOptions(config) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<Error>> & {
-    queryKey: TQueryKey;
-  };
+    queryClient,
+  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<Error>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

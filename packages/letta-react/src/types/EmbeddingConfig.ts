@@ -23,10 +23,9 @@ export const embeddingConfigEmbeddingEndpointTypeEnum = {
   'hugging-face': 'hugging-face',
   mistral: 'mistral',
   together: 'together',
-} as const;
+} as const
 
-export type EmbeddingConfigEmbeddingEndpointTypeEnum =
-  (typeof embeddingConfigEmbeddingEndpointTypeEnum)[keyof typeof embeddingConfigEmbeddingEndpointTypeEnum];
+export type EmbeddingConfigEmbeddingEndpointTypeEnum = (typeof embeddingConfigEmbeddingEndpointTypeEnum)[keyof typeof embeddingConfigEmbeddingEndpointTypeEnum]
 
 /**
  * @description Embedding model configuration. This object specifies all the information necessary to access an embedding model to usage with Letta, except for secret keys.\n\nAttributes:\n    embedding_endpoint_type (str): The endpoint type for the model.\n    embedding_endpoint (str): The endpoint for the model.\n    embedding_model (str): The model for the embedding.\n    embedding_dim (int): The dimension of the embedding.\n    embedding_chunk_size (int): The chunk size of the embedding.\n    azure_endpoint (:obj:`str`, optional): The Azure endpoint for the model (Azure only).\n    azure_version (str): The Azure version for the model (Azure only).\n    azure_deployment (str): The Azure deployment for the model (Azure only).
@@ -36,40 +35,40 @@ export type EmbeddingConfig = {
    * @description The endpoint type for the model.
    * @type string
    */
-  embedding_endpoint_type: EmbeddingConfigEmbeddingEndpointTypeEnum;
+  embedding_endpoint_type: EmbeddingConfigEmbeddingEndpointTypeEnum
   /**
    * @description The endpoint for the model (`None` if local).
    */
-  embedding_endpoint?: string | null;
+  embedding_endpoint?: string | null
   /**
    * @description The model for the embedding.
    * @type string
    */
-  embedding_model: string;
+  embedding_model: string
   /**
    * @description The dimension of the embedding.
    * @type integer
    */
-  embedding_dim: number;
+  embedding_dim: number
   /**
    * @description The chunk size of the embedding.
    * @default 300
    */
-  embedding_chunk_size?: number | null;
+  embedding_chunk_size?: number | null
   /**
    * @description The handle for this config, in the format provider/model-name.
    */
-  handle?: string | null;
+  handle?: string | null
   /**
    * @description The Azure endpoint for the model.
    */
-  azure_endpoint?: string | null;
+  azure_endpoint?: string | null
   /**
    * @description The Azure version for the model.
    */
-  azure_version?: string | null;
+  azure_version?: string | null
   /**
    * @description The Azure deployment for the model.
    */
-  azure_deployment?: string | null;
-};
+  azure_deployment?: string | null
+}

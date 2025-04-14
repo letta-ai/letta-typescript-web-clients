@@ -3,38 +3,16 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  ListSourcePassagesQueryResponse,
-  ListSourcePassagesPathParams,
-  ListSourcePassages422,
-} from '../../types/ListSourcePassages.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  QueryObserverOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { ListSourcePassagesQueryResponse, ListSourcePassagesPathParams, ListSourcePassages422 } from '../../types/ListSourcePassages.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useQuery } from '@tanstack/react-query'
 
-export const listSourcePassagesQueryKey = (
-  source_id: ListSourcePassagesPathParams['source_id']
-) =>
-  [
-    {
-      url: '/v1/sources/:source_id/passages',
-      params: { source_id: source_id },
-    },
-  ] as const;
+export const listSourcePassagesQueryKey = (source_id: ListSourcePassagesPathParams['source_id']) =>
+  [{ url: '/v1/sources/:source_id/passages', params: { source_id: source_id } }] as const
 
-export type ListSourcePassagesQueryKey = ReturnType<
-  typeof listSourcePassagesQueryKey
->;
+export type ListSourcePassagesQueryKey = ReturnType<typeof listSourcePassagesQueryKey>
 
 /**
  * @description List all passages associated with a data source.
@@ -43,27 +21,23 @@ export type ListSourcePassagesQueryKey = ReturnType<
  */
 export async function listSourcePassages(
   source_id: ListSourcePassagesPathParams['source_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    ListSourcePassagesQueryResponse,
-    ResponseErrorConfig<ListSourcePassages422>,
-    unknown
-  >({
+  const res = await request<ListSourcePassagesQueryResponse, ResponseErrorConfig<ListSourcePassages422>, unknown>({
     method: 'GET',
     url: `/v1/sources/${source_id}/passages`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 export function listSourcePassagesQueryOptions(
   source_id: ListSourcePassagesPathParams['source_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const queryKey = listSourcePassagesQueryKey(source_id);
+  const queryKey = listSourcePassagesQueryKey(source_id)
   return queryOptions<
     ResponseConfig<ListSourcePassagesQueryResponse>,
     ResponseErrorConfig<ListSourcePassages422>,
@@ -73,10 +47,10 @@ export function listSourcePassagesQueryOptions(
     enabled: !!source_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return listSourcePassages(source_id, config);
+      config.signal = signal
+      return listSourcePassages(source_id, config)
     },
-  });
+  })
 }
 
 /**
@@ -87,44 +61,29 @@ export function listSourcePassagesQueryOptions(
 export function useListSourcePassages<
   TData = ResponseConfig<ListSourcePassagesQueryResponse>,
   TQueryData = ResponseConfig<ListSourcePassagesQueryResponse>,
-  TQueryKey extends QueryKey = ListSourcePassagesQueryKey
+  TQueryKey extends QueryKey = ListSourcePassagesQueryKey,
 >(
   source_id: ListSourcePassagesPathParams['source_id'],
   options: {
     query?: Partial<
-      QueryObserverOptions<
-        ResponseConfig<ListSourcePassagesQueryResponse>,
-        ResponseErrorConfig<ListSourcePassages422>,
-        TData,
-        TQueryData,
-        TQueryKey
-      >
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+      QueryObserverOptions<ResponseConfig<ListSourcePassagesQueryResponse>, ResponseErrorConfig<ListSourcePassages422>, TData, TQueryData, TQueryKey>
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey =
-    queryOptions?.queryKey ?? listSourcePassagesQueryKey(source_id);
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? listSourcePassagesQueryKey(source_id)
 
   const query = useQuery(
     {
-      ...(listSourcePassagesQueryOptions(
-        source_id,
-        config
-      ) as unknown as QueryObserverOptions),
+      ...(listSourcePassagesQueryOptions(source_id, config) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseQueryResult<TData, ResponseErrorConfig<ListSourcePassages422>> & {
-    queryKey: TQueryKey;
-  };
+    queryClient,
+  ) as UseQueryResult<TData, ResponseErrorConfig<ListSourcePassages422>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

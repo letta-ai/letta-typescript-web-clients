@@ -3,25 +3,15 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  AgentsSearchDeployedAgentsMutationRequest,
-  AgentsSearchDeployedAgentsMutationResponse,
-} from '../../../types/agents/SearchDeployedAgents.ts';
-import type {
-  RequestConfig,
-  ResponseConfig,
-  ResponseErrorConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { AgentsSearchDeployedAgentsMutationRequest, AgentsSearchDeployedAgentsMutationResponse } from '../../../types/agents/SearchDeployedAgents.ts'
+import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
-export const agentsSearchDeployedAgentsMutationKey = () =>
-  [{ url: '/v1/agents/search' }] as const;
+export const agentsSearchDeployedAgentsMutationKey = () => [{ url: '/v1/agents/search' }] as const
 
-export type AgentsSearchDeployedAgentsMutationKey = ReturnType<
-  typeof agentsSearchDeployedAgentsMutationKey
->;
+export type AgentsSearchDeployedAgentsMutationKey = ReturnType<typeof agentsSearchDeployedAgentsMutationKey>
 
 /**
  * @description Search deployed agents
@@ -30,23 +20,17 @@ export type AgentsSearchDeployedAgentsMutationKey = ReturnType<
  */
 export async function agentsSearchDeployedAgents(
   data?: AgentsSearchDeployedAgentsMutationRequest,
-  config: Partial<RequestConfig<AgentsSearchDeployedAgentsMutationRequest>> & {
-    client?: typeof client;
-  } = {}
+  config: Partial<RequestConfig<AgentsSearchDeployedAgentsMutationRequest>> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    AgentsSearchDeployedAgentsMutationResponse,
-    ResponseErrorConfig<Error>,
-    AgentsSearchDeployedAgentsMutationRequest
-  >({
+  const res = await request<AgentsSearchDeployedAgentsMutationResponse, ResponseErrorConfig<Error>, AgentsSearchDeployedAgentsMutationRequest>({
     method: 'POST',
     url: `/v1/agents/search`,
     data,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 /**
@@ -61,18 +45,12 @@ export function useAgentsSearchDeployedAgents<TContext>(
       ResponseErrorConfig<Error>,
       { data?: AgentsSearchDeployedAgentsMutationRequest },
       TContext
-    > & { client?: QueryClient };
-    client?: Partial<
-      RequestConfig<AgentsSearchDeployedAgentsMutationRequest>
-    > & { client?: typeof client };
-  } = {}
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig<AgentsSearchDeployedAgentsMutationRequest>> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    mutation: { client: queryClient, ...mutationOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const mutationKey =
-    mutationOptions?.mutationKey ?? agentsSearchDeployedAgentsMutationKey();
+  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
+  const mutationKey = mutationOptions?.mutationKey ?? agentsSearchDeployedAgentsMutationKey()
 
   return useMutation<
     ResponseConfig<AgentsSearchDeployedAgentsMutationResponse>,
@@ -82,11 +60,11 @@ export function useAgentsSearchDeployedAgents<TContext>(
   >(
     {
       mutationFn: async ({ data }) => {
-        return agentsSearchDeployedAgents(data, config);
+        return agentsSearchDeployedAgents(data, config)
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
-  );
+    queryClient,
+  )
 }

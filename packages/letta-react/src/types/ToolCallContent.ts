@@ -6,10 +6,9 @@
 export const toolCallContentTypeEnum = {
   tool_call: 'tool_call',
   tool_return: 'tool_return',
-} as const;
+} as const
 
-export type ToolCallContentTypeEnum =
-  (typeof toolCallContentTypeEnum)[keyof typeof toolCallContentTypeEnum];
+export type ToolCallContentTypeEnum = (typeof toolCallContentTypeEnum)[keyof typeof toolCallContentTypeEnum]
 
 export type ToolCallContent = {
   /**
@@ -17,22 +16,22 @@ export type ToolCallContent = {
    * @default "tool_call"
    * @type string
    */
-  type: ToolCallContentTypeEnum;
+  type: ToolCallContentTypeEnum
   /**
    * @description A unique identifier for this specific tool call instance.
    * @type string
    */
-  id: string;
+  id: string
   /**
    * @description The name of the tool being called.
    * @type string
    */
-  name: string;
+  name: string
   /**
    * @description The parameters being passed to the tool, structured as a dictionary of parameter names to values.
    * @type object
    */
   input: {
-    [key: string]: any;
-  };
-};
+    [key: string]: any
+  }
+}

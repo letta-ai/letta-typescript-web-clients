@@ -3,31 +3,31 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { Identity } from './Identity.ts';
-import type { IdentityUpsert } from './IdentityUpsert.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Identity } from './Identity.ts'
+import type { IdentityUpsert } from './IdentityUpsert.ts'
 
 export type UpsertIdentityHeaderParams = {
-  'X-Project'?: string | null;
-};
+  'X-Project'?: string | null
+}
 
 /**
  * @description Successful Response
  */
-export type UpsertIdentity200 = Identity;
+export type UpsertIdentity200 = Identity
 
 /**
  * @description Validation Error
  */
-export type UpsertIdentity422 = HTTPValidationError;
+export type UpsertIdentity422 = HTTPValidationError
 
-export type UpsertIdentityMutationRequest = IdentityUpsert;
+export type UpsertIdentityMutationRequest = IdentityUpsert
 
-export type UpsertIdentityMutationResponse = UpsertIdentity200;
+export type UpsertIdentityMutationResponse = UpsertIdentity200
 
 export type UpsertIdentityMutation = {
-  Response: UpsertIdentity200;
-  Request: UpsertIdentityMutationRequest;
-  HeaderParams: UpsertIdentityHeaderParams;
-  Errors: UpsertIdentity422;
-};
+  Response: UpsertIdentity200
+  Request: UpsertIdentityMutationRequest
+  HeaderParams: UpsertIdentityHeaderParams
+  Errors: UpsertIdentity422
+}

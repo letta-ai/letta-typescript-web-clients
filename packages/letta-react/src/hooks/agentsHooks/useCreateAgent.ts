@@ -3,24 +3,15 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  CreateAgentMutationRequest,
-  CreateAgentMutationResponse,
-  CreateAgentHeaderParams,
-  CreateAgent422,
-} from '../../types/CreateAgent.ts';
-import type {
-  RequestConfig,
-  ResponseConfig,
-  ResponseErrorConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { CreateAgentMutationRequest, CreateAgentMutationResponse, CreateAgentHeaderParams, CreateAgent422 } from '../../types/CreateAgent.ts'
+import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
-export const createAgentMutationKey = () => [{ url: '/v1/agents/' }] as const;
+export const createAgentMutationKey = () => [{ url: '/v1/agents/' }] as const
 
-export type CreateAgentMutationKey = ReturnType<typeof createAgentMutationKey>;
+export type CreateAgentMutationKey = ReturnType<typeof createAgentMutationKey>
 
 /**
  * @description Create a new agent with the specified configuration.
@@ -30,24 +21,18 @@ export type CreateAgentMutationKey = ReturnType<typeof createAgentMutationKey>;
 export async function createAgent(
   data?: CreateAgentMutationRequest,
   headers?: CreateAgentHeaderParams,
-  config: Partial<RequestConfig<CreateAgentMutationRequest>> & {
-    client?: typeof client;
-  } = {}
+  config: Partial<RequestConfig<CreateAgentMutationRequest>> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    CreateAgentMutationResponse,
-    ResponseErrorConfig<CreateAgent422>,
-    CreateAgentMutationRequest
-  >({
+  const res = await request<CreateAgentMutationResponse, ResponseErrorConfig<CreateAgent422>, CreateAgentMutationRequest>({
     method: 'POST',
     url: `/v1/agents/`,
     data,
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  });
-  return res;
+  })
+  return res
 }
 
 /**
@@ -62,17 +47,12 @@ export function useCreateAgent<TContext>(
       ResponseErrorConfig<CreateAgent422>,
       { data?: CreateAgentMutationRequest; headers?: CreateAgentHeaderParams },
       TContext
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig<CreateAgentMutationRequest>> & {
-      client?: typeof client;
-    };
-  } = {}
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig<CreateAgentMutationRequest>> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    mutation: { client: queryClient, ...mutationOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const mutationKey = mutationOptions?.mutationKey ?? createAgentMutationKey();
+  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
+  const mutationKey = mutationOptions?.mutationKey ?? createAgentMutationKey()
 
   return useMutation<
     ResponseConfig<CreateAgentMutationResponse>,
@@ -82,11 +62,11 @@ export function useCreateAgent<TContext>(
   >(
     {
       mutationFn: async ({ data, headers }) => {
-        return createAgent(data, headers, config);
+        return createAgent(data, headers, config)
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
-  );
+    queryClient,
+  )
 }

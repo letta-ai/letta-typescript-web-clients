@@ -3,29 +3,29 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type DeleteGroupPathParams = {
   /**
    * @type string
    */
-  group_id: string;
-};
+  group_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type DeleteGroup200 = any;
+export type DeleteGroup200 = any
 
 /**
  * @description Validation Error
  */
-export type DeleteGroup422 = HTTPValidationError;
+export type DeleteGroup422 = HTTPValidationError
 
-export type DeleteGroupMutationResponse = DeleteGroup200;
+export type DeleteGroupMutationResponse = DeleteGroup200
 
 export type DeleteGroupMutation = {
-  Response: DeleteGroup200;
-  PathParams: DeleteGroupPathParams;
-  Errors: DeleteGroup422;
-};
+  Response: DeleteGroup200
+  PathParams: DeleteGroupPathParams
+  Errors: DeleteGroup422
+}

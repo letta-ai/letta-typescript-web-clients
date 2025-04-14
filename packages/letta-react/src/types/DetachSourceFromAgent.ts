@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { AgentState } from './AgentState.ts';
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { AgentState } from './AgentState.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type DetachSourceFromAgentPathParams = {
   /**
    * @type string
    */
-  agent_id: string;
+  agent_id: string
   /**
    * @type string
    */
-  source_id: string;
-};
+  source_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type DetachSourceFromAgent200 = AgentState;
+export type DetachSourceFromAgent200 = AgentState
 
 /**
  * @description Validation Error
  */
-export type DetachSourceFromAgent422 = HTTPValidationError;
+export type DetachSourceFromAgent422 = HTTPValidationError
 
-export type DetachSourceFromAgentMutationResponse = DetachSourceFromAgent200;
+export type DetachSourceFromAgentMutationResponse = DetachSourceFromAgent200
 
 export type DetachSourceFromAgentMutation = {
-  Response: DetachSourceFromAgent200;
-  PathParams: DetachSourceFromAgentPathParams;
-  Errors: DetachSourceFromAgent422;
-};
+  Response: DetachSourceFromAgent200
+  PathParams: DetachSourceFromAgentPathParams
+  Errors: DetachSourceFromAgent422
+}

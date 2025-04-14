@@ -3,46 +3,30 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  DeleteJobMutationResponse,
-  DeleteJobPathParams,
-  DeleteJob422,
-} from '../../types/DeleteJob.ts';
-import type {
-  RequestConfig,
-  ResponseConfig,
-  ResponseErrorConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { DeleteJobMutationResponse, DeleteJobPathParams, DeleteJob422 } from '../../types/DeleteJob.ts'
+import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
-export const deleteJobMutationKey = () =>
-  [{ url: '/v1/jobs/{job_id}' }] as const;
+export const deleteJobMutationKey = () => [{ url: '/v1/jobs/{job_id}' }] as const
 
-export type DeleteJobMutationKey = ReturnType<typeof deleteJobMutationKey>;
+export type DeleteJobMutationKey = ReturnType<typeof deleteJobMutationKey>
 
 /**
  * @description Delete a job by its job_id.
  * @summary Delete Job
  * {@link /v1/jobs/:job_id}
  */
-export async function deleteJob(
-  job_id: DeleteJobPathParams['job_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function deleteJob(job_id: DeleteJobPathParams['job_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    DeleteJobMutationResponse,
-    ResponseErrorConfig<DeleteJob422>,
-    unknown
-  >({
+  const res = await request<DeleteJobMutationResponse, ResponseErrorConfig<DeleteJob422>, unknown>({
     method: 'DELETE',
     url: `/v1/jobs/${job_id}`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 /**
@@ -57,29 +41,21 @@ export function useDeleteJob<TContext>(
       ResponseErrorConfig<DeleteJob422>,
       { job_id: DeleteJobPathParams['job_id'] },
       TContext
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    mutation: { client: queryClient, ...mutationOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const mutationKey = mutationOptions?.mutationKey ?? deleteJobMutationKey();
+  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
+  const mutationKey = mutationOptions?.mutationKey ?? deleteJobMutationKey()
 
-  return useMutation<
-    ResponseConfig<DeleteJobMutationResponse>,
-    ResponseErrorConfig<DeleteJob422>,
-    { job_id: DeleteJobPathParams['job_id'] },
-    TContext
-  >(
+  return useMutation<ResponseConfig<DeleteJobMutationResponse>, ResponseErrorConfig<DeleteJob422>, { job_id: DeleteJobPathParams['job_id'] }, TContext>(
     {
       mutationFn: async ({ job_id }) => {
-        return deleteJob(job_id, config);
+        return deleteJob(job_id, config)
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
-  );
+    queryClient,
+  )
 }

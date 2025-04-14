@@ -3,59 +3,35 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  RetrieveGroupQueryResponse,
-  RetrieveGroupPathParams,
-  RetrieveGroup422,
-} from '../../types/RetrieveGroup.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  QueryObserverOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { RetrieveGroupQueryResponse, RetrieveGroupPathParams, RetrieveGroup422 } from '../../types/RetrieveGroup.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useQuery } from '@tanstack/react-query'
 
-export const retrieveGroupQueryKey = (
-  group_id: RetrieveGroupPathParams['group_id']
-) => [{ url: '/v1/groups/:group_id', params: { group_id: group_id } }] as const;
+export const retrieveGroupQueryKey = (group_id: RetrieveGroupPathParams['group_id']) =>
+  [{ url: '/v1/groups/:group_id', params: { group_id: group_id } }] as const
 
-export type RetrieveGroupQueryKey = ReturnType<typeof retrieveGroupQueryKey>;
+export type RetrieveGroupQueryKey = ReturnType<typeof retrieveGroupQueryKey>
 
 /**
  * @description Retrieve the group by id.
  * @summary Retrieve Group
  * {@link /v1/groups/:group_id}
  */
-export async function retrieveGroup(
-  group_id: RetrieveGroupPathParams['group_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function retrieveGroup(group_id: RetrieveGroupPathParams['group_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    RetrieveGroupQueryResponse,
-    ResponseErrorConfig<RetrieveGroup422>,
-    unknown
-  >({
+  const res = await request<RetrieveGroupQueryResponse, ResponseErrorConfig<RetrieveGroup422>, unknown>({
     method: 'GET',
     url: `/v1/groups/${group_id}`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
-export function retrieveGroupQueryOptions(
-  group_id: RetrieveGroupPathParams['group_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const queryKey = retrieveGroupQueryKey(group_id);
+export function retrieveGroupQueryOptions(group_id: RetrieveGroupPathParams['group_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const queryKey = retrieveGroupQueryKey(group_id)
   return queryOptions<
     ResponseConfig<RetrieveGroupQueryResponse>,
     ResponseErrorConfig<RetrieveGroup422>,
@@ -65,10 +41,10 @@ export function retrieveGroupQueryOptions(
     enabled: !!group_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return retrieveGroup(group_id, config);
+      config.signal = signal
+      return retrieveGroup(group_id, config)
     },
-  });
+  })
 }
 
 /**
@@ -79,45 +55,29 @@ export function retrieveGroupQueryOptions(
 export function useRetrieveGroup<
   TData = ResponseConfig<RetrieveGroupQueryResponse>,
   TQueryData = ResponseConfig<RetrieveGroupQueryResponse>,
-  TQueryKey extends QueryKey = RetrieveGroupQueryKey
+  TQueryKey extends QueryKey = RetrieveGroupQueryKey,
 >(
   group_id: RetrieveGroupPathParams['group_id'],
   options: {
-    query?: Partial<
-      QueryObserverOptions<
-        ResponseConfig<RetrieveGroupQueryResponse>,
-        ResponseErrorConfig<RetrieveGroup422>,
-        TData,
-        TQueryData,
-        TQueryKey
-      >
-    > & {
-      client?: QueryClient;
-    };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    query?: Partial<QueryObserverOptions<ResponseConfig<RetrieveGroupQueryResponse>, ResponseErrorConfig<RetrieveGroup422>, TData, TQueryData, TQueryKey>> & {
+      client?: QueryClient
+    }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey = queryOptions?.queryKey ?? retrieveGroupQueryKey(group_id);
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? retrieveGroupQueryKey(group_id)
 
   const query = useQuery(
     {
-      ...(retrieveGroupQueryOptions(
-        group_id,
-        config
-      ) as unknown as QueryObserverOptions),
+      ...(retrieveGroupQueryOptions(group_id, config) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseQueryResult<TData, ResponseErrorConfig<RetrieveGroup422>> & {
-    queryKey: TQueryKey;
-  };
+    queryClient,
+  ) as UseQueryResult<TData, ResponseErrorConfig<RetrieveGroup422>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

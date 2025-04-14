@@ -7,5 +7,5 @@ export type ChatCompletionStreamOptionsParam = {
   /**
    * @type boolean | undefined
    */
-  include_usage?: boolean;
-};
+  include_usage?: boolean
+}

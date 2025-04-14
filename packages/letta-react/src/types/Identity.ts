@@ -3,8 +3,8 @@
  * Do not edit manually.
  */
 
-import type { IdentityProperty } from './IdentityProperty.ts';
-import type { IdentityType } from './IdentityType.ts';
+import type { IdentityProperty } from './IdentityProperty.ts'
+import type { IdentityType } from './IdentityType.ts'
 
 export type Identity = {
   /**
@@ -12,38 +12,38 @@ export type Identity = {
    * @pattern ^identity-[a-fA-F0-9]{8}
    * @type string | undefined
    */
-  id?: string;
+  id?: string
   /**
    * @description External, user-generated identifier key of the identity.
    * @type string
    */
-  identifier_key: string;
+  identifier_key: string
   /**
    * @description The name of the identity.
    * @type string
    */
-  name: string;
+  name: string
   /**
    * @type string
    */
-  identity_type: IdentityType;
+  identity_type: IdentityType
   /**
    * @description The project id of the identity, if applicable.
    */
-  project_id?: string | null;
+  project_id?: string | null
   /**
    * @description The IDs of the agents associated with the identity.
    * @type array
    */
-  agent_ids: string[];
+  agent_ids: string[]
   /**
    * @description The IDs of the blocks associated with the identity.
    * @type array
    */
-  block_ids: string[];
+  block_ids: string[]
   /**
    * @description List of properties associated with the identity
    * @type array | undefined
    */
-  properties?: IdentityProperty[];
-};
+  properties?: IdentityProperty[]
+}

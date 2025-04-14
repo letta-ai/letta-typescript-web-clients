@@ -8,14 +8,14 @@ export type SandboxEnvironmentVariableCreate = {
    * @description The name of the environment variable.
    * @type string
    */
-  key: string;
+  key: string
   /**
    * @description The value of the environment variable.
    * @type string
    */
-  value: string;
+  value: string
   /**
    * @description An optional description of the environment variable.
    */
-  description?: string | null;
-};
+  description?: string | null
+}

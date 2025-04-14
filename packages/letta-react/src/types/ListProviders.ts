@@ -3,31 +3,31 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { Provider } from './Provider.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Provider } from './Provider.ts'
 
 export type ListProvidersQueryParams = {
-  after?: string | null;
+  after?: string | null
   /**
    * @default 50
    */
-  limit?: number | null;
-};
+  limit?: number | null
+}
 
 /**
  * @description Successful Response
  */
-export type ListProviders200 = Provider[];
+export type ListProviders200 = Provider[]
 
 /**
  * @description Validation Error
  */
-export type ListProviders422 = HTTPValidationError;
+export type ListProviders422 = HTTPValidationError
 
-export type ListProvidersQueryResponse = ListProviders200;
+export type ListProvidersQueryResponse = ListProviders200
 
 export type ListProvidersQuery = {
-  Response: ListProviders200;
-  QueryParams: ListProvidersQueryParams;
-  Errors: ListProviders422;
-};
+  Response: ListProviders200
+  QueryParams: ListProvidersQueryParams
+  Errors: ListProviders422
+}

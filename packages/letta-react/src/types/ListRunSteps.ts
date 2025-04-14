@@ -3,53 +3,53 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { Step } from './Step.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Step } from './Step.ts'
 
 export type ListRunStepsPathParams = {
   /**
    * @type string
    */
-  run_id: string;
-};
+  run_id: string
+}
 
 export type ListRunStepsQueryParams = {
   /**
    * @description Cursor for pagination
    */
-  before?: string | null;
+  before?: string | null
   /**
    * @description Cursor for pagination
    */
-  after?: string | null;
+  after?: string | null
   /**
    * @description Maximum number of messages to return
    * @default 100
    */
-  limit?: number | null;
+  limit?: number | null
   /**
    * @description Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order.
    * @default "desc"
    * @type string | undefined
    */
-  order?: string;
-};
+  order?: string
+}
 
 /**
  * @description Successful Response
  */
-export type ListRunSteps200 = Step[];
+export type ListRunSteps200 = Step[]
 
 /**
  * @description Validation Error
  */
-export type ListRunSteps422 = HTTPValidationError;
+export type ListRunSteps422 = HTTPValidationError
 
-export type ListRunStepsQueryResponse = ListRunSteps200;
+export type ListRunStepsQueryResponse = ListRunSteps200
 
 export type ListRunStepsQuery = {
-  Response: ListRunSteps200;
-  PathParams: ListRunStepsPathParams;
-  QueryParams: ListRunStepsQueryParams;
-  Errors: ListRunSteps422;
-};
+  Response: ListRunSteps200
+  PathParams: ListRunStepsPathParams
+  QueryParams: ListRunStepsQueryParams
+  Errors: ListRunSteps422
+}

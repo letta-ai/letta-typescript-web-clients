@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { Job } from './Job.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Job } from './Job.ts'
 
 export type DeleteJobPathParams = {
   /**
    * @type string
    */
-  job_id: string;
-};
+  job_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type DeleteJob200 = Job;
+export type DeleteJob200 = Job
 
 /**
  * @description Validation Error
  */
-export type DeleteJob422 = HTTPValidationError;
+export type DeleteJob422 = HTTPValidationError
 
-export type DeleteJobMutationResponse = DeleteJob200;
+export type DeleteJobMutationResponse = DeleteJob200
 
 export type DeleteJobMutation = {
-  Response: DeleteJob200;
-  PathParams: DeleteJobPathParams;
-  Errors: DeleteJob422;
-};
+  Response: DeleteJob200
+  PathParams: DeleteJobPathParams
+  Errors: DeleteJob422
+}

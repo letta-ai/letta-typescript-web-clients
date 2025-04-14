@@ -9,9 +9,8 @@ export const messageRoleEnum = {
   tool: 'tool',
   function: 'function',
   system: 'system',
-} as const;
+} as const
 
-export type MessageRoleEnum =
-  (typeof messageRoleEnum)[keyof typeof messageRoleEnum];
+export type MessageRoleEnum = (typeof messageRoleEnum)[keyof typeof messageRoleEnum]
 
-export type MessageRole = MessageRoleEnum;
+export type MessageRole = MessageRoleEnum

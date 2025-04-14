@@ -3,26 +3,15 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  DeletePassageMutationResponse,
-  DeletePassagePathParams,
-  DeletePassage422,
-} from '../../types/DeletePassage.ts';
-import type {
-  RequestConfig,
-  ResponseConfig,
-  ResponseErrorConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { DeletePassageMutationResponse, DeletePassagePathParams, DeletePassage422 } from '../../types/DeletePassage.ts'
+import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
-export const deletePassageMutationKey = () =>
-  [{ url: '/v1/agents/{agent_id}/archival-memory/{memory_id}' }] as const;
+export const deletePassageMutationKey = () => [{ url: '/v1/agents/{agent_id}/archival-memory/{memory_id}' }] as const
 
-export type DeletePassageMutationKey = ReturnType<
-  typeof deletePassageMutationKey
->;
+export type DeletePassageMutationKey = ReturnType<typeof deletePassageMutationKey>
 
 /**
  * @description Delete a memory from an agent's archival memory store.
@@ -32,20 +21,16 @@ export type DeletePassageMutationKey = ReturnType<
 export async function deletePassage(
   agent_id: DeletePassagePathParams['agent_id'],
   memory_id: DeletePassagePathParams['memory_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    DeletePassageMutationResponse,
-    ResponseErrorConfig<DeletePassage422>,
-    unknown
-  >({
+  const res = await request<DeletePassageMutationResponse, ResponseErrorConfig<DeletePassage422>, unknown>({
     method: 'DELETE',
     url: `/v1/agents/${agent_id}/archival-memory/${memory_id}`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 /**
@@ -58,38 +43,28 @@ export function useDeletePassage<TContext>(
     mutation?: UseMutationOptions<
       ResponseConfig<DeletePassageMutationResponse>,
       ResponseErrorConfig<DeletePassage422>,
-      {
-        agent_id: DeletePassagePathParams['agent_id'];
-        memory_id: DeletePassagePathParams['memory_id'];
-      },
+      { agent_id: DeletePassagePathParams['agent_id']; memory_id: DeletePassagePathParams['memory_id'] },
       TContext
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    mutation: { client: queryClient, ...mutationOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const mutationKey =
-    mutationOptions?.mutationKey ?? deletePassageMutationKey();
+  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
+  const mutationKey = mutationOptions?.mutationKey ?? deletePassageMutationKey()
 
   return useMutation<
     ResponseConfig<DeletePassageMutationResponse>,
     ResponseErrorConfig<DeletePassage422>,
-    {
-      agent_id: DeletePassagePathParams['agent_id'];
-      memory_id: DeletePassagePathParams['memory_id'];
-    },
+    { agent_id: DeletePassagePathParams['agent_id']; memory_id: DeletePassagePathParams['memory_id'] },
     TContext
   >(
     {
       mutationFn: async ({ agent_id, memory_id }) => {
-        return deletePassage(agent_id, memory_id, config);
+        return deletePassage(agent_id, memory_id, config)
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
-  );
+    queryClient,
+  )
 }

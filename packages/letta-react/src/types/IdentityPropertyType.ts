@@ -8,12 +8,11 @@ export const identityPropertyTypeEnum = {
   number: 'number',
   boolean: 'boolean',
   json: 'json',
-} as const;
+} as const
 
-export type IdentityPropertyTypeEnum =
-  (typeof identityPropertyTypeEnum)[keyof typeof identityPropertyTypeEnum];
+export type IdentityPropertyTypeEnum = (typeof identityPropertyTypeEnum)[keyof typeof identityPropertyTypeEnum]
 
 /**
  * @description Enum to represent the type of the identity property.
  */
-export type IdentityPropertyType = IdentityPropertyTypeEnum;
+export type IdentityPropertyType = IdentityPropertyTypeEnum

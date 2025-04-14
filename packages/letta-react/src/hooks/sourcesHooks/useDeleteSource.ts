@@ -3,48 +3,30 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  DeleteSourceMutationResponse,
-  DeleteSourcePathParams,
-  DeleteSource422,
-} from '../../types/DeleteSource.ts';
-import type {
-  RequestConfig,
-  ResponseConfig,
-  ResponseErrorConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { DeleteSourceMutationResponse, DeleteSourcePathParams, DeleteSource422 } from '../../types/DeleteSource.ts'
+import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
-export const deleteSourceMutationKey = () =>
-  [{ url: '/v1/sources/{source_id}' }] as const;
+export const deleteSourceMutationKey = () => [{ url: '/v1/sources/{source_id}' }] as const
 
-export type DeleteSourceMutationKey = ReturnType<
-  typeof deleteSourceMutationKey
->;
+export type DeleteSourceMutationKey = ReturnType<typeof deleteSourceMutationKey>
 
 /**
  * @description Delete a data source.
  * @summary Delete Source
  * {@link /v1/sources/:source_id}
  */
-export async function deleteSource(
-  source_id: DeleteSourcePathParams['source_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function deleteSource(source_id: DeleteSourcePathParams['source_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    DeleteSourceMutationResponse,
-    ResponseErrorConfig<DeleteSource422>,
-    unknown
-  >({
+  const res = await request<DeleteSourceMutationResponse, ResponseErrorConfig<DeleteSource422>, unknown>({
     method: 'DELETE',
     url: `/v1/sources/${source_id}`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 /**
@@ -59,15 +41,12 @@ export function useDeleteSource<TContext>(
       ResponseErrorConfig<DeleteSource422>,
       { source_id: DeleteSourcePathParams['source_id'] },
       TContext
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    mutation: { client: queryClient, ...mutationOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const mutationKey = mutationOptions?.mutationKey ?? deleteSourceMutationKey();
+  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
+  const mutationKey = mutationOptions?.mutationKey ?? deleteSourceMutationKey()
 
   return useMutation<
     ResponseConfig<DeleteSourceMutationResponse>,
@@ -77,11 +56,11 @@ export function useDeleteSource<TContext>(
   >(
     {
       mutationFn: async ({ source_id }) => {
-        return deleteSource(source_id, config);
+        return deleteSource(source_id, config)
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
-  );
+    queryClient,
+  )
 }

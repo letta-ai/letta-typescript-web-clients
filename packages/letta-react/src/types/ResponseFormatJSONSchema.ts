@@ -3,15 +3,15 @@
  * Do not edit manually.
  */
 
-import type { JSONSchema } from './JSONSchema.ts';
+import type { JSONSchema } from './JSONSchema.ts'
 
 export type ResponseFormatJSONSchema = {
   /**
    * @type object
    */
-  json_schema: JSONSchema;
+  json_schema: JSONSchema
   /**
    * @type string
    */
-  type: 'json_schema';
-};
+  type: 'json_schema'
+}

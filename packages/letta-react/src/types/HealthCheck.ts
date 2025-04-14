@@ -3,16 +3,16 @@
  * Do not edit manually.
  */
 
-import type { Health } from './Health.ts';
+import type { Health } from './Health.ts'
 
 /**
  * @description Successful Response
  */
-export type HealthCheck200 = Health;
+export type HealthCheck200 = Health
 
-export type HealthCheckQueryResponse = HealthCheck200;
+export type HealthCheckQueryResponse = HealthCheck200
 
 export type HealthCheckQuery = {
-  Response: HealthCheck200;
-  Errors: any;
-};
+  Response: HealthCheck200
+  Errors: any
+}

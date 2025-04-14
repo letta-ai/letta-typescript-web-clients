@@ -3,27 +3,27 @@
  * Do not edit manually.
  */
 
-import type { AppModel } from './AppModel.ts';
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { AppModel } from './AppModel.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type ListComposioAppsHeaderParams = {
-  'user-id'?: string | null;
-};
+  'user-id'?: string | null
+}
 
 /**
  * @description Successful Response
  */
-export type ListComposioApps200 = AppModel[];
+export type ListComposioApps200 = AppModel[]
 
 /**
  * @description Validation Error
  */
-export type ListComposioApps422 = HTTPValidationError;
+export type ListComposioApps422 = HTTPValidationError
 
-export type ListComposioAppsQueryResponse = ListComposioApps200;
+export type ListComposioAppsQueryResponse = ListComposioApps200
 
 export type ListComposioAppsQuery = {
-  Response: ListComposioApps200;
-  HeaderParams: ListComposioAppsHeaderParams;
-  Errors: ListComposioApps422;
-};
+  Response: ListComposioApps200
+  HeaderParams: ListComposioAppsHeaderParams
+  Errors: ListComposioApps422
+}

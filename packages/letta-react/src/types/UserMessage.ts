@@ -3,14 +3,13 @@
  * Do not edit manually.
  */
 
-import type { LettaUserMessageContentUnion } from './LettaUserMessageContentUnion.ts';
+import type { LettaUserMessageContentUnion } from './LettaUserMessageContentUnion.ts'
 
 export const userMessageMessageTypeEnum = {
   user_message: 'user_message',
-} as const;
+} as const
 
-export type UserMessageMessageTypeEnum =
-  (typeof userMessageMessageTypeEnum)[keyof typeof userMessageMessageTypeEnum];
+export type UserMessageMessageTypeEnum = (typeof userMessageMessageTypeEnum)[keyof typeof userMessageMessageTypeEnum]
 
 /**
  * @description A message sent by the user. Never streamed back on a response, only used for cursor pagination.\n\nArgs:\n    id (str): The ID of the message\n    date (datetime): The date the message was created in ISO format\n    name (Optional[str]): The name of the sender of the message\n    content (Union[str, List[LettaUserMessageContentUnion]]): The message content sent by the user (can be a string or an array of multi-modal content parts)
@@ -19,20 +18,20 @@ export type UserMessage = {
   /**
    * @type string
    */
-  id: string;
+  id: string
   /**
    * @type string, date-time
    */
-  date: string;
-  name?: string | null;
-  otid?: string | null;
+  date: string
+  name?: string | null
+  otid?: string | null
   /**
    * @default "user_message"
    * @type string
    */
-  message_type: UserMessageMessageTypeEnum;
+  message_type: UserMessageMessageTypeEnum
   /**
    * @description The message content sent by the user (can be a string or an array of multi-modal content parts)
    */
-  content: LettaUserMessageContentUnion[] | string;
-};
+  content: LettaUserMessageContentUnion[] | string
+}

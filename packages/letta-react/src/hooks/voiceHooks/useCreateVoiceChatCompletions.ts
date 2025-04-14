@@ -3,28 +3,21 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
+import client from '@kubb/plugin-client/clients/axios'
 import type {
   CreateVoiceChatCompletionsMutationRequest,
   CreateVoiceChatCompletionsMutationResponse,
   CreateVoiceChatCompletionsPathParams,
   CreateVoiceChatCompletionsHeaderParams,
   CreateVoiceChatCompletions422,
-} from '../../types/CreateVoiceChatCompletions.ts';
-import type {
-  RequestConfig,
-  ResponseConfig,
-  ResponseErrorConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
+} from '../../types/CreateVoiceChatCompletions.ts'
+import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
-export const createVoiceChatCompletionsMutationKey = () =>
-  [{ url: '/v1/voice-beta/{agent_id}/chat/completions' }] as const;
+export const createVoiceChatCompletionsMutationKey = () => [{ url: '/v1/voice-beta/{agent_id}/chat/completions' }] as const
 
-export type CreateVoiceChatCompletionsMutationKey = ReturnType<
-  typeof createVoiceChatCompletionsMutationKey
->;
+export type CreateVoiceChatCompletionsMutationKey = ReturnType<typeof createVoiceChatCompletionsMutationKey>
 
 /**
  * @summary Create Voice Chat Completions
@@ -34,24 +27,16 @@ export async function createVoiceChatCompletions(
   agent_id: CreateVoiceChatCompletionsPathParams['agent_id'],
   data?: CreateVoiceChatCompletionsMutationRequest,
   headers?: CreateVoiceChatCompletionsHeaderParams,
-  config: Partial<RequestConfig<CreateVoiceChatCompletionsMutationRequest>> & {
-    client?: typeof client;
-  } = {}
+  config: Partial<RequestConfig<CreateVoiceChatCompletionsMutationRequest>> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
   const res = await request<
     CreateVoiceChatCompletionsMutationResponse,
     ResponseErrorConfig<CreateVoiceChatCompletions422>,
     CreateVoiceChatCompletionsMutationRequest
-  >({
-    method: 'POST',
-    url: `/v1/voice-beta/${agent_id}/chat/completions`,
-    data,
-    ...requestConfig,
-    headers: { ...headers, ...requestConfig.headers },
-  });
-  return res;
+  >({ method: 'POST', url: `/v1/voice-beta/${agent_id}/chat/completions`, data, ...requestConfig, headers: { ...headers, ...requestConfig.headers } })
+  return res
 }
 
 /**
@@ -64,41 +49,35 @@ export function useCreateVoiceChatCompletions<TContext>(
       ResponseConfig<CreateVoiceChatCompletionsMutationResponse>,
       ResponseErrorConfig<CreateVoiceChatCompletions422>,
       {
-        agent_id: CreateVoiceChatCompletionsPathParams['agent_id'];
-        data?: CreateVoiceChatCompletionsMutationRequest;
-        headers?: CreateVoiceChatCompletionsHeaderParams;
+        agent_id: CreateVoiceChatCompletionsPathParams['agent_id']
+        data?: CreateVoiceChatCompletionsMutationRequest
+        headers?: CreateVoiceChatCompletionsHeaderParams
       },
       TContext
-    > & { client?: QueryClient };
-    client?: Partial<
-      RequestConfig<CreateVoiceChatCompletionsMutationRequest>
-    > & { client?: typeof client };
-  } = {}
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig<CreateVoiceChatCompletionsMutationRequest>> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    mutation: { client: queryClient, ...mutationOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const mutationKey =
-    mutationOptions?.mutationKey ?? createVoiceChatCompletionsMutationKey();
+  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
+  const mutationKey = mutationOptions?.mutationKey ?? createVoiceChatCompletionsMutationKey()
 
   return useMutation<
     ResponseConfig<CreateVoiceChatCompletionsMutationResponse>,
     ResponseErrorConfig<CreateVoiceChatCompletions422>,
     {
-      agent_id: CreateVoiceChatCompletionsPathParams['agent_id'];
-      data?: CreateVoiceChatCompletionsMutationRequest;
-      headers?: CreateVoiceChatCompletionsHeaderParams;
+      agent_id: CreateVoiceChatCompletionsPathParams['agent_id']
+      data?: CreateVoiceChatCompletionsMutationRequest
+      headers?: CreateVoiceChatCompletionsHeaderParams
     },
     TContext
   >(
     {
       mutationFn: async ({ agent_id, data, headers }) => {
-        return createVoiceChatCompletions(agent_id, data, headers, config);
+        return createVoiceChatCompletions(agent_id, data, headers, config)
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
-  );
+    queryClient,
+  )
 }

@@ -3,15 +3,15 @@
  * Do not edit manually.
  */
 
-import type { WebSearchOptionsUserLocationApproximate } from './WebSearchOptionsUserLocationApproximate.ts';
+import type { WebSearchOptionsUserLocationApproximate } from './WebSearchOptionsUserLocationApproximate.ts'
 
 export type WebSearchOptionsUserLocation = {
   /**
    * @type object
    */
-  approximate: WebSearchOptionsUserLocationApproximate;
+  approximate: WebSearchOptionsUserLocationApproximate
   /**
    * @type string
    */
-  type: 'approximate';
-};
+  type: 'approximate'
+}

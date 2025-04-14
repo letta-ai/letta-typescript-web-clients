@@ -9,7 +9,7 @@ export type {
   ClientSideAccessTokensCreateClientSideAccessTokenMutationRequest,
   ClientSideAccessTokensCreateClientSideAccessTokenMutationResponse,
   ClientSideAccessTokensCreateClientSideAccessTokenMutation,
-} from './CreateClientSideAccessToken.ts';
+} from './CreateClientSideAccessToken.ts'
 export type {
   ClientSideAccessTokensDeleteClientSideAccessTokenPathParams,
   ClientSideAccessTokensDeleteClientSideAccessToken204,
@@ -17,11 +17,5 @@ export type {
   ClientSideAccessTokensDeleteClientSideAccessTokenMutationRequest,
   ClientSideAccessTokensDeleteClientSideAccessTokenMutationResponse,
   ClientSideAccessTokensDeleteClientSideAccessTokenMutation,
-} from './DeleteClientSideAccessToken.ts';
-export {
-  policyVersionEnum,
-  dataTypeEnum,
-  dataAccessEnum,
-  policyTypeEnum,
-  policyAccessEnum,
-} from './CreateClientSideAccessToken.ts';
+} from './DeleteClientSideAccessToken.ts'
+export { policyVersionEnum, dataTypeEnum, dataAccessEnum, policyTypeEnum, policyAccessEnum } from './CreateClientSideAccessToken.ts'

@@ -4,4 +4,4 @@ export type {
   TemplatesCreateAgentsFromTemplateMutationRequest,
   TemplatesCreateAgentsFromTemplateMutationResponse,
   TemplatesCreateAgentsFromTemplateMutation,
-} from './CreateAgentsFromTemplate.ts';
+} from './CreateAgentsFromTemplate.ts'

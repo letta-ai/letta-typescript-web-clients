@@ -1,14 +1,1 @@
-{
-  "properties": {
-    "content": {
-      "anyOf": [{ "type": "string" }, { "type": "null" }],
-      "title": "Content"
-    },
-    "name": { "type": "string", "title": "Name" },
-    "role": { "type": "string", "const": "function", "title": "Role" }
-  },
-  "type": "object",
-  "required": ["content", "name", "role"],
-  "title": "ChatCompletionFunctionMessageParam",
-  "x-readme-ref-name": "ChatCompletionFunctionMessageParam"
-}
+{"properties":{"content":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Content"},"name":{"type":"string","title":"Name"},"role":{"type":"string","const":"function","title":"Role"}},"type":"object","required":["content","name","role"],"title":"ChatCompletionFunctionMessageParam","x-readme-ref-name":"ChatCompletionFunctionMessageParam"}

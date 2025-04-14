@@ -3,27 +3,20 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
+import client from '@kubb/plugin-client/clients/axios'
 import type {
   CreateAgentMessageStreamMutationRequest,
   CreateAgentMessageStreamMutationResponse,
   CreateAgentMessageStreamPathParams,
   CreateAgentMessageStream422,
-} from '../../types/CreateAgentMessageStream.ts';
-import type {
-  RequestConfig,
-  ResponseConfig,
-  ResponseErrorConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
+} from '../../types/CreateAgentMessageStream.ts'
+import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
-export const createAgentMessageStreamMutationKey = () =>
-  [{ url: '/v1/agents/{agent_id}/messages/stream' }] as const;
+export const createAgentMessageStreamMutationKey = () => [{ url: '/v1/agents/{agent_id}/messages/stream' }] as const
 
-export type CreateAgentMessageStreamMutationKey = ReturnType<
-  typeof createAgentMessageStreamMutationKey
->;
+export type CreateAgentMessageStreamMutationKey = ReturnType<typeof createAgentMessageStreamMutationKey>
 
 /**
  * @description Process a user message and return the agent's response.This endpoint accepts a message from a user and processes it through the agent.It will stream the steps of the response always, and stream the tokens if 'stream_tokens' is set to True.
@@ -33,23 +26,16 @@ export type CreateAgentMessageStreamMutationKey = ReturnType<
 export async function createAgentMessageStream(
   agent_id: CreateAgentMessageStreamPathParams['agent_id'],
   data: CreateAgentMessageStreamMutationRequest,
-  config: Partial<RequestConfig<CreateAgentMessageStreamMutationRequest>> & {
-    client?: typeof client;
-  } = {}
+  config: Partial<RequestConfig<CreateAgentMessageStreamMutationRequest>> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
   const res = await request<
     CreateAgentMessageStreamMutationResponse,
     ResponseErrorConfig<CreateAgentMessageStream422>,
     CreateAgentMessageStreamMutationRequest
-  >({
-    method: 'POST',
-    url: `/v1/agents/${agent_id}/messages/stream`,
-    data,
-    ...requestConfig,
-  });
-  return res;
+  >({ method: 'POST', url: `/v1/agents/${agent_id}/messages/stream`, data, ...requestConfig })
+  return res
 }
 
 /**
@@ -62,40 +48,28 @@ export function useCreateAgentMessageStream<TContext>(
     mutation?: UseMutationOptions<
       ResponseConfig<CreateAgentMessageStreamMutationResponse>,
       ResponseErrorConfig<CreateAgentMessageStream422>,
-      {
-        agent_id: CreateAgentMessageStreamPathParams['agent_id'];
-        data: CreateAgentMessageStreamMutationRequest;
-      },
+      { agent_id: CreateAgentMessageStreamPathParams['agent_id']; data: CreateAgentMessageStreamMutationRequest },
       TContext
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig<CreateAgentMessageStreamMutationRequest>> & {
-      client?: typeof client;
-    };
-  } = {}
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig<CreateAgentMessageStreamMutationRequest>> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    mutation: { client: queryClient, ...mutationOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const mutationKey =
-    mutationOptions?.mutationKey ?? createAgentMessageStreamMutationKey();
+  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
+  const mutationKey = mutationOptions?.mutationKey ?? createAgentMessageStreamMutationKey()
 
   return useMutation<
     ResponseConfig<CreateAgentMessageStreamMutationResponse>,
     ResponseErrorConfig<CreateAgentMessageStream422>,
-    {
-      agent_id: CreateAgentMessageStreamPathParams['agent_id'];
-      data: CreateAgentMessageStreamMutationRequest;
-    },
+    { agent_id: CreateAgentMessageStreamPathParams['agent_id']; data: CreateAgentMessageStreamMutationRequest },
     TContext
   >(
     {
       mutationFn: async ({ agent_id, data }) => {
-        return createAgentMessageStream(agent_id, data, config);
+        return createAgentMessageStream(agent_id, data, config)
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
-  );
+    queryClient,
+  )
 }

@@ -3,61 +3,38 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  RetrieveAgentQueryResponse,
-  RetrieveAgentPathParams,
-  RetrieveAgent422,
-} from '../../types/RetrieveAgent.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  UseSuspenseQueryOptions,
-  UseSuspenseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { RetrieveAgentQueryResponse, RetrieveAgentPathParams, RetrieveAgent422 } from '../../types/RetrieveAgent.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 
-export const retrieveAgentSuspenseQueryKey = (
-  agent_id: RetrieveAgentPathParams['agent_id']
-) => [{ url: '/v1/agents/:agent_id', params: { agent_id: agent_id } }] as const;
+export const retrieveAgentSuspenseQueryKey = (agent_id: RetrieveAgentPathParams['agent_id']) =>
+  [{ url: '/v1/agents/:agent_id', params: { agent_id: agent_id } }] as const
 
-export type RetrieveAgentSuspenseQueryKey = ReturnType<
-  typeof retrieveAgentSuspenseQueryKey
->;
+export type RetrieveAgentSuspenseQueryKey = ReturnType<typeof retrieveAgentSuspenseQueryKey>
 
 /**
  * @description Get the state of the agent.
  * @summary Retrieve Agent
  * {@link /v1/agents/:agent_id}
  */
-export async function retrieveAgentSuspense(
-  agent_id: RetrieveAgentPathParams['agent_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function retrieveAgentSuspense(agent_id: RetrieveAgentPathParams['agent_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    RetrieveAgentQueryResponse,
-    ResponseErrorConfig<RetrieveAgent422>,
-    unknown
-  >({
+  const res = await request<RetrieveAgentQueryResponse, ResponseErrorConfig<RetrieveAgent422>, unknown>({
     method: 'GET',
     url: `/v1/agents/${agent_id}`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 export function retrieveAgentSuspenseQueryOptions(
   agent_id: RetrieveAgentPathParams['agent_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const queryKey = retrieveAgentSuspenseQueryKey(agent_id);
+  const queryKey = retrieveAgentSuspenseQueryKey(agent_id)
   return queryOptions<
     ResponseConfig<RetrieveAgentQueryResponse>,
     ResponseErrorConfig<RetrieveAgent422>,
@@ -67,10 +44,10 @@ export function retrieveAgentSuspenseQueryOptions(
     enabled: !!agent_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return retrieveAgentSuspense(agent_id, config);
+      config.signal = signal
+      return retrieveAgentSuspense(agent_id, config)
     },
-  });
+  })
 }
 
 /**
@@ -81,45 +58,29 @@ export function retrieveAgentSuspenseQueryOptions(
 export function useRetrieveAgentSuspense<
   TData = ResponseConfig<RetrieveAgentQueryResponse>,
   TQueryData = ResponseConfig<RetrieveAgentQueryResponse>,
-  TQueryKey extends QueryKey = RetrieveAgentSuspenseQueryKey
+  TQueryKey extends QueryKey = RetrieveAgentSuspenseQueryKey,
 >(
   agent_id: RetrieveAgentPathParams['agent_id'],
   options: {
-    query?: Partial<
-      UseSuspenseQueryOptions<
-        ResponseConfig<RetrieveAgentQueryResponse>,
-        ResponseErrorConfig<RetrieveAgent422>,
-        TData,
-        TQueryKey
-      >
-    > & {
-      client?: QueryClient;
-    };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    query?: Partial<UseSuspenseQueryOptions<ResponseConfig<RetrieveAgentQueryResponse>, ResponseErrorConfig<RetrieveAgent422>, TData, TQueryKey>> & {
+      client?: QueryClient
+    }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey =
-    queryOptions?.queryKey ?? retrieveAgentSuspenseQueryKey(agent_id);
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? retrieveAgentSuspenseQueryKey(agent_id)
 
   const query = useSuspenseQuery(
     {
-      ...(retrieveAgentSuspenseQueryOptions(
-        agent_id,
-        config
-      ) as unknown as UseSuspenseQueryOptions),
+      ...(retrieveAgentSuspenseQueryOptions(agent_id, config) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<RetrieveAgent422>> & {
-    queryKey: TQueryKey;
-  };
+    queryClient,
+  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<RetrieveAgent422>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

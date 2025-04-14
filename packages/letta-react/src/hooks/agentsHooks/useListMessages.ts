@@ -3,36 +3,16 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  ListMessagesQueryResponse,
-  ListMessagesPathParams,
-  ListMessagesQueryParams,
-  ListMessages422,
-} from '../../types/ListMessages.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  QueryObserverOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { ListMessagesQueryResponse, ListMessagesPathParams, ListMessagesQueryParams, ListMessages422 } from '../../types/ListMessages.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useQuery } from '@tanstack/react-query'
 
-export const listMessagesQueryKey = (
-  agent_id: ListMessagesPathParams['agent_id'],
-  params?: ListMessagesQueryParams
-) =>
-  [
-    { url: '/v1/agents/:agent_id/messages', params: { agent_id: agent_id } },
-    ...(params ? [params] : []),
-  ] as const;
+export const listMessagesQueryKey = (agent_id: ListMessagesPathParams['agent_id'], params?: ListMessagesQueryParams) =>
+  [{ url: '/v1/agents/:agent_id/messages', params: { agent_id: agent_id } }, ...(params ? [params] : [])] as const
 
-export type ListMessagesQueryKey = ReturnType<typeof listMessagesQueryKey>;
+export type ListMessagesQueryKey = ReturnType<typeof listMessagesQueryKey>
 
 /**
  * @description Retrieve message history for an agent.
@@ -42,29 +22,25 @@ export type ListMessagesQueryKey = ReturnType<typeof listMessagesQueryKey>;
 export async function listMessages(
   agent_id: ListMessagesPathParams['agent_id'],
   params?: ListMessagesQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    ListMessagesQueryResponse,
-    ResponseErrorConfig<ListMessages422>,
-    unknown
-  >({
+  const res = await request<ListMessagesQueryResponse, ResponseErrorConfig<ListMessages422>, unknown>({
     method: 'GET',
     url: `/v1/agents/${agent_id}/messages`,
     params,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 export function listMessagesQueryOptions(
   agent_id: ListMessagesPathParams['agent_id'],
   params?: ListMessagesQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const queryKey = listMessagesQueryKey(agent_id, params);
+  const queryKey = listMessagesQueryKey(agent_id, params)
   return queryOptions<
     ResponseConfig<ListMessagesQueryResponse>,
     ResponseErrorConfig<ListMessages422>,
@@ -74,10 +50,10 @@ export function listMessagesQueryOptions(
     enabled: !!agent_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return listMessages(agent_id, params, config);
+      config.signal = signal
+      return listMessages(agent_id, params, config)
     },
-  });
+  })
 }
 
 /**
@@ -88,48 +64,30 @@ export function listMessagesQueryOptions(
 export function useListMessages<
   TData = ResponseConfig<ListMessagesQueryResponse>,
   TQueryData = ResponseConfig<ListMessagesQueryResponse>,
-  TQueryKey extends QueryKey = ListMessagesQueryKey
+  TQueryKey extends QueryKey = ListMessagesQueryKey,
 >(
   agent_id: ListMessagesPathParams['agent_id'],
   params?: ListMessagesQueryParams,
   options: {
-    query?: Partial<
-      QueryObserverOptions<
-        ResponseConfig<ListMessagesQueryResponse>,
-        ResponseErrorConfig<ListMessages422>,
-        TData,
-        TQueryData,
-        TQueryKey
-      >
-    > & {
-      client?: QueryClient;
-    };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    query?: Partial<QueryObserverOptions<ResponseConfig<ListMessagesQueryResponse>, ResponseErrorConfig<ListMessages422>, TData, TQueryData, TQueryKey>> & {
+      client?: QueryClient
+    }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey =
-    queryOptions?.queryKey ?? listMessagesQueryKey(agent_id, params);
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? listMessagesQueryKey(agent_id, params)
 
   const query = useQuery(
     {
-      ...(listMessagesQueryOptions(
-        agent_id,
-        params,
-        config
-      ) as unknown as QueryObserverOptions),
+      ...(listMessagesQueryOptions(agent_id, params, config) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseQueryResult<TData, ResponseErrorConfig<ListMessages422>> & {
-    queryKey: TQueryKey;
-  };
+    queryClient,
+  ) as UseQueryResult<TData, ResponseErrorConfig<ListMessages422>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

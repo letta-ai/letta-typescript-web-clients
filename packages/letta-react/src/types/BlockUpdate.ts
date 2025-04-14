@@ -10,34 +10,34 @@ export type BlockUpdate = {
   /**
    * @description Value of the block.
    */
-  value?: string | null;
+  value?: string | null
   /**
    * @description Character limit of the block.
    */
-  limit?: number | null;
+  limit?: number | null
   /**
    * @description Name of the block if it is a template.
    */
-  name?: string | null;
+  name?: string | null
   /**
    * @description Whether the block is a template (e.g. saved human/persona options).
    * @default false
    * @type boolean | undefined
    */
-  is_template?: boolean;
+  is_template?: boolean
   /**
    * @description Label of the block (e.g. \'human\', \'persona\') in the context window.
    */
-  label?: string | null;
+  label?: string | null
   /**
    * @description Description of the block.
    */
-  description?: string | null;
+  description?: string | null
   /**
    * @description Metadata of the block.
    * @default [object Object]
    */
   metadata?: {
-    [key: string]: any;
-  } | null;
-};
+    [key: string]: any
+  } | null
+}

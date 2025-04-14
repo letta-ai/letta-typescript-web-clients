@@ -3,74 +3,44 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  RetrieveJobQueryResponse,
-  RetrieveJobPathParams,
-  RetrieveJob422,
-} from '../../types/RetrieveJob.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  UseSuspenseQueryOptions,
-  UseSuspenseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { RetrieveJobQueryResponse, RetrieveJobPathParams, RetrieveJob422 } from '../../types/RetrieveJob.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 
-export const retrieveJobSuspenseQueryKey = (
-  job_id: RetrieveJobPathParams['job_id']
-) => [{ url: '/v1/jobs/:job_id', params: { job_id: job_id } }] as const;
+export const retrieveJobSuspenseQueryKey = (job_id: RetrieveJobPathParams['job_id']) => [{ url: '/v1/jobs/:job_id', params: { job_id: job_id } }] as const
 
-export type RetrieveJobSuspenseQueryKey = ReturnType<
-  typeof retrieveJobSuspenseQueryKey
->;
+export type RetrieveJobSuspenseQueryKey = ReturnType<typeof retrieveJobSuspenseQueryKey>
 
 /**
  * @description Get the status of a job.
  * @summary Retrieve Job
  * {@link /v1/jobs/:job_id}
  */
-export async function retrieveJobSuspense(
-  job_id: RetrieveJobPathParams['job_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function retrieveJobSuspense(job_id: RetrieveJobPathParams['job_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    RetrieveJobQueryResponse,
-    ResponseErrorConfig<RetrieveJob422>,
-    unknown
-  >({
+  const res = await request<RetrieveJobQueryResponse, ResponseErrorConfig<RetrieveJob422>, unknown>({
     method: 'GET',
     url: `/v1/jobs/${job_id}`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
-export function retrieveJobSuspenseQueryOptions(
-  job_id: RetrieveJobPathParams['job_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const queryKey = retrieveJobSuspenseQueryKey(job_id);
-  return queryOptions<
-    ResponseConfig<RetrieveJobQueryResponse>,
-    ResponseErrorConfig<RetrieveJob422>,
-    ResponseConfig<RetrieveJobQueryResponse>,
-    typeof queryKey
-  >({
-    enabled: !!job_id,
-    queryKey,
-    queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return retrieveJobSuspense(job_id, config);
+export function retrieveJobSuspenseQueryOptions(job_id: RetrieveJobPathParams['job_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const queryKey = retrieveJobSuspenseQueryKey(job_id)
+  return queryOptions<ResponseConfig<RetrieveJobQueryResponse>, ResponseErrorConfig<RetrieveJob422>, ResponseConfig<RetrieveJobQueryResponse>, typeof queryKey>(
+    {
+      enabled: !!job_id,
+      queryKey,
+      queryFn: async ({ signal }) => {
+        config.signal = signal
+        return retrieveJobSuspense(job_id, config)
+      },
     },
-  });
+  )
 }
 
 /**
@@ -81,45 +51,29 @@ export function retrieveJobSuspenseQueryOptions(
 export function useRetrieveJobSuspense<
   TData = ResponseConfig<RetrieveJobQueryResponse>,
   TQueryData = ResponseConfig<RetrieveJobQueryResponse>,
-  TQueryKey extends QueryKey = RetrieveJobSuspenseQueryKey
+  TQueryKey extends QueryKey = RetrieveJobSuspenseQueryKey,
 >(
   job_id: RetrieveJobPathParams['job_id'],
   options: {
-    query?: Partial<
-      UseSuspenseQueryOptions<
-        ResponseConfig<RetrieveJobQueryResponse>,
-        ResponseErrorConfig<RetrieveJob422>,
-        TData,
-        TQueryKey
-      >
-    > & {
-      client?: QueryClient;
-    };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    query?: Partial<UseSuspenseQueryOptions<ResponseConfig<RetrieveJobQueryResponse>, ResponseErrorConfig<RetrieveJob422>, TData, TQueryKey>> & {
+      client?: QueryClient
+    }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey =
-    queryOptions?.queryKey ?? retrieveJobSuspenseQueryKey(job_id);
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? retrieveJobSuspenseQueryKey(job_id)
 
   const query = useSuspenseQuery(
     {
-      ...(retrieveJobSuspenseQueryOptions(
-        job_id,
-        config
-      ) as unknown as UseSuspenseQueryOptions),
+      ...(retrieveJobSuspenseQueryOptions(job_id, config) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<RetrieveJob422>> & {
-    queryKey: TQueryKey;
-  };
+    queryClient,
+  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<RetrieveJob422>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

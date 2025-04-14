@@ -7,11 +7,11 @@ export const agentTypeEnum = {
   memgpt_agent: 'memgpt_agent',
   split_thread_agent: 'split_thread_agent',
   sleeptime_agent: 'sleeptime_agent',
-} as const;
+} as const
 
-export type AgentTypeEnum = (typeof agentTypeEnum)[keyof typeof agentTypeEnum];
+export type AgentTypeEnum = (typeof agentTypeEnum)[keyof typeof agentTypeEnum]
 
 /**
  * @description Enum to represent the type of agent.
  */
-export type AgentType = AgentTypeEnum;
+export type AgentType = AgentTypeEnum

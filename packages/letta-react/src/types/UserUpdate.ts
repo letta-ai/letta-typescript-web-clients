@@ -8,9 +8,9 @@ export type UserUpdate = {
    * @description The id of the user to update.
    * @type string
    */
-  id: string;
+  id: string
   /**
    * @description The new name of the user.
    */
-  name?: string | null;
-};
+  name?: string | null
+}

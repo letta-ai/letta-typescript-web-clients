@@ -3,33 +3,33 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type DeletePassagePathParams = {
   /**
    * @type string
    */
-  agent_id: string;
+  agent_id: string
   /**
    * @type string
    */
-  memory_id: string;
-};
+  memory_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type DeletePassage200 = any;
+export type DeletePassage200 = any
 
 /**
  * @description Validation Error
  */
-export type DeletePassage422 = HTTPValidationError;
+export type DeletePassage422 = HTTPValidationError
 
-export type DeletePassageMutationResponse = DeletePassage200;
+export type DeletePassageMutationResponse = DeletePassage200
 
 export type DeletePassageMutation = {
-  Response: DeletePassage200;
-  PathParams: DeletePassagePathParams;
-  Errors: DeletePassage422;
-};
+  Response: DeletePassage200
+  PathParams: DeletePassagePathParams
+  Errors: DeletePassage422
+}

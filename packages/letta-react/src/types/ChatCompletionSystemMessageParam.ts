@@ -3,16 +3,16 @@
  * Do not edit manually.
  */
 
-import type { ChatCompletionContentPartTextParam } from './ChatCompletionContentPartTextParam.ts';
+import type { ChatCompletionContentPartTextParam } from './ChatCompletionContentPartTextParam.ts'
 
 export type ChatCompletionSystemMessageParam = {
-  content: string | ChatCompletionContentPartTextParam[];
+  content: string | ChatCompletionContentPartTextParam[]
   /**
    * @type string
    */
-  role: 'system';
+  role: 'system'
   /**
    * @type string | undefined
    */
-  name?: string;
-};
+  name?: string
+}

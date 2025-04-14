@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { Source } from './Source.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Source } from './Source.ts'
 
 export type ListAgentSourcesPathParams = {
   /**
    * @type string
    */
-  agent_id: string;
-};
+  agent_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type ListAgentSources200 = Source[];
+export type ListAgentSources200 = Source[]
 
 /**
  * @description Validation Error
  */
-export type ListAgentSources422 = HTTPValidationError;
+export type ListAgentSources422 = HTTPValidationError
 
-export type ListAgentSourcesQueryResponse = ListAgentSources200;
+export type ListAgentSourcesQueryResponse = ListAgentSources200
 
 export type ListAgentSourcesQuery = {
-  Response: ListAgentSources200;
-  PathParams: ListAgentSourcesPathParams;
-  Errors: ListAgentSources422;
-};
+  Response: ListAgentSources200
+  PathParams: ListAgentSourcesPathParams
+  Errors: ListAgentSources422
+}

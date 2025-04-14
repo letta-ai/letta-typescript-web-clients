@@ -7,11 +7,11 @@ export type FunctionDefinitionOutput = {
   /**
    * @type string
    */
-  name: string;
-  description?: string | null;
+  name: string
+  description?: string | null
   parameters?: {
-    [key: string]: any;
-  } | null;
-  strict?: boolean | null;
-  [key: string]: any;
-};
+    [key: string]: any
+  } | null
+  strict?: boolean | null
+  [key: string]: any
+}

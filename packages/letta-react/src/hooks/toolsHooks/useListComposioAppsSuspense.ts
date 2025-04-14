@@ -3,61 +3,35 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  ListComposioAppsQueryResponse,
-  ListComposioAppsHeaderParams,
-  ListComposioApps422,
-} from '../../types/ListComposioApps.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  UseSuspenseQueryOptions,
-  UseSuspenseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { ListComposioAppsQueryResponse, ListComposioAppsHeaderParams, ListComposioApps422 } from '../../types/ListComposioApps.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 
-export const listComposioAppsSuspenseQueryKey = () =>
-  [{ url: '/v1/tools/composio/apps' }] as const;
+export const listComposioAppsSuspenseQueryKey = () => [{ url: '/v1/tools/composio/apps' }] as const
 
-export type ListComposioAppsSuspenseQueryKey = ReturnType<
-  typeof listComposioAppsSuspenseQueryKey
->;
+export type ListComposioAppsSuspenseQueryKey = ReturnType<typeof listComposioAppsSuspenseQueryKey>
 
 /**
  * @description Get a list of all Composio apps
  * @summary List Composio Apps
  * {@link /v1/tools/composio/apps}
  */
-export async function listComposioAppsSuspense(
-  headers?: ListComposioAppsHeaderParams,
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function listComposioAppsSuspense(headers?: ListComposioAppsHeaderParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    ListComposioAppsQueryResponse,
-    ResponseErrorConfig<ListComposioApps422>,
-    unknown
-  >({
+  const res = await request<ListComposioAppsQueryResponse, ResponseErrorConfig<ListComposioApps422>, unknown>({
     method: 'GET',
     url: `/v1/tools/composio/apps`,
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  });
-  return res;
+  })
+  return res
 }
 
-export function listComposioAppsSuspenseQueryOptions(
-  headers?: ListComposioAppsHeaderParams,
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const queryKey = listComposioAppsSuspenseQueryKey();
+export function listComposioAppsSuspenseQueryOptions(headers?: ListComposioAppsHeaderParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const queryKey = listComposioAppsSuspenseQueryKey()
   return queryOptions<
     ResponseConfig<ListComposioAppsQueryResponse>,
     ResponseErrorConfig<ListComposioApps422>,
@@ -66,10 +40,10 @@ export function listComposioAppsSuspenseQueryOptions(
   >({
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return listComposioAppsSuspense(headers, config);
+      config.signal = signal
+      return listComposioAppsSuspense(headers, config)
     },
-  });
+  })
 }
 
 /**
@@ -80,45 +54,29 @@ export function listComposioAppsSuspenseQueryOptions(
 export function useListComposioAppsSuspense<
   TData = ResponseConfig<ListComposioAppsQueryResponse>,
   TQueryData = ResponseConfig<ListComposioAppsQueryResponse>,
-  TQueryKey extends QueryKey = ListComposioAppsSuspenseQueryKey
+  TQueryKey extends QueryKey = ListComposioAppsSuspenseQueryKey,
 >(
   headers?: ListComposioAppsHeaderParams,
   options: {
-    query?: Partial<
-      UseSuspenseQueryOptions<
-        ResponseConfig<ListComposioAppsQueryResponse>,
-        ResponseErrorConfig<ListComposioApps422>,
-        TData,
-        TQueryKey
-      >
-    > & {
-      client?: QueryClient;
-    };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    query?: Partial<UseSuspenseQueryOptions<ResponseConfig<ListComposioAppsQueryResponse>, ResponseErrorConfig<ListComposioApps422>, TData, TQueryKey>> & {
+      client?: QueryClient
+    }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey = queryOptions?.queryKey ?? listComposioAppsSuspenseQueryKey();
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? listComposioAppsSuspenseQueryKey()
 
   const query = useSuspenseQuery(
     {
-      ...(listComposioAppsSuspenseQueryOptions(
-        headers,
-        config
-      ) as unknown as UseSuspenseQueryOptions),
+      ...(listComposioAppsSuspenseQueryOptions(headers, config) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseSuspenseQueryResult<
-    TData,
-    ResponseErrorConfig<ListComposioApps422>
-  > & { queryKey: TQueryKey };
+    queryClient,
+  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<ListComposioApps422>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

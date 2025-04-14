@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { Memory } from './Memory.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Memory } from './Memory.ts'
 
 export type RetrieveAgentMemoryPathParams = {
   /**
    * @type string
    */
-  agent_id: string;
-};
+  agent_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type RetrieveAgentMemory200 = Memory;
+export type RetrieveAgentMemory200 = Memory
 
 /**
  * @description Validation Error
  */
-export type RetrieveAgentMemory422 = HTTPValidationError;
+export type RetrieveAgentMemory422 = HTTPValidationError
 
-export type RetrieveAgentMemoryQueryResponse = RetrieveAgentMemory200;
+export type RetrieveAgentMemoryQueryResponse = RetrieveAgentMemory200
 
 export type RetrieveAgentMemoryQuery = {
-  Response: RetrieveAgentMemory200;
-  PathParams: RetrieveAgentMemoryPathParams;
-  Errors: RetrieveAgentMemory422;
-};
+  Response: RetrieveAgentMemory200
+  PathParams: RetrieveAgentMemoryPathParams
+  Errors: RetrieveAgentMemory422
+}

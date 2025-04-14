@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { Block } from './Block.ts';
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Block } from './Block.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type ListCoreMemoryBlocksPathParams = {
   /**
    * @type string
    */
-  agent_id: string;
-};
+  agent_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type ListCoreMemoryBlocks200 = Block[];
+export type ListCoreMemoryBlocks200 = Block[]
 
 /**
  * @description Validation Error
  */
-export type ListCoreMemoryBlocks422 = HTTPValidationError;
+export type ListCoreMemoryBlocks422 = HTTPValidationError
 
-export type ListCoreMemoryBlocksQueryResponse = ListCoreMemoryBlocks200;
+export type ListCoreMemoryBlocksQueryResponse = ListCoreMemoryBlocks200
 
 export type ListCoreMemoryBlocksQuery = {
-  Response: ListCoreMemoryBlocks200;
-  PathParams: ListCoreMemoryBlocksPathParams;
-  Errors: ListCoreMemoryBlocks422;
-};
+  Response: ListCoreMemoryBlocks200
+  PathParams: ListCoreMemoryBlocksPathParams
+  Errors: ListCoreMemoryBlocks422
+}

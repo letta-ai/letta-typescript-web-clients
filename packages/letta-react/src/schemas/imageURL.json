@@ -1,14 +1,1 @@
-{
-  "properties": {
-    "url": { "type": "string", "title": "Url" },
-    "detail": {
-      "type": "string",
-      "enum": ["auto", "low", "high"],
-      "title": "Detail"
-    }
-  },
-  "type": "object",
-  "required": ["url"],
-  "title": "ImageURL",
-  "x-readme-ref-name": "ImageURL"
-}
+{"properties":{"url":{"type":"string","title":"Url"},"detail":{"type":"string","enum":["auto","low","high"],"title":"Detail"}},"type":"object","required":["url"],"title":"ImageURL","x-readme-ref-name":"ImageURL"}

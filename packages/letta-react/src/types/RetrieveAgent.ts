@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { AgentState } from './AgentState.ts';
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { AgentState } from './AgentState.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type RetrieveAgentPathParams = {
   /**
    * @type string
    */
-  agent_id: string;
-};
+  agent_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type RetrieveAgent200 = AgentState;
+export type RetrieveAgent200 = AgentState
 
 /**
  * @description Validation Error
  */
-export type RetrieveAgent422 = HTTPValidationError;
+export type RetrieveAgent422 = HTTPValidationError
 
-export type RetrieveAgentQueryResponse = RetrieveAgent200;
+export type RetrieveAgentQueryResponse = RetrieveAgent200
 
 export type RetrieveAgentQuery = {
-  Response: RetrieveAgent200;
-  PathParams: RetrieveAgentPathParams;
-  Errors: RetrieveAgent422;
-};
+  Response: RetrieveAgent200
+  PathParams: RetrieveAgentPathParams
+  Errors: RetrieveAgent422
+}

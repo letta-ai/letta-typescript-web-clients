@@ -3,59 +3,34 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  RetrieveStepQueryResponse,
-  RetrieveStepPathParams,
-  RetrieveStep422,
-} from '../../types/RetrieveStep.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  QueryObserverOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { RetrieveStepQueryResponse, RetrieveStepPathParams, RetrieveStep422 } from '../../types/RetrieveStep.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useQuery } from '@tanstack/react-query'
 
-export const retrieveStepQueryKey = (
-  step_id: RetrieveStepPathParams['step_id']
-) => [{ url: '/v1/steps/:step_id', params: { step_id: step_id } }] as const;
+export const retrieveStepQueryKey = (step_id: RetrieveStepPathParams['step_id']) => [{ url: '/v1/steps/:step_id', params: { step_id: step_id } }] as const
 
-export type RetrieveStepQueryKey = ReturnType<typeof retrieveStepQueryKey>;
+export type RetrieveStepQueryKey = ReturnType<typeof retrieveStepQueryKey>
 
 /**
  * @description Get a step by ID.
  * @summary Retrieve Step
  * {@link /v1/steps/:step_id}
  */
-export async function retrieveStep(
-  step_id: RetrieveStepPathParams['step_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function retrieveStep(step_id: RetrieveStepPathParams['step_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    RetrieveStepQueryResponse,
-    ResponseErrorConfig<RetrieveStep422>,
-    unknown
-  >({
+  const res = await request<RetrieveStepQueryResponse, ResponseErrorConfig<RetrieveStep422>, unknown>({
     method: 'GET',
     url: `/v1/steps/${step_id}`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
-export function retrieveStepQueryOptions(
-  step_id: RetrieveStepPathParams['step_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const queryKey = retrieveStepQueryKey(step_id);
+export function retrieveStepQueryOptions(step_id: RetrieveStepPathParams['step_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const queryKey = retrieveStepQueryKey(step_id)
   return queryOptions<
     ResponseConfig<RetrieveStepQueryResponse>,
     ResponseErrorConfig<RetrieveStep422>,
@@ -65,10 +40,10 @@ export function retrieveStepQueryOptions(
     enabled: !!step_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return retrieveStep(step_id, config);
+      config.signal = signal
+      return retrieveStep(step_id, config)
     },
-  });
+  })
 }
 
 /**
@@ -79,45 +54,29 @@ export function retrieveStepQueryOptions(
 export function useRetrieveStep<
   TData = ResponseConfig<RetrieveStepQueryResponse>,
   TQueryData = ResponseConfig<RetrieveStepQueryResponse>,
-  TQueryKey extends QueryKey = RetrieveStepQueryKey
+  TQueryKey extends QueryKey = RetrieveStepQueryKey,
 >(
   step_id: RetrieveStepPathParams['step_id'],
   options: {
-    query?: Partial<
-      QueryObserverOptions<
-        ResponseConfig<RetrieveStepQueryResponse>,
-        ResponseErrorConfig<RetrieveStep422>,
-        TData,
-        TQueryData,
-        TQueryKey
-      >
-    > & {
-      client?: QueryClient;
-    };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    query?: Partial<QueryObserverOptions<ResponseConfig<RetrieveStepQueryResponse>, ResponseErrorConfig<RetrieveStep422>, TData, TQueryData, TQueryKey>> & {
+      client?: QueryClient
+    }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey = queryOptions?.queryKey ?? retrieveStepQueryKey(step_id);
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? retrieveStepQueryKey(step_id)
 
   const query = useQuery(
     {
-      ...(retrieveStepQueryOptions(
-        step_id,
-        config
-      ) as unknown as QueryObserverOptions),
+      ...(retrieveStepQueryOptions(step_id, config) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseQueryResult<TData, ResponseErrorConfig<RetrieveStep422>> & {
-    queryKey: TQueryKey;
-  };
+    queryClient,
+  ) as UseQueryResult<TData, ResponseErrorConfig<RetrieveStep422>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

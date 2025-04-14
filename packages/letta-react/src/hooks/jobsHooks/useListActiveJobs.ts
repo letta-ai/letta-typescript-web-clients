@@ -3,55 +3,34 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  ListActiveJobsQueryResponse,
-  ListActiveJobs422,
-} from '../../types/ListActiveJobs.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  QueryObserverOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { ListActiveJobsQueryResponse, ListActiveJobs422 } from '../../types/ListActiveJobs.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useQuery } from '@tanstack/react-query'
 
-export const listActiveJobsQueryKey = () =>
-  [{ url: '/v1/jobs/active' }] as const;
+export const listActiveJobsQueryKey = () => [{ url: '/v1/jobs/active' }] as const
 
-export type ListActiveJobsQueryKey = ReturnType<typeof listActiveJobsQueryKey>;
+export type ListActiveJobsQueryKey = ReturnType<typeof listActiveJobsQueryKey>
 
 /**
  * @description List all active jobs.
  * @summary List Active Jobs
  * {@link /v1/jobs/active}
  */
-export async function listActiveJobs(
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function listActiveJobs(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    ListActiveJobsQueryResponse,
-    ResponseErrorConfig<ListActiveJobs422>,
-    unknown
-  >({
+  const res = await request<ListActiveJobsQueryResponse, ResponseErrorConfig<ListActiveJobs422>, unknown>({
     method: 'GET',
     url: `/v1/jobs/active`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
-export function listActiveJobsQueryOptions(
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const queryKey = listActiveJobsQueryKey();
+export function listActiveJobsQueryOptions(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const queryKey = listActiveJobsQueryKey()
   return queryOptions<
     ResponseConfig<ListActiveJobsQueryResponse>,
     ResponseErrorConfig<ListActiveJobs422>,
@@ -60,10 +39,10 @@ export function listActiveJobsQueryOptions(
   >({
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return listActiveJobs(config);
+      config.signal = signal
+      return listActiveJobs(config)
     },
-  });
+  })
 }
 
 /**
@@ -74,43 +53,28 @@ export function listActiveJobsQueryOptions(
 export function useListActiveJobs<
   TData = ResponseConfig<ListActiveJobsQueryResponse>,
   TQueryData = ResponseConfig<ListActiveJobsQueryResponse>,
-  TQueryKey extends QueryKey = ListActiveJobsQueryKey
+  TQueryKey extends QueryKey = ListActiveJobsQueryKey,
 >(
   options: {
-    query?: Partial<
-      QueryObserverOptions<
-        ResponseConfig<ListActiveJobsQueryResponse>,
-        ResponseErrorConfig<ListActiveJobs422>,
-        TData,
-        TQueryData,
-        TQueryKey
-      >
-    > & {
-      client?: QueryClient;
-    };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    query?: Partial<QueryObserverOptions<ResponseConfig<ListActiveJobsQueryResponse>, ResponseErrorConfig<ListActiveJobs422>, TData, TQueryData, TQueryKey>> & {
+      client?: QueryClient
+    }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey = queryOptions?.queryKey ?? listActiveJobsQueryKey();
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? listActiveJobsQueryKey()
 
   const query = useQuery(
     {
-      ...(listActiveJobsQueryOptions(
-        config
-      ) as unknown as QueryObserverOptions),
+      ...(listActiveJobsQueryOptions(config) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseQueryResult<TData, ResponseErrorConfig<ListActiveJobs422>> & {
-    queryKey: TQueryKey;
-  };
+    queryClient,
+  ) as UseQueryResult<TData, ResponseErrorConfig<ListActiveJobs422>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

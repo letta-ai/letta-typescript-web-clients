@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { ManagerType } from './ManagerType.ts';
+import type { ManagerType } from './ManagerType.ts'
 
 export type Group = {
   /**
    * @description The id of the group. Assigned by the database.
    * @type string
    */
-  id: string;
+  id: string
   /**
    * @type string
    */
-  manager_type: ManagerType;
+  manager_type: ManagerType
   /**
    * @type array
    */
-  agent_ids: string[];
+  agent_ids: string[]
   /**
    * @type string
    */
-  description: string;
+  description: string
   /**
    * @type array | undefined
    */
-  shared_block_ids?: string[];
-  manager_agent_id?: string | null;
-  termination_token?: string | null;
-  max_turns?: number | null;
-  sleeptime_agent_frequency?: number | null;
-  turns_counter?: number | null;
-  last_processed_message_id?: string | null;
-};
+  shared_block_ids?: string[]
+  manager_agent_id?: string | null
+  termination_token?: string | null
+  max_turns?: number | null
+  sleeptime_agent_frequency?: number | null
+  turns_counter?: number | null
+  last_processed_message_id?: string | null
+}

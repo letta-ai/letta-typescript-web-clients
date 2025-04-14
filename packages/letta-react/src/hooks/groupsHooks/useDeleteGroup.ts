@@ -3,46 +3,30 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  DeleteGroupMutationResponse,
-  DeleteGroupPathParams,
-  DeleteGroup422,
-} from '../../types/DeleteGroup.ts';
-import type {
-  RequestConfig,
-  ResponseConfig,
-  ResponseErrorConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { DeleteGroupMutationResponse, DeleteGroupPathParams, DeleteGroup422 } from '../../types/DeleteGroup.ts'
+import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
-export const deleteGroupMutationKey = () =>
-  [{ url: '/v1/groups/{group_id}' }] as const;
+export const deleteGroupMutationKey = () => [{ url: '/v1/groups/{group_id}' }] as const
 
-export type DeleteGroupMutationKey = ReturnType<typeof deleteGroupMutationKey>;
+export type DeleteGroupMutationKey = ReturnType<typeof deleteGroupMutationKey>
 
 /**
  * @description Delete a multi-agent group.
  * @summary Delete Group
  * {@link /v1/groups/:group_id}
  */
-export async function deleteGroup(
-  group_id: DeleteGroupPathParams['group_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
-) {
-  const { client: request = client, ...requestConfig } = config;
+export async function deleteGroup(group_id: DeleteGroupPathParams['group_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    DeleteGroupMutationResponse,
-    ResponseErrorConfig<DeleteGroup422>,
-    unknown
-  >({
+  const res = await request<DeleteGroupMutationResponse, ResponseErrorConfig<DeleteGroup422>, unknown>({
     method: 'DELETE',
     url: `/v1/groups/${group_id}`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 /**
@@ -57,15 +41,12 @@ export function useDeleteGroup<TContext>(
       ResponseErrorConfig<DeleteGroup422>,
       { group_id: DeleteGroupPathParams['group_id'] },
       TContext
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    mutation: { client: queryClient, ...mutationOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const mutationKey = mutationOptions?.mutationKey ?? deleteGroupMutationKey();
+  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
+  const mutationKey = mutationOptions?.mutationKey ?? deleteGroupMutationKey()
 
   return useMutation<
     ResponseConfig<DeleteGroupMutationResponse>,
@@ -75,11 +56,11 @@ export function useDeleteGroup<TContext>(
   >(
     {
       mutationFn: async ({ group_id }) => {
-        return deleteGroup(group_id, config);
+        return deleteGroup(group_id, config)
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
-  );
+    queryClient,
+  )
 }

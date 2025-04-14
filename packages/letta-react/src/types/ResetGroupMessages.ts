@@ -3,29 +3,29 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type ResetGroupMessagesPathParams = {
   /**
    * @type string
    */
-  group_id: string;
-};
+  group_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type ResetGroupMessages200 = any;
+export type ResetGroupMessages200 = any
 
 /**
  * @description Validation Error
  */
-export type ResetGroupMessages422 = HTTPValidationError;
+export type ResetGroupMessages422 = HTTPValidationError
 
-export type ResetGroupMessagesMutationResponse = ResetGroupMessages200;
+export type ResetGroupMessagesMutationResponse = ResetGroupMessages200
 
 export type ResetGroupMessagesMutation = {
-  Response: ResetGroupMessages200;
-  PathParams: ResetGroupMessagesPathParams;
-  Errors: ResetGroupMessages422;
-};
+  Response: ResetGroupMessages200
+  PathParams: ResetGroupMessagesPathParams
+  Errors: ResetGroupMessages422
+}

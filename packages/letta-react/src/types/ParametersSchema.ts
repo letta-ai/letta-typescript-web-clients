@@ -3,21 +3,21 @@
  * Do not edit manually.
  */
 
-import type { ParameterProperties } from './ParameterProperties.ts';
+import type { ParameterProperties } from './ParameterProperties.ts'
 
 export type ParametersSchema = {
   /**
    * @default "object"
    */
-  type?: string | null;
+  type?: string | null
   /**
    * @type object
    */
   properties: {
-    [key: string]: ParameterProperties;
-  };
+    [key: string]: ParameterProperties
+  }
   /**
    * @type array | undefined
    */
-  required?: string[];
-};
+  required?: string[]
+}

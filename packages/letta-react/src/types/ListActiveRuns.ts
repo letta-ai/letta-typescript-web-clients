@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { Run } from './Run.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Run } from './Run.ts'
 
 export type ListActiveRunsQueryParams = {
   /**
    * @description The unique identifier of the agent associated with the run.
    */
-  agent_ids?: string[] | null;
-};
+  agent_ids?: string[] | null
+}
 
 /**
  * @description Successful Response
  */
-export type ListActiveRuns200 = Run[];
+export type ListActiveRuns200 = Run[]
 
 /**
  * @description Validation Error
  */
-export type ListActiveRuns422 = HTTPValidationError;
+export type ListActiveRuns422 = HTTPValidationError
 
-export type ListActiveRunsQueryResponse = ListActiveRuns200;
+export type ListActiveRunsQueryResponse = ListActiveRuns200
 
 export type ListActiveRunsQuery = {
-  Response: ListActiveRuns200;
-  QueryParams: ListActiveRunsQueryParams;
-  Errors: ListActiveRuns422;
-};
+  Response: ListActiveRuns200
+  QueryParams: ListActiveRunsQueryParams
+  Errors: ListActiveRuns422
+}

@@ -3,35 +3,16 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  RetrieveAgentMemoryQueryResponse,
-  RetrieveAgentMemoryPathParams,
-  RetrieveAgentMemory422,
-} from '../../types/RetrieveAgentMemory.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  QueryObserverOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useQuery } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { RetrieveAgentMemoryQueryResponse, RetrieveAgentMemoryPathParams, RetrieveAgentMemory422 } from '../../types/RetrieveAgentMemory.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useQuery } from '@tanstack/react-query'
 
-export const retrieveAgentMemoryQueryKey = (
-  agent_id: RetrieveAgentMemoryPathParams['agent_id']
-) =>
-  [
-    { url: '/v1/agents/:agent_id/core-memory', params: { agent_id: agent_id } },
-  ] as const;
+export const retrieveAgentMemoryQueryKey = (agent_id: RetrieveAgentMemoryPathParams['agent_id']) =>
+  [{ url: '/v1/agents/:agent_id/core-memory', params: { agent_id: agent_id } }] as const
 
-export type RetrieveAgentMemoryQueryKey = ReturnType<
-  typeof retrieveAgentMemoryQueryKey
->;
+export type RetrieveAgentMemoryQueryKey = ReturnType<typeof retrieveAgentMemoryQueryKey>
 
 /**
  * @description Retrieve the memory state of a specific agent.This endpoint fetches the current memory state of the agent identified by the user ID and agent ID.
@@ -40,27 +21,23 @@ export type RetrieveAgentMemoryQueryKey = ReturnType<
  */
 export async function retrieveAgentMemory(
   agent_id: RetrieveAgentMemoryPathParams['agent_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    RetrieveAgentMemoryQueryResponse,
-    ResponseErrorConfig<RetrieveAgentMemory422>,
-    unknown
-  >({
+  const res = await request<RetrieveAgentMemoryQueryResponse, ResponseErrorConfig<RetrieveAgentMemory422>, unknown>({
     method: 'GET',
     url: `/v1/agents/${agent_id}/core-memory`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 export function retrieveAgentMemoryQueryOptions(
   agent_id: RetrieveAgentMemoryPathParams['agent_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const queryKey = retrieveAgentMemoryQueryKey(agent_id);
+  const queryKey = retrieveAgentMemoryQueryKey(agent_id)
   return queryOptions<
     ResponseConfig<RetrieveAgentMemoryQueryResponse>,
     ResponseErrorConfig<RetrieveAgentMemory422>,
@@ -70,10 +47,10 @@ export function retrieveAgentMemoryQueryOptions(
     enabled: !!agent_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return retrieveAgentMemory(agent_id, config);
+      config.signal = signal
+      return retrieveAgentMemory(agent_id, config)
     },
-  });
+  })
 }
 
 /**
@@ -84,44 +61,29 @@ export function retrieveAgentMemoryQueryOptions(
 export function useRetrieveAgentMemory<
   TData = ResponseConfig<RetrieveAgentMemoryQueryResponse>,
   TQueryData = ResponseConfig<RetrieveAgentMemoryQueryResponse>,
-  TQueryKey extends QueryKey = RetrieveAgentMemoryQueryKey
+  TQueryKey extends QueryKey = RetrieveAgentMemoryQueryKey,
 >(
   agent_id: RetrieveAgentMemoryPathParams['agent_id'],
   options: {
     query?: Partial<
-      QueryObserverOptions<
-        ResponseConfig<RetrieveAgentMemoryQueryResponse>,
-        ResponseErrorConfig<RetrieveAgentMemory422>,
-        TData,
-        TQueryData,
-        TQueryKey
-      >
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+      QueryObserverOptions<ResponseConfig<RetrieveAgentMemoryQueryResponse>, ResponseErrorConfig<RetrieveAgentMemory422>, TData, TQueryData, TQueryKey>
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey =
-    queryOptions?.queryKey ?? retrieveAgentMemoryQueryKey(agent_id);
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? retrieveAgentMemoryQueryKey(agent_id)
 
   const query = useQuery(
     {
-      ...(retrieveAgentMemoryQueryOptions(
-        agent_id,
-        config
-      ) as unknown as QueryObserverOptions),
+      ...(retrieveAgentMemoryQueryOptions(agent_id, config) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseQueryResult<TData, ResponseErrorConfig<RetrieveAgentMemory422>> & {
-    queryKey: TQueryKey;
-  };
+    queryClient,
+  ) as UseQueryResult<TData, ResponseErrorConfig<RetrieveAgentMemory422>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }

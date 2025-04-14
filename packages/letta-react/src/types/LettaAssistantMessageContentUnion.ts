@@ -3,15 +3,15 @@
  * Do not edit manually.
  */
 
-import type { TextContent } from './TextContent.ts';
+import type { TextContent } from './TextContent.ts'
 
 export const lettaAssistantMessageContentUnionTypeEnum = {
   text: 'text',
-} as const;
+} as const
 
 export type LettaAssistantMessageContentUnionTypeEnum =
-  (typeof lettaAssistantMessageContentUnionTypeEnum)[keyof typeof lettaAssistantMessageContentUnionTypeEnum];
+  (typeof lettaAssistantMessageContentUnionTypeEnum)[keyof typeof lettaAssistantMessageContentUnionTypeEnum]
 
 export type LettaAssistantMessageContentUnion = TextContent & {
-  type?: LettaAssistantMessageContentUnionTypeEnum;
-};
+  type?: LettaAssistantMessageContentUnionTypeEnum
+}

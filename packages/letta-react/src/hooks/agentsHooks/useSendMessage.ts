@@ -3,25 +3,15 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
-import type {
-  SendMessageMutationRequest,
-  SendMessageMutationResponse,
-  SendMessagePathParams,
-  SendMessage422,
-} from '../../types/SendMessage.ts';
-import type {
-  RequestConfig,
-  ResponseConfig,
-  ResponseErrorConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
-import { useMutation } from '@tanstack/react-query';
+import client from '@kubb/plugin-client/clients/axios'
+import type { SendMessageMutationRequest, SendMessageMutationResponse, SendMessagePathParams, SendMessage422 } from '../../types/SendMessage.ts'
+import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 
-export const sendMessageMutationKey = () =>
-  [{ url: '/v1/agents/{agent_id}/messages' }] as const;
+export const sendMessageMutationKey = () => [{ url: '/v1/agents/{agent_id}/messages' }] as const
 
-export type SendMessageMutationKey = ReturnType<typeof sendMessageMutationKey>;
+export type SendMessageMutationKey = ReturnType<typeof sendMessageMutationKey>
 
 /**
  * @description Process a user message and return the agent's response.This endpoint accepts a message from a user and processes it through the agent.
@@ -31,23 +21,17 @@ export type SendMessageMutationKey = ReturnType<typeof sendMessageMutationKey>;
 export async function sendMessage(
   agent_id: SendMessagePathParams['agent_id'],
   data: SendMessageMutationRequest,
-  config: Partial<RequestConfig<SendMessageMutationRequest>> & {
-    client?: typeof client;
-  } = {}
+  config: Partial<RequestConfig<SendMessageMutationRequest>> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    SendMessageMutationResponse,
-    ResponseErrorConfig<SendMessage422>,
-    SendMessageMutationRequest
-  >({
+  const res = await request<SendMessageMutationResponse, ResponseErrorConfig<SendMessage422>, SendMessageMutationRequest>({
     method: 'POST',
     url: `/v1/agents/${agent_id}/messages`,
     data,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 /**
@@ -60,39 +44,28 @@ export function useSendMessage<TContext>(
     mutation?: UseMutationOptions<
       ResponseConfig<SendMessageMutationResponse>,
       ResponseErrorConfig<SendMessage422>,
-      {
-        agent_id: SendMessagePathParams['agent_id'];
-        data: SendMessageMutationRequest;
-      },
+      { agent_id: SendMessagePathParams['agent_id']; data: SendMessageMutationRequest },
       TContext
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig<SendMessageMutationRequest>> & {
-      client?: typeof client;
-    };
-  } = {}
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig<SendMessageMutationRequest>> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    mutation: { client: queryClient, ...mutationOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const mutationKey = mutationOptions?.mutationKey ?? sendMessageMutationKey();
+  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
+  const mutationKey = mutationOptions?.mutationKey ?? sendMessageMutationKey()
 
   return useMutation<
     ResponseConfig<SendMessageMutationResponse>,
     ResponseErrorConfig<SendMessage422>,
-    {
-      agent_id: SendMessagePathParams['agent_id'];
-      data: SendMessageMutationRequest;
-    },
+    { agent_id: SendMessagePathParams['agent_id']; data: SendMessageMutationRequest },
     TContext
   >(
     {
       mutationFn: async ({ agent_id, data }) => {
-        return sendMessage(agent_id, data, config);
+        return sendMessage(agent_id, data, config)
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
-  );
+    queryClient,
+  )
 }

@@ -11,10 +11,10 @@ export type ContinueToolRule = {
    * @description The name of the tool. Must exist in the database for the user\'s organization.
    * @type string
    */
-  tool_name: string;
+  tool_name: string
   /**
    * @default "continue_loop"
    * @type string | undefined
    */
-  type?: 'continue_loop';
-};
+  type?: 'continue_loop'
+}

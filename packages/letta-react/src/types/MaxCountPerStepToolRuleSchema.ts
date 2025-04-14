@@ -7,13 +7,13 @@ export type MaxCountPerStepToolRuleSchema = {
   /**
    * @type string
    */
-  tool_name: string;
+  tool_name: string
   /**
    * @type string
    */
-  type: string;
+  type: string
   /**
    * @type integer
    */
-  max_count_limit: number;
-};
+  max_count_limit: number
+}

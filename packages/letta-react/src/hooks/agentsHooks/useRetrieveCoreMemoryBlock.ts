@@ -3,39 +3,22 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios';
+import client from '@kubb/plugin-client/clients/axios'
 import type {
   RetrieveCoreMemoryBlockQueryResponse,
   RetrieveCoreMemoryBlockPathParams,
   RetrieveCoreMemoryBlock422,
-} from '../../types/RetrieveCoreMemoryBlock.ts';
-import type {
-  RequestConfig,
-  ResponseErrorConfig,
-  ResponseConfig,
-} from '@kubb/plugin-client/clients/axios';
-import type {
-  QueryKey,
-  QueryClient,
-  QueryObserverOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import { queryOptions, useQuery } from '@tanstack/react-query';
+} from '../../types/RetrieveCoreMemoryBlock.ts'
+import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
+import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
+import { queryOptions, useQuery } from '@tanstack/react-query'
 
 export const retrieveCoreMemoryBlockQueryKey = (
   agent_id: RetrieveCoreMemoryBlockPathParams['agent_id'],
-  block_label: RetrieveCoreMemoryBlockPathParams['block_label']
-) =>
-  [
-    {
-      url: '/v1/agents/:agent_id/core-memory/blocks/:block_label',
-      params: { agent_id: agent_id, block_label: block_label },
-    },
-  ] as const;
+  block_label: RetrieveCoreMemoryBlockPathParams['block_label'],
+) => [{ url: '/v1/agents/:agent_id/core-memory/blocks/:block_label', params: { agent_id: agent_id, block_label: block_label } }] as const
 
-export type RetrieveCoreMemoryBlockQueryKey = ReturnType<
-  typeof retrieveCoreMemoryBlockQueryKey
->;
+export type RetrieveCoreMemoryBlockQueryKey = ReturnType<typeof retrieveCoreMemoryBlockQueryKey>
 
 /**
  * @description Retrieve a core memory block from an agent.
@@ -45,28 +28,24 @@ export type RetrieveCoreMemoryBlockQueryKey = ReturnType<
 export async function retrieveCoreMemoryBlock(
   agent_id: RetrieveCoreMemoryBlockPathParams['agent_id'],
   block_label: RetrieveCoreMemoryBlockPathParams['block_label'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const { client: request = client, ...requestConfig } = config;
+  const { client: request = client, ...requestConfig } = config
 
-  const res = await request<
-    RetrieveCoreMemoryBlockQueryResponse,
-    ResponseErrorConfig<RetrieveCoreMemoryBlock422>,
-    unknown
-  >({
+  const res = await request<RetrieveCoreMemoryBlockQueryResponse, ResponseErrorConfig<RetrieveCoreMemoryBlock422>, unknown>({
     method: 'GET',
     url: `/v1/agents/${agent_id}/core-memory/blocks/${block_label}`,
     ...requestConfig,
-  });
-  return res;
+  })
+  return res
 }
 
 export function retrieveCoreMemoryBlockQueryOptions(
   agent_id: RetrieveCoreMemoryBlockPathParams['agent_id'],
   block_label: RetrieveCoreMemoryBlockPathParams['block_label'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {}
+  config: Partial<RequestConfig> & { client?: typeof client } = {},
 ) {
-  const queryKey = retrieveCoreMemoryBlockQueryKey(agent_id, block_label);
+  const queryKey = retrieveCoreMemoryBlockQueryKey(agent_id, block_label)
   return queryOptions<
     ResponseConfig<RetrieveCoreMemoryBlockQueryResponse>,
     ResponseErrorConfig<RetrieveCoreMemoryBlock422>,
@@ -76,10 +55,10 @@ export function retrieveCoreMemoryBlockQueryOptions(
     enabled: !!(agent_id && block_label),
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal;
-      return retrieveCoreMemoryBlock(agent_id, block_label, config);
+      config.signal = signal
+      return retrieveCoreMemoryBlock(agent_id, block_label, config)
     },
-  });
+  })
 }
 
 /**
@@ -90,48 +69,30 @@ export function retrieveCoreMemoryBlockQueryOptions(
 export function useRetrieveCoreMemoryBlock<
   TData = ResponseConfig<RetrieveCoreMemoryBlockQueryResponse>,
   TQueryData = ResponseConfig<RetrieveCoreMemoryBlockQueryResponse>,
-  TQueryKey extends QueryKey = RetrieveCoreMemoryBlockQueryKey
+  TQueryKey extends QueryKey = RetrieveCoreMemoryBlockQueryKey,
 >(
   agent_id: RetrieveCoreMemoryBlockPathParams['agent_id'],
   block_label: RetrieveCoreMemoryBlockPathParams['block_label'],
   options: {
     query?: Partial<
-      QueryObserverOptions<
-        ResponseConfig<RetrieveCoreMemoryBlockQueryResponse>,
-        ResponseErrorConfig<RetrieveCoreMemoryBlock422>,
-        TData,
-        TQueryData,
-        TQueryKey
-      >
-    > & { client?: QueryClient };
-    client?: Partial<RequestConfig> & { client?: typeof client };
-  } = {}
+      QueryObserverOptions<ResponseConfig<RetrieveCoreMemoryBlockQueryResponse>, ResponseErrorConfig<RetrieveCoreMemoryBlock422>, TData, TQueryData, TQueryKey>
+    > & { client?: QueryClient }
+    client?: Partial<RequestConfig> & { client?: typeof client }
+  } = {},
 ) {
-  const {
-    query: { client: queryClient, ...queryOptions } = {},
-    client: config = {},
-  } = options ?? {};
-  const queryKey =
-    queryOptions?.queryKey ??
-    retrieveCoreMemoryBlockQueryKey(agent_id, block_label);
+  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
+  const queryKey = queryOptions?.queryKey ?? retrieveCoreMemoryBlockQueryKey(agent_id, block_label)
 
   const query = useQuery(
     {
-      ...(retrieveCoreMemoryBlockQueryOptions(
-        agent_id,
-        block_label,
-        config
-      ) as unknown as QueryObserverOptions),
+      ...(retrieveCoreMemoryBlockQueryOptions(agent_id, block_label, config) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient
-  ) as UseQueryResult<
-    TData,
-    ResponseErrorConfig<RetrieveCoreMemoryBlock422>
-  > & { queryKey: TQueryKey };
+    queryClient,
+  ) as UseQueryResult<TData, ResponseErrorConfig<RetrieveCoreMemoryBlock422>> & { queryKey: TQueryKey }
 
-  query.queryKey = queryKey as TQueryKey;
+  query.queryKey = queryKey as TQueryKey
 
-  return query;
+  return query
 }
