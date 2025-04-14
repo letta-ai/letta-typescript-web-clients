@@ -3,16 +3,16 @@
  * Do not edit manually.
  */
 
-import type { EmbeddingConfig } from './EmbeddingConfig.ts';
+import type { EmbeddingConfig } from './EmbeddingConfig.ts'
 
 /**
  * @description Successful Response
  */
-export type ListEmbeddingModels200 = EmbeddingConfig[];
+export type ListEmbeddingModels200 = EmbeddingConfig[]
 
-export type ListEmbeddingModelsQueryResponse = ListEmbeddingModels200;
+export type ListEmbeddingModelsQueryResponse = ListEmbeddingModels200
 
 export type ListEmbeddingModelsQuery = {
-  Response: ListEmbeddingModels200;
-  Errors: any;
-};
+  Response: ListEmbeddingModels200
+  Errors: any
+}

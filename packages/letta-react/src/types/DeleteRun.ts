@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { Run } from './Run.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Run } from './Run.ts'
 
 export type DeleteRunPathParams = {
   /**
    * @type string
    */
-  run_id: string;
-};
+  run_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type DeleteRun200 = Run;
+export type DeleteRun200 = Run
 
 /**
  * @description Validation Error
  */
-export type DeleteRun422 = HTTPValidationError;
+export type DeleteRun422 = HTTPValidationError
 
-export type DeleteRunMutationResponse = DeleteRun200;
+export type DeleteRunMutationResponse = DeleteRun200
 
 export type DeleteRunMutation = {
-  Response: DeleteRun200;
-  PathParams: DeleteRunPathParams;
-  Errors: DeleteRun422;
-};
+  Response: DeleteRun200
+  PathParams: DeleteRunPathParams
+  Errors: DeleteRun422
+}

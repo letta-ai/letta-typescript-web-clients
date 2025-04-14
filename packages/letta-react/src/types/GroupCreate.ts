@@ -3,30 +3,26 @@
  * Do not edit manually.
  */
 
-import type { DynamicManager } from './DynamicManager.ts';
-import type { RoundRobinManager } from './RoundRobinManager.ts';
-import type { SleeptimeManager } from './SleeptimeManager.ts';
-import type { SupervisorManager } from './SupervisorManager.ts';
+import type { DynamicManager } from './DynamicManager.ts'
+import type { RoundRobinManager } from './RoundRobinManager.ts'
+import type { SleeptimeManager } from './SleeptimeManager.ts'
+import type { SupervisorManager } from './SupervisorManager.ts'
 
 export type GroupCreate = {
   /**
    * @type array
    */
-  agent_ids: string[];
+  agent_ids: string[]
   /**
    * @type string
    */
-  description: string;
+  description: string
   /**
    * @default [object Object]
    */
-  manager_config?:
-    | RoundRobinManager
-    | SupervisorManager
-    | DynamicManager
-    | SleeptimeManager;
+  manager_config?: RoundRobinManager | SupervisorManager | DynamicManager | SleeptimeManager
   /**
    * @type array | undefined
    */
-  shared_block_ids?: string[];
-};
+  shared_block_ids?: string[]
+}

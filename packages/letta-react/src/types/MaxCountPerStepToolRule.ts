@@ -11,15 +11,15 @@ export type MaxCountPerStepToolRule = {
    * @description The name of the tool. Must exist in the database for the user\'s organization.
    * @type string
    */
-  tool_name: string;
+  tool_name: string
   /**
    * @default "max_count_per_step"
    * @type string | undefined
    */
-  type?: 'max_count_per_step';
+  type?: 'max_count_per_step'
   /**
    * @description The max limit for the total number of times this tool can be invoked in a single step.
    * @type integer
    */
-  max_count_limit: number;
-};
+  max_count_limit: number
+}

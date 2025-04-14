@@ -3,32 +3,32 @@
  * Do not edit manually.
  */
 
-import type { IdentityProperty } from './IdentityProperty.ts';
-import type { IdentityType } from './IdentityType.ts';
+import type { IdentityProperty } from './IdentityProperty.ts'
+import type { IdentityType } from './IdentityType.ts'
 
 export type IdentityUpdate = {
   /**
    * @description External, user-generated identifier key of the identity.
    */
-  identifier_key?: string | null;
+  identifier_key?: string | null
   /**
    * @description The name of the identity.
    */
-  name?: string | null;
+  name?: string | null
   /**
    * @description The type of the identity.
    */
-  identity_type?: IdentityType | null;
+  identity_type?: IdentityType | null
   /**
    * @description The agent ids that are associated with the identity.
    */
-  agent_ids?: string[] | null;
+  agent_ids?: string[] | null
   /**
    * @description The IDs of the blocks associated with the identity.
    */
-  block_ids?: string[] | null;
+  block_ids?: string[] | null
   /**
    * @description List of properties associated with the identity.
    */
-  properties?: IdentityProperty[] | null;
-};
+  properties?: IdentityProperty[] | null
+}

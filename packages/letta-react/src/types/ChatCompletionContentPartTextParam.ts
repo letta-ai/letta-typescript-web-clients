@@ -7,9 +7,9 @@ export type ChatCompletionContentPartTextParam = {
   /**
    * @type string
    */
-  text: string;
+  text: string
   /**
    * @type string
    */
-  type: 'text';
-};
+  type: 'text'
+}

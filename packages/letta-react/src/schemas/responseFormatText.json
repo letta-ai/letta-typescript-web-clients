@@ -1,9 +1,1 @@
-{
-  "properties": {
-    "type": { "type": "string", "const": "text", "title": "Type" }
-  },
-  "type": "object",
-  "required": ["type"],
-  "title": "ResponseFormatText",
-  "x-readme-ref-name": "ResponseFormatText"
-}
+{"properties":{"type":{"type":"string","const":"text","title":"Type"}},"type":"object","required":["type"],"title":"ResponseFormatText","x-readme-ref-name":"ResponseFormatText"}

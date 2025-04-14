@@ -7,12 +7,11 @@ export const identityTypeEnum = {
   org: 'org',
   user: 'user',
   other: 'other',
-} as const;
+} as const
 
-export type IdentityTypeEnum =
-  (typeof identityTypeEnum)[keyof typeof identityTypeEnum];
+export type IdentityTypeEnum = (typeof identityTypeEnum)[keyof typeof identityTypeEnum]
 
 /**
  * @description Enum to represent the type of the identity.
  */
-export type IdentityType = IdentityTypeEnum;
+export type IdentityType = IdentityTypeEnum

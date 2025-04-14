@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { Group } from './Group.ts';
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Group } from './Group.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type RetrieveGroupPathParams = {
   /**
    * @type string
    */
-  group_id: string;
-};
+  group_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type RetrieveGroup200 = Group;
+export type RetrieveGroup200 = Group
 
 /**
  * @description Validation Error
  */
-export type RetrieveGroup422 = HTTPValidationError;
+export type RetrieveGroup422 = HTTPValidationError
 
-export type RetrieveGroupQueryResponse = RetrieveGroup200;
+export type RetrieveGroupQueryResponse = RetrieveGroup200
 
 export type RetrieveGroupQuery = {
-  Response: RetrieveGroup200;
-  PathParams: RetrieveGroupPathParams;
-  Errors: RetrieveGroup422;
-};
+  Response: RetrieveGroup200
+  PathParams: RetrieveGroupPathParams
+  Errors: RetrieveGroup422
+}

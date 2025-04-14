@@ -1,7 +1,1 @@
-{
-  "type": "string",
-  "enum": ["memgpt_agent", "split_thread_agent", "sleeptime_agent"],
-  "title": "AgentType",
-  "description": "Enum to represent the type of agent.",
-  "x-readme-ref-name": "AgentType"
-}
+{"type":"string","enum":["memgpt_agent","split_thread_agent","sleeptime_agent"],"title":"AgentType","description":"Enum to represent the type of agent.","x-readme-ref-name":"AgentType"}

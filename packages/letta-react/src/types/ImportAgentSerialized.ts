@@ -3,9 +3,9 @@
  * Do not edit manually.
  */
 
-import type { AgentState } from './AgentState.ts';
-import type { BodyImportAgentSerialized } from './BodyImportAgentSerialized.ts';
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { AgentState } from './AgentState.ts'
+import type { BodyImportAgentSerialized } from './BodyImportAgentSerialized.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type ImportAgentSerializedQueryParams = {
   /**
@@ -13,42 +13,42 @@ export type ImportAgentSerializedQueryParams = {
    * @default true
    * @type boolean | undefined
    */
-  append_copy_suffix?: boolean;
+  append_copy_suffix?: boolean
   /**
    * @description If set to True, existing tools can get their source code overwritten by the uploaded tool definitions. Note that Letta core tools can never be updated externally.
    * @default true
    * @type boolean | undefined
    */
-  override_existing_tools?: boolean;
+  override_existing_tools?: boolean
   /**
    * @description The project ID to associate the uploaded agent with.
    */
-  project_id?: string | null;
+  project_id?: string | null
   /**
    * @description If set to True, strips all messages from the agent before importing.
    * @default false
    * @type boolean | undefined
    */
-  strip_messages?: boolean;
-};
+  strip_messages?: boolean
+}
 
 /**
  * @description Successful Response
  */
-export type ImportAgentSerialized200 = AgentState;
+export type ImportAgentSerialized200 = AgentState
 
 /**
  * @description Validation Error
  */
-export type ImportAgentSerialized422 = HTTPValidationError;
+export type ImportAgentSerialized422 = HTTPValidationError
 
-export type ImportAgentSerializedMutationRequest = BodyImportAgentSerialized;
+export type ImportAgentSerializedMutationRequest = BodyImportAgentSerialized
 
-export type ImportAgentSerializedMutationResponse = ImportAgentSerialized200;
+export type ImportAgentSerializedMutationResponse = ImportAgentSerialized200
 
 export type ImportAgentSerializedMutation = {
-  Response: ImportAgentSerialized200;
-  Request: ImportAgentSerializedMutationRequest;
-  QueryParams: ImportAgentSerializedQueryParams;
-  Errors: ImportAgentSerialized422;
-};
+  Response: ImportAgentSerialized200
+  Request: ImportAgentSerializedMutationRequest
+  QueryParams: ImportAgentSerializedQueryParams
+  Errors: ImportAgentSerialized422
+}

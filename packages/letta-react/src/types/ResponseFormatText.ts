@@ -7,5 +7,5 @@ export type ResponseFormatText = {
   /**
    * @type string
    */
-  type: 'text';
-};
+  type: 'text'
+}

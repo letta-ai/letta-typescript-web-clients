@@ -3,16 +3,16 @@
  * Do not edit manually.
  */
 
-import type { LLMConfig } from './LLMConfig.ts';
+import type { LLMConfig } from './LLMConfig.ts'
 
 /**
  * @description Successful Response
  */
-export type ListModels200 = LLMConfig[];
+export type ListModels200 = LLMConfig[]
 
-export type ListModelsQueryResponse = ListModels200;
+export type ListModelsQueryResponse = ListModels200
 
 export type ListModelsQuery = {
-  Response: ListModels200;
-  Errors: any;
-};
+  Response: ListModels200
+  Errors: any
+}

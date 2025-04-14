@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { AgentState } from './AgentState.ts';
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { AgentState } from './AgentState.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type AttachCoreMemoryBlockPathParams = {
   /**
    * @type string
    */
-  agent_id: string;
+  agent_id: string
   /**
    * @type string
    */
-  block_id: string;
-};
+  block_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type AttachCoreMemoryBlock200 = AgentState;
+export type AttachCoreMemoryBlock200 = AgentState
 
 /**
  * @description Validation Error
  */
-export type AttachCoreMemoryBlock422 = HTTPValidationError;
+export type AttachCoreMemoryBlock422 = HTTPValidationError
 
-export type AttachCoreMemoryBlockMutationResponse = AttachCoreMemoryBlock200;
+export type AttachCoreMemoryBlockMutationResponse = AttachCoreMemoryBlock200
 
 export type AttachCoreMemoryBlockMutation = {
-  Response: AttachCoreMemoryBlock200;
-  PathParams: AttachCoreMemoryBlockPathParams;
-  Errors: AttachCoreMemoryBlock422;
-};
+  Response: AttachCoreMemoryBlock200
+  PathParams: AttachCoreMemoryBlockPathParams
+  Errors: AttachCoreMemoryBlock422
+}

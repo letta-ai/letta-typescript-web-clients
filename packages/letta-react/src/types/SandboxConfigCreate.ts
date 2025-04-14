@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import type { E2BSandboxConfig } from './E2BSandboxConfig.ts';
-import type { LocalSandboxConfig } from './LocalSandboxConfig.ts';
+import type { E2BSandboxConfig } from './E2BSandboxConfig.ts'
+import type { LocalSandboxConfig } from './LocalSandboxConfig.ts'
 
 export type SandboxConfigCreate = {
   /**
    * @description The configuration for the sandbox.
    */
-  config: LocalSandboxConfig | E2BSandboxConfig;
-};
+  config: LocalSandboxConfig | E2BSandboxConfig
+}

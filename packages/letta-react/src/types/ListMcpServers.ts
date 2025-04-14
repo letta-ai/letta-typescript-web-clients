@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { SSEServerConfig } from './SSEServerConfig.ts';
-import type { StdioServerConfig } from './StdioServerConfig.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { SSEServerConfig } from './SSEServerConfig.ts'
+import type { StdioServerConfig } from './StdioServerConfig.ts'
 
 export type ListMcpServersHeaderParams = {
-  'user-id'?: string | null;
-};
+  'user-id'?: string | null
+}
 
 /**
  * @description Successful Response
  */
 export type ListMcpServers200 = {
-  [key: string]: SSEServerConfig | StdioServerConfig;
-};
+  [key: string]: SSEServerConfig | StdioServerConfig
+}
 
 /**
  * @description Validation Error
  */
-export type ListMcpServers422 = HTTPValidationError;
+export type ListMcpServers422 = HTTPValidationError
 
-export type ListMcpServersQueryResponse = ListMcpServers200;
+export type ListMcpServersQueryResponse = ListMcpServers200
 
 export type ListMcpServersQuery = {
-  Response: ListMcpServers200;
-  HeaderParams: ListMcpServersHeaderParams;
-  Errors: ListMcpServers422;
-};
+  Response: ListMcpServers200
+  HeaderParams: ListMcpServersHeaderParams
+  Errors: ListMcpServers422
+}

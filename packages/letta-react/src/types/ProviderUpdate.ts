@@ -8,10 +8,10 @@ export type ProviderUpdate = {
    * @description The id of the provider to update.
    * @type string
    */
-  id: string;
+  id: string
   /**
    * @description API key used for requests to the provider.
    * @type string
    */
-  api_key: string;
-};
+  api_key: string
+}

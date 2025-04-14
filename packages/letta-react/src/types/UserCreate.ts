@@ -8,5 +8,5 @@ export type UserCreate = {
    * @description The name of the user.
    * @type string
    */
-  name: string;
-};
+  name: string
+}

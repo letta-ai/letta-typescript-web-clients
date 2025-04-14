@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { Job } from './Job.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Job } from './Job.ts'
 
 export type RetrieveJobPathParams = {
   /**
    * @type string
    */
-  job_id: string;
-};
+  job_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type RetrieveJob200 = Job;
+export type RetrieveJob200 = Job
 
 /**
  * @description Validation Error
  */
-export type RetrieveJob422 = HTTPValidationError;
+export type RetrieveJob422 = HTTPValidationError
 
-export type RetrieveJobQueryResponse = RetrieveJob200;
+export type RetrieveJobQueryResponse = RetrieveJob200
 
 export type RetrieveJobQuery = {
-  Response: RetrieveJob200;
-  PathParams: RetrieveJobPathParams;
-  Errors: RetrieveJob422;
-};
+  Response: RetrieveJob200
+  PathParams: RetrieveJobPathParams
+  Errors: RetrieveJob422
+}

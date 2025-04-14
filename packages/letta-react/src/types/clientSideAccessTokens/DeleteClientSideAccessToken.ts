@@ -8,13 +8,13 @@ export type ClientSideAccessTokensDeleteClientSideAccessTokenPathParams = {
    * @description The access token to delete
    * @type string
    */
-  token: string;
-};
+  token: string
+}
 
 /**
  * @description 204
  */
-export type ClientSideAccessTokensDeleteClientSideAccessToken204 = any;
+export type ClientSideAccessTokensDeleteClientSideAccessToken204 = any
 
 /**
  * @description 400
@@ -23,21 +23,19 @@ export type ClientSideAccessTokensDeleteClientSideAccessToken400 = {
   /**
    * @type string
    */
-  message: string;
-};
+  message: string
+}
 
 /**
  * @description Body
  */
-export type ClientSideAccessTokensDeleteClientSideAccessTokenMutationRequest =
-  any;
+export type ClientSideAccessTokensDeleteClientSideAccessTokenMutationRequest = any
 
-export type ClientSideAccessTokensDeleteClientSideAccessTokenMutationResponse =
-  ClientSideAccessTokensDeleteClientSideAccessToken204;
+export type ClientSideAccessTokensDeleteClientSideAccessTokenMutationResponse = ClientSideAccessTokensDeleteClientSideAccessToken204
 
 export type ClientSideAccessTokensDeleteClientSideAccessTokenMutation = {
-  Response: ClientSideAccessTokensDeleteClientSideAccessToken204;
-  Request: ClientSideAccessTokensDeleteClientSideAccessTokenMutationRequest;
-  PathParams: ClientSideAccessTokensDeleteClientSideAccessTokenPathParams;
-  Errors: ClientSideAccessTokensDeleteClientSideAccessToken400;
-};
+  Response: ClientSideAccessTokensDeleteClientSideAccessToken204
+  Request: ClientSideAccessTokensDeleteClientSideAccessTokenMutationRequest
+  PathParams: ClientSideAccessTokensDeleteClientSideAccessTokenPathParams
+  Errors: ClientSideAccessTokensDeleteClientSideAccessToken400
+}

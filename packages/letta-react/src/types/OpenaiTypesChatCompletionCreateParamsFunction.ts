@@ -7,15 +7,15 @@ export type OpenaiTypesChatCompletionCreateParamsFunction = {
   /**
    * @type string
    */
-  name: string;
+  name: string
   /**
    * @type string | undefined
    */
-  description?: string;
+  description?: string
   /**
    * @type object | undefined
    */
   parameters?: {
-    [key: string]: any;
-  };
-};
+    [key: string]: any
+  }
+}

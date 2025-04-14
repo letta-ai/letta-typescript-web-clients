@@ -3,21 +3,21 @@
  * Do not edit manually.
  */
 
-import type { ParametersSchema } from './ParametersSchema.ts';
+import type { ParametersSchema } from './ParametersSchema.ts'
 
 export type ToolJSONSchema = {
   /**
    * @type string
    */
-  name: string;
+  name: string
   /**
    * @type string
    */
-  description: string;
+  description: string
   /**
    * @type object
    */
-  parameters: ParametersSchema;
-  type?: string | null;
-  required?: string[] | null;
-};
+  parameters: ParametersSchema
+  type?: string | null
+  required?: string[] | null
+}

@@ -5,10 +5,9 @@
 
 export const textContentTypeEnum = {
   text: 'text',
-} as const;
+} as const
 
-export type TextContentTypeEnum =
-  (typeof textContentTypeEnum)[keyof typeof textContentTypeEnum];
+export type TextContentTypeEnum = (typeof textContentTypeEnum)[keyof typeof textContentTypeEnum]
 
 export type TextContent = {
   /**
@@ -16,10 +15,10 @@ export type TextContent = {
    * @default "text"
    * @type string
    */
-  type: TextContentTypeEnum;
+  type: TextContentTypeEnum
   /**
    * @description The text content of the message.
    * @type string
    */
-  text: string;
-};
+  text: string
+}

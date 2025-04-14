@@ -3,15 +3,15 @@
  * Do not edit manually.
  */
 
-import type { ImageURL } from './ImageURL.ts';
+import type { ImageURL } from './ImageURL.ts'
 
 export type ChatCompletionContentPartImageParam = {
   /**
    * @type object
    */
-  image_url: ImageURL;
+  image_url: ImageURL
   /**
    * @type string
    */
-  type: 'image_url';
-};
+  type: 'image_url'
+}

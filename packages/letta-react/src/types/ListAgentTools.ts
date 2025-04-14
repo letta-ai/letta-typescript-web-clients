@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { Tool } from './Tool.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Tool } from './Tool.ts'
 
 export type ListAgentToolsPathParams = {
   /**
    * @type string
    */
-  agent_id: string;
-};
+  agent_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type ListAgentTools200 = Tool[];
+export type ListAgentTools200 = Tool[]
 
 /**
  * @description Validation Error
  */
-export type ListAgentTools422 = HTTPValidationError;
+export type ListAgentTools422 = HTTPValidationError
 
-export type ListAgentToolsQueryResponse = ListAgentTools200;
+export type ListAgentToolsQueryResponse = ListAgentTools200
 
 export type ListAgentToolsQuery = {
-  Response: ListAgentTools200;
-  PathParams: ListAgentToolsPathParams;
-  Errors: ListAgentTools422;
-};
+  Response: ListAgentTools200
+  PathParams: ListAgentToolsPathParams
+  Errors: ListAgentTools422
+}

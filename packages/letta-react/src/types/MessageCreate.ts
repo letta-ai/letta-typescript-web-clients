@@ -3,15 +3,14 @@
  * Do not edit manually.
  */
 
-import type { LettaMessageContentUnion } from './LettaMessageContentUnion.ts';
+import type { LettaMessageContentUnion } from './LettaMessageContentUnion.ts'
 
 export const messageCreateRoleEnum = {
   user: 'user',
   system: 'system',
-} as const;
+} as const
 
-export type MessageCreateRoleEnum =
-  (typeof messageCreateRoleEnum)[keyof typeof messageCreateRoleEnum];
+export type MessageCreateRoleEnum = (typeof messageCreateRoleEnum)[keyof typeof messageCreateRoleEnum]
 
 /**
  * @description Request to create a message
@@ -21,17 +20,17 @@ export type MessageCreate = {
    * @description The role of the participant.
    * @type string
    */
-  role: MessageCreateRoleEnum;
+  role: MessageCreateRoleEnum
   /**
    * @description The content of the message.
    */
-  content: LettaMessageContentUnion[] | string;
+  content: LettaMessageContentUnion[] | string
   /**
    * @description The name of the participant.
    */
-  name?: string | null;
+  name?: string | null
   /**
    * @description The offline threading id associated with this message
    */
-  otid?: string | null;
-};
+  otid?: string | null
+}

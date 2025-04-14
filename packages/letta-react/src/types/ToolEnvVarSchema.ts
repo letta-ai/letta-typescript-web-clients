@@ -7,18 +7,18 @@ export type ToolEnvVarSchema = {
   /**
    * @type string
    */
-  created_at: string;
-  description: string | null;
+  created_at: string
+  description: string | null
   /**
    * @type string
    */
-  key: string;
+  key: string
   /**
    * @type string
    */
-  updated_at: string;
+  updated_at: string
   /**
    * @type string
    */
-  value: string;
-};
+  value: string
+}

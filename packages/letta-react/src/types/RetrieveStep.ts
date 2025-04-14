@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { Step } from './Step.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Step } from './Step.ts'
 
 export type RetrieveStepPathParams = {
   /**
    * @type string
    */
-  step_id: string;
-};
+  step_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type RetrieveStep200 = Step;
+export type RetrieveStep200 = Step
 
 /**
  * @description Validation Error
  */
-export type RetrieveStep422 = HTTPValidationError;
+export type RetrieveStep422 = HTTPValidationError
 
-export type RetrieveStepQueryResponse = RetrieveStep200;
+export type RetrieveStepQueryResponse = RetrieveStep200
 
 export type RetrieveStepQuery = {
-  Response: RetrieveStep200;
-  PathParams: RetrieveStepPathParams;
-  Errors: RetrieveStep422;
-};
+  Response: RetrieveStep200
+  PathParams: RetrieveStepPathParams
+  Errors: RetrieveStep422
+}

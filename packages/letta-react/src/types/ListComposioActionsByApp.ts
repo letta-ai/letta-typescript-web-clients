@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { ActionModel } from './ActionModel.ts';
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { ActionModel } from './ActionModel.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type ListComposioActionsByAppPathParams = {
   /**
    * @type string
    */
-  composio_app_name: string;
-};
+  composio_app_name: string
+}
 
 /**
  * @description Successful Response
  */
-export type ListComposioActionsByApp200 = ActionModel[];
+export type ListComposioActionsByApp200 = ActionModel[]
 
 /**
  * @description Validation Error
  */
-export type ListComposioActionsByApp422 = HTTPValidationError;
+export type ListComposioActionsByApp422 = HTTPValidationError
 
-export type ListComposioActionsByAppQueryResponse = ListComposioActionsByApp200;
+export type ListComposioActionsByAppQueryResponse = ListComposioActionsByApp200
 
 export type ListComposioActionsByAppQuery = {
-  Response: ListComposioActionsByApp200;
-  PathParams: ListComposioActionsByAppPathParams;
-  Errors: ListComposioActionsByApp422;
-};
+  Response: ListComposioActionsByApp200
+  PathParams: ListComposioActionsByAppPathParams
+  Errors: ListComposioActionsByApp422
+}

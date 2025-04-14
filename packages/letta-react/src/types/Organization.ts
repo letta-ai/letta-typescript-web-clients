@@ -9,21 +9,21 @@ export type Organization = {
    * @pattern ^org-[a-fA-F0-9]{8}
    * @type string | undefined
    */
-  id?: string;
+  id?: string
   /**
    * @description The name of the organization.
    * @default "SincereYogurt"
    * @type string | undefined
    */
-  name?: string;
+  name?: string
   /**
    * @description The creation date of the organization.
    */
-  created_at?: string | null;
+  created_at?: string | null
   /**
    * @description Whether the organization has access to privileged tools.
    * @default false
    * @type boolean | undefined
    */
-  privileged_tools?: boolean;
-};
+  privileged_tools?: boolean
+}

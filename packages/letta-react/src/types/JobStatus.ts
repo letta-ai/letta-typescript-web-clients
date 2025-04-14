@@ -11,11 +11,11 @@ export const jobStatusEnum = {
   failed: 'failed',
   pending: 'pending',
   cancelled: 'cancelled',
-} as const;
+} as const
 
-export type JobStatusEnum = (typeof jobStatusEnum)[keyof typeof jobStatusEnum];
+export type JobStatusEnum = (typeof jobStatusEnum)[keyof typeof jobStatusEnum]
 
 /**
  * @description Status of the job.
  */
-export type JobStatus = JobStatusEnum;
+export type JobStatus = JobStatusEnum

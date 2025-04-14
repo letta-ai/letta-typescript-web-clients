@@ -7,13 +7,13 @@ export type FileFile = {
   /**
    * @type string | undefined
    */
-  file_data?: string;
+  file_data?: string
   /**
    * @type string | undefined
    */
-  file_id?: string;
+  file_id?: string
   /**
    * @type string | undefined
    */
-  filename?: string;
-};
+  filename?: string
+}

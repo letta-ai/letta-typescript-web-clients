@@ -6,8 +6,8 @@
 export const jobTypeEnum = {
   job: 'job',
   run: 'run',
-} as const;
+} as const
 
-export type JobTypeEnum = (typeof jobTypeEnum)[keyof typeof jobTypeEnum];
+export type JobTypeEnum = (typeof jobTypeEnum)[keyof typeof jobTypeEnum]
 
-export type JobType = JobTypeEnum;
+export type JobType = JobTypeEnum

@@ -7,10 +7,10 @@ export type FunctionOutput = {
   /**
    * @type string
    */
-  arguments: string;
+  arguments: string
   /**
    * @type string
    */
-  name: string;
-  [key: string]: any;
-};
+  name: string
+  [key: string]: any
+}

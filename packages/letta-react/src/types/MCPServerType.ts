@@ -6,9 +6,8 @@
 export const MCPServerTypeEnum = {
   sse: 'sse',
   stdio: 'stdio',
-} as const;
+} as const
 
-export type MCPServerTypeEnum =
-  (typeof MCPServerTypeEnum)[keyof typeof MCPServerTypeEnum];
+export type MCPServerTypeEnum = (typeof MCPServerTypeEnum)[keyof typeof MCPServerTypeEnum]
 
-export type MCPServerType = MCPServerTypeEnum;
+export type MCPServerType = MCPServerTypeEnum

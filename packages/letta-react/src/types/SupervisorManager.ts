@@ -8,9 +8,9 @@ export type SupervisorManager = {
    * @default "supervisor"
    * @type string | undefined
    */
-  manager_type?: 'supervisor';
+  manager_type?: 'supervisor'
   /**
    * @type string
    */
-  manager_agent_id: string;
-};
+  manager_agent_id: string
+}

@@ -3,33 +3,33 @@
  * Do not edit manually.
  */
 
-import type { AgentSchema } from './AgentSchema.ts';
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { AgentSchema } from './AgentSchema.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type ExportAgentSerializedPathParams = {
   /**
    * @type string
    */
-  agent_id: string;
-};
+  agent_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type ExportAgentSerialized200 = any;
+export type ExportAgentSerialized200 = any
 
 /**
  * @description Validation Error
  */
-export type ExportAgentSerialized422 = HTTPValidationError;
+export type ExportAgentSerialized422 = HTTPValidationError
 
-export type ExportAgentSerializedQueryRequest = AgentSchema | null;
+export type ExportAgentSerializedQueryRequest = AgentSchema | null
 
-export type ExportAgentSerializedQueryResponse = ExportAgentSerialized200;
+export type ExportAgentSerializedQueryResponse = ExportAgentSerialized200
 
 export type ExportAgentSerializedQuery = {
-  Response: ExportAgentSerialized200;
-  Request: ExportAgentSerializedQueryRequest;
-  PathParams: ExportAgentSerializedPathParams;
-  Errors: ExportAgentSerialized422;
-};
+  Response: ExportAgentSerialized200
+  Request: ExportAgentSerializedQueryRequest
+  PathParams: ExportAgentSerializedPathParams
+  Errors: ExportAgentSerialized422
+}

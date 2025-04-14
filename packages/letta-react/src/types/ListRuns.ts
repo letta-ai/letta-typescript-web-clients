@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { Run } from './Run.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Run } from './Run.ts'
 
 export type ListRunsQueryParams = {
   /**
    * @description The unique identifier of the agent associated with the run.
    */
-  agent_ids?: string[] | null;
-};
+  agent_ids?: string[] | null
+}
 
 /**
  * @description Successful Response
  */
-export type ListRuns200 = Run[];
+export type ListRuns200 = Run[]
 
 /**
  * @description Validation Error
  */
-export type ListRuns422 = HTTPValidationError;
+export type ListRuns422 = HTTPValidationError
 
-export type ListRunsQueryResponse = ListRuns200;
+export type ListRunsQueryResponse = ListRuns200
 
 export type ListRunsQuery = {
-  Response: ListRuns200;
-  QueryParams: ListRunsQueryParams;
-  Errors: ListRuns422;
-};
+  Response: ListRuns200
+  QueryParams: ListRunsQueryParams
+  Errors: ListRuns422
+}

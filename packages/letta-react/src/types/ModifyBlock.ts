@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { Block } from './Block.ts';
-import type { BlockUpdate } from './BlockUpdate.ts';
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Block } from './Block.ts'
+import type { BlockUpdate } from './BlockUpdate.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type ModifyBlockPathParams = {
   /**
    * @type string
    */
-  block_id: string;
-};
+  block_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type ModifyBlock200 = Block;
+export type ModifyBlock200 = Block
 
 /**
  * @description Validation Error
  */
-export type ModifyBlock422 = HTTPValidationError;
+export type ModifyBlock422 = HTTPValidationError
 
-export type ModifyBlockMutationRequest = BlockUpdate;
+export type ModifyBlockMutationRequest = BlockUpdate
 
-export type ModifyBlockMutationResponse = ModifyBlock200;
+export type ModifyBlockMutationResponse = ModifyBlock200
 
 export type ModifyBlockMutation = {
-  Response: ModifyBlock200;
-  Request: ModifyBlockMutationRequest;
-  PathParams: ModifyBlockPathParams;
-  Errors: ModifyBlock422;
-};
+  Response: ModifyBlock200
+  Request: ModifyBlockMutationRequest
+  PathParams: ModifyBlockPathParams
+  Errors: ModifyBlock422
+}

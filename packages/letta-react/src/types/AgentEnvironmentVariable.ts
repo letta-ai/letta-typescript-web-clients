@@ -7,42 +7,42 @@ export type AgentEnvironmentVariable = {
   /**
    * @description The id of the user that made this object.
    */
-  created_by_id?: string | null;
+  created_by_id?: string | null
   /**
    * @description The id of the user that made this object.
    */
-  last_updated_by_id?: string | null;
+  last_updated_by_id?: string | null
   /**
    * @description The timestamp when the object was created.
    */
-  created_at?: string | null;
+  created_at?: string | null
   /**
    * @description The timestamp when the object was last updated.
    */
-  updated_at?: string | null;
+  updated_at?: string | null
   /**
    * @description The human-friendly ID of the Agent-env
    * @pattern ^agent-env-[a-fA-F0-9]{8}
    * @type string | undefined
    */
-  id?: string;
+  id?: string
   /**
    * @description The name of the environment variable.
    * @type string
    */
-  key: string;
+  key: string
   /**
    * @description The value of the environment variable.
    * @type string
    */
-  value: string;
+  value: string
   /**
    * @description An optional description of the environment variable.
    */
-  description?: string | null;
+  description?: string | null
   /**
    * @description The ID of the agent this environment variable belongs to.
    * @type string
    */
-  agent_id: string;
-};
+  agent_id: string
+}

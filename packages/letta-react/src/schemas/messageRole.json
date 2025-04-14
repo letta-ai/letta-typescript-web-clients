@@ -1,6 +1,1 @@
-{
-  "type": "string",
-  "enum": ["assistant", "user", "tool", "function", "system"],
-  "title": "MessageRole",
-  "x-readme-ref-name": "MessageRole"
-}
+{"type":"string","enum":["assistant","user","tool","function","system"],"title":"MessageRole","x-readme-ref-name":"MessageRole"}

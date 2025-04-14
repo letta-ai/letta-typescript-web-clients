@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { UsageStatistics } from './UsageStatistics.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { UsageStatistics } from './UsageStatistics.ts'
 
 export type RetrieveRunUsagePathParams = {
   /**
    * @type string
    */
-  run_id: string;
-};
+  run_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type RetrieveRunUsage200 = UsageStatistics;
+export type RetrieveRunUsage200 = UsageStatistics
 
 /**
  * @description Validation Error
  */
-export type RetrieveRunUsage422 = HTTPValidationError;
+export type RetrieveRunUsage422 = HTTPValidationError
 
-export type RetrieveRunUsageQueryResponse = RetrieveRunUsage200;
+export type RetrieveRunUsageQueryResponse = RetrieveRunUsage200
 
 export type RetrieveRunUsageQuery = {
-  Response: RetrieveRunUsage200;
-  PathParams: RetrieveRunUsagePathParams;
-  Errors: RetrieveRunUsage422;
-};
+  Response: RetrieveRunUsage200
+  PathParams: RetrieveRunUsagePathParams
+  Errors: RetrieveRunUsage422
+}

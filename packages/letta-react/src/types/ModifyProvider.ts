@@ -3,26 +3,26 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { Provider } from './Provider.ts';
-import type { ProviderUpdate } from './ProviderUpdate.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Provider } from './Provider.ts'
+import type { ProviderUpdate } from './ProviderUpdate.ts'
 
 /**
  * @description Successful Response
  */
-export type ModifyProvider200 = Provider;
+export type ModifyProvider200 = Provider
 
 /**
  * @description Validation Error
  */
-export type ModifyProvider422 = HTTPValidationError;
+export type ModifyProvider422 = HTTPValidationError
 
-export type ModifyProviderMutationRequest = ProviderUpdate;
+export type ModifyProviderMutationRequest = ProviderUpdate
 
-export type ModifyProviderMutationResponse = ModifyProvider200;
+export type ModifyProviderMutationResponse = ModifyProvider200
 
 export type ModifyProviderMutation = {
-  Response: ModifyProvider200;
-  Request: ModifyProviderMutationRequest;
-  Errors: ModifyProvider422;
-};
+  Response: ModifyProvider200
+  Request: ModifyProviderMutationRequest
+  Errors: ModifyProvider422
+}

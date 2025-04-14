@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { Block } from './Block.ts';
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Block } from './Block.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type RetrieveBlockPathParams = {
   /**
    * @type string
    */
-  block_id: string;
-};
+  block_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type RetrieveBlock200 = Block;
+export type RetrieveBlock200 = Block
 
 /**
  * @description Validation Error
  */
-export type RetrieveBlock422 = HTTPValidationError;
+export type RetrieveBlock422 = HTTPValidationError
 
-export type RetrieveBlockQueryResponse = RetrieveBlock200;
+export type RetrieveBlockQueryResponse = RetrieveBlock200
 
 export type RetrieveBlockQuery = {
-  Response: RetrieveBlock200;
-  PathParams: RetrieveBlockPathParams;
-  Errors: RetrieveBlock422;
-};
+  Response: RetrieveBlock200
+  PathParams: RetrieveBlockPathParams
+  Errors: RetrieveBlock422
+}

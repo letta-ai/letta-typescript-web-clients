@@ -12,48 +12,48 @@ export type FileMetadata = {
    * @pattern ^file-[a-fA-F0-9]{8}
    * @type string | undefined
    */
-  id?: string;
+  id?: string
   /**
    * @description The unique identifier of the source associated with the document.
    * @type string
    */
-  source_id: string;
+  source_id: string
   /**
    * @description The name of the file.
    */
-  file_name?: string | null;
+  file_name?: string | null
   /**
    * @description The path to the file.
    */
-  file_path?: string | null;
+  file_path?: string | null
   /**
    * @description The type of the file (MIME type).
    */
-  file_type?: string | null;
+  file_type?: string | null
   /**
    * @description The size of the file in bytes.
    */
-  file_size?: number | null;
+  file_size?: number | null
   /**
    * @description The creation date of the file.
    */
-  file_creation_date?: string | null;
+  file_creation_date?: string | null
   /**
    * @description The last modified date of the file.
    */
-  file_last_modified_date?: string | null;
+  file_last_modified_date?: string | null
   /**
    * @description The creation date of the file.
    */
-  created_at?: string | null;
+  created_at?: string | null
   /**
    * @description The update date of the file.
    */
-  updated_at?: string | null;
+  updated_at?: string | null
   /**
    * @description Whether this file is deleted or not.
    * @default false
    * @type boolean | undefined
    */
-  is_deleted?: boolean;
-};
+  is_deleted?: boolean
+}

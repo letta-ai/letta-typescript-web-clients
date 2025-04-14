@@ -7,8 +7,8 @@ export type AgentsCreateTemplateFromAgentPathParams = {
   /**
    * @type string
    */
-  agent_id: string;
-};
+  agent_id: string
+}
 
 /**
  * @description 201
@@ -17,19 +17,19 @@ export type AgentsCreateTemplateFromAgent201 = {
   /**
    * @type string
    */
-  templateName: string;
+  templateName: string
   /**
    * @type string
    */
-  templateId: string;
-};
+  templateId: string
+}
 
 export const agentsCreateTemplateFromAgent500MessageEnum = {
   'Failed to create agent template': 'Failed to create agent template',
-} as const;
+} as const
 
 export type AgentsCreateTemplateFromAgent500MessageEnum =
-  (typeof agentsCreateTemplateFromAgent500MessageEnum)[keyof typeof agentsCreateTemplateFromAgent500MessageEnum];
+  (typeof agentsCreateTemplateFromAgent500MessageEnum)[keyof typeof agentsCreateTemplateFromAgent500MessageEnum]
 
 /**
  * @description 500
@@ -38,8 +38,8 @@ export type AgentsCreateTemplateFromAgent500 = {
   /**
    * @type string
    */
-  message: AgentsCreateTemplateFromAgent500MessageEnum;
-};
+  message: AgentsCreateTemplateFromAgent500MessageEnum
+}
 
 /**
  * @description Body
@@ -48,15 +48,14 @@ export type AgentsCreateTemplateFromAgentMutationRequest = {
   /**
    * @type string | undefined
    */
-  project?: string;
-};
+  project?: string
+}
 
-export type AgentsCreateTemplateFromAgentMutationResponse =
-  AgentsCreateTemplateFromAgent201;
+export type AgentsCreateTemplateFromAgentMutationResponse = AgentsCreateTemplateFromAgent201
 
 export type AgentsCreateTemplateFromAgentMutation = {
-  Response: AgentsCreateTemplateFromAgent201;
-  Request: AgentsCreateTemplateFromAgentMutationRequest;
-  PathParams: AgentsCreateTemplateFromAgentPathParams;
-  Errors: AgentsCreateTemplateFromAgent500;
-};
+  Response: AgentsCreateTemplateFromAgent201
+  Request: AgentsCreateTemplateFromAgentMutationRequest
+  PathParams: AgentsCreateTemplateFromAgentPathParams
+  Errors: AgentsCreateTemplateFromAgent500
+}

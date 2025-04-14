@@ -3,22 +3,22 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { Job } from './Job.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Job } from './Job.ts'
 
 /**
  * @description Successful Response
  */
-export type ListActiveJobs200 = Job[];
+export type ListActiveJobs200 = Job[]
 
 /**
  * @description Validation Error
  */
-export type ListActiveJobs422 = HTTPValidationError;
+export type ListActiveJobs422 = HTTPValidationError
 
-export type ListActiveJobsQueryResponse = ListActiveJobs200;
+export type ListActiveJobsQueryResponse = ListActiveJobs200
 
 export type ListActiveJobsQuery = {
-  Response: ListActiveJobs200;
-  Errors: ListActiveJobs422;
-};
+  Response: ListActiveJobs200
+  Errors: ListActiveJobs422
+}

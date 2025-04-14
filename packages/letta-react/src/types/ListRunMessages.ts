@@ -3,58 +3,58 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { LettaMessageUnion } from './LettaMessageUnion.ts';
-import type { MessageRole } from './MessageRole.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { LettaMessageUnion } from './LettaMessageUnion.ts'
+import type { MessageRole } from './MessageRole.ts'
 
 export type ListRunMessagesPathParams = {
   /**
    * @type string
    */
-  run_id: string;
-};
+  run_id: string
+}
 
 export type ListRunMessagesQueryParams = {
   /**
    * @description Cursor for pagination
    */
-  before?: string | null;
+  before?: string | null
   /**
    * @description Cursor for pagination
    */
-  after?: string | null;
+  after?: string | null
   /**
    * @description Maximum number of messages to return
    * @default 100
    */
-  limit?: number | null;
+  limit?: number | null
   /**
    * @description Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order.
    * @default "desc"
    * @type string | undefined
    */
-  order?: string;
+  order?: string
   /**
    * @description Filter by role
    */
-  role?: MessageRole | null;
-};
+  role?: MessageRole | null
+}
 
 /**
  * @description Successful Response
  */
-export type ListRunMessages200 = LettaMessageUnion[];
+export type ListRunMessages200 = LettaMessageUnion[]
 
 /**
  * @description Validation Error
  */
-export type ListRunMessages422 = HTTPValidationError;
+export type ListRunMessages422 = HTTPValidationError
 
-export type ListRunMessagesQueryResponse = ListRunMessages200;
+export type ListRunMessagesQueryResponse = ListRunMessages200
 
 export type ListRunMessagesQuery = {
-  Response: ListRunMessages200;
-  PathParams: ListRunMessagesPathParams;
-  QueryParams: ListRunMessagesQueryParams;
-  Errors: ListRunMessages422;
-};
+  Response: ListRunMessages200
+  PathParams: ListRunMessagesPathParams
+  QueryParams: ListRunMessagesQueryParams
+  Errors: ListRunMessages422
+}

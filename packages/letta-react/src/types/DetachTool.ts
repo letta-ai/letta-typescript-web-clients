@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { AgentState } from './AgentState.ts';
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { AgentState } from './AgentState.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type DetachToolPathParams = {
   /**
    * @type string
    */
-  agent_id: string;
+  agent_id: string
   /**
    * @type string
    */
-  tool_id: string;
-};
+  tool_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type DetachTool200 = AgentState;
+export type DetachTool200 = AgentState
 
 /**
  * @description Validation Error
  */
-export type DetachTool422 = HTTPValidationError;
+export type DetachTool422 = HTTPValidationError
 
-export type DetachToolMutationResponse = DetachTool200;
+export type DetachToolMutationResponse = DetachTool200
 
 export type DetachToolMutation = {
-  Response: DetachTool200;
-  PathParams: DetachToolPathParams;
-  Errors: DetachTool422;
-};
+  Response: DetachTool200
+  PathParams: DetachToolPathParams
+  Errors: DetachTool422
+}

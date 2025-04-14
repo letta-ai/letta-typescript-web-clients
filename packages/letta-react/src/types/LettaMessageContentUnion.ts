@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import type { OmittedReasoningContent } from './OmittedReasoningContent.ts';
-import type { ReasoningContent } from './ReasoningContent.ts';
-import type { RedactedReasoningContent } from './RedactedReasoningContent.ts';
-import type { TextContent } from './TextContent.ts';
-import type { ToolCallContent } from './ToolCallContent.ts';
-import type { ToolReturnContent } from './ToolReturnContent.ts';
+import type { OmittedReasoningContent } from './OmittedReasoningContent.ts'
+import type { ReasoningContent } from './ReasoningContent.ts'
+import type { RedactedReasoningContent } from './RedactedReasoningContent.ts'
+import type { TextContent } from './TextContent.ts'
+import type { ToolCallContent } from './ToolCallContent.ts'
+import type { ToolReturnContent } from './ToolReturnContent.ts'
 
 export const lettaMessageContentUnionTypeEnum = {
   text: 'text',
@@ -17,27 +17,26 @@ export const lettaMessageContentUnionTypeEnum = {
   reasoning: 'reasoning',
   redacted_reasoning: 'redacted_reasoning',
   omitted_reasoning: 'omitted_reasoning',
-} as const;
+} as const
 
-export type LettaMessageContentUnionTypeEnum =
-  (typeof lettaMessageContentUnionTypeEnum)[keyof typeof lettaMessageContentUnionTypeEnum];
+export type LettaMessageContentUnionTypeEnum = (typeof lettaMessageContentUnionTypeEnum)[keyof typeof lettaMessageContentUnionTypeEnum]
 
 export type LettaMessageContentUnion =
   | (TextContent & {
-      type?: LettaMessageContentUnionTypeEnum;
+      type?: LettaMessageContentUnionTypeEnum
     })
   | (ToolCallContent & {
-      type?: LettaMessageContentUnionTypeEnum;
+      type?: LettaMessageContentUnionTypeEnum
     })
   | (ToolReturnContent & {
-      type?: LettaMessageContentUnionTypeEnum;
+      type?: LettaMessageContentUnionTypeEnum
     })
   | (ReasoningContent & {
-      type?: LettaMessageContentUnionTypeEnum;
+      type?: LettaMessageContentUnionTypeEnum
     })
   | (RedactedReasoningContent & {
-      type?: LettaMessageContentUnionTypeEnum;
+      type?: LettaMessageContentUnionTypeEnum
     })
   | (OmittedReasoningContent & {
-      type?: LettaMessageContentUnionTypeEnum;
-    });
+      type?: LettaMessageContentUnionTypeEnum
+    })

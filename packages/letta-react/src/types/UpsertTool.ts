@@ -3,26 +3,26 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { Tool } from './Tool.ts';
-import type { ToolCreate } from './ToolCreate.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Tool } from './Tool.ts'
+import type { ToolCreate } from './ToolCreate.ts'
 
 /**
  * @description Successful Response
  */
-export type UpsertTool200 = Tool;
+export type UpsertTool200 = Tool
 
 /**
  * @description Validation Error
  */
-export type UpsertTool422 = HTTPValidationError;
+export type UpsertTool422 = HTTPValidationError
 
-export type UpsertToolMutationRequest = ToolCreate;
+export type UpsertToolMutationRequest = ToolCreate
 
-export type UpsertToolMutationResponse = UpsertTool200;
+export type UpsertToolMutationResponse = UpsertTool200
 
 export type UpsertToolMutation = {
-  Response: UpsertTool200;
-  Request: UpsertToolMutationRequest;
-  Errors: UpsertTool422;
-};
+  Response: UpsertTool200
+  Request: UpsertToolMutationRequest
+  Errors: UpsertTool422
+}

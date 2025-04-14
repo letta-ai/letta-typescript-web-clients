@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { AgentState } from './AgentState.ts';
-import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { AgentState } from './AgentState.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts'
 
 export type AttachToolPathParams = {
   /**
    * @type string
    */
-  agent_id: string;
+  agent_id: string
   /**
    * @type string
    */
-  tool_id: string;
-};
+  tool_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type AttachTool200 = AgentState;
+export type AttachTool200 = AgentState
 
 /**
  * @description Validation Error
  */
-export type AttachTool422 = HTTPValidationError;
+export type AttachTool422 = HTTPValidationError
 
-export type AttachToolMutationResponse = AttachTool200;
+export type AttachToolMutationResponse = AttachTool200
 
 export type AttachToolMutation = {
-  Response: AttachTool200;
-  PathParams: AttachToolPathParams;
-  Errors: AttachTool422;
-};
+  Response: AttachTool200
+  PathParams: AttachToolPathParams
+  Errors: AttachTool422
+}

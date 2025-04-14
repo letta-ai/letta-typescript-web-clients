@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { AgentState } from './AgentState.ts';
-import type { HTTPValidationError } from './HTTPValidationError.ts';
-import type { UpdateAgent } from './UpdateAgent.ts';
+import type { AgentState } from './AgentState.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { UpdateAgent } from './UpdateAgent.ts'
 
 export type ModifyAgentPathParams = {
   /**
    * @type string
    */
-  agent_id: string;
-};
+  agent_id: string
+}
 
 /**
  * @description Successful Response
  */
-export type ModifyAgent200 = AgentState;
+export type ModifyAgent200 = AgentState
 
 /**
  * @description Validation Error
  */
-export type ModifyAgent422 = HTTPValidationError;
+export type ModifyAgent422 = HTTPValidationError
 
-export type ModifyAgentMutationRequest = UpdateAgent;
+export type ModifyAgentMutationRequest = UpdateAgent
 
-export type ModifyAgentMutationResponse = ModifyAgent200;
+export type ModifyAgentMutationResponse = ModifyAgent200
 
 export type ModifyAgentMutation = {
-  Response: ModifyAgent200;
-  Request: ModifyAgentMutationRequest;
-  PathParams: ModifyAgentPathParams;
-  Errors: ModifyAgent422;
-};
+  Response: ModifyAgent200
+  Request: ModifyAgentMutationRequest
+  PathParams: ModifyAgentPathParams
+  Errors: ModifyAgent422
+}

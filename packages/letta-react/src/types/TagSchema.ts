@@ -7,5 +7,5 @@ export type TagSchema = {
   /**
    * @type string
    */
-  tag: string;
-};
+  tag: string
+}

@@ -1,10 +1,1 @@
-{
-  "properties": {
-    "arguments": { "type": "string", "title": "Arguments" },
-    "name": { "type": "string", "title": "Name" }
-  },
-  "type": "object",
-  "required": ["arguments", "name"],
-  "title": "FunctionCall",
-  "x-readme-ref-name": "FunctionCall"
-}
+{"properties":{"arguments":{"type":"string","title":"Arguments"},"name":{"type":"string","title":"Name"}},"type":"object","required":["arguments","name"],"title":"FunctionCall","x-readme-ref-name":"FunctionCall"}
