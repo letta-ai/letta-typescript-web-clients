@@ -1,6 +1,6 @@
 {
   "name": "@letta-ai/letta-nextjs",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Letta's NextJS library",
   "private": false,
   "main": "./index.js",
@@ -9,11 +9,6 @@
       "types": "./index.d.ts",
       "import": "./index.js",
       "require": "./index.js"
-    },
-    "./client": {
-      "types": "./client/index.d.ts",
-      "import": "./client/index.js",
-      "require": "./client/index.js"
     },
     "./server": {
       "types": "./server/index.d.ts",
