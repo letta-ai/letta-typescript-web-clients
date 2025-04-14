@@ -1,1 +1,9 @@
-{"properties":{"type":{"type":"string","const":"json_object","title":"Type"}},"type":"object","required":["type"],"title":"ResponseFormatJSONObject","x-readme-ref-name":"ResponseFormatJSONObject"}
+{
+  "properties": {
+    "type": { "type": "string", "const": "json_object", "title": "Type" }
+  },
+  "type": "object",
+  "required": ["type"],
+  "title": "ResponseFormatJSONObject",
+  "x-readme-ref-name": "ResponseFormatJSONObject"
+}

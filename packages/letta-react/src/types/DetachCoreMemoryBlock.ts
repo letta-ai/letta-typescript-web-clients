@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { AgentState } from './AgentState.ts'
-import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { AgentState } from './AgentState.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts';
 
 export type DetachCoreMemoryBlockPathParams = {
   /**
    * @type string
    */
-  agent_id: string
+  agent_id: string;
   /**
    * @type string
    */
-  block_id: string
-}
+  block_id: string;
+};
 
 /**
  * @description Successful Response
  */
-export type DetachCoreMemoryBlock200 = AgentState
+export type DetachCoreMemoryBlock200 = AgentState;
 
 /**
  * @description Validation Error
  */
-export type DetachCoreMemoryBlock422 = HTTPValidationError
+export type DetachCoreMemoryBlock422 = HTTPValidationError;
 
-export type DetachCoreMemoryBlockMutationResponse = DetachCoreMemoryBlock200
+export type DetachCoreMemoryBlockMutationResponse = DetachCoreMemoryBlock200;
 
 export type DetachCoreMemoryBlockMutation = {
-  Response: DetachCoreMemoryBlock200
-  PathParams: DetachCoreMemoryBlockPathParams
-  Errors: DetachCoreMemoryBlock422
-}
+  Response: DetachCoreMemoryBlock200;
+  PathParams: DetachCoreMemoryBlockPathParams;
+  Errors: DetachCoreMemoryBlock422;
+};

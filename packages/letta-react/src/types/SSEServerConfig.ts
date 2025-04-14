@@ -3,21 +3,21 @@
  * Do not edit manually.
  */
 
-import type { MCPServerType } from './MCPServerType.ts'
+import type { MCPServerType } from './MCPServerType.ts';
 
 export type SSEServerConfig = {
   /**
    * @description The name of the server
    * @type string
    */
-  server_name: string
+  server_name: string;
   /**
    * @type string | undefined
    */
-  type?: MCPServerType
+  type?: MCPServerType;
   /**
    * @description The URL of the server (MCP SSE client will connect to this URL)
    * @type string
    */
-  server_url: string
-}
+  server_url: string;
+};

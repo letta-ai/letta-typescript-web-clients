@@ -3,35 +3,62 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { ListProvidersQueryResponse, ListProvidersQueryParams, ListProviders422 } from '../../types/ListProviders.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  ListProvidersQueryResponse,
+  ListProvidersQueryParams,
+  ListProviders422,
+} from '../../types/ListProviders.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  UseSuspenseQueryOptions,
+  UseSuspenseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 
-export const listProvidersSuspenseQueryKey = (params?: ListProvidersQueryParams) => [{ url: '/v1/providers/' }, ...(params ? [params] : [])] as const
+export const listProvidersSuspenseQueryKey = (
+  params?: ListProvidersQueryParams
+) => [{ url: '/v1/providers/' }, ...(params ? [params] : [])] as const;
 
-export type ListProvidersSuspenseQueryKey = ReturnType<typeof listProvidersSuspenseQueryKey>
+export type ListProvidersSuspenseQueryKey = ReturnType<
+  typeof listProvidersSuspenseQueryKey
+>;
 
 /**
  * @description Get a list of all custom providers in the database
  * @summary List Providers
  * {@link /v1/providers/}
  */
-export async function listProvidersSuspense(params?: ListProvidersQueryParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const { client: request = client, ...requestConfig } = config
+export async function listProvidersSuspense(
+  params?: ListProvidersQueryParams,
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<ListProvidersQueryResponse, ResponseErrorConfig<ListProviders422>, unknown>({
+  const res = await request<
+    ListProvidersQueryResponse,
+    ResponseErrorConfig<ListProviders422>,
+    unknown
+  >({
     method: 'GET',
     url: `/v1/providers/`,
     params,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
-export function listProvidersSuspenseQueryOptions(params?: ListProvidersQueryParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const queryKey = listProvidersSuspenseQueryKey(params)
+export function listProvidersSuspenseQueryOptions(
+  params?: ListProvidersQueryParams,
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const queryKey = listProvidersSuspenseQueryKey(params);
   return queryOptions<
     ResponseConfig<ListProvidersQueryResponse>,
     ResponseErrorConfig<ListProviders422>,
@@ -40,10 +67,10 @@ export function listProvidersSuspenseQueryOptions(params?: ListProvidersQueryPar
   >({
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return listProvidersSuspense(params, config)
+      config.signal = signal;
+      return listProvidersSuspense(params, config);
     },
-  })
+  });
 }
 
 /**
@@ -54,29 +81,45 @@ export function listProvidersSuspenseQueryOptions(params?: ListProvidersQueryPar
 export function useListProvidersSuspense<
   TData = ResponseConfig<ListProvidersQueryResponse>,
   TQueryData = ResponseConfig<ListProvidersQueryResponse>,
-  TQueryKey extends QueryKey = ListProvidersSuspenseQueryKey,
+  TQueryKey extends QueryKey = ListProvidersSuspenseQueryKey
 >(
   params?: ListProvidersQueryParams,
   options: {
-    query?: Partial<UseSuspenseQueryOptions<ResponseConfig<ListProvidersQueryResponse>, ResponseErrorConfig<ListProviders422>, TData, TQueryKey>> & {
-      client?: QueryClient
-    }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    query?: Partial<
+      UseSuspenseQueryOptions<
+        ResponseConfig<ListProvidersQueryResponse>,
+        ResponseErrorConfig<ListProviders422>,
+        TData,
+        TQueryKey
+      >
+    > & {
+      client?: QueryClient;
+    };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? listProvidersSuspenseQueryKey(params)
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey =
+    queryOptions?.queryKey ?? listProvidersSuspenseQueryKey(params);
 
   const query = useSuspenseQuery(
     {
-      ...(listProvidersSuspenseQueryOptions(params, config) as unknown as UseSuspenseQueryOptions),
+      ...(listProvidersSuspenseQueryOptions(
+        params,
+        config
+      ) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<ListProviders422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<ListProviders422>> & {
+    queryKey: TQueryKey;
+  };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

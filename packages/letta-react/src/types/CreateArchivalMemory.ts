@@ -8,5 +8,5 @@ export type CreateArchivalMemory = {
    * @description Text to write to archival memory.
    * @type string
    */
-  text: string
-}
+  text: string;
+};

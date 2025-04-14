@@ -1,1 +1,7 @@
-{"properties":{"name":{"type":"string","title":"Name"}},"type":"object","required":["name"],"title":"Function","x-readme-ref-name":"openai__types__chat__chat_completion_named_tool_choice_param__Function"}
+{
+  "properties": { "name": { "type": "string", "title": "Name" } },
+  "type": "object",
+  "required": ["name"],
+  "title": "Function",
+  "x-readme-ref-name": "openai__types__chat__chat_completion_named_tool_choice_param__Function"
+}

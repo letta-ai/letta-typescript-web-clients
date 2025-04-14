@@ -5,24 +5,26 @@
 
 export const policyVersionEnum = {
   '1': '1',
-} as const
+} as const;
 
-export type PolicyVersionEnum = (typeof policyVersionEnum)[keyof typeof policyVersionEnum]
+export type PolicyVersionEnum =
+  (typeof policyVersionEnum)[keyof typeof policyVersionEnum];
 
 export const dataTypeEnum = {
   agent: 'agent',
-} as const
+} as const;
 
-export type DataTypeEnum = (typeof dataTypeEnum)[keyof typeof dataTypeEnum]
+export type DataTypeEnum = (typeof dataTypeEnum)[keyof typeof dataTypeEnum];
 
 export const dataAccessEnum = {
   read_messages: 'read_messages',
   write_messages: 'write_messages',
   read_agent: 'read_agent',
   write_agent: 'write_agent',
-} as const
+} as const;
 
-export type DataAccessEnum = (typeof dataAccessEnum)[keyof typeof dataAccessEnum]
+export type DataAccessEnum =
+  (typeof dataAccessEnum)[keyof typeof dataAccessEnum];
 
 /**
  * @description 201
@@ -35,7 +37,7 @@ export type ClientSideAccessTokensCreateClientSideAccessToken201 = {
     /**
      * @type string
      */
-    version: PolicyVersionEnum
+    version: PolicyVersionEnum;
     /**
      * @type array
      */
@@ -43,30 +45,30 @@ export type ClientSideAccessTokensCreateClientSideAccessToken201 = {
       /**
        * @type string
        */
-      type: DataTypeEnum
+      type: DataTypeEnum;
       /**
        * @type string
        */
-      id: string
+      id: string;
       /**
        * @type array
        */
-      access: DataAccessEnum[]
-    }[]
-  }
+      access: DataAccessEnum[];
+    }[];
+  };
   /**
    * @type string
    */
-  token: string
+  token: string;
   /**
    * @type string
    */
-  hostname: string
+  hostname: string;
   /**
    * @type string
    */
-  expiresAt: string
-}
+  expiresAt: string;
+};
 
 /**
  * @description 400
@@ -75,23 +77,25 @@ export type ClientSideAccessTokensCreateClientSideAccessToken400 = {
   /**
    * @type string
    */
-  message: string
-}
+  message: string;
+};
 
 export const policyTypeEnum = {
   agent: 'agent',
-} as const
+} as const;
 
-export type PolicyTypeEnum = (typeof policyTypeEnum)[keyof typeof policyTypeEnum]
+export type PolicyTypeEnum =
+  (typeof policyTypeEnum)[keyof typeof policyTypeEnum];
 
 export const policyAccessEnum = {
   read_messages: 'read_messages',
   write_messages: 'write_messages',
   read_agent: 'read_agent',
   write_agent: 'write_agent',
-} as const
+} as const;
 
-export type PolicyAccessEnum = (typeof policyAccessEnum)[keyof typeof policyAccessEnum]
+export type PolicyAccessEnum =
+  (typeof policyAccessEnum)[keyof typeof policyAccessEnum];
 
 /**
  * @description Body
@@ -104,32 +108,33 @@ export type ClientSideAccessTokensCreateClientSideAccessTokenMutationRequest = {
     /**
      * @type string
      */
-    type: PolicyTypeEnum
+    type: PolicyTypeEnum;
     /**
      * @type string
      */
-    id: string
+    id: string;
     /**
      * @type array
      */
-    access: PolicyAccessEnum[]
-  }[]
+    access: PolicyAccessEnum[];
+  }[];
   /**
    * @description The hostname of the client side application. Please specify the full URL including the protocol (http or https).
    * @type string, uri
    */
-  hostname: string
+  hostname: string;
   /**
    * @description The expiration date of the token. If not provided, the token will expire in 5 minutes
    * @type string | undefined
    */
-  expires_at?: string
-}
+  expires_at?: string;
+};
 
-export type ClientSideAccessTokensCreateClientSideAccessTokenMutationResponse = ClientSideAccessTokensCreateClientSideAccessToken201
+export type ClientSideAccessTokensCreateClientSideAccessTokenMutationResponse =
+  ClientSideAccessTokensCreateClientSideAccessToken201;
 
 export type ClientSideAccessTokensCreateClientSideAccessTokenMutation = {
-  Response: ClientSideAccessTokensCreateClientSideAccessToken201
-  Request: ClientSideAccessTokensCreateClientSideAccessTokenMutationRequest
-  Errors: ClientSideAccessTokensCreateClientSideAccessToken400
-}
+  Response: ClientSideAccessTokensCreateClientSideAccessToken201;
+  Request: ClientSideAccessTokensCreateClientSideAccessTokenMutationRequest;
+  Errors: ClientSideAccessTokensCreateClientSideAccessToken400;
+};

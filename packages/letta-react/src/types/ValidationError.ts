@@ -7,13 +7,13 @@ export type ValidationError = {
   /**
    * @type array
    */
-  loc: (string | number)[]
+  loc: (string | number)[];
   /**
    * @type string
    */
-  msg: string
+  msg: string;
   /**
    * @type string
    */
-  type: string
-}
+  type: string;
+};

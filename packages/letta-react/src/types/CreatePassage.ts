@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { CreateArchivalMemory } from './CreateArchivalMemory.ts'
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { Passage } from './Passage.ts'
+import type { CreateArchivalMemory } from './CreateArchivalMemory.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Passage } from './Passage.ts';
 
 export type CreatePassagePathParams = {
   /**
    * @type string
    */
-  agent_id: string
-}
+  agent_id: string;
+};
 
 /**
  * @description Successful Response
  */
-export type CreatePassage200 = Passage[]
+export type CreatePassage200 = Passage[];
 
 /**
  * @description Validation Error
  */
-export type CreatePassage422 = HTTPValidationError
+export type CreatePassage422 = HTTPValidationError;
 
-export type CreatePassageMutationRequest = CreateArchivalMemory
+export type CreatePassageMutationRequest = CreateArchivalMemory;
 
-export type CreatePassageMutationResponse = CreatePassage200
+export type CreatePassageMutationResponse = CreatePassage200;
 
 export type CreatePassageMutation = {
-  Response: CreatePassage200
-  Request: CreatePassageMutationRequest
-  PathParams: CreatePassagePathParams
-  Errors: CreatePassage422
-}
+  Response: CreatePassage200;
+  Request: CreatePassageMutationRequest;
+  PathParams: CreatePassagePathParams;
+  Errors: CreatePassage422;
+};

@@ -1,1 +1,31 @@
-{"oneOf":[{"properties":{"type":{"type":"string","const":"text","title":"Type","description":"The type of the message.","default":"text","enum":["text"]},"text":{"type":"string","title":"Text","description":"The text content of the message."}},"type":"object","required":["text","type","type","type"],"title":"TextContent","x-readme-ref-name":"TextContent"}],"discriminator":{"propertyName":"type","mapping":{"text":"#/components/schemas/TextContent"}},"x-readme-ref-name":"LettaAssistantMessageContentUnion","properties":{"type":{"enum":["text"]}}}
+{
+  "oneOf": [
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "text",
+          "title": "Type",
+          "description": "The type of the message.",
+          "default": "text",
+          "enum": ["text"]
+        },
+        "text": {
+          "type": "string",
+          "title": "Text",
+          "description": "The text content of the message."
+        }
+      },
+      "type": "object",
+      "required": ["text", "type", "type", "type"],
+      "title": "TextContent",
+      "x-readme-ref-name": "TextContent"
+    }
+  ],
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": { "text": "#/components/schemas/TextContent" }
+  },
+  "x-readme-ref-name": "LettaAssistantMessageContentUnion",
+  "properties": { "type": { "enum": ["text"] } }
+}

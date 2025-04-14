@@ -11,15 +11,15 @@ export type ChildToolRule = {
    * @description The name of the tool. Must exist in the database for the user\'s organization.
    * @type string
    */
-  tool_name: string
+  tool_name: string;
   /**
    * @default "constrain_child_tools"
    * @type string | undefined
    */
-  type?: 'constrain_child_tools'
+  type?: 'constrain_child_tools';
   /**
    * @description The children tools that can be invoked.
    * @type array
    */
-  children: string[]
-}
+  children: string[];
+};

@@ -3,26 +3,26 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { Source } from './Source.ts'
-import type { SourceCreate } from './SourceCreate.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Source } from './Source.ts';
+import type { SourceCreate } from './SourceCreate.ts';
 
 /**
  * @description Successful Response
  */
-export type CreateSource200 = Source
+export type CreateSource200 = Source;
 
 /**
  * @description Validation Error
  */
-export type CreateSource422 = HTTPValidationError
+export type CreateSource422 = HTTPValidationError;
 
-export type CreateSourceMutationRequest = SourceCreate
+export type CreateSourceMutationRequest = SourceCreate;
 
-export type CreateSourceMutationResponse = CreateSource200
+export type CreateSourceMutationResponse = CreateSource200;
 
 export type CreateSourceMutation = {
-  Response: CreateSource200
-  Request: CreateSourceMutationRequest
-  Errors: CreateSource422
-}
+  Response: CreateSource200;
+  Request: CreateSourceMutationRequest;
+  Errors: CreateSource422;
+};

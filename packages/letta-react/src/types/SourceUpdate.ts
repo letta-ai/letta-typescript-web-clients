@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import type { EmbeddingConfig } from './EmbeddingConfig.ts'
+import type { EmbeddingConfig } from './EmbeddingConfig.ts';
 
 /**
  * @description Schema for updating an existing Source.
@@ -12,19 +12,19 @@ export type SourceUpdate = {
   /**
    * @description The name of the source.
    */
-  name?: string | null
+  name?: string | null;
   /**
    * @description The description of the source.
    */
-  description?: string | null
+  description?: string | null;
   /**
    * @description Metadata associated with the source.
    */
   metadata?: {
-    [key: string]: any
-  } | null
+    [key: string]: any;
+  } | null;
   /**
    * @description The embedding configuration used by the source.
    */
-  embedding_config?: EmbeddingConfig | null
-}
+  embedding_config?: EmbeddingConfig | null;
+};

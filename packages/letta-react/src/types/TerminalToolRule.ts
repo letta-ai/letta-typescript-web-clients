@@ -11,10 +11,10 @@ export type TerminalToolRule = {
    * @description The name of the tool. Must exist in the database for the user\'s organization.
    * @type string
    */
-  tool_name: string
+  tool_name: string;
   /**
    * @default "exit_loop"
    * @type string | undefined
    */
-  type?: 'exit_loop'
-}
+  type?: 'exit_loop';
+};

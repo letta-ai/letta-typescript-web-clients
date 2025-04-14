@@ -3,35 +3,61 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { RetrieveRunUsageQueryResponse, RetrieveRunUsagePathParams, RetrieveRunUsage422 } from '../../types/RetrieveRunUsage.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  RetrieveRunUsageQueryResponse,
+  RetrieveRunUsagePathParams,
+  RetrieveRunUsage422,
+} from '../../types/RetrieveRunUsage.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  QueryObserverOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
-export const retrieveRunUsageQueryKey = (run_id: RetrieveRunUsagePathParams['run_id']) =>
-  [{ url: '/v1/runs/:run_id/usage', params: { run_id: run_id } }] as const
+export const retrieveRunUsageQueryKey = (
+  run_id: RetrieveRunUsagePathParams['run_id']
+) => [{ url: '/v1/runs/:run_id/usage', params: { run_id: run_id } }] as const;
 
-export type RetrieveRunUsageQueryKey = ReturnType<typeof retrieveRunUsageQueryKey>
+export type RetrieveRunUsageQueryKey = ReturnType<
+  typeof retrieveRunUsageQueryKey
+>;
 
 /**
  * @description Get usage statistics for a run.
  * @summary Retrieve Run Usage
  * {@link /v1/runs/:run_id/usage}
  */
-export async function retrieveRunUsage(run_id: RetrieveRunUsagePathParams['run_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const { client: request = client, ...requestConfig } = config
+export async function retrieveRunUsage(
+  run_id: RetrieveRunUsagePathParams['run_id'],
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<RetrieveRunUsageQueryResponse, ResponseErrorConfig<RetrieveRunUsage422>, unknown>({
+  const res = await request<
+    RetrieveRunUsageQueryResponse,
+    ResponseErrorConfig<RetrieveRunUsage422>,
+    unknown
+  >({
     method: 'GET',
     url: `/v1/runs/${run_id}/usage`,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
-export function retrieveRunUsageQueryOptions(run_id: RetrieveRunUsagePathParams['run_id'], config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const queryKey = retrieveRunUsageQueryKey(run_id)
+export function retrieveRunUsageQueryOptions(
+  run_id: RetrieveRunUsagePathParams['run_id'],
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const queryKey = retrieveRunUsageQueryKey(run_id);
   return queryOptions<
     ResponseConfig<RetrieveRunUsageQueryResponse>,
     ResponseErrorConfig<RetrieveRunUsage422>,
@@ -41,10 +67,10 @@ export function retrieveRunUsageQueryOptions(run_id: RetrieveRunUsagePathParams[
     enabled: !!run_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return retrieveRunUsage(run_id, config)
+      config.signal = signal;
+      return retrieveRunUsage(run_id, config);
     },
-  })
+  });
 }
 
 /**
@@ -55,29 +81,43 @@ export function retrieveRunUsageQueryOptions(run_id: RetrieveRunUsagePathParams[
 export function useRetrieveRunUsage<
   TData = ResponseConfig<RetrieveRunUsageQueryResponse>,
   TQueryData = ResponseConfig<RetrieveRunUsageQueryResponse>,
-  TQueryKey extends QueryKey = RetrieveRunUsageQueryKey,
+  TQueryKey extends QueryKey = RetrieveRunUsageQueryKey
 >(
   run_id: RetrieveRunUsagePathParams['run_id'],
   options: {
     query?: Partial<
-      QueryObserverOptions<ResponseConfig<RetrieveRunUsageQueryResponse>, ResponseErrorConfig<RetrieveRunUsage422>, TData, TQueryData, TQueryKey>
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+      QueryObserverOptions<
+        ResponseConfig<RetrieveRunUsageQueryResponse>,
+        ResponseErrorConfig<RetrieveRunUsage422>,
+        TData,
+        TQueryData,
+        TQueryKey
+      >
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? retrieveRunUsageQueryKey(run_id)
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey = queryOptions?.queryKey ?? retrieveRunUsageQueryKey(run_id);
 
   const query = useQuery(
     {
-      ...(retrieveRunUsageQueryOptions(run_id, config) as unknown as QueryObserverOptions),
+      ...(retrieveRunUsageQueryOptions(
+        run_id,
+        config
+      ) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseQueryResult<TData, ResponseErrorConfig<RetrieveRunUsage422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseQueryResult<TData, ResponseErrorConfig<RetrieveRunUsage422>> & {
+    queryKey: TQueryKey;
+  };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

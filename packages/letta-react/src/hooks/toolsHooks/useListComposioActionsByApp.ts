@@ -3,20 +3,38 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
+import client from '@kubb/plugin-client/clients/axios';
 import type {
   ListComposioActionsByAppQueryResponse,
   ListComposioActionsByAppPathParams,
   ListComposioActionsByApp422,
-} from '../../types/ListComposioActionsByApp.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useQuery } from '@tanstack/react-query'
+} from '../../types/ListComposioActionsByApp.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  QueryObserverOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
-export const listComposioActionsByAppQueryKey = (composio_app_name: ListComposioActionsByAppPathParams['composio_app_name']) =>
-  [{ url: '/v1/tools/composio/apps/:composio_app_name/actions', params: { composio_app_name: composio_app_name } }] as const
+export const listComposioActionsByAppQueryKey = (
+  composio_app_name: ListComposioActionsByAppPathParams['composio_app_name']
+) =>
+  [
+    {
+      url: '/v1/tools/composio/apps/:composio_app_name/actions',
+      params: { composio_app_name: composio_app_name },
+    },
+  ] as const;
 
-export type ListComposioActionsByAppQueryKey = ReturnType<typeof listComposioActionsByAppQueryKey>
+export type ListComposioActionsByAppQueryKey = ReturnType<
+  typeof listComposioActionsByAppQueryKey
+>;
 
 /**
  * @description Get a list of all Composio actions for a specific app
@@ -25,23 +43,27 @@ export type ListComposioActionsByAppQueryKey = ReturnType<typeof listComposioAct
  */
 export async function listComposioActionsByApp(
   composio_app_name: ListComposioActionsByAppPathParams['composio_app_name'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<ListComposioActionsByAppQueryResponse, ResponseErrorConfig<ListComposioActionsByApp422>, unknown>({
+  const res = await request<
+    ListComposioActionsByAppQueryResponse,
+    ResponseErrorConfig<ListComposioActionsByApp422>,
+    unknown
+  >({
     method: 'GET',
     url: `/v1/tools/composio/apps/${composio_app_name}/actions`,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 export function listComposioActionsByAppQueryOptions(
   composio_app_name: ListComposioActionsByAppPathParams['composio_app_name'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const queryKey = listComposioActionsByAppQueryKey(composio_app_name)
+  const queryKey = listComposioActionsByAppQueryKey(composio_app_name);
   return queryOptions<
     ResponseConfig<ListComposioActionsByAppQueryResponse>,
     ResponseErrorConfig<ListComposioActionsByApp422>,
@@ -51,10 +73,10 @@ export function listComposioActionsByAppQueryOptions(
     enabled: !!composio_app_name,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return listComposioActionsByApp(composio_app_name, config)
+      config.signal = signal;
+      return listComposioActionsByApp(composio_app_name, config);
     },
-  })
+  });
 }
 
 /**
@@ -65,7 +87,7 @@ export function listComposioActionsByAppQueryOptions(
 export function useListComposioActionsByApp<
   TData = ResponseConfig<ListComposioActionsByAppQueryResponse>,
   TQueryData = ResponseConfig<ListComposioActionsByAppQueryResponse>,
-  TQueryKey extends QueryKey = ListComposioActionsByAppQueryKey,
+  TQueryKey extends QueryKey = ListComposioActionsByAppQueryKey
 >(
   composio_app_name: ListComposioActionsByAppPathParams['composio_app_name'],
   options: {
@@ -77,23 +99,34 @@ export function useListComposioActionsByApp<
         TQueryData,
         TQueryKey
       >
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? listComposioActionsByAppQueryKey(composio_app_name)
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey =
+    queryOptions?.queryKey ??
+    listComposioActionsByAppQueryKey(composio_app_name);
 
   const query = useQuery(
     {
-      ...(listComposioActionsByAppQueryOptions(composio_app_name, config) as unknown as QueryObserverOptions),
+      ...(listComposioActionsByAppQueryOptions(
+        composio_app_name,
+        config
+      ) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseQueryResult<TData, ResponseErrorConfig<ListComposioActionsByApp422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseQueryResult<
+    TData,
+    ResponseErrorConfig<ListComposioActionsByApp422>
+  > & { queryKey: TQueryKey };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

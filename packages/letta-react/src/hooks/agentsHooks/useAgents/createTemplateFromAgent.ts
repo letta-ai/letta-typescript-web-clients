@@ -3,20 +3,27 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
+import client from '@kubb/plugin-client/clients/axios';
 import type {
   AgentsCreateTemplateFromAgentMutationRequest,
   AgentsCreateTemplateFromAgentMutationResponse,
   AgentsCreateTemplateFromAgentPathParams,
   AgentsCreateTemplateFromAgent500,
-} from '../../../types/agents/CreateTemplateFromAgent.ts'
-import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
-import { useMutation } from '@tanstack/react-query'
+} from '../../../types/agents/CreateTemplateFromAgent.ts';
+import type {
+  RequestConfig,
+  ResponseConfig,
+  ResponseErrorConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-export const agentsCreateTemplateFromAgentMutationKey = () => [{ url: '/v1/agents/{agent_id}/template' }] as const
+export const agentsCreateTemplateFromAgentMutationKey = () =>
+  [{ url: '/v1/agents/{agent_id}/template' }] as const;
 
-export type AgentsCreateTemplateFromAgentMutationKey = ReturnType<typeof agentsCreateTemplateFromAgentMutationKey>
+export type AgentsCreateTemplateFromAgentMutationKey = ReturnType<
+  typeof agentsCreateTemplateFromAgentMutationKey
+>;
 
 /**
  * @description Create a template from an agent
@@ -26,16 +33,23 @@ export type AgentsCreateTemplateFromAgentMutationKey = ReturnType<typeof agentsC
 export async function agentsCreateTemplateFromAgent(
   agent_id: AgentsCreateTemplateFromAgentPathParams['agent_id'],
   data?: AgentsCreateTemplateFromAgentMutationRequest,
-  config: Partial<RequestConfig<AgentsCreateTemplateFromAgentMutationRequest>> & { client?: typeof client } = {},
+  config: Partial<
+    RequestConfig<AgentsCreateTemplateFromAgentMutationRequest>
+  > & { client?: typeof client } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
   const res = await request<
     AgentsCreateTemplateFromAgentMutationResponse,
     ResponseErrorConfig<AgentsCreateTemplateFromAgent500>,
     AgentsCreateTemplateFromAgentMutationRequest
-  >({ method: 'POST', url: `/v1/agents/${agent_id}/template`, data, ...requestConfig })
-  return res
+  >({
+    method: 'POST',
+    url: `/v1/agents/${agent_id}/template`,
+    data,
+    ...requestConfig,
+  });
+  return res;
 }
 
 /**
@@ -48,28 +62,40 @@ export function useAgentsCreateTemplateFromAgent<TContext>(
     mutation?: UseMutationOptions<
       ResponseConfig<AgentsCreateTemplateFromAgentMutationResponse>,
       ResponseErrorConfig<AgentsCreateTemplateFromAgent500>,
-      { agent_id: AgentsCreateTemplateFromAgentPathParams['agent_id']; data?: AgentsCreateTemplateFromAgentMutationRequest },
+      {
+        agent_id: AgentsCreateTemplateFromAgentPathParams['agent_id'];
+        data?: AgentsCreateTemplateFromAgentMutationRequest;
+      },
       TContext
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig<AgentsCreateTemplateFromAgentMutationRequest>> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<
+      RequestConfig<AgentsCreateTemplateFromAgentMutationRequest>
+    > & { client?: typeof client };
+  } = {}
 ) {
-  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
-  const mutationKey = mutationOptions?.mutationKey ?? agentsCreateTemplateFromAgentMutationKey()
+  const {
+    mutation: { client: queryClient, ...mutationOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const mutationKey =
+    mutationOptions?.mutationKey ?? agentsCreateTemplateFromAgentMutationKey();
 
   return useMutation<
     ResponseConfig<AgentsCreateTemplateFromAgentMutationResponse>,
     ResponseErrorConfig<AgentsCreateTemplateFromAgent500>,
-    { agent_id: AgentsCreateTemplateFromAgentPathParams['agent_id']; data?: AgentsCreateTemplateFromAgentMutationRequest },
+    {
+      agent_id: AgentsCreateTemplateFromAgentPathParams['agent_id'];
+      data?: AgentsCreateTemplateFromAgentMutationRequest;
+    },
     TContext
   >(
     {
       mutationFn: async ({ agent_id, data }) => {
-        return agentsCreateTemplateFromAgent(agent_id, data, config)
+        return agentsCreateTemplateFromAgent(agent_id, data, config);
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient,
-  )
+    queryClient
+  );
 }

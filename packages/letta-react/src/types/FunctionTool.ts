@@ -3,16 +3,16 @@
  * Do not edit manually.
  */
 
-import type { FunctionDefinitionOutput } from './FunctionDefinitionOutput.ts'
+import type { FunctionDefinitionOutput } from './FunctionDefinitionOutput.ts';
 
 export type FunctionTool = {
   /**
    * @type object
    */
-  function: FunctionDefinitionOutput
+  function: FunctionDefinitionOutput;
   /**
    * @type string
    */
-  type: 'function'
-  [key: string]: any
-}
+  type: 'function';
+  [key: string]: any;
+};

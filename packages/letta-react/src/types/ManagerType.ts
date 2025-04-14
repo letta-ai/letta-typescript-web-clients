@@ -9,8 +9,9 @@ export const managerTypeEnum = {
   dynamic: 'dynamic',
   sleeptime: 'sleeptime',
   swarm: 'swarm',
-} as const
+} as const;
 
-export type ManagerTypeEnum = (typeof managerTypeEnum)[keyof typeof managerTypeEnum]
+export type ManagerTypeEnum =
+  (typeof managerTypeEnum)[keyof typeof managerTypeEnum];
 
-export type ManagerType = ManagerTypeEnum
+export type ManagerType = ManagerTypeEnum;

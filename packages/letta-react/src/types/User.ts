@@ -12,24 +12,24 @@ export type User = {
    * @pattern ^user-[a-fA-F0-9]{8}
    * @type string | undefined
    */
-  id?: string
+  id?: string;
   /**
    * @description The name of the user.
    * @type string
    */
-  name: string
+  name: string;
   /**
    * @description The creation date of the user.
    */
-  created_at?: string | null
+  created_at?: string | null;
   /**
    * @description The update date of the user.
    */
-  updated_at?: string | null
+  updated_at?: string | null;
   /**
    * @description Whether this user is deleted or not.
    * @default false
    * @type boolean | undefined
    */
-  is_deleted?: boolean
-}
+  is_deleted?: boolean;
+};

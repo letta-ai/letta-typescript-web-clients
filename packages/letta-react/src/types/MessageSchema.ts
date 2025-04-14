@@ -3,35 +3,35 @@
  * Do not edit manually.
  */
 
-import type { TextContent } from './TextContent.ts'
+import type { TextContent } from './TextContent.ts';
 
 export type MessageSchema = {
   /**
    * @type string
    */
-  created_at: string
-  group_id: string | null
-  model: string | null
-  name: string | null
+  created_at: string;
+  group_id: string | null;
+  model: string | null;
+  name: string | null;
   /**
    * @type string
    */
-  role: string
+  role: string;
   /**
    * @type array
    */
-  content: TextContent[]
-  tool_call_id: string | null
+  content: TextContent[];
+  tool_call_id: string | null;
   /**
    * @type array
    */
-  tool_calls: any[]
+  tool_calls: any[];
   /**
    * @type array
    */
-  tool_returns: any[]
+  tool_returns: any[];
   /**
    * @type string
    */
-  updated_at: string
-}
+  updated_at: string;
+};

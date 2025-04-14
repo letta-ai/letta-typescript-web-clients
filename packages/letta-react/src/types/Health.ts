@@ -10,9 +10,9 @@ export type Health = {
   /**
    * @type string
    */
-  version: string
+  version: string;
   /**
    * @type string
    */
-  status: string
-}
+  status: string;
+};

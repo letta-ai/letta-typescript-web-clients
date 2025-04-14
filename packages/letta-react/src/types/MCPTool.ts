@@ -10,13 +10,13 @@ export type MCPTool = {
   /**
    * @type string
    */
-  name: string
-  description?: string | null
+  name: string;
+  description?: string | null;
   /**
    * @type object
    */
   inputSchema: {
-    [key: string]: any
-  }
-  [key: string]: any
-}
+    [key: string]: any;
+  };
+  [key: string]: any;
+};

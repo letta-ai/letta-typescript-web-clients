@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { AgentState } from './AgentState.ts'
-import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { AgentState } from './AgentState.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts';
 
 export type ListAgentsForBlockPathParams = {
   /**
    * @type string
    */
-  block_id: string
-}
+  block_id: string;
+};
 
 /**
  * @description Successful Response
  */
-export type ListAgentsForBlock200 = AgentState[]
+export type ListAgentsForBlock200 = AgentState[];
 
 /**
  * @description Validation Error
  */
-export type ListAgentsForBlock422 = HTTPValidationError
+export type ListAgentsForBlock422 = HTTPValidationError;
 
-export type ListAgentsForBlockQueryResponse = ListAgentsForBlock200
+export type ListAgentsForBlockQueryResponse = ListAgentsForBlock200;
 
 export type ListAgentsForBlockQuery = {
-  Response: ListAgentsForBlock200
-  PathParams: ListAgentsForBlockPathParams
-  Errors: ListAgentsForBlock422
-}
+  Response: ListAgentsForBlock200;
+  PathParams: ListAgentsForBlockPathParams;
+  Errors: ListAgentsForBlock422;
+};

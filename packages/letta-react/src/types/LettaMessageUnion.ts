@@ -3,13 +3,13 @@
  * Do not edit manually.
  */
 
-import type { AssistantMessage } from './AssistantMessage.ts'
-import type { HiddenReasoningMessage } from './HiddenReasoningMessage.ts'
-import type { ReasoningMessage } from './ReasoningMessage.ts'
-import type { SystemMessage } from './SystemMessage.ts'
-import type { ToolCallMessage } from './ToolCallMessage.ts'
-import type { ToolReturnMessage } from './ToolReturnMessage.ts'
-import type { UserMessage } from './UserMessage.ts'
+import type { AssistantMessage } from './AssistantMessage.ts';
+import type { HiddenReasoningMessage } from './HiddenReasoningMessage.ts';
+import type { ReasoningMessage } from './ReasoningMessage.ts';
+import type { SystemMessage } from './SystemMessage.ts';
+import type { ToolCallMessage } from './ToolCallMessage.ts';
+import type { ToolReturnMessage } from './ToolReturnMessage.ts';
+import type { UserMessage } from './UserMessage.ts';
 
 export const lettaMessageUnionMessageTypeEnum = {
   system_message: 'system_message',
@@ -19,29 +19,30 @@ export const lettaMessageUnionMessageTypeEnum = {
   tool_call_message: 'tool_call_message',
   tool_return_message: 'tool_return_message',
   assistant_message: 'assistant_message',
-} as const
+} as const;
 
-export type LettaMessageUnionMessageTypeEnum = (typeof lettaMessageUnionMessageTypeEnum)[keyof typeof lettaMessageUnionMessageTypeEnum]
+export type LettaMessageUnionMessageTypeEnum =
+  (typeof lettaMessageUnionMessageTypeEnum)[keyof typeof lettaMessageUnionMessageTypeEnum];
 
 export type LettaMessageUnion =
   | (SystemMessage & {
-      message_type?: LettaMessageUnionMessageTypeEnum
+      message_type?: LettaMessageUnionMessageTypeEnum;
     })
   | (UserMessage & {
-      message_type?: LettaMessageUnionMessageTypeEnum
+      message_type?: LettaMessageUnionMessageTypeEnum;
     })
   | (ReasoningMessage & {
-      message_type?: LettaMessageUnionMessageTypeEnum
+      message_type?: LettaMessageUnionMessageTypeEnum;
     })
   | (HiddenReasoningMessage & {
-      message_type?: LettaMessageUnionMessageTypeEnum
+      message_type?: LettaMessageUnionMessageTypeEnum;
     })
   | (ToolCallMessage & {
-      message_type?: LettaMessageUnionMessageTypeEnum
+      message_type?: LettaMessageUnionMessageTypeEnum;
     })
   | (ToolReturnMessage & {
-      message_type?: LettaMessageUnionMessageTypeEnum
+      message_type?: LettaMessageUnionMessageTypeEnum;
     })
   | (AssistantMessage & {
-      message_type?: LettaMessageUnionMessageTypeEnum
-    })
+      message_type?: LettaMessageUnionMessageTypeEnum;
+    });

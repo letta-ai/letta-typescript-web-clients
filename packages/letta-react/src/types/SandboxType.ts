@@ -6,8 +6,9 @@
 export const sandboxTypeEnum = {
   e2b: 'e2b',
   local: 'local',
-} as const
+} as const;
 
-export type SandboxTypeEnum = (typeof sandboxTypeEnum)[keyof typeof sandboxTypeEnum]
+export type SandboxTypeEnum =
+  (typeof sandboxTypeEnum)[keyof typeof sandboxTypeEnum];
 
-export type SandboxType = SandboxTypeEnum
+export type SandboxType = SandboxTypeEnum;

@@ -3,33 +3,34 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { LettaStreamingRequest } from './LettaStreamingRequest.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { LettaStreamingRequest } from './LettaStreamingRequest.ts';
 
 export type SendGroupMessageStreamingPathParams = {
   /**
    * @type string
    */
-  group_id: string
-}
+  group_id: string;
+};
 
 /**
  * @description Successful response
  */
-export type SendGroupMessageStreaming200 = any
+export type SendGroupMessageStreaming200 = any;
 
 /**
  * @description Validation Error
  */
-export type SendGroupMessageStreaming422 = HTTPValidationError
+export type SendGroupMessageStreaming422 = HTTPValidationError;
 
-export type SendGroupMessageStreamingMutationRequest = LettaStreamingRequest
+export type SendGroupMessageStreamingMutationRequest = LettaStreamingRequest;
 
-export type SendGroupMessageStreamingMutationResponse = SendGroupMessageStreaming200
+export type SendGroupMessageStreamingMutationResponse =
+  SendGroupMessageStreaming200;
 
 export type SendGroupMessageStreamingMutation = {
-  Response: SendGroupMessageStreaming200
-  Request: SendGroupMessageStreamingMutationRequest
-  PathParams: SendGroupMessageStreamingPathParams
-  Errors: SendGroupMessageStreaming422
-}
+  Response: SendGroupMessageStreaming200;
+  Request: SendGroupMessageStreamingMutationRequest;
+  PathParams: SendGroupMessageStreamingPathParams;
+  Errors: SendGroupMessageStreaming422;
+};

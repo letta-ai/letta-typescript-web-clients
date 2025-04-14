@@ -1,1 +1,10 @@
-{"properties":{"arguments":{"type":"string","title":"Arguments"},"name":{"type":"string","title":"Name"}},"type":"object","required":["arguments","name"],"title":"Function","x-readme-ref-name":"openai__types__chat__chat_completion_message_tool_call_param__Function"}
+{
+  "properties": {
+    "arguments": { "type": "string", "title": "Arguments" },
+    "name": { "type": "string", "title": "Name" }
+  },
+  "type": "object",
+  "required": ["arguments", "name"],
+  "title": "Function",
+  "x-readme-ref-name": "openai__types__chat__chat_completion_message_tool_call_param__Function"
+}

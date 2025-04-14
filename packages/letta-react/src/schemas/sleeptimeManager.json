@@ -1,1 +1,25 @@
-{"properties":{"manager_type":{"type":"string","const":"sleeptime","title":"Manager Type","description":"","default":"sleeptime"},"manager_agent_id":{"type":"string","title":"Manager Agent Id","description":""},"sleeptime_agent_frequency":{"anyOf":[{"type":"integer"},{"type":"null"}],"title":"Sleeptime Agent Frequency","description":""}},"type":"object","required":["manager_agent_id"],"title":"SleeptimeManager","x-readme-ref-name":"SleeptimeManager"}
+{
+  "properties": {
+    "manager_type": {
+      "type": "string",
+      "const": "sleeptime",
+      "title": "Manager Type",
+      "description": "",
+      "default": "sleeptime"
+    },
+    "manager_agent_id": {
+      "type": "string",
+      "title": "Manager Agent Id",
+      "description": ""
+    },
+    "sleeptime_agent_frequency": {
+      "anyOf": [{ "type": "integer" }, { "type": "null" }],
+      "title": "Sleeptime Agent Frequency",
+      "description": ""
+    }
+  },
+  "type": "object",
+  "required": ["manager_agent_id"],
+  "title": "SleeptimeManager",
+  "x-readme-ref-name": "SleeptimeManager"
+}

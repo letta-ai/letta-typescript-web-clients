@@ -7,16 +7,16 @@ export type FunctionDefinitionInput = {
   /**
    * @type string
    */
-  name: string
+  name: string;
   /**
    * @type string | undefined
    */
-  description?: string
+  description?: string;
   /**
    * @type object | undefined
    */
   parameters?: {
-    [key: string]: any
-  }
-  strict?: boolean | null
-}
+    [key: string]: any;
+  };
+  strict?: boolean | null;
+};

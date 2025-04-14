@@ -3,31 +3,31 @@
  * Do not edit manually.
  */
 
-import type { Group } from './Group.ts'
-import type { GroupCreate } from './GroupCreate.ts'
-import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Group } from './Group.ts';
+import type { GroupCreate } from './GroupCreate.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts';
 
 export type CreateGroupHeaderParams = {
-  'X-Project'?: string | null
-}
+  'X-Project'?: string | null;
+};
 
 /**
  * @description Successful Response
  */
-export type CreateGroup200 = Group
+export type CreateGroup200 = Group;
 
 /**
  * @description Validation Error
  */
-export type CreateGroup422 = HTTPValidationError
+export type CreateGroup422 = HTTPValidationError;
 
-export type CreateGroupMutationRequest = GroupCreate
+export type CreateGroupMutationRequest = GroupCreate;
 
-export type CreateGroupMutationResponse = CreateGroup200
+export type CreateGroupMutationResponse = CreateGroup200;
 
 export type CreateGroupMutation = {
-  Response: CreateGroup200
-  Request: CreateGroupMutationRequest
-  HeaderParams: CreateGroupHeaderParams
-  Errors: CreateGroup422
-}
+  Response: CreateGroup200;
+  Request: CreateGroupMutationRequest;
+  HeaderParams: CreateGroupHeaderParams;
+  Errors: CreateGroup422;
+};

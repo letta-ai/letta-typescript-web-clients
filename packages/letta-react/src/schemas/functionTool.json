@@ -1,1 +1,35 @@
-{"properties":{"function":{"properties":{"name":{"type":"string","title":"Name"},"description":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Description"},"parameters":{"anyOf":[{"additionalProperties":true,"type":"object"},{"type":"null"}],"title":"Parameters"},"strict":{"anyOf":[{"type":"boolean"},{"type":"null"}],"title":"Strict"}},"additionalProperties":true,"type":"object","required":["name"],"title":"FunctionDefinition","x-readme-ref-name":"FunctionDefinition-Output"},"type":{"type":"string","const":"function","title":"Type"}},"additionalProperties":true,"type":"object","required":["function","type"],"title":"FunctionTool","x-readme-ref-name":"FunctionTool"}
+{
+  "properties": {
+    "function": {
+      "properties": {
+        "name": { "type": "string", "title": "Name" },
+        "description": {
+          "anyOf": [{ "type": "string" }, { "type": "null" }],
+          "title": "Description"
+        },
+        "parameters": {
+          "anyOf": [
+            { "additionalProperties": true, "type": "object" },
+            { "type": "null" }
+          ],
+          "title": "Parameters"
+        },
+        "strict": {
+          "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+          "title": "Strict"
+        }
+      },
+      "additionalProperties": true,
+      "type": "object",
+      "required": ["name"],
+      "title": "FunctionDefinition",
+      "x-readme-ref-name": "FunctionDefinition-Output"
+    },
+    "type": { "type": "string", "const": "function", "title": "Type" }
+  },
+  "additionalProperties": true,
+  "type": "object",
+  "required": ["function", "type"],
+  "title": "FunctionTool",
+  "x-readme-ref-name": "FunctionTool"
+}

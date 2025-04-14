@@ -8,5 +8,5 @@ export type AuthRequest = {
    * @description Admin password provided when starting the Letta server
    * @type string | undefined
    */
-  password?: string
-}
+  password?: string;
+};

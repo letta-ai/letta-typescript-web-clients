@@ -3,39 +3,42 @@
  * Do not edit manually.
  */
 
-import type { CompletionCreateParamsNonStreaming } from './CompletionCreateParamsNonStreaming.ts'
-import type { CompletionCreateParamsStreaming } from './CompletionCreateParamsStreaming.ts'
-import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { CompletionCreateParamsNonStreaming } from './CompletionCreateParamsNonStreaming.ts';
+import type { CompletionCreateParamsStreaming } from './CompletionCreateParamsStreaming.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts';
 
 export type CreateVoiceChatCompletionsPathParams = {
   /**
    * @type string
    */
-  agent_id: string
-}
+  agent_id: string;
+};
 
 export type CreateVoiceChatCompletionsHeaderParams = {
-  'user-id'?: string | null
-}
+  'user-id'?: string | null;
+};
 
 /**
  * @description Successful response
  */
-export type CreateVoiceChatCompletions200 = any
+export type CreateVoiceChatCompletions200 = any;
 
 /**
  * @description Validation Error
  */
-export type CreateVoiceChatCompletions422 = HTTPValidationError
+export type CreateVoiceChatCompletions422 = HTTPValidationError;
 
-export type CreateVoiceChatCompletionsMutationRequest = CompletionCreateParamsNonStreaming | CompletionCreateParamsStreaming
+export type CreateVoiceChatCompletionsMutationRequest =
+  | CompletionCreateParamsNonStreaming
+  | CompletionCreateParamsStreaming;
 
-export type CreateVoiceChatCompletionsMutationResponse = CreateVoiceChatCompletions200
+export type CreateVoiceChatCompletionsMutationResponse =
+  CreateVoiceChatCompletions200;
 
 export type CreateVoiceChatCompletionsMutation = {
-  Response: CreateVoiceChatCompletions200
-  Request: CreateVoiceChatCompletionsMutationRequest
-  PathParams: CreateVoiceChatCompletionsPathParams
-  HeaderParams: CreateVoiceChatCompletionsHeaderParams
-  Errors: CreateVoiceChatCompletions422
-}
+  Response: CreateVoiceChatCompletions200;
+  Request: CreateVoiceChatCompletionsMutationRequest;
+  PathParams: CreateVoiceChatCompletionsPathParams;
+  HeaderParams: CreateVoiceChatCompletionsHeaderParams;
+  Errors: CreateVoiceChatCompletions422;
+};

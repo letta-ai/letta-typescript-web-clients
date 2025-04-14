@@ -3,15 +3,23 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { CreateBlockMutationRequest, CreateBlockMutationResponse, CreateBlock422 } from '../../types/CreateBlock.ts'
-import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
-import { useMutation } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  CreateBlockMutationRequest,
+  CreateBlockMutationResponse,
+  CreateBlock422,
+} from '../../types/CreateBlock.ts';
+import type {
+  RequestConfig,
+  ResponseConfig,
+  ResponseErrorConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-export const createBlockMutationKey = () => [{ url: '/v1/blocks/' }] as const
+export const createBlockMutationKey = () => [{ url: '/v1/blocks/' }] as const;
 
-export type CreateBlockMutationKey = ReturnType<typeof createBlockMutationKey>
+export type CreateBlockMutationKey = ReturnType<typeof createBlockMutationKey>;
 
 /**
  * @summary Create Block
@@ -19,17 +27,23 @@ export type CreateBlockMutationKey = ReturnType<typeof createBlockMutationKey>
  */
 export async function createBlock(
   data: CreateBlockMutationRequest,
-  config: Partial<RequestConfig<CreateBlockMutationRequest>> & { client?: typeof client } = {},
+  config: Partial<RequestConfig<CreateBlockMutationRequest>> & {
+    client?: typeof client;
+  } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<CreateBlockMutationResponse, ResponseErrorConfig<CreateBlock422>, CreateBlockMutationRequest>({
+  const res = await request<
+    CreateBlockMutationResponse,
+    ResponseErrorConfig<CreateBlock422>,
+    CreateBlockMutationRequest
+  >({
     method: 'POST',
     url: `/v1/blocks/`,
     data,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 /**
@@ -43,21 +57,31 @@ export function useCreateBlock<TContext>(
       ResponseErrorConfig<CreateBlock422>,
       { data: CreateBlockMutationRequest },
       TContext
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig<CreateBlockMutationRequest>> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig<CreateBlockMutationRequest>> & {
+      client?: typeof client;
+    };
+  } = {}
 ) {
-  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
-  const mutationKey = mutationOptions?.mutationKey ?? createBlockMutationKey()
+  const {
+    mutation: { client: queryClient, ...mutationOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const mutationKey = mutationOptions?.mutationKey ?? createBlockMutationKey();
 
-  return useMutation<ResponseConfig<CreateBlockMutationResponse>, ResponseErrorConfig<CreateBlock422>, { data: CreateBlockMutationRequest }, TContext>(
+  return useMutation<
+    ResponseConfig<CreateBlockMutationResponse>,
+    ResponseErrorConfig<CreateBlock422>,
+    { data: CreateBlockMutationRequest },
+    TContext
+  >(
     {
       mutationFn: async ({ data }) => {
-        return createBlock(data, config)
+        return createBlock(data, config);
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient,
-  )
+    queryClient
+  );
 }

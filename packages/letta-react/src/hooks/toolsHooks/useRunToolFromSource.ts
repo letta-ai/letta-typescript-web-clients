@@ -3,15 +3,26 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { RunToolFromSourceMutationRequest, RunToolFromSourceMutationResponse, RunToolFromSource422 } from '../../types/RunToolFromSource.ts'
-import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
-import { useMutation } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  RunToolFromSourceMutationRequest,
+  RunToolFromSourceMutationResponse,
+  RunToolFromSource422,
+} from '../../types/RunToolFromSource.ts';
+import type {
+  RequestConfig,
+  ResponseConfig,
+  ResponseErrorConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-export const runToolFromSourceMutationKey = () => [{ url: '/v1/tools/run' }] as const
+export const runToolFromSourceMutationKey = () =>
+  [{ url: '/v1/tools/run' }] as const;
 
-export type RunToolFromSourceMutationKey = ReturnType<typeof runToolFromSourceMutationKey>
+export type RunToolFromSourceMutationKey = ReturnType<
+  typeof runToolFromSourceMutationKey
+>;
 
 /**
  * @description Attempt to build a tool from source, then run it on the provided arguments
@@ -20,17 +31,23 @@ export type RunToolFromSourceMutationKey = ReturnType<typeof runToolFromSourceMu
  */
 export async function runToolFromSource(
   data: RunToolFromSourceMutationRequest,
-  config: Partial<RequestConfig<RunToolFromSourceMutationRequest>> & { client?: typeof client } = {},
+  config: Partial<RequestConfig<RunToolFromSourceMutationRequest>> & {
+    client?: typeof client;
+  } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<RunToolFromSourceMutationResponse, ResponseErrorConfig<RunToolFromSource422>, RunToolFromSourceMutationRequest>({
+  const res = await request<
+    RunToolFromSourceMutationResponse,
+    ResponseErrorConfig<RunToolFromSource422>,
+    RunToolFromSourceMutationRequest
+  >({
     method: 'POST',
     url: `/v1/tools/run`,
     data,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 /**
@@ -45,12 +62,18 @@ export function useRunToolFromSource<TContext>(
       ResponseErrorConfig<RunToolFromSource422>,
       { data: RunToolFromSourceMutationRequest },
       TContext
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig<RunToolFromSourceMutationRequest>> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig<RunToolFromSourceMutationRequest>> & {
+      client?: typeof client;
+    };
+  } = {}
 ) {
-  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
-  const mutationKey = mutationOptions?.mutationKey ?? runToolFromSourceMutationKey()
+  const {
+    mutation: { client: queryClient, ...mutationOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const mutationKey =
+    mutationOptions?.mutationKey ?? runToolFromSourceMutationKey();
 
   return useMutation<
     ResponseConfig<RunToolFromSourceMutationResponse>,
@@ -60,11 +83,11 @@ export function useRunToolFromSource<TContext>(
   >(
     {
       mutationFn: async ({ data }) => {
-        return runToolFromSource(data, config)
+        return runToolFromSource(data, config);
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient,
-  )
+    queryClient
+  );
 }

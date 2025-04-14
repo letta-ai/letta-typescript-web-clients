@@ -1,1 +1,89 @@
-{"properties":{"config":{"anyOf":[{"properties":{"sandbox_dir":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Sandbox Dir","description":"Directory for the sandbox environment."},"use_venv":{"type":"boolean","title":"Use Venv","description":"Whether or not to use the venv, or run directly in the same run loop.","default":false},"venv_name":{"type":"string","title":"Venv Name","description":"The name for the venv in the sandbox directory. We first search for an existing venv with this name, otherwise, we make it from the requirements.txt.","default":"venv"},"pip_requirements":{"items":{"properties":{"name":{"type":"string","minLength":1,"title":"Name","description":"Name of the pip package."},"version":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Version","description":"Optional version of the package, following semantic versioning."}},"type":"object","required":["name"],"title":"PipRequirement","x-readme-ref-name":"PipRequirement"},"type":"array","title":"Pip Requirements","description":"List of pip packages to install with mandatory name and optional version following semantic versioning. This only is considered when use_venv is True."}},"type":"object","title":"LocalSandboxConfig","x-readme-ref-name":"LocalSandboxConfig"},{"properties":{"timeout":{"type":"integer","title":"Timeout","description":"Time limit for the sandbox (in seconds).","default":300},"template":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Template","description":"The E2B template id (docker image)."},"pip_requirements":{"anyOf":[{"items":{"type":"string"},"type":"array"},{"type":"null"}],"title":"Pip Requirements","description":"A list of pip packages to install on the E2B Sandbox"}},"type":"object","title":"E2BSandboxConfig","x-readme-ref-name":"E2BSandboxConfig"}],"title":"Config","description":"The JSON configuration data for the sandbox."}},"additionalProperties":false,"type":"object","title":"SandboxConfigUpdate","description":"Pydantic model for updating SandboxConfig fields.","x-readme-ref-name":"SandboxConfigUpdate"}
+{
+  "properties": {
+    "config": {
+      "anyOf": [
+        {
+          "properties": {
+            "sandbox_dir": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Sandbox Dir",
+              "description": "Directory for the sandbox environment."
+            },
+            "use_venv": {
+              "type": "boolean",
+              "title": "Use Venv",
+              "description": "Whether or not to use the venv, or run directly in the same run loop.",
+              "default": false
+            },
+            "venv_name": {
+              "type": "string",
+              "title": "Venv Name",
+              "description": "The name for the venv in the sandbox directory. We first search for an existing venv with this name, otherwise, we make it from the requirements.txt.",
+              "default": "venv"
+            },
+            "pip_requirements": {
+              "items": {
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Name",
+                    "description": "Name of the pip package."
+                  },
+                  "version": {
+                    "anyOf": [{ "type": "string" }, { "type": "null" }],
+                    "title": "Version",
+                    "description": "Optional version of the package, following semantic versioning."
+                  }
+                },
+                "type": "object",
+                "required": ["name"],
+                "title": "PipRequirement",
+                "x-readme-ref-name": "PipRequirement"
+              },
+              "type": "array",
+              "title": "Pip Requirements",
+              "description": "List of pip packages to install with mandatory name and optional version following semantic versioning. This only is considered when use_venv is True."
+            }
+          },
+          "type": "object",
+          "title": "LocalSandboxConfig",
+          "x-readme-ref-name": "LocalSandboxConfig"
+        },
+        {
+          "properties": {
+            "timeout": {
+              "type": "integer",
+              "title": "Timeout",
+              "description": "Time limit for the sandbox (in seconds).",
+              "default": 300
+            },
+            "template": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Template",
+              "description": "The E2B template id (docker image)."
+            },
+            "pip_requirements": {
+              "anyOf": [
+                { "items": { "type": "string" }, "type": "array" },
+                { "type": "null" }
+              ],
+              "title": "Pip Requirements",
+              "description": "A list of pip packages to install on the E2B Sandbox"
+            }
+          },
+          "type": "object",
+          "title": "E2BSandboxConfig",
+          "x-readme-ref-name": "E2BSandboxConfig"
+        }
+      ],
+      "title": "Config",
+      "description": "The JSON configuration data for the sandbox."
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "title": "SandboxConfigUpdate",
+  "description": "Pydantic model for updating SandboxConfig fields.",
+  "x-readme-ref-name": "SandboxConfigUpdate"
+}

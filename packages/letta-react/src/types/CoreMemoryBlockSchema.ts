@@ -7,30 +7,30 @@ export type CoreMemoryBlockSchema = {
   /**
    * @type string
    */
-  created_at: string
-  description: string | null
+  created_at: string;
+  description: string | null;
   /**
    * @type boolean
    */
-  is_template: boolean
+  is_template: boolean;
   /**
    * @type string
    */
-  label: string
+  label: string;
   /**
    * @type integer
    */
-  limit: number
+  limit: number;
   metadata_?: {
-    [key: string]: any
-  } | null
-  template_name: string | null
+    [key: string]: any;
+  } | null;
+  template_name: string | null;
   /**
    * @type string
    */
-  updated_at: string
+  updated_at: string;
   /**
    * @type string
    */
-  value: string
-}
+  value: string;
+};

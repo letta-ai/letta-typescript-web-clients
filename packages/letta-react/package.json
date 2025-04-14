@@ -1,12 +1,12 @@
 {
   "name": "@letta-ai/letta-react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Letta's react library",
   "private": false,
   "main": "./index.js",
   "types": "./index.d.ts",
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --platform=browser --outdir=dist --format=esm --sourcemap --external:@letta-ai/letta-client && tsc",
+    "build": "esbuild src/index.ts --bundle --platform=browser --outdir=dist --format=esm --sourcemap --external:react --external:react-dom && tsc",
     "test": "echo \"Pls set up tests\" && exit 0",
     "prepack": "cp -rv dist/. ."
   },
@@ -21,12 +21,14 @@
   },
   "homepage": "https://github.com/letta-ai/letta-typescript-web-clients#readme",
   "peerDependencies": {
-    "@kubb/plugin-client": ">=3.0.0 <4.0.0",
-    "@letta-ai/letta-client": ">=0.1.48 <0.2.0",
-    "@tanstack/react-query": ">=5.0.0 <6.0.0",
     "react": ">=16.8.0 <20.0.0",
-    "react-dom": ">=16.8.0 <20.0.0",
-    "axios": ">= ^1.5.0 <2.0.0"
+    "react-dom": ">=16.8.0 <20.0.0"
+  },
+  "dependencies": {
+    "@kubb/plugin-client": "^3.9.0",
+    "@letta-ai/letta-client": "^0.1.87",
+    "@tanstack/react-query": "^5.74.3",
+    "axios": "^1.8.4"
   },
   "resolutions": {
     "@types/react": "18.0.5"

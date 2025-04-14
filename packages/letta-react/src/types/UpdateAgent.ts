@@ -3,103 +3,113 @@
  * Do not edit manually.
  */
 
-import type { ChildToolRule } from './ChildToolRule.ts'
-import type { ConditionalToolRule } from './ConditionalToolRule.ts'
-import type { ContinueToolRule } from './ContinueToolRule.ts'
-import type { EmbeddingConfig } from './EmbeddingConfig.ts'
-import type { InitToolRule } from './InitToolRule.ts'
-import type { LLMConfig } from './LLMConfig.ts'
-import type { MaxCountPerStepToolRule } from './MaxCountPerStepToolRule.ts'
-import type { ParentToolRule } from './ParentToolRule.ts'
-import type { TerminalToolRule } from './TerminalToolRule.ts'
+import type { ChildToolRule } from './ChildToolRule.ts';
+import type { ConditionalToolRule } from './ConditionalToolRule.ts';
+import type { ContinueToolRule } from './ContinueToolRule.ts';
+import type { EmbeddingConfig } from './EmbeddingConfig.ts';
+import type { InitToolRule } from './InitToolRule.ts';
+import type { LLMConfig } from './LLMConfig.ts';
+import type { MaxCountPerStepToolRule } from './MaxCountPerStepToolRule.ts';
+import type { ParentToolRule } from './ParentToolRule.ts';
+import type { TerminalToolRule } from './TerminalToolRule.ts';
 
 export type UpdateAgent = {
   /**
    * @description The name of the agent.
    */
-  name?: string | null
+  name?: string | null;
   /**
    * @description The ids of the tools used by the agent.
    */
-  tool_ids?: string[] | null
+  tool_ids?: string[] | null;
   /**
    * @description The ids of the sources used by the agent.
    */
-  source_ids?: string[] | null
+  source_ids?: string[] | null;
   /**
    * @description The ids of the blocks used by the agent.
    */
-  block_ids?: string[] | null
+  block_ids?: string[] | null;
   /**
    * @description The tags associated with the agent.
    */
-  tags?: string[] | null
+  tags?: string[] | null;
   /**
    * @description The system prompt used by the agent.
    */
-  system?: string | null
+  system?: string | null;
   /**
    * @description The tool rules governing the agent.
    */
-  tool_rules?: (ChildToolRule | InitToolRule | TerminalToolRule | ConditionalToolRule | ContinueToolRule | MaxCountPerStepToolRule | ParentToolRule)[] | null
+  tool_rules?:
+    | (
+        | ChildToolRule
+        | InitToolRule
+        | TerminalToolRule
+        | ConditionalToolRule
+        | ContinueToolRule
+        | MaxCountPerStepToolRule
+        | ParentToolRule
+      )[]
+    | null;
   /**
    * @description The LLM configuration used by the agent.
    */
-  llm_config?: LLMConfig | null
+  llm_config?: LLMConfig | null;
   /**
    * @description The embedding configuration used by the agent.
    */
-  embedding_config?: EmbeddingConfig | null
+  embedding_config?: EmbeddingConfig | null;
   /**
    * @description The ids of the messages in the agent\'s in-context memory.
    */
-  message_ids?: string[] | null
+  message_ids?: string[] | null;
   /**
    * @description The description of the agent.
    */
-  description?: string | null
+  description?: string | null;
   /**
    * @description The metadata of the agent.
    */
   metadata?: {
-    [key: string]: any
-  } | null
+    [key: string]: any;
+  } | null;
   /**
    * @description The environment variables for tool execution specific to this agent.
    */
   tool_exec_environment_variables?: {
-    [key: string]: string
-  } | null
+    [key: string]: string;
+  } | null;
   /**
    * @description The id of the project the agent belongs to.
    */
-  project_id?: string | null
+  project_id?: string | null;
   /**
    * @description The id of the template the agent belongs to.
    */
-  template_id?: string | null
+  template_id?: string | null;
   /**
    * @description The base template id of the agent.
    */
-  base_template_id?: string | null
+  base_template_id?: string | null;
   /**
    * @description The ids of the identities associated with this agent.
    */
-  identity_ids?: string[] | null
+  identity_ids?: string[] | null;
   /**
    * @description If set to True, the agent will not remember previous messages (though the agent will still retain state via core memory blocks and archival/recall memory). Not recommended unless you have an advanced use case.
    */
-  message_buffer_autoclear?: boolean | null
+  message_buffer_autoclear?: boolean | null;
   /**
    * @description The LLM configuration handle used by the agent, specified in the format provider/model-name, as an alternative to specifying llm_config.
    */
-  model?: string | null
+  model?: string | null;
   /**
    * @description The embedding configuration handle used by the agent, specified in the format provider/model-name.
    */
-  embedding?: string | null
+  embedding?: string | null;
   /**
    * @description If set to True, memory management will move to a background agent thread.
    */
-  enable_sleeptime?: boolean | null
-}
+  enable_sleeptime?: boolean | null;
+};

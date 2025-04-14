@@ -8,9 +8,9 @@ export type AuthResponse = {
    * @description UUID of the user
    * @type string, uuid
    */
-  uuid: string
+  uuid: string;
   /**
    * @description Whether the user is an admin
    */
-  is_admin?: boolean | null
-}
+  is_admin?: boolean | null;
+};

@@ -3,38 +3,38 @@
  * Do not edit manually.
  */
 
-import type { Block } from './Block.ts'
-import type { BlockUpdate } from './BlockUpdate.ts'
-import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Block } from './Block.ts';
+import type { BlockUpdate } from './BlockUpdate.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts';
 
 export type ModifyCoreMemoryBlockPathParams = {
   /**
    * @type string
    */
-  agent_id: string
+  agent_id: string;
   /**
    * @type string
    */
-  block_label: string
-}
+  block_label: string;
+};
 
 /**
  * @description Successful Response
  */
-export type ModifyCoreMemoryBlock200 = Block
+export type ModifyCoreMemoryBlock200 = Block;
 
 /**
  * @description Validation Error
  */
-export type ModifyCoreMemoryBlock422 = HTTPValidationError
+export type ModifyCoreMemoryBlock422 = HTTPValidationError;
 
-export type ModifyCoreMemoryBlockMutationRequest = BlockUpdate
+export type ModifyCoreMemoryBlockMutationRequest = BlockUpdate;
 
-export type ModifyCoreMemoryBlockMutationResponse = ModifyCoreMemoryBlock200
+export type ModifyCoreMemoryBlockMutationResponse = ModifyCoreMemoryBlock200;
 
 export type ModifyCoreMemoryBlockMutation = {
-  Response: ModifyCoreMemoryBlock200
-  Request: ModifyCoreMemoryBlockMutationRequest
-  PathParams: ModifyCoreMemoryBlockPathParams
-  Errors: ModifyCoreMemoryBlock422
-}
+  Response: ModifyCoreMemoryBlock200;
+  Request: ModifyCoreMemoryBlockMutationRequest;
+  PathParams: ModifyCoreMemoryBlockPathParams;
+  Errors: ModifyCoreMemoryBlock422;
+};

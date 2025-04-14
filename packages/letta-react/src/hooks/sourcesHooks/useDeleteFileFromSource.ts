@@ -3,15 +3,26 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { DeleteFileFromSourceMutationResponse, DeleteFileFromSourcePathParams, DeleteFileFromSource422 } from '../../types/DeleteFileFromSource.ts'
-import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
-import { useMutation } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  DeleteFileFromSourceMutationResponse,
+  DeleteFileFromSourcePathParams,
+  DeleteFileFromSource422,
+} from '../../types/DeleteFileFromSource.ts';
+import type {
+  RequestConfig,
+  ResponseConfig,
+  ResponseErrorConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-export const deleteFileFromSourceMutationKey = () => [{ url: '/v1/sources/{source_id}/{file_id}' }] as const
+export const deleteFileFromSourceMutationKey = () =>
+  [{ url: '/v1/sources/{source_id}/{file_id}' }] as const;
 
-export type DeleteFileFromSourceMutationKey = ReturnType<typeof deleteFileFromSourceMutationKey>
+export type DeleteFileFromSourceMutationKey = ReturnType<
+  typeof deleteFileFromSourceMutationKey
+>;
 
 /**
  * @description Delete a data source.
@@ -21,16 +32,20 @@ export type DeleteFileFromSourceMutationKey = ReturnType<typeof deleteFileFromSo
 export async function deleteFileFromSource(
   source_id: DeleteFileFromSourcePathParams['source_id'],
   file_id: DeleteFileFromSourcePathParams['file_id'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<DeleteFileFromSourceMutationResponse, ResponseErrorConfig<DeleteFileFromSource422>, unknown>({
+  const res = await request<
+    DeleteFileFromSourceMutationResponse,
+    ResponseErrorConfig<DeleteFileFromSource422>,
+    unknown
+  >({
     method: 'DELETE',
     url: `/v1/sources/${source_id}/${file_id}`,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 /**
@@ -43,28 +58,38 @@ export function useDeleteFileFromSource<TContext>(
     mutation?: UseMutationOptions<
       ResponseConfig<DeleteFileFromSourceMutationResponse>,
       ResponseErrorConfig<DeleteFileFromSource422>,
-      { source_id: DeleteFileFromSourcePathParams['source_id']; file_id: DeleteFileFromSourcePathParams['file_id'] },
+      {
+        source_id: DeleteFileFromSourcePathParams['source_id'];
+        file_id: DeleteFileFromSourcePathParams['file_id'];
+      },
       TContext
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
-  const mutationKey = mutationOptions?.mutationKey ?? deleteFileFromSourceMutationKey()
+  const {
+    mutation: { client: queryClient, ...mutationOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const mutationKey =
+    mutationOptions?.mutationKey ?? deleteFileFromSourceMutationKey();
 
   return useMutation<
     ResponseConfig<DeleteFileFromSourceMutationResponse>,
     ResponseErrorConfig<DeleteFileFromSource422>,
-    { source_id: DeleteFileFromSourcePathParams['source_id']; file_id: DeleteFileFromSourcePathParams['file_id'] },
+    {
+      source_id: DeleteFileFromSourcePathParams['source_id'];
+      file_id: DeleteFileFromSourcePathParams['file_id'];
+    },
     TContext
   >(
     {
       mutationFn: async ({ source_id, file_id }) => {
-        return deleteFileFromSource(source_id, file_id, config)
+        return deleteFileFromSource(source_id, file_id, config);
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient,
-  )
+    queryClient
+  );
 }

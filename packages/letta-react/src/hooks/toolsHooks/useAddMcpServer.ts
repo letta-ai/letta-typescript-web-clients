@@ -3,15 +3,26 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { AddMcpServerMutationRequest, AddMcpServerMutationResponse, AddMcpServer422 } from '../../types/AddMcpServer.ts'
-import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
-import { useMutation } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  AddMcpServerMutationRequest,
+  AddMcpServerMutationResponse,
+  AddMcpServer422,
+} from '../../types/AddMcpServer.ts';
+import type {
+  RequestConfig,
+  ResponseConfig,
+  ResponseErrorConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-export const addMcpServerMutationKey = () => [{ url: '/v1/tools/mcp/servers' }] as const
+export const addMcpServerMutationKey = () =>
+  [{ url: '/v1/tools/mcp/servers' }] as const;
 
-export type AddMcpServerMutationKey = ReturnType<typeof addMcpServerMutationKey>
+export type AddMcpServerMutationKey = ReturnType<
+  typeof addMcpServerMutationKey
+>;
 
 /**
  * @description Add a new MCP server to the Letta MCP server config
@@ -20,17 +31,23 @@ export type AddMcpServerMutationKey = ReturnType<typeof addMcpServerMutationKey>
  */
 export async function addMcpServer(
   data?: AddMcpServerMutationRequest,
-  config: Partial<RequestConfig<AddMcpServerMutationRequest>> & { client?: typeof client } = {},
+  config: Partial<RequestConfig<AddMcpServerMutationRequest>> & {
+    client?: typeof client;
+  } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<AddMcpServerMutationResponse, ResponseErrorConfig<AddMcpServer422>, AddMcpServerMutationRequest>({
+  const res = await request<
+    AddMcpServerMutationResponse,
+    ResponseErrorConfig<AddMcpServer422>,
+    AddMcpServerMutationRequest
+  >({
     method: 'PUT',
     url: `/v1/tools/mcp/servers`,
     data,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 /**
@@ -45,21 +62,31 @@ export function useAddMcpServer<TContext>(
       ResponseErrorConfig<AddMcpServer422>,
       { data?: AddMcpServerMutationRequest },
       TContext
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig<AddMcpServerMutationRequest>> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig<AddMcpServerMutationRequest>> & {
+      client?: typeof client;
+    };
+  } = {}
 ) {
-  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
-  const mutationKey = mutationOptions?.mutationKey ?? addMcpServerMutationKey()
+  const {
+    mutation: { client: queryClient, ...mutationOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const mutationKey = mutationOptions?.mutationKey ?? addMcpServerMutationKey();
 
-  return useMutation<ResponseConfig<AddMcpServerMutationResponse>, ResponseErrorConfig<AddMcpServer422>, { data?: AddMcpServerMutationRequest }, TContext>(
+  return useMutation<
+    ResponseConfig<AddMcpServerMutationResponse>,
+    ResponseErrorConfig<AddMcpServer422>,
+    { data?: AddMcpServerMutationRequest },
+    TContext
+  >(
     {
       mutationFn: async ({ data }) => {
-        return addMcpServer(data, config)
+        return addMcpServer(data, config);
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient,
-  )
+    queryClient
+  );
 }

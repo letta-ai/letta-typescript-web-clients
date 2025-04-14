@@ -3,15 +3,15 @@
  * Do not edit manually.
  */
 
-import type { FileFile } from './FileFile.ts'
+import type { FileFile } from './FileFile.ts';
 
 export type File = {
   /**
    * @type object
    */
-  file: FileFile
+  file: FileFile;
   /**
    * @type string
    */
-  type: 'file'
-}
+  type: 'file';
+};

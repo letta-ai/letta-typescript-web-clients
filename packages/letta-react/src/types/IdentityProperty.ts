@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import type { IdentityPropertyType } from './IdentityPropertyType.ts'
+import type { IdentityPropertyType } from './IdentityPropertyType.ts';
 
 /**
  * @description A property of an identity
@@ -13,7 +13,7 @@ export type IdentityProperty = {
    * @description The key of the property
    * @type string
    */
-  key: string
+  key: string;
   /**
    * @description The value of the property
    */
@@ -23,10 +23,10 @@ export type IdentityProperty = {
     | number
     | boolean
     | {
-        [key: string]: any
-      }
+        [key: string]: any;
+      };
   /**
    * @type string
    */
-  type: IdentityPropertyType
-}
+  type: IdentityPropertyType;
+};

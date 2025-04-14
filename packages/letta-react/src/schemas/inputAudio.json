@@ -1,1 +1,10 @@
-{"properties":{"data":{"type":"string","title":"Data"},"format":{"type":"string","enum":["wav","mp3"],"title":"Format"}},"type":"object","required":["data","format"],"title":"InputAudio","x-readme-ref-name":"InputAudio"}
+{
+  "properties": {
+    "data": { "type": "string", "title": "Data" },
+    "format": { "type": "string", "enum": ["wav", "mp3"], "title": "Format" }
+  },
+  "type": "object",
+  "required": ["data", "format"],
+  "title": "InputAudio",
+  "x-readme-ref-name": "InputAudio"
+}

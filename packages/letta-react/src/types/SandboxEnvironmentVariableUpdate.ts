@@ -7,13 +7,13 @@ export type SandboxEnvironmentVariableUpdate = {
   /**
    * @description The name of the environment variable.
    */
-  key?: string | null
+  key?: string | null;
   /**
    * @description The value of the environment variable.
    */
-  value?: string | null
+  value?: string | null;
   /**
    * @description An optional description of the environment variable.
    */
-  description?: string | null
-}
+  description?: string | null;
+};

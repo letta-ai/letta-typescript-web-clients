@@ -3,40 +3,40 @@
  * Do not edit manually.
  */
 
-import type { SandboxType } from './SandboxType.ts'
+import type { SandboxType } from './SandboxType.ts';
 
 export type SandboxConfig = {
   /**
    * @description The id of the user that made this object.
    */
-  created_by_id?: string | null
+  created_by_id?: string | null;
   /**
    * @description The id of the user that made this object.
    */
-  last_updated_by_id?: string | null
+  last_updated_by_id?: string | null;
   /**
    * @description The timestamp when the object was created.
    */
-  created_at?: string | null
+  created_at?: string | null;
   /**
    * @description The timestamp when the object was last updated.
    */
-  updated_at?: string | null
+  updated_at?: string | null;
   /**
    * @description The human-friendly ID of the Sandbox
    * @pattern ^sandbox-[a-fA-F0-9]{8}
    * @type string | undefined
    */
-  id?: string
+  id?: string;
   /**
    * @type string | undefined
    */
-  type?: SandboxType
+  type?: SandboxType;
   /**
    * @description The JSON sandbox settings data.
    * @type object | undefined
    */
   config?: {
-    [key: string]: any
-  }
-}
+    [key: string]: any;
+  };
+};

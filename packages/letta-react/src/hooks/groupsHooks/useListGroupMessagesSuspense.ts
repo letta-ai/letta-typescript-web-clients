@@ -3,21 +3,38 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
+import client from '@kubb/plugin-client/clients/axios';
 import type {
   ListGroupMessagesQueryResponse,
   ListGroupMessagesPathParams,
   ListGroupMessagesQueryParams,
   ListGroupMessages422,
-} from '../../types/ListGroupMessages.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
+} from '../../types/ListGroupMessages.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  UseSuspenseQueryOptions,
+  UseSuspenseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 
-export const listGroupMessagesSuspenseQueryKey = (group_id: ListGroupMessagesPathParams['group_id'], params?: ListGroupMessagesQueryParams) =>
-  [{ url: '/v1/groups/:group_id/messages', params: { group_id: group_id } }, ...(params ? [params] : [])] as const
+export const listGroupMessagesSuspenseQueryKey = (
+  group_id: ListGroupMessagesPathParams['group_id'],
+  params?: ListGroupMessagesQueryParams
+) =>
+  [
+    { url: '/v1/groups/:group_id/messages', params: { group_id: group_id } },
+    ...(params ? [params] : []),
+  ] as const;
 
-export type ListGroupMessagesSuspenseQueryKey = ReturnType<typeof listGroupMessagesSuspenseQueryKey>
+export type ListGroupMessagesSuspenseQueryKey = ReturnType<
+  typeof listGroupMessagesSuspenseQueryKey
+>;
 
 /**
  * @description Retrieve message history for an agent.
@@ -27,25 +44,29 @@ export type ListGroupMessagesSuspenseQueryKey = ReturnType<typeof listGroupMessa
 export async function listGroupMessagesSuspense(
   group_id: ListGroupMessagesPathParams['group_id'],
   params?: ListGroupMessagesQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<ListGroupMessagesQueryResponse, ResponseErrorConfig<ListGroupMessages422>, unknown>({
+  const res = await request<
+    ListGroupMessagesQueryResponse,
+    ResponseErrorConfig<ListGroupMessages422>,
+    unknown
+  >({
     method: 'GET',
     url: `/v1/groups/${group_id}/messages`,
     params,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 export function listGroupMessagesSuspenseQueryOptions(
   group_id: ListGroupMessagesPathParams['group_id'],
   params?: ListGroupMessagesQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const queryKey = listGroupMessagesSuspenseQueryKey(group_id, params)
+  const queryKey = listGroupMessagesSuspenseQueryKey(group_id, params);
   return queryOptions<
     ResponseConfig<ListGroupMessagesQueryResponse>,
     ResponseErrorConfig<ListGroupMessages422>,
@@ -55,10 +76,10 @@ export function listGroupMessagesSuspenseQueryOptions(
     enabled: !!group_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return listGroupMessagesSuspense(group_id, params, config)
+      config.signal = signal;
+      return listGroupMessagesSuspense(group_id, params, config);
     },
-  })
+  });
 }
 
 /**
@@ -69,30 +90,49 @@ export function listGroupMessagesSuspenseQueryOptions(
 export function useListGroupMessagesSuspense<
   TData = ResponseConfig<ListGroupMessagesQueryResponse>,
   TQueryData = ResponseConfig<ListGroupMessagesQueryResponse>,
-  TQueryKey extends QueryKey = ListGroupMessagesSuspenseQueryKey,
+  TQueryKey extends QueryKey = ListGroupMessagesSuspenseQueryKey
 >(
   group_id: ListGroupMessagesPathParams['group_id'],
   params?: ListGroupMessagesQueryParams,
   options: {
-    query?: Partial<UseSuspenseQueryOptions<ResponseConfig<ListGroupMessagesQueryResponse>, ResponseErrorConfig<ListGroupMessages422>, TData, TQueryKey>> & {
-      client?: QueryClient
-    }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    query?: Partial<
+      UseSuspenseQueryOptions<
+        ResponseConfig<ListGroupMessagesQueryResponse>,
+        ResponseErrorConfig<ListGroupMessages422>,
+        TData,
+        TQueryKey
+      >
+    > & {
+      client?: QueryClient;
+    };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? listGroupMessagesSuspenseQueryKey(group_id, params)
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey =
+    queryOptions?.queryKey ??
+    listGroupMessagesSuspenseQueryKey(group_id, params);
 
   const query = useSuspenseQuery(
     {
-      ...(listGroupMessagesSuspenseQueryOptions(group_id, params, config) as unknown as UseSuspenseQueryOptions),
+      ...(listGroupMessagesSuspenseQueryOptions(
+        group_id,
+        params,
+        config
+      ) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<ListGroupMessages422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseSuspenseQueryResult<
+    TData,
+    ResponseErrorConfig<ListGroupMessages422>
+  > & { queryKey: TQueryKey };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

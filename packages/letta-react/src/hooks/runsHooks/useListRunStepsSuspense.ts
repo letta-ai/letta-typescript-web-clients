@@ -3,16 +3,38 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { ListRunStepsQueryResponse, ListRunStepsPathParams, ListRunStepsQueryParams, ListRunSteps422 } from '../../types/ListRunSteps.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  ListRunStepsQueryResponse,
+  ListRunStepsPathParams,
+  ListRunStepsQueryParams,
+  ListRunSteps422,
+} from '../../types/ListRunSteps.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  UseSuspenseQueryOptions,
+  UseSuspenseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 
-export const listRunStepsSuspenseQueryKey = (run_id: ListRunStepsPathParams['run_id'], params?: ListRunStepsQueryParams) =>
-  [{ url: '/v1/runs/:run_id/steps', params: { run_id: run_id } }, ...(params ? [params] : [])] as const
+export const listRunStepsSuspenseQueryKey = (
+  run_id: ListRunStepsPathParams['run_id'],
+  params?: ListRunStepsQueryParams
+) =>
+  [
+    { url: '/v1/runs/:run_id/steps', params: { run_id: run_id } },
+    ...(params ? [params] : []),
+  ] as const;
 
-export type ListRunStepsSuspenseQueryKey = ReturnType<typeof listRunStepsSuspenseQueryKey>
+export type ListRunStepsSuspenseQueryKey = ReturnType<
+  typeof listRunStepsSuspenseQueryKey
+>;
 
 /**
  * @description Get messages associated with a run with filtering options.Args:    run_id: ID of the run    before: A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.    after: A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.    limit: Maximum number of steps to return    order: Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order.Returns:    A list of steps associated with the run.
@@ -22,25 +44,29 @@ export type ListRunStepsSuspenseQueryKey = ReturnType<typeof listRunStepsSuspens
 export async function listRunStepsSuspense(
   run_id: ListRunStepsPathParams['run_id'],
   params?: ListRunStepsQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<ListRunStepsQueryResponse, ResponseErrorConfig<ListRunSteps422>, unknown>({
+  const res = await request<
+    ListRunStepsQueryResponse,
+    ResponseErrorConfig<ListRunSteps422>,
+    unknown
+  >({
     method: 'GET',
     url: `/v1/runs/${run_id}/steps`,
     params,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 export function listRunStepsSuspenseQueryOptions(
   run_id: ListRunStepsPathParams['run_id'],
   params?: ListRunStepsQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const queryKey = listRunStepsSuspenseQueryKey(run_id, params)
+  const queryKey = listRunStepsSuspenseQueryKey(run_id, params);
   return queryOptions<
     ResponseConfig<ListRunStepsQueryResponse>,
     ResponseErrorConfig<ListRunSteps422>,
@@ -50,10 +76,10 @@ export function listRunStepsSuspenseQueryOptions(
     enabled: !!run_id,
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return listRunStepsSuspense(run_id, params, config)
+      config.signal = signal;
+      return listRunStepsSuspense(run_id, params, config);
     },
-  })
+  });
 }
 
 /**
@@ -64,30 +90,47 @@ export function listRunStepsSuspenseQueryOptions(
 export function useListRunStepsSuspense<
   TData = ResponseConfig<ListRunStepsQueryResponse>,
   TQueryData = ResponseConfig<ListRunStepsQueryResponse>,
-  TQueryKey extends QueryKey = ListRunStepsSuspenseQueryKey,
+  TQueryKey extends QueryKey = ListRunStepsSuspenseQueryKey
 >(
   run_id: ListRunStepsPathParams['run_id'],
   params?: ListRunStepsQueryParams,
   options: {
-    query?: Partial<UseSuspenseQueryOptions<ResponseConfig<ListRunStepsQueryResponse>, ResponseErrorConfig<ListRunSteps422>, TData, TQueryKey>> & {
-      client?: QueryClient
-    }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    query?: Partial<
+      UseSuspenseQueryOptions<
+        ResponseConfig<ListRunStepsQueryResponse>,
+        ResponseErrorConfig<ListRunSteps422>,
+        TData,
+        TQueryKey
+      >
+    > & {
+      client?: QueryClient;
+    };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? listRunStepsSuspenseQueryKey(run_id, params)
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey =
+    queryOptions?.queryKey ?? listRunStepsSuspenseQueryKey(run_id, params);
 
   const query = useSuspenseQuery(
     {
-      ...(listRunStepsSuspenseQueryOptions(run_id, params, config) as unknown as UseSuspenseQueryOptions),
+      ...(listRunStepsSuspenseQueryOptions(
+        run_id,
+        params,
+        config
+      ) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<ListRunSteps422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<ListRunSteps422>> & {
+    queryKey: TQueryKey;
+  };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

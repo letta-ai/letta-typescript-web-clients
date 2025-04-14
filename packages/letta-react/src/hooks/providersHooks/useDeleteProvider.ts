@@ -3,31 +3,49 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { DeleteProviderMutationResponse, DeleteProviderQueryParams, DeleteProvider422 } from '../../types/DeleteProvider.ts'
-import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
-import { useMutation } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  DeleteProviderMutationResponse,
+  DeleteProviderQueryParams,
+  DeleteProvider422,
+} from '../../types/DeleteProvider.ts';
+import type {
+  RequestConfig,
+  ResponseConfig,
+  ResponseErrorConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-export const deleteProviderMutationKey = () => [{ url: '/v1/providers/' }] as const
+export const deleteProviderMutationKey = () =>
+  [{ url: '/v1/providers/' }] as const;
 
-export type DeleteProviderMutationKey = ReturnType<typeof deleteProviderMutationKey>
+export type DeleteProviderMutationKey = ReturnType<
+  typeof deleteProviderMutationKey
+>;
 
 /**
  * @description Delete an existing custom provider
  * @summary Delete Provider
  * {@link /v1/providers/}
  */
-export async function deleteProvider(params: DeleteProviderQueryParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const { client: request = client, ...requestConfig } = config
+export async function deleteProvider(
+  params: DeleteProviderQueryParams,
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<DeleteProviderMutationResponse, ResponseErrorConfig<DeleteProvider422>, unknown>({
+  const res = await request<
+    DeleteProviderMutationResponse,
+    ResponseErrorConfig<DeleteProvider422>,
+    unknown
+  >({
     method: 'DELETE',
     url: `/v1/providers/`,
     params,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 /**
@@ -42,21 +60,30 @@ export function useDeleteProvider<TContext>(
       ResponseErrorConfig<DeleteProvider422>,
       { params: DeleteProviderQueryParams },
       TContext
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
-  const mutationKey = mutationOptions?.mutationKey ?? deleteProviderMutationKey()
+  const {
+    mutation: { client: queryClient, ...mutationOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const mutationKey =
+    mutationOptions?.mutationKey ?? deleteProviderMutationKey();
 
-  return useMutation<ResponseConfig<DeleteProviderMutationResponse>, ResponseErrorConfig<DeleteProvider422>, { params: DeleteProviderQueryParams }, TContext>(
+  return useMutation<
+    ResponseConfig<DeleteProviderMutationResponse>,
+    ResponseErrorConfig<DeleteProvider422>,
+    { params: DeleteProviderQueryParams },
+    TContext
+  >(
     {
       mutationFn: async ({ params }) => {
-        return deleteProvider(params, config)
+        return deleteProvider(params, config);
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient,
-  )
+    queryClient
+  );
 }

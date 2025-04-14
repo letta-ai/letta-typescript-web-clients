@@ -3,22 +3,39 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
+import client from '@kubb/plugin-client/clients/axios';
 import type {
   RetrieveCoreMemoryBlockQueryResponse,
   RetrieveCoreMemoryBlockPathParams,
   RetrieveCoreMemoryBlock422,
-} from '../../types/RetrieveCoreMemoryBlock.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
+} from '../../types/RetrieveCoreMemoryBlock.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  UseSuspenseQueryOptions,
+  UseSuspenseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 
 export const retrieveCoreMemoryBlockSuspenseQueryKey = (
   agent_id: RetrieveCoreMemoryBlockPathParams['agent_id'],
-  block_label: RetrieveCoreMemoryBlockPathParams['block_label'],
-) => [{ url: '/v1/agents/:agent_id/core-memory/blocks/:block_label', params: { agent_id: agent_id, block_label: block_label } }] as const
+  block_label: RetrieveCoreMemoryBlockPathParams['block_label']
+) =>
+  [
+    {
+      url: '/v1/agents/:agent_id/core-memory/blocks/:block_label',
+      params: { agent_id: agent_id, block_label: block_label },
+    },
+  ] as const;
 
-export type RetrieveCoreMemoryBlockSuspenseQueryKey = ReturnType<typeof retrieveCoreMemoryBlockSuspenseQueryKey>
+export type RetrieveCoreMemoryBlockSuspenseQueryKey = ReturnType<
+  typeof retrieveCoreMemoryBlockSuspenseQueryKey
+>;
 
 /**
  * @description Retrieve a core memory block from an agent.
@@ -28,24 +45,31 @@ export type RetrieveCoreMemoryBlockSuspenseQueryKey = ReturnType<typeof retrieve
 export async function retrieveCoreMemoryBlockSuspense(
   agent_id: RetrieveCoreMemoryBlockPathParams['agent_id'],
   block_label: RetrieveCoreMemoryBlockPathParams['block_label'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<RetrieveCoreMemoryBlockQueryResponse, ResponseErrorConfig<RetrieveCoreMemoryBlock422>, unknown>({
+  const res = await request<
+    RetrieveCoreMemoryBlockQueryResponse,
+    ResponseErrorConfig<RetrieveCoreMemoryBlock422>,
+    unknown
+  >({
     method: 'GET',
     url: `/v1/agents/${agent_id}/core-memory/blocks/${block_label}`,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 export function retrieveCoreMemoryBlockSuspenseQueryOptions(
   agent_id: RetrieveCoreMemoryBlockPathParams['agent_id'],
   block_label: RetrieveCoreMemoryBlockPathParams['block_label'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const queryKey = retrieveCoreMemoryBlockSuspenseQueryKey(agent_id, block_label)
+  const queryKey = retrieveCoreMemoryBlockSuspenseQueryKey(
+    agent_id,
+    block_label
+  );
   return queryOptions<
     ResponseConfig<RetrieveCoreMemoryBlockQueryResponse>,
     ResponseErrorConfig<RetrieveCoreMemoryBlock422>,
@@ -55,10 +79,10 @@ export function retrieveCoreMemoryBlockSuspenseQueryOptions(
     enabled: !!(agent_id && block_label),
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return retrieveCoreMemoryBlockSuspense(agent_id, block_label, config)
+      config.signal = signal;
+      return retrieveCoreMemoryBlockSuspense(agent_id, block_label, config);
     },
-  })
+  });
 }
 
 /**
@@ -69,30 +93,47 @@ export function retrieveCoreMemoryBlockSuspenseQueryOptions(
 export function useRetrieveCoreMemoryBlockSuspense<
   TData = ResponseConfig<RetrieveCoreMemoryBlockQueryResponse>,
   TQueryData = ResponseConfig<RetrieveCoreMemoryBlockQueryResponse>,
-  TQueryKey extends QueryKey = RetrieveCoreMemoryBlockSuspenseQueryKey,
+  TQueryKey extends QueryKey = RetrieveCoreMemoryBlockSuspenseQueryKey
 >(
   agent_id: RetrieveCoreMemoryBlockPathParams['agent_id'],
   block_label: RetrieveCoreMemoryBlockPathParams['block_label'],
   options: {
     query?: Partial<
-      UseSuspenseQueryOptions<ResponseConfig<RetrieveCoreMemoryBlockQueryResponse>, ResponseErrorConfig<RetrieveCoreMemoryBlock422>, TData, TQueryKey>
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+      UseSuspenseQueryOptions<
+        ResponseConfig<RetrieveCoreMemoryBlockQueryResponse>,
+        ResponseErrorConfig<RetrieveCoreMemoryBlock422>,
+        TData,
+        TQueryKey
+      >
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? retrieveCoreMemoryBlockSuspenseQueryKey(agent_id, block_label)
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey =
+    queryOptions?.queryKey ??
+    retrieveCoreMemoryBlockSuspenseQueryKey(agent_id, block_label);
 
   const query = useSuspenseQuery(
     {
-      ...(retrieveCoreMemoryBlockSuspenseQueryOptions(agent_id, block_label, config) as unknown as UseSuspenseQueryOptions),
+      ...(retrieveCoreMemoryBlockSuspenseQueryOptions(
+        agent_id,
+        block_label,
+        config
+      ) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<RetrieveCoreMemoryBlock422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseSuspenseQueryResult<
+    TData,
+    ResponseErrorConfig<RetrieveCoreMemoryBlock422>
+  > & { queryKey: TQueryKey };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

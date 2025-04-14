@@ -6,22 +6,23 @@
 export const toolReturnStatusEnum = {
   success: 'success',
   error: 'error',
-} as const
+} as const;
 
-export type ToolReturnStatusEnum = (typeof toolReturnStatusEnum)[keyof typeof toolReturnStatusEnum]
+export type ToolReturnStatusEnum =
+  (typeof toolReturnStatusEnum)[keyof typeof toolReturnStatusEnum];
 
 export type ToolReturn = {
   /**
    * @description The status of the tool call
    * @type string
    */
-  status: ToolReturnStatusEnum
+  status: ToolReturnStatusEnum;
   /**
    * @description Captured stdout (e.g. prints, logs) from the tool invocation
    */
-  stdout?: string[] | null
+  stdout?: string[] | null;
   /**
    * @description Captured stderr from the tool invocation
    */
-  stderr?: string[] | null
-}
+  stderr?: string[] | null;
+};

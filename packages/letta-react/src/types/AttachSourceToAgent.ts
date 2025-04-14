@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { AgentState } from './AgentState.ts'
-import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { AgentState } from './AgentState.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts';
 
 export type AttachSourceToAgentPathParams = {
   /**
    * @type string
    */
-  agent_id: string
+  agent_id: string;
   /**
    * @type string
    */
-  source_id: string
-}
+  source_id: string;
+};
 
 /**
  * @description Successful Response
  */
-export type AttachSourceToAgent200 = AgentState
+export type AttachSourceToAgent200 = AgentState;
 
 /**
  * @description Validation Error
  */
-export type AttachSourceToAgent422 = HTTPValidationError
+export type AttachSourceToAgent422 = HTTPValidationError;
 
-export type AttachSourceToAgentMutationResponse = AttachSourceToAgent200
+export type AttachSourceToAgentMutationResponse = AttachSourceToAgent200;
 
 export type AttachSourceToAgentMutation = {
-  Response: AttachSourceToAgent200
-  PathParams: AttachSourceToAgentPathParams
-  Errors: AttachSourceToAgent422
-}
+  Response: AttachSourceToAgent200;
+  PathParams: AttachSourceToAgentPathParams;
+  Errors: AttachSourceToAgent422;
+};

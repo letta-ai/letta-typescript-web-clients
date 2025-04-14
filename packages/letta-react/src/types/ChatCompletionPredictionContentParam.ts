@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import type { ChatCompletionContentPartTextParam } from './ChatCompletionContentPartTextParam.ts'
+import type { ChatCompletionContentPartTextParam } from './ChatCompletionContentPartTextParam.ts';
 
 export type ChatCompletionPredictionContentParam = {
-  content: string | ChatCompletionContentPartTextParam[]
+  content: string | ChatCompletionContentPartTextParam[];
   /**
    * @type string
    */
-  type: 'content'
-}
+  type: 'content';
+};

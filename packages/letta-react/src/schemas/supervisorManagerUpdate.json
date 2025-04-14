@@ -1,1 +1,20 @@
-{"properties":{"manager_type":{"type":"string","const":"supervisor","title":"Manager Type","description":"","default":"supervisor"},"manager_agent_id":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Manager Agent Id","description":""}},"type":"object","required":["manager_agent_id"],"title":"SupervisorManagerUpdate","x-readme-ref-name":"SupervisorManagerUpdate"}
+{
+  "properties": {
+    "manager_type": {
+      "type": "string",
+      "const": "supervisor",
+      "title": "Manager Type",
+      "description": "",
+      "default": "supervisor"
+    },
+    "manager_agent_id": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Manager Agent Id",
+      "description": ""
+    }
+  },
+  "type": "object",
+  "required": ["manager_agent_id"],
+  "title": "SupervisorManagerUpdate",
+  "x-readme-ref-name": "SupervisorManagerUpdate"
+}

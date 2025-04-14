@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { LettaRequest } from './LettaRequest.ts'
-import type { LettaResponse } from './LettaResponse.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { LettaRequest } from './LettaRequest.ts';
+import type { LettaResponse } from './LettaResponse.ts';
 
 export type SendMessagePathParams = {
   /**
    * @type string
    */
-  agent_id: string
-}
+  agent_id: string;
+};
 
 /**
  * @description Successful Response
  */
-export type SendMessage200 = LettaResponse
+export type SendMessage200 = LettaResponse;
 
 /**
  * @description Validation Error
  */
-export type SendMessage422 = HTTPValidationError
+export type SendMessage422 = HTTPValidationError;
 
-export type SendMessageMutationRequest = LettaRequest
+export type SendMessageMutationRequest = LettaRequest;
 
-export type SendMessageMutationResponse = SendMessage200
+export type SendMessageMutationResponse = SendMessage200;
 
 export type SendMessageMutation = {
-  Response: SendMessage200
-  Request: SendMessageMutationRequest
-  PathParams: SendMessagePathParams
-  Errors: SendMessage422
-}
+  Response: SendMessage200;
+  Request: SendMessageMutationRequest;
+  PathParams: SendMessagePathParams;
+  Errors: SendMessage422;
+};

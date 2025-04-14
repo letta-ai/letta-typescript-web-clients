@@ -8,15 +8,15 @@ export type UsageStatistics = {
    * @default 0
    * @type integer | undefined
    */
-  completion_tokens?: number
+  completion_tokens?: number;
   /**
    * @default 0
    * @type integer | undefined
    */
-  prompt_tokens?: number
+  prompt_tokens?: number;
   /**
    * @default 0
    * @type integer | undefined
    */
-  total_tokens?: number
-}
+  total_tokens?: number;
+};

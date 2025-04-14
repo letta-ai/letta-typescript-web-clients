@@ -1,1 +1,140 @@
-{"properties":{"agent_ids":{"anyOf":[{"items":{"type":"string"},"type":"array"},{"type":"null"}],"title":"Agent Ids","description":""},"description":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Description","description":""},"manager_config":{"anyOf":[{"oneOf":[{"properties":{"manager_type":{"type":"string","const":"round_robin","title":"Manager Type","description":"","default":"round_robin"},"max_turns":{"anyOf":[{"type":"integer"},{"type":"null"}],"title":"Max Turns","description":""}},"type":"object","title":"RoundRobinManagerUpdate","x-readme-ref-name":"RoundRobinManagerUpdate"},{"properties":{"manager_type":{"type":"string","const":"supervisor","title":"Manager Type","description":"","default":"supervisor"},"manager_agent_id":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Manager Agent Id","description":""}},"type":"object","required":["manager_agent_id"],"title":"SupervisorManagerUpdate","x-readme-ref-name":"SupervisorManagerUpdate"},{"properties":{"manager_type":{"type":"string","const":"dynamic","title":"Manager Type","description":"","default":"dynamic"},"manager_agent_id":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Manager Agent Id","description":""},"termination_token":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Termination Token","description":""},"max_turns":{"anyOf":[{"type":"integer"},{"type":"null"}],"title":"Max Turns","description":""}},"type":"object","title":"DynamicManagerUpdate","x-readme-ref-name":"DynamicManagerUpdate"},{"properties":{"manager_type":{"type":"string","const":"sleeptime","title":"Manager Type","description":"","default":"sleeptime"},"manager_agent_id":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Manager Agent Id","description":""},"sleeptime_agent_frequency":{"anyOf":[{"type":"integer"},{"type":"null"}],"title":"Sleeptime Agent Frequency","description":""}},"type":"object","title":"SleeptimeManagerUpdate","x-readme-ref-name":"SleeptimeManagerUpdate"}],"discriminator":{"propertyName":"manager_type","mapping":{"dynamic":"#/components/schemas/DynamicManagerUpdate","round_robin":"#/components/schemas/RoundRobinManagerUpdate","sleeptime":"#/components/schemas/SleeptimeManagerUpdate","supervisor":"#/components/schemas/SupervisorManagerUpdate"}}},{"type":"null"}],"title":"Manager Config","description":""},"shared_block_ids":{"anyOf":[{"items":{"type":"string"},"type":"array"},{"type":"null"}],"title":"Shared Block Ids","description":""}},"type":"object","title":"GroupUpdate","x-readme-ref-name":"GroupUpdate"}
+{
+  "properties": {
+    "agent_ids": {
+      "anyOf": [
+        { "items": { "type": "string" }, "type": "array" },
+        { "type": "null" }
+      ],
+      "title": "Agent Ids",
+      "description": ""
+    },
+    "description": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Description",
+      "description": ""
+    },
+    "manager_config": {
+      "anyOf": [
+        {
+          "oneOf": [
+            {
+              "properties": {
+                "manager_type": {
+                  "type": "string",
+                  "const": "round_robin",
+                  "title": "Manager Type",
+                  "description": "",
+                  "default": "round_robin"
+                },
+                "max_turns": {
+                  "anyOf": [{ "type": "integer" }, { "type": "null" }],
+                  "title": "Max Turns",
+                  "description": ""
+                }
+              },
+              "type": "object",
+              "title": "RoundRobinManagerUpdate",
+              "x-readme-ref-name": "RoundRobinManagerUpdate"
+            },
+            {
+              "properties": {
+                "manager_type": {
+                  "type": "string",
+                  "const": "supervisor",
+                  "title": "Manager Type",
+                  "description": "",
+                  "default": "supervisor"
+                },
+                "manager_agent_id": {
+                  "anyOf": [{ "type": "string" }, { "type": "null" }],
+                  "title": "Manager Agent Id",
+                  "description": ""
+                }
+              },
+              "type": "object",
+              "required": ["manager_agent_id"],
+              "title": "SupervisorManagerUpdate",
+              "x-readme-ref-name": "SupervisorManagerUpdate"
+            },
+            {
+              "properties": {
+                "manager_type": {
+                  "type": "string",
+                  "const": "dynamic",
+                  "title": "Manager Type",
+                  "description": "",
+                  "default": "dynamic"
+                },
+                "manager_agent_id": {
+                  "anyOf": [{ "type": "string" }, { "type": "null" }],
+                  "title": "Manager Agent Id",
+                  "description": ""
+                },
+                "termination_token": {
+                  "anyOf": [{ "type": "string" }, { "type": "null" }],
+                  "title": "Termination Token",
+                  "description": ""
+                },
+                "max_turns": {
+                  "anyOf": [{ "type": "integer" }, { "type": "null" }],
+                  "title": "Max Turns",
+                  "description": ""
+                }
+              },
+              "type": "object",
+              "title": "DynamicManagerUpdate",
+              "x-readme-ref-name": "DynamicManagerUpdate"
+            },
+            {
+              "properties": {
+                "manager_type": {
+                  "type": "string",
+                  "const": "sleeptime",
+                  "title": "Manager Type",
+                  "description": "",
+                  "default": "sleeptime"
+                },
+                "manager_agent_id": {
+                  "anyOf": [{ "type": "string" }, { "type": "null" }],
+                  "title": "Manager Agent Id",
+                  "description": ""
+                },
+                "sleeptime_agent_frequency": {
+                  "anyOf": [{ "type": "integer" }, { "type": "null" }],
+                  "title": "Sleeptime Agent Frequency",
+                  "description": ""
+                }
+              },
+              "type": "object",
+              "title": "SleeptimeManagerUpdate",
+              "x-readme-ref-name": "SleeptimeManagerUpdate"
+            }
+          ],
+          "discriminator": {
+            "propertyName": "manager_type",
+            "mapping": {
+              "dynamic": "#/components/schemas/DynamicManagerUpdate",
+              "round_robin": "#/components/schemas/RoundRobinManagerUpdate",
+              "sleeptime": "#/components/schemas/SleeptimeManagerUpdate",
+              "supervisor": "#/components/schemas/SupervisorManagerUpdate"
+            }
+          }
+        },
+        { "type": "null" }
+      ],
+      "title": "Manager Config",
+      "description": ""
+    },
+    "shared_block_ids": {
+      "anyOf": [
+        { "items": { "type": "string" }, "type": "array" },
+        { "type": "null" }
+      ],
+      "title": "Shared Block Ids",
+      "description": ""
+    }
+  },
+  "type": "object",
+  "title": "GroupUpdate",
+  "x-readme-ref-name": "GroupUpdate"
+}

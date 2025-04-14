@@ -7,5 +7,5 @@ export type Audio = {
   /**
    * @type string
    */
-  id: string
-}
+  id: string;
+};

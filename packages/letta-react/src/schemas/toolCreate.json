@@ -1,1 +1,54 @@
-{"properties":{"description":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Description","description":"The description of the tool."},"tags":{"items":{"type":"string"},"type":"array","title":"Tags","description":"Metadata tags.","default":[]},"source_code":{"type":"string","title":"Source Code","description":"The source code of the function."},"source_type":{"type":"string","title":"Source Type","description":"The source type of the function.","default":"python"},"json_schema":{"anyOf":[{"additionalProperties":true,"type":"object"},{"type":"null"}],"title":"Json Schema","description":"The JSON schema of the function (auto-generated from source_code if not provided)"},"args_json_schema":{"anyOf":[{"additionalProperties":true,"type":"object"},{"type":"null"}],"title":"Args Json Schema","description":"The args JSON schema of the function."},"return_char_limit":{"type":"integer","title":"Return Char Limit","description":"The maximum number of characters in the response.","default":6000}},"additionalProperties":false,"type":"object","required":["source_code"],"title":"ToolCreate","x-readme-ref-name":"ToolCreate"}
+{
+  "properties": {
+    "description": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Description",
+      "description": "The description of the tool."
+    },
+    "tags": {
+      "items": { "type": "string" },
+      "type": "array",
+      "title": "Tags",
+      "description": "Metadata tags.",
+      "default": []
+    },
+    "source_code": {
+      "type": "string",
+      "title": "Source Code",
+      "description": "The source code of the function."
+    },
+    "source_type": {
+      "type": "string",
+      "title": "Source Type",
+      "description": "The source type of the function.",
+      "default": "python"
+    },
+    "json_schema": {
+      "anyOf": [
+        { "additionalProperties": true, "type": "object" },
+        { "type": "null" }
+      ],
+      "title": "Json Schema",
+      "description": "The JSON schema of the function (auto-generated from source_code if not provided)"
+    },
+    "args_json_schema": {
+      "anyOf": [
+        { "additionalProperties": true, "type": "object" },
+        { "type": "null" }
+      ],
+      "title": "Args Json Schema",
+      "description": "The args JSON schema of the function."
+    },
+    "return_char_limit": {
+      "type": "integer",
+      "title": "Return Char Limit",
+      "description": "The maximum number of characters in the response.",
+      "default": 6000
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "required": ["source_code"],
+  "title": "ToolCreate",
+  "x-readme-ref-name": "ToolCreate"
+}

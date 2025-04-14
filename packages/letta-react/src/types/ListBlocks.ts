@@ -3,48 +3,48 @@
  * Do not edit manually.
  */
 
-import type { Block } from './Block.ts'
-import type { HTTPValidationError } from './HTTPValidationError.ts'
+import type { Block } from './Block.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts';
 
 export type ListBlocksQueryParams = {
   /**
    * @description Labels to include (e.g. human, persona)
    */
-  label?: string | null
+  label?: string | null;
   /**
    * @description Whether to include only templates
    * @default false
    * @type boolean | undefined
    */
-  templates_only?: boolean
+  templates_only?: boolean;
   /**
    * @description Name of the block
    */
-  name?: string | null
+  name?: string | null;
   /**
    * @description Search agents by identifier id
    */
-  identity_id?: string | null
+  identity_id?: string | null;
   /**
    * @description Search agents by identifier keys
    */
-  identifier_keys?: string[] | null
-}
+  identifier_keys?: string[] | null;
+};
 
 /**
  * @description Successful Response
  */
-export type ListBlocks200 = Block[]
+export type ListBlocks200 = Block[];
 
 /**
  * @description Validation Error
  */
-export type ListBlocks422 = HTTPValidationError
+export type ListBlocks422 = HTTPValidationError;
 
-export type ListBlocksQueryResponse = ListBlocks200
+export type ListBlocksQueryResponse = ListBlocks200;
 
 export type ListBlocksQuery = {
-  Response: ListBlocks200
-  QueryParams: ListBlocksQueryParams
-  Errors: ListBlocks422
-}
+  Response: ListBlocks200;
+  QueryParams: ListBlocksQueryParams;
+  Errors: ListBlocks422;
+};

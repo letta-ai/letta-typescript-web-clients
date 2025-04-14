@@ -3,33 +3,53 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { ListEmbeddingModelsQueryResponse } from '../../types/ListEmbeddingModels.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type { ListEmbeddingModelsQueryResponse } from '../../types/ListEmbeddingModels.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  QueryObserverOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
-export const listEmbeddingModelsQueryKey = () => [{ url: '/v1/models/embedding' }] as const
+export const listEmbeddingModelsQueryKey = () =>
+  [{ url: '/v1/models/embedding' }] as const;
 
-export type ListEmbeddingModelsQueryKey = ReturnType<typeof listEmbeddingModelsQueryKey>
+export type ListEmbeddingModelsQueryKey = ReturnType<
+  typeof listEmbeddingModelsQueryKey
+>;
 
 /**
  * @summary List Embedding Backends
  * {@link /v1/models/embedding}
  */
-export async function listEmbeddingModels(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const { client: request = client, ...requestConfig } = config
+export async function listEmbeddingModels(
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<ListEmbeddingModelsQueryResponse, ResponseErrorConfig<Error>, unknown>({
+  const res = await request<
+    ListEmbeddingModelsQueryResponse,
+    ResponseErrorConfig<Error>,
+    unknown
+  >({
     method: 'GET',
     url: `/v1/models/embedding`,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
-export function listEmbeddingModelsQueryOptions(config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const queryKey = listEmbeddingModelsQueryKey()
+export function listEmbeddingModelsQueryOptions(
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const queryKey = listEmbeddingModelsQueryKey();
   return queryOptions<
     ResponseConfig<ListEmbeddingModelsQueryResponse>,
     ResponseErrorConfig<Error>,
@@ -38,10 +58,10 @@ export function listEmbeddingModelsQueryOptions(config: Partial<RequestConfig> &
   >({
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return listEmbeddingModels(config)
+      config.signal = signal;
+      return listEmbeddingModels(config);
     },
-  })
+  });
 }
 
 /**
@@ -51,28 +71,43 @@ export function listEmbeddingModelsQueryOptions(config: Partial<RequestConfig> &
 export function useListEmbeddingModels<
   TData = ResponseConfig<ListEmbeddingModelsQueryResponse>,
   TQueryData = ResponseConfig<ListEmbeddingModelsQueryResponse>,
-  TQueryKey extends QueryKey = ListEmbeddingModelsQueryKey,
+  TQueryKey extends QueryKey = ListEmbeddingModelsQueryKey
 >(
   options: {
-    query?: Partial<QueryObserverOptions<ResponseConfig<ListEmbeddingModelsQueryResponse>, ResponseErrorConfig<Error>, TData, TQueryData, TQueryKey>> & {
-      client?: QueryClient
-    }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    query?: Partial<
+      QueryObserverOptions<
+        ResponseConfig<ListEmbeddingModelsQueryResponse>,
+        ResponseErrorConfig<Error>,
+        TData,
+        TQueryData,
+        TQueryKey
+      >
+    > & {
+      client?: QueryClient;
+    };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? listEmbeddingModelsQueryKey()
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey = queryOptions?.queryKey ?? listEmbeddingModelsQueryKey();
 
   const query = useQuery(
     {
-      ...(listEmbeddingModelsQueryOptions(config) as unknown as QueryObserverOptions),
+      ...(listEmbeddingModelsQueryOptions(
+        config
+      ) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseQueryResult<TData, ResponseErrorConfig<Error>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseQueryResult<TData, ResponseErrorConfig<Error>> & {
+    queryKey: TQueryKey;
+  };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

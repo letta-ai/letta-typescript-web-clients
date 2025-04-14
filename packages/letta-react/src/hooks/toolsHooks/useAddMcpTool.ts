@@ -3,15 +3,24 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { AddMcpToolMutationResponse, AddMcpToolPathParams, AddMcpTool422 } from '../../types/AddMcpTool.ts'
-import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
-import { useMutation } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  AddMcpToolMutationResponse,
+  AddMcpToolPathParams,
+  AddMcpTool422,
+} from '../../types/AddMcpTool.ts';
+import type {
+  RequestConfig,
+  ResponseConfig,
+  ResponseErrorConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-export const addMcpToolMutationKey = () => [{ url: '/v1/tools/mcp/servers/{mcp_server_name}/{mcp_tool_name}' }] as const
+export const addMcpToolMutationKey = () =>
+  [{ url: '/v1/tools/mcp/servers/{mcp_server_name}/{mcp_tool_name}' }] as const;
 
-export type AddMcpToolMutationKey = ReturnType<typeof addMcpToolMutationKey>
+export type AddMcpToolMutationKey = ReturnType<typeof addMcpToolMutationKey>;
 
 /**
  * @description Register a new MCP tool as a Letta server by MCP server + tool name
@@ -21,16 +30,20 @@ export type AddMcpToolMutationKey = ReturnType<typeof addMcpToolMutationKey>
 export async function addMcpTool(
   mcp_server_name: AddMcpToolPathParams['mcp_server_name'],
   mcp_tool_name: AddMcpToolPathParams['mcp_tool_name'],
-  config: Partial<RequestConfig> & { client?: typeof client } = {},
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<AddMcpToolMutationResponse, ResponseErrorConfig<AddMcpTool422>, unknown>({
+  const res = await request<
+    AddMcpToolMutationResponse,
+    ResponseErrorConfig<AddMcpTool422>,
+    unknown
+  >({
     method: 'POST',
     url: `/v1/tools/mcp/servers/${mcp_server_name}/${mcp_tool_name}`,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
 /**
@@ -43,28 +56,37 @@ export function useAddMcpTool<TContext>(
     mutation?: UseMutationOptions<
       ResponseConfig<AddMcpToolMutationResponse>,
       ResponseErrorConfig<AddMcpTool422>,
-      { mcp_server_name: AddMcpToolPathParams['mcp_server_name']; mcp_tool_name: AddMcpToolPathParams['mcp_tool_name'] },
+      {
+        mcp_server_name: AddMcpToolPathParams['mcp_server_name'];
+        mcp_tool_name: AddMcpToolPathParams['mcp_tool_name'];
+      },
       TContext
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
-  const mutationKey = mutationOptions?.mutationKey ?? addMcpToolMutationKey()
+  const {
+    mutation: { client: queryClient, ...mutationOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const mutationKey = mutationOptions?.mutationKey ?? addMcpToolMutationKey();
 
   return useMutation<
     ResponseConfig<AddMcpToolMutationResponse>,
     ResponseErrorConfig<AddMcpTool422>,
-    { mcp_server_name: AddMcpToolPathParams['mcp_server_name']; mcp_tool_name: AddMcpToolPathParams['mcp_tool_name'] },
+    {
+      mcp_server_name: AddMcpToolPathParams['mcp_server_name'];
+      mcp_tool_name: AddMcpToolPathParams['mcp_tool_name'];
+    },
     TContext
   >(
     {
       mutationFn: async ({ mcp_server_name, mcp_tool_name }) => {
-        return addMcpTool(mcp_server_name, mcp_tool_name, config)
+        return addMcpTool(mcp_server_name, mcp_tool_name, config);
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient,
-  )
+    queryClient
+  );
 }

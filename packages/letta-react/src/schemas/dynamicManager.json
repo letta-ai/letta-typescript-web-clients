@@ -1,1 +1,31 @@
-{"properties":{"manager_type":{"type":"string","const":"dynamic","title":"Manager Type","description":"","default":"dynamic"},"manager_agent_id":{"type":"string","title":"Manager Agent Id","description":""},"termination_token":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Termination Token","description":"","default":"DONE!"},"max_turns":{"anyOf":[{"type":"integer"},{"type":"null"}],"title":"Max Turns","description":""}},"type":"object","required":["manager_agent_id"],"title":"DynamicManager","x-readme-ref-name":"DynamicManager"}
+{
+  "properties": {
+    "manager_type": {
+      "type": "string",
+      "const": "dynamic",
+      "title": "Manager Type",
+      "description": "",
+      "default": "dynamic"
+    },
+    "manager_agent_id": {
+      "type": "string",
+      "title": "Manager Agent Id",
+      "description": ""
+    },
+    "termination_token": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Termination Token",
+      "description": "",
+      "default": "DONE!"
+    },
+    "max_turns": {
+      "anyOf": [{ "type": "integer" }, { "type": "null" }],
+      "title": "Max Turns",
+      "description": ""
+    }
+  },
+  "type": "object",
+  "required": ["manager_agent_id"],
+  "title": "DynamicManager",
+  "x-readme-ref-name": "DynamicManager"
+}

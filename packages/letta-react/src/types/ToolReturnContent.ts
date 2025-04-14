@@ -9,20 +9,20 @@ export type ToolReturnContent = {
    * @default "tool_return"
    * @type string | undefined
    */
-  type?: 'tool_return'
+  type?: 'tool_return';
   /**
    * @description References the ID of the ToolCallContent that initiated this tool call.
    * @type string
    */
-  tool_call_id: string
+  tool_call_id: string;
   /**
    * @description The content returned by the tool execution.
    * @type string
    */
-  content: string
+  content: string;
   /**
    * @description Indicates whether the tool execution resulted in an error.
    * @type boolean
    */
-  is_error: boolean
-}
+  is_error: boolean;
+};

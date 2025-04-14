@@ -1,1 +1,797 @@
-{"properties":{"messages":{"items":{"anyOf":[{"properties":{"content":{"anyOf":[{"type":"string"},{"items":{"properties":{"text":{"type":"string","title":"Text"},"type":{"type":"string","const":"text","title":"Type"}},"type":"object","required":["text","type"],"title":"ChatCompletionContentPartTextParam","x-readme-ref-name":"ChatCompletionContentPartTextParam"},"type":"array"}],"title":"Content"},"role":{"type":"string","const":"developer","title":"Role"},"name":{"type":"string","title":"Name"}},"type":"object","required":["content","role"],"title":"ChatCompletionDeveloperMessageParam","x-readme-ref-name":"ChatCompletionDeveloperMessageParam"},{"properties":{"content":{"anyOf":[{"type":"string"},{"items":{"properties":{"text":{"type":"string","title":"Text"},"type":{"type":"string","const":"text","title":"Type"}},"type":"object","required":["text","type"],"title":"ChatCompletionContentPartTextParam","x-readme-ref-name":"ChatCompletionContentPartTextParam"},"type":"array"}],"title":"Content"},"role":{"type":"string","const":"system","title":"Role"},"name":{"type":"string","title":"Name"}},"type":"object","required":["content","role"],"title":"ChatCompletionSystemMessageParam","x-readme-ref-name":"ChatCompletionSystemMessageParam"},{"properties":{"content":{"anyOf":[{"type":"string"},{"items":{"anyOf":[{"properties":{"text":{"type":"string","title":"Text"},"type":{"type":"string","const":"text","title":"Type"}},"type":"object","required":["text","type"],"title":"ChatCompletionContentPartTextParam","x-readme-ref-name":"ChatCompletionContentPartTextParam"},{"properties":{"image_url":{"properties":{"url":{"type":"string","title":"Url"},"detail":{"type":"string","enum":["auto","low","high"],"title":"Detail"}},"type":"object","required":["url"],"title":"ImageURL","x-readme-ref-name":"ImageURL"},"type":{"type":"string","const":"image_url","title":"Type"}},"type":"object","required":["image_url","type"],"title":"ChatCompletionContentPartImageParam","x-readme-ref-name":"ChatCompletionContentPartImageParam"},{"properties":{"input_audio":{"properties":{"data":{"type":"string","title":"Data"},"format":{"type":"string","enum":["wav","mp3"],"title":"Format"}},"type":"object","required":["data","format"],"title":"InputAudio","x-readme-ref-name":"InputAudio"},"type":{"type":"string","const":"input_audio","title":"Type"}},"type":"object","required":["input_audio","type"],"title":"ChatCompletionContentPartInputAudioParam","x-readme-ref-name":"ChatCompletionContentPartInputAudioParam"},{"properties":{"file":{"properties":{"file_data":{"type":"string","title":"File Data"},"file_id":{"type":"string","title":"File Id"},"filename":{"type":"string","title":"Filename"}},"type":"object","title":"FileFile","x-readme-ref-name":"FileFile"},"type":{"type":"string","const":"file","title":"Type"}},"type":"object","required":["file","type"],"title":"File","x-readme-ref-name":"File"}]},"type":"array"}],"title":"Content"},"role":{"type":"string","const":"user","title":"Role"},"name":{"type":"string","title":"Name"}},"type":"object","required":["content","role"],"title":"ChatCompletionUserMessageParam","x-readme-ref-name":"ChatCompletionUserMessageParam"},{"properties":{"role":{"type":"string","const":"assistant","title":"Role"},"audio":{"anyOf":[{"properties":{"id":{"type":"string","title":"Id"}},"type":"object","required":["id"],"title":"Audio","x-readme-ref-name":"Audio"},{"type":"null"}]},"content":{"anyOf":[{"type":"string"},{"items":{"anyOf":[{"properties":{"text":{"type":"string","title":"Text"},"type":{"type":"string","const":"text","title":"Type"}},"type":"object","required":["text","type"],"title":"ChatCompletionContentPartTextParam","x-readme-ref-name":"ChatCompletionContentPartTextParam"},{"properties":{"refusal":{"type":"string","title":"Refusal"},"type":{"type":"string","const":"refusal","title":"Type"}},"type":"object","required":["refusal","type"],"title":"ChatCompletionContentPartRefusalParam","x-readme-ref-name":"ChatCompletionContentPartRefusalParam"}]},"type":"array"},{"type":"null"}],"title":"Content"},"function_call":{"anyOf":[{"properties":{"arguments":{"type":"string","title":"Arguments"},"name":{"type":"string","title":"Name"}},"type":"object","required":["arguments","name"],"title":"FunctionCall","x-readme-ref-name":"FunctionCall"},{"type":"null"}]},"name":{"type":"string","title":"Name"},"refusal":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Refusal"},"tool_calls":{"items":{"properties":{"id":{"type":"string","title":"Id"},"function":{"properties":{"arguments":{"type":"string","title":"Arguments"},"name":{"type":"string","title":"Name"}},"type":"object","required":["arguments","name"],"title":"Function","x-readme-ref-name":"openai__types__chat__chat_completion_message_tool_call_param__Function"},"type":{"type":"string","const":"function","title":"Type"}},"type":"object","required":["id","function","type"],"title":"ChatCompletionMessageToolCallParam","x-readme-ref-name":"ChatCompletionMessageToolCallParam"},"type":"array","title":"Tool Calls"}},"type":"object","required":["role"],"title":"ChatCompletionAssistantMessageParam","x-readme-ref-name":"ChatCompletionAssistantMessageParam"},{"properties":{"content":{"anyOf":[{"type":"string"},{"items":{"properties":{"text":{"type":"string","title":"Text"},"type":{"type":"string","const":"text","title":"Type"}},"type":"object","required":["text","type"],"title":"ChatCompletionContentPartTextParam","x-readme-ref-name":"ChatCompletionContentPartTextParam"},"type":"array"}],"title":"Content"},"role":{"type":"string","const":"tool","title":"Role"},"tool_call_id":{"type":"string","title":"Tool Call Id"}},"type":"object","required":["content","role","tool_call_id"],"title":"ChatCompletionToolMessageParam","x-readme-ref-name":"ChatCompletionToolMessageParam"},{"properties":{"content":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Content"},"name":{"type":"string","title":"Name"},"role":{"type":"string","const":"function","title":"Role"}},"type":"object","required":["content","name","role"],"title":"ChatCompletionFunctionMessageParam","x-readme-ref-name":"ChatCompletionFunctionMessageParam"}]},"type":"array","title":"Messages"},"model":{"anyOf":[{"type":"string"},{"type":"string","enum":["o3-mini","o3-mini-2025-01-31","o1","o1-2024-12-17","o1-preview","o1-preview-2024-09-12","o1-mini","o1-mini-2024-09-12","gpt-4o","gpt-4o-2024-11-20","gpt-4o-2024-08-06","gpt-4o-2024-05-13","gpt-4o-audio-preview","gpt-4o-audio-preview-2024-10-01","gpt-4o-audio-preview-2024-12-17","gpt-4o-mini-audio-preview","gpt-4o-mini-audio-preview-2024-12-17","gpt-4o-search-preview","gpt-4o-mini-search-preview","gpt-4o-search-preview-2025-03-11","gpt-4o-mini-search-preview-2025-03-11","chatgpt-4o-latest","gpt-4o-mini","gpt-4o-mini-2024-07-18","gpt-4-turbo","gpt-4-turbo-2024-04-09","gpt-4-0125-preview","gpt-4-turbo-preview","gpt-4-1106-preview","gpt-4-vision-preview","gpt-4","gpt-4-0314","gpt-4-0613","gpt-4-32k","gpt-4-32k-0314","gpt-4-32k-0613","gpt-3.5-turbo","gpt-3.5-turbo-16k","gpt-3.5-turbo-0301","gpt-3.5-turbo-0613","gpt-3.5-turbo-1106","gpt-3.5-turbo-0125","gpt-3.5-turbo-16k-0613"]}],"title":"Model"},"audio":{"anyOf":[{"properties":{"format":{"type":"string","enum":["wav","mp3","flac","opus","pcm16"],"title":"Format"},"voice":{"anyOf":[{"type":"string"},{"type":"string","enum":["alloy","ash","ballad","coral","echo","fable","onyx","nova","sage","shimmer","verse"]}],"title":"Voice"}},"type":"object","required":["format","voice"],"title":"ChatCompletionAudioParam","x-readme-ref-name":"ChatCompletionAudioParam"},{"type":"null"}]},"frequency_penalty":{"anyOf":[{"type":"number"},{"type":"null"}],"title":"Frequency Penalty"},"function_call":{"anyOf":[{"type":"string","enum":["none","auto"]},{"properties":{"name":{"type":"string","title":"Name"}},"type":"object","required":["name"],"title":"ChatCompletionFunctionCallOptionParam","x-readme-ref-name":"ChatCompletionFunctionCallOptionParam"}],"title":"Function Call"},"functions":{"items":{"properties":{"name":{"type":"string","title":"Name"},"description":{"type":"string","title":"Description"},"parameters":{"additionalProperties":true,"type":"object","title":"Parameters"}},"type":"object","required":["name"],"title":"Function","x-readme-ref-name":"openai__types__chat__completion_create_params__Function"},"type":"array","title":"Functions"},"logit_bias":{"anyOf":[{"additionalProperties":{"type":"integer"},"type":"object"},{"type":"null"}],"title":"Logit Bias"},"logprobs":{"anyOf":[{"type":"boolean"},{"type":"null"}],"title":"Logprobs"},"max_completion_tokens":{"anyOf":[{"type":"integer"},{"type":"null"}],"title":"Max Completion Tokens"},"max_tokens":{"anyOf":[{"type":"integer"},{"type":"null"}],"title":"Max Tokens"},"metadata":{"anyOf":[{"additionalProperties":{"type":"string"},"type":"object"},{"type":"null"}],"title":"Metadata"},"modalities":{"anyOf":[{"items":{"type":"string","enum":["text","audio"]},"type":"array"},{"type":"null"}],"title":"Modalities"},"n":{"anyOf":[{"type":"integer"},{"type":"null"}],"title":"N"},"parallel_tool_calls":{"type":"boolean","title":"Parallel Tool Calls"},"prediction":{"anyOf":[{"properties":{"content":{"anyOf":[{"type":"string"},{"items":{"properties":{"text":{"type":"string","title":"Text"},"type":{"type":"string","const":"text","title":"Type"}},"type":"object","required":["text","type"],"title":"ChatCompletionContentPartTextParam","x-readme-ref-name":"ChatCompletionContentPartTextParam"},"type":"array"}],"title":"Content"},"type":{"type":"string","const":"content","title":"Type"}},"type":"object","required":["content","type"],"title":"ChatCompletionPredictionContentParam","x-readme-ref-name":"ChatCompletionPredictionContentParam"},{"type":"null"}]},"presence_penalty":{"anyOf":[{"type":"number"},{"type":"null"}],"title":"Presence Penalty"},"reasoning_effort":{"anyOf":[{"type":"string","enum":["low","medium","high"]},{"type":"null"}],"title":"Reasoning Effort"},"response_format":{"anyOf":[{"properties":{"type":{"type":"string","const":"text","title":"Type"}},"type":"object","required":["type"],"title":"ResponseFormatText","x-readme-ref-name":"ResponseFormatText"},{"properties":{"json_schema":{"properties":{"name":{"type":"string","title":"Name"},"description":{"type":"string","title":"Description"},"schema":{"additionalProperties":true,"type":"object","title":"Schema"},"strict":{"anyOf":[{"type":"boolean"},{"type":"null"}],"title":"Strict"}},"type":"object","required":["name"],"title":"JSONSchema","x-readme-ref-name":"JSONSchema"},"type":{"type":"string","const":"json_schema","title":"Type"}},"type":"object","required":["json_schema","type"],"title":"ResponseFormatJSONSchema","x-readme-ref-name":"ResponseFormatJSONSchema"},{"properties":{"type":{"type":"string","const":"json_object","title":"Type"}},"type":"object","required":["type"],"title":"ResponseFormatJSONObject","x-readme-ref-name":"ResponseFormatJSONObject"}],"title":"Response Format"},"seed":{"anyOf":[{"type":"integer"},{"type":"null"}],"title":"Seed"},"service_tier":{"anyOf":[{"type":"string","enum":["auto","default"]},{"type":"null"}],"title":"Service Tier"},"stop":{"anyOf":[{"type":"string"},{"items":{"type":"string"},"type":"array"},{"type":"null"}],"title":"Stop"},"store":{"anyOf":[{"type":"boolean"},{"type":"null"}],"title":"Store"},"stream_options":{"anyOf":[{"properties":{"include_usage":{"type":"boolean","title":"Include Usage"}},"type":"object","title":"ChatCompletionStreamOptionsParam","x-readme-ref-name":"ChatCompletionStreamOptionsParam"},{"type":"null"}]},"temperature":{"anyOf":[{"type":"number"},{"type":"null"}],"title":"Temperature"},"tool_choice":{"anyOf":[{"type":"string","enum":["none","auto","required"]},{"properties":{"function":{"properties":{"name":{"type":"string","title":"Name"}},"type":"object","required":["name"],"title":"Function","x-readme-ref-name":"openai__types__chat__chat_completion_named_tool_choice_param__Function"},"type":{"type":"string","const":"function","title":"Type"}},"type":"object","required":["function","type"],"title":"ChatCompletionNamedToolChoiceParam","x-readme-ref-name":"ChatCompletionNamedToolChoiceParam"}],"title":"Tool Choice"},"tools":{"items":{"properties":{"function":{"properties":{"name":{"type":"string","title":"Name"},"description":{"type":"string","title":"Description"},"parameters":{"additionalProperties":true,"type":"object","title":"Parameters"},"strict":{"anyOf":[{"type":"boolean"},{"type":"null"}],"title":"Strict"}},"type":"object","required":["name"],"title":"FunctionDefinition","x-readme-ref-name":"FunctionDefinition-Input"},"type":{"type":"string","const":"function","title":"Type"}},"type":"object","required":["function","type"],"title":"ChatCompletionToolParam","x-readme-ref-name":"ChatCompletionToolParam"},"type":"array","title":"Tools"},"top_logprobs":{"anyOf":[{"type":"integer"},{"type":"null"}],"title":"Top Logprobs"},"top_p":{"anyOf":[{"type":"number"},{"type":"null"}],"title":"Top P"},"user":{"type":"string","title":"User"},"web_search_options":{"properties":{"search_context_size":{"type":"string","enum":["low","medium","high"],"title":"Search Context Size"},"user_location":{"anyOf":[{"properties":{"approximate":{"properties":{"city":{"type":"string","title":"City"},"country":{"type":"string","title":"Country"},"region":{"type":"string","title":"Region"},"timezone":{"type":"string","title":"Timezone"}},"type":"object","title":"WebSearchOptionsUserLocationApproximate","x-readme-ref-name":"WebSearchOptionsUserLocationApproximate"},"type":{"type":"string","const":"approximate","title":"Type"}},"type":"object","required":["approximate","type"],"title":"WebSearchOptionsUserLocation","x-readme-ref-name":"WebSearchOptionsUserLocation"},{"type":"null"}]}},"type":"object","title":"WebSearchOptions","x-readme-ref-name":"WebSearchOptions"},"stream":{"anyOf":[{"type":"boolean","const":false},{"type":"null"}],"title":"Stream"}},"type":"object","required":["messages","model"],"title":"CompletionCreateParamsNonStreaming","x-readme-ref-name":"CompletionCreateParamsNonStreaming"}
+{
+  "properties": {
+    "messages": {
+      "items": {
+        "anyOf": [
+          {
+            "properties": {
+              "content": {
+                "anyOf": [
+                  { "type": "string" },
+                  {
+                    "items": {
+                      "properties": {
+                        "text": { "type": "string", "title": "Text" },
+                        "type": {
+                          "type": "string",
+                          "const": "text",
+                          "title": "Type"
+                        }
+                      },
+                      "type": "object",
+                      "required": ["text", "type"],
+                      "title": "ChatCompletionContentPartTextParam",
+                      "x-readme-ref-name": "ChatCompletionContentPartTextParam"
+                    },
+                    "type": "array"
+                  }
+                ],
+                "title": "Content"
+              },
+              "role": {
+                "type": "string",
+                "const": "developer",
+                "title": "Role"
+              },
+              "name": { "type": "string", "title": "Name" }
+            },
+            "type": "object",
+            "required": ["content", "role"],
+            "title": "ChatCompletionDeveloperMessageParam",
+            "x-readme-ref-name": "ChatCompletionDeveloperMessageParam"
+          },
+          {
+            "properties": {
+              "content": {
+                "anyOf": [
+                  { "type": "string" },
+                  {
+                    "items": {
+                      "properties": {
+                        "text": { "type": "string", "title": "Text" },
+                        "type": {
+                          "type": "string",
+                          "const": "text",
+                          "title": "Type"
+                        }
+                      },
+                      "type": "object",
+                      "required": ["text", "type"],
+                      "title": "ChatCompletionContentPartTextParam",
+                      "x-readme-ref-name": "ChatCompletionContentPartTextParam"
+                    },
+                    "type": "array"
+                  }
+                ],
+                "title": "Content"
+              },
+              "role": { "type": "string", "const": "system", "title": "Role" },
+              "name": { "type": "string", "title": "Name" }
+            },
+            "type": "object",
+            "required": ["content", "role"],
+            "title": "ChatCompletionSystemMessageParam",
+            "x-readme-ref-name": "ChatCompletionSystemMessageParam"
+          },
+          {
+            "properties": {
+              "content": {
+                "anyOf": [
+                  { "type": "string" },
+                  {
+                    "items": {
+                      "anyOf": [
+                        {
+                          "properties": {
+                            "text": { "type": "string", "title": "Text" },
+                            "type": {
+                              "type": "string",
+                              "const": "text",
+                              "title": "Type"
+                            }
+                          },
+                          "type": "object",
+                          "required": ["text", "type"],
+                          "title": "ChatCompletionContentPartTextParam",
+                          "x-readme-ref-name": "ChatCompletionContentPartTextParam"
+                        },
+                        {
+                          "properties": {
+                            "image_url": {
+                              "properties": {
+                                "url": { "type": "string", "title": "Url" },
+                                "detail": {
+                                  "type": "string",
+                                  "enum": ["auto", "low", "high"],
+                                  "title": "Detail"
+                                }
+                              },
+                              "type": "object",
+                              "required": ["url"],
+                              "title": "ImageURL",
+                              "x-readme-ref-name": "ImageURL"
+                            },
+                            "type": {
+                              "type": "string",
+                              "const": "image_url",
+                              "title": "Type"
+                            }
+                          },
+                          "type": "object",
+                          "required": ["image_url", "type"],
+                          "title": "ChatCompletionContentPartImageParam",
+                          "x-readme-ref-name": "ChatCompletionContentPartImageParam"
+                        },
+                        {
+                          "properties": {
+                            "input_audio": {
+                              "properties": {
+                                "data": { "type": "string", "title": "Data" },
+                                "format": {
+                                  "type": "string",
+                                  "enum": ["wav", "mp3"],
+                                  "title": "Format"
+                                }
+                              },
+                              "type": "object",
+                              "required": ["data", "format"],
+                              "title": "InputAudio",
+                              "x-readme-ref-name": "InputAudio"
+                            },
+                            "type": {
+                              "type": "string",
+                              "const": "input_audio",
+                              "title": "Type"
+                            }
+                          },
+                          "type": "object",
+                          "required": ["input_audio", "type"],
+                          "title": "ChatCompletionContentPartInputAudioParam",
+                          "x-readme-ref-name": "ChatCompletionContentPartInputAudioParam"
+                        },
+                        {
+                          "properties": {
+                            "file": {
+                              "properties": {
+                                "file_data": {
+                                  "type": "string",
+                                  "title": "File Data"
+                                },
+                                "file_id": {
+                                  "type": "string",
+                                  "title": "File Id"
+                                },
+                                "filename": {
+                                  "type": "string",
+                                  "title": "Filename"
+                                }
+                              },
+                              "type": "object",
+                              "title": "FileFile",
+                              "x-readme-ref-name": "FileFile"
+                            },
+                            "type": {
+                              "type": "string",
+                              "const": "file",
+                              "title": "Type"
+                            }
+                          },
+                          "type": "object",
+                          "required": ["file", "type"],
+                          "title": "File",
+                          "x-readme-ref-name": "File"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  }
+                ],
+                "title": "Content"
+              },
+              "role": { "type": "string", "const": "user", "title": "Role" },
+              "name": { "type": "string", "title": "Name" }
+            },
+            "type": "object",
+            "required": ["content", "role"],
+            "title": "ChatCompletionUserMessageParam",
+            "x-readme-ref-name": "ChatCompletionUserMessageParam"
+          },
+          {
+            "properties": {
+              "role": {
+                "type": "string",
+                "const": "assistant",
+                "title": "Role"
+              },
+              "audio": {
+                "anyOf": [
+                  {
+                    "properties": { "id": { "type": "string", "title": "Id" } },
+                    "type": "object",
+                    "required": ["id"],
+                    "title": "Audio",
+                    "x-readme-ref-name": "Audio"
+                  },
+                  { "type": "null" }
+                ]
+              },
+              "content": {
+                "anyOf": [
+                  { "type": "string" },
+                  {
+                    "items": {
+                      "anyOf": [
+                        {
+                          "properties": {
+                            "text": { "type": "string", "title": "Text" },
+                            "type": {
+                              "type": "string",
+                              "const": "text",
+                              "title": "Type"
+                            }
+                          },
+                          "type": "object",
+                          "required": ["text", "type"],
+                          "title": "ChatCompletionContentPartTextParam",
+                          "x-readme-ref-name": "ChatCompletionContentPartTextParam"
+                        },
+                        {
+                          "properties": {
+                            "refusal": { "type": "string", "title": "Refusal" },
+                            "type": {
+                              "type": "string",
+                              "const": "refusal",
+                              "title": "Type"
+                            }
+                          },
+                          "type": "object",
+                          "required": ["refusal", "type"],
+                          "title": "ChatCompletionContentPartRefusalParam",
+                          "x-readme-ref-name": "ChatCompletionContentPartRefusalParam"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  },
+                  { "type": "null" }
+                ],
+                "title": "Content"
+              },
+              "function_call": {
+                "anyOf": [
+                  {
+                    "properties": {
+                      "arguments": { "type": "string", "title": "Arguments" },
+                      "name": { "type": "string", "title": "Name" }
+                    },
+                    "type": "object",
+                    "required": ["arguments", "name"],
+                    "title": "FunctionCall",
+                    "x-readme-ref-name": "FunctionCall"
+                  },
+                  { "type": "null" }
+                ]
+              },
+              "name": { "type": "string", "title": "Name" },
+              "refusal": {
+                "anyOf": [{ "type": "string" }, { "type": "null" }],
+                "title": "Refusal"
+              },
+              "tool_calls": {
+                "items": {
+                  "properties": {
+                    "id": { "type": "string", "title": "Id" },
+                    "function": {
+                      "properties": {
+                        "arguments": { "type": "string", "title": "Arguments" },
+                        "name": { "type": "string", "title": "Name" }
+                      },
+                      "type": "object",
+                      "required": ["arguments", "name"],
+                      "title": "Function",
+                      "x-readme-ref-name": "openai__types__chat__chat_completion_message_tool_call_param__Function"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "function",
+                      "title": "Type"
+                    }
+                  },
+                  "type": "object",
+                  "required": ["id", "function", "type"],
+                  "title": "ChatCompletionMessageToolCallParam",
+                  "x-readme-ref-name": "ChatCompletionMessageToolCallParam"
+                },
+                "type": "array",
+                "title": "Tool Calls"
+              }
+            },
+            "type": "object",
+            "required": ["role"],
+            "title": "ChatCompletionAssistantMessageParam",
+            "x-readme-ref-name": "ChatCompletionAssistantMessageParam"
+          },
+          {
+            "properties": {
+              "content": {
+                "anyOf": [
+                  { "type": "string" },
+                  {
+                    "items": {
+                      "properties": {
+                        "text": { "type": "string", "title": "Text" },
+                        "type": {
+                          "type": "string",
+                          "const": "text",
+                          "title": "Type"
+                        }
+                      },
+                      "type": "object",
+                      "required": ["text", "type"],
+                      "title": "ChatCompletionContentPartTextParam",
+                      "x-readme-ref-name": "ChatCompletionContentPartTextParam"
+                    },
+                    "type": "array"
+                  }
+                ],
+                "title": "Content"
+              },
+              "role": { "type": "string", "const": "tool", "title": "Role" },
+              "tool_call_id": { "type": "string", "title": "Tool Call Id" }
+            },
+            "type": "object",
+            "required": ["content", "role", "tool_call_id"],
+            "title": "ChatCompletionToolMessageParam",
+            "x-readme-ref-name": "ChatCompletionToolMessageParam"
+          },
+          {
+            "properties": {
+              "content": {
+                "anyOf": [{ "type": "string" }, { "type": "null" }],
+                "title": "Content"
+              },
+              "name": { "type": "string", "title": "Name" },
+              "role": { "type": "string", "const": "function", "title": "Role" }
+            },
+            "type": "object",
+            "required": ["content", "name", "role"],
+            "title": "ChatCompletionFunctionMessageParam",
+            "x-readme-ref-name": "ChatCompletionFunctionMessageParam"
+          }
+        ]
+      },
+      "type": "array",
+      "title": "Messages"
+    },
+    "model": {
+      "anyOf": [
+        { "type": "string" },
+        {
+          "type": "string",
+          "enum": [
+            "o3-mini",
+            "o3-mini-2025-01-31",
+            "o1",
+            "o1-2024-12-17",
+            "o1-preview",
+            "o1-preview-2024-09-12",
+            "o1-mini",
+            "o1-mini-2024-09-12",
+            "gpt-4o",
+            "gpt-4o-2024-11-20",
+            "gpt-4o-2024-08-06",
+            "gpt-4o-2024-05-13",
+            "gpt-4o-audio-preview",
+            "gpt-4o-audio-preview-2024-10-01",
+            "gpt-4o-audio-preview-2024-12-17",
+            "gpt-4o-mini-audio-preview",
+            "gpt-4o-mini-audio-preview-2024-12-17",
+            "gpt-4o-search-preview",
+            "gpt-4o-mini-search-preview",
+            "gpt-4o-search-preview-2025-03-11",
+            "gpt-4o-mini-search-preview-2025-03-11",
+            "chatgpt-4o-latest",
+            "gpt-4o-mini",
+            "gpt-4o-mini-2024-07-18",
+            "gpt-4-turbo",
+            "gpt-4-turbo-2024-04-09",
+            "gpt-4-0125-preview",
+            "gpt-4-turbo-preview",
+            "gpt-4-1106-preview",
+            "gpt-4-vision-preview",
+            "gpt-4",
+            "gpt-4-0314",
+            "gpt-4-0613",
+            "gpt-4-32k",
+            "gpt-4-32k-0314",
+            "gpt-4-32k-0613",
+            "gpt-3.5-turbo",
+            "gpt-3.5-turbo-16k",
+            "gpt-3.5-turbo-0301",
+            "gpt-3.5-turbo-0613",
+            "gpt-3.5-turbo-1106",
+            "gpt-3.5-turbo-0125",
+            "gpt-3.5-turbo-16k-0613"
+          ]
+        }
+      ],
+      "title": "Model"
+    },
+    "audio": {
+      "anyOf": [
+        {
+          "properties": {
+            "format": {
+              "type": "string",
+              "enum": ["wav", "mp3", "flac", "opus", "pcm16"],
+              "title": "Format"
+            },
+            "voice": {
+              "anyOf": [
+                { "type": "string" },
+                {
+                  "type": "string",
+                  "enum": [
+                    "alloy",
+                    "ash",
+                    "ballad",
+                    "coral",
+                    "echo",
+                    "fable",
+                    "onyx",
+                    "nova",
+                    "sage",
+                    "shimmer",
+                    "verse"
+                  ]
+                }
+              ],
+              "title": "Voice"
+            }
+          },
+          "type": "object",
+          "required": ["format", "voice"],
+          "title": "ChatCompletionAudioParam",
+          "x-readme-ref-name": "ChatCompletionAudioParam"
+        },
+        { "type": "null" }
+      ]
+    },
+    "frequency_penalty": {
+      "anyOf": [{ "type": "number" }, { "type": "null" }],
+      "title": "Frequency Penalty"
+    },
+    "function_call": {
+      "anyOf": [
+        { "type": "string", "enum": ["none", "auto"] },
+        {
+          "properties": { "name": { "type": "string", "title": "Name" } },
+          "type": "object",
+          "required": ["name"],
+          "title": "ChatCompletionFunctionCallOptionParam",
+          "x-readme-ref-name": "ChatCompletionFunctionCallOptionParam"
+        }
+      ],
+      "title": "Function Call"
+    },
+    "functions": {
+      "items": {
+        "properties": {
+          "name": { "type": "string", "title": "Name" },
+          "description": { "type": "string", "title": "Description" },
+          "parameters": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Parameters"
+          }
+        },
+        "type": "object",
+        "required": ["name"],
+        "title": "Function",
+        "x-readme-ref-name": "openai__types__chat__completion_create_params__Function"
+      },
+      "type": "array",
+      "title": "Functions"
+    },
+    "logit_bias": {
+      "anyOf": [
+        { "additionalProperties": { "type": "integer" }, "type": "object" },
+        { "type": "null" }
+      ],
+      "title": "Logit Bias"
+    },
+    "logprobs": {
+      "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+      "title": "Logprobs"
+    },
+    "max_completion_tokens": {
+      "anyOf": [{ "type": "integer" }, { "type": "null" }],
+      "title": "Max Completion Tokens"
+    },
+    "max_tokens": {
+      "anyOf": [{ "type": "integer" }, { "type": "null" }],
+      "title": "Max Tokens"
+    },
+    "metadata": {
+      "anyOf": [
+        { "additionalProperties": { "type": "string" }, "type": "object" },
+        { "type": "null" }
+      ],
+      "title": "Metadata"
+    },
+    "modalities": {
+      "anyOf": [
+        {
+          "items": { "type": "string", "enum": ["text", "audio"] },
+          "type": "array"
+        },
+        { "type": "null" }
+      ],
+      "title": "Modalities"
+    },
+    "n": { "anyOf": [{ "type": "integer" }, { "type": "null" }], "title": "N" },
+    "parallel_tool_calls": {
+      "type": "boolean",
+      "title": "Parallel Tool Calls"
+    },
+    "prediction": {
+      "anyOf": [
+        {
+          "properties": {
+            "content": {
+              "anyOf": [
+                { "type": "string" },
+                {
+                  "items": {
+                    "properties": {
+                      "text": { "type": "string", "title": "Text" },
+                      "type": {
+                        "type": "string",
+                        "const": "text",
+                        "title": "Type"
+                      }
+                    },
+                    "type": "object",
+                    "required": ["text", "type"],
+                    "title": "ChatCompletionContentPartTextParam",
+                    "x-readme-ref-name": "ChatCompletionContentPartTextParam"
+                  },
+                  "type": "array"
+                }
+              ],
+              "title": "Content"
+            },
+            "type": { "type": "string", "const": "content", "title": "Type" }
+          },
+          "type": "object",
+          "required": ["content", "type"],
+          "title": "ChatCompletionPredictionContentParam",
+          "x-readme-ref-name": "ChatCompletionPredictionContentParam"
+        },
+        { "type": "null" }
+      ]
+    },
+    "presence_penalty": {
+      "anyOf": [{ "type": "number" }, { "type": "null" }],
+      "title": "Presence Penalty"
+    },
+    "reasoning_effort": {
+      "anyOf": [
+        { "type": "string", "enum": ["low", "medium", "high"] },
+        { "type": "null" }
+      ],
+      "title": "Reasoning Effort"
+    },
+    "response_format": {
+      "anyOf": [
+        {
+          "properties": {
+            "type": { "type": "string", "const": "text", "title": "Type" }
+          },
+          "type": "object",
+          "required": ["type"],
+          "title": "ResponseFormatText",
+          "x-readme-ref-name": "ResponseFormatText"
+        },
+        {
+          "properties": {
+            "json_schema": {
+              "properties": {
+                "name": { "type": "string", "title": "Name" },
+                "description": { "type": "string", "title": "Description" },
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Schema"
+                },
+                "strict": {
+                  "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+                  "title": "Strict"
+                }
+              },
+              "type": "object",
+              "required": ["name"],
+              "title": "JSONSchema",
+              "x-readme-ref-name": "JSONSchema"
+            },
+            "type": {
+              "type": "string",
+              "const": "json_schema",
+              "title": "Type"
+            }
+          },
+          "type": "object",
+          "required": ["json_schema", "type"],
+          "title": "ResponseFormatJSONSchema",
+          "x-readme-ref-name": "ResponseFormatJSONSchema"
+        },
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "json_object",
+              "title": "Type"
+            }
+          },
+          "type": "object",
+          "required": ["type"],
+          "title": "ResponseFormatJSONObject",
+          "x-readme-ref-name": "ResponseFormatJSONObject"
+        }
+      ],
+      "title": "Response Format"
+    },
+    "seed": {
+      "anyOf": [{ "type": "integer" }, { "type": "null" }],
+      "title": "Seed"
+    },
+    "service_tier": {
+      "anyOf": [
+        { "type": "string", "enum": ["auto", "default"] },
+        { "type": "null" }
+      ],
+      "title": "Service Tier"
+    },
+    "stop": {
+      "anyOf": [
+        { "type": "string" },
+        { "items": { "type": "string" }, "type": "array" },
+        { "type": "null" }
+      ],
+      "title": "Stop"
+    },
+    "store": {
+      "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+      "title": "Store"
+    },
+    "stream_options": {
+      "anyOf": [
+        {
+          "properties": {
+            "include_usage": { "type": "boolean", "title": "Include Usage" }
+          },
+          "type": "object",
+          "title": "ChatCompletionStreamOptionsParam",
+          "x-readme-ref-name": "ChatCompletionStreamOptionsParam"
+        },
+        { "type": "null" }
+      ]
+    },
+    "temperature": {
+      "anyOf": [{ "type": "number" }, { "type": "null" }],
+      "title": "Temperature"
+    },
+    "tool_choice": {
+      "anyOf": [
+        { "type": "string", "enum": ["none", "auto", "required"] },
+        {
+          "properties": {
+            "function": {
+              "properties": { "name": { "type": "string", "title": "Name" } },
+              "type": "object",
+              "required": ["name"],
+              "title": "Function",
+              "x-readme-ref-name": "openai__types__chat__chat_completion_named_tool_choice_param__Function"
+            },
+            "type": { "type": "string", "const": "function", "title": "Type" }
+          },
+          "type": "object",
+          "required": ["function", "type"],
+          "title": "ChatCompletionNamedToolChoiceParam",
+          "x-readme-ref-name": "ChatCompletionNamedToolChoiceParam"
+        }
+      ],
+      "title": "Tool Choice"
+    },
+    "tools": {
+      "items": {
+        "properties": {
+          "function": {
+            "properties": {
+              "name": { "type": "string", "title": "Name" },
+              "description": { "type": "string", "title": "Description" },
+              "parameters": {
+                "additionalProperties": true,
+                "type": "object",
+                "title": "Parameters"
+              },
+              "strict": {
+                "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+                "title": "Strict"
+              }
+            },
+            "type": "object",
+            "required": ["name"],
+            "title": "FunctionDefinition",
+            "x-readme-ref-name": "FunctionDefinition-Input"
+          },
+          "type": { "type": "string", "const": "function", "title": "Type" }
+        },
+        "type": "object",
+        "required": ["function", "type"],
+        "title": "ChatCompletionToolParam",
+        "x-readme-ref-name": "ChatCompletionToolParam"
+      },
+      "type": "array",
+      "title": "Tools"
+    },
+    "top_logprobs": {
+      "anyOf": [{ "type": "integer" }, { "type": "null" }],
+      "title": "Top Logprobs"
+    },
+    "top_p": {
+      "anyOf": [{ "type": "number" }, { "type": "null" }],
+      "title": "Top P"
+    },
+    "user": { "type": "string", "title": "User" },
+    "web_search_options": {
+      "properties": {
+        "search_context_size": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "title": "Search Context Size"
+        },
+        "user_location": {
+          "anyOf": [
+            {
+              "properties": {
+                "approximate": {
+                  "properties": {
+                    "city": { "type": "string", "title": "City" },
+                    "country": { "type": "string", "title": "Country" },
+                    "region": { "type": "string", "title": "Region" },
+                    "timezone": { "type": "string", "title": "Timezone" }
+                  },
+                  "type": "object",
+                  "title": "WebSearchOptionsUserLocationApproximate",
+                  "x-readme-ref-name": "WebSearchOptionsUserLocationApproximate"
+                },
+                "type": {
+                  "type": "string",
+                  "const": "approximate",
+                  "title": "Type"
+                }
+              },
+              "type": "object",
+              "required": ["approximate", "type"],
+              "title": "WebSearchOptionsUserLocation",
+              "x-readme-ref-name": "WebSearchOptionsUserLocation"
+            },
+            { "type": "null" }
+          ]
+        }
+      },
+      "type": "object",
+      "title": "WebSearchOptions",
+      "x-readme-ref-name": "WebSearchOptions"
+    },
+    "stream": {
+      "anyOf": [{ "type": "boolean", "const": false }, { "type": "null" }],
+      "title": "Stream"
+    }
+  },
+  "type": "object",
+  "required": ["messages", "model"],
+  "title": "CompletionCreateParamsNonStreaming",
+  "x-readme-ref-name": "CompletionCreateParamsNonStreaming"
+}

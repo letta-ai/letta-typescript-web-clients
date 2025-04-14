@@ -3,41 +3,72 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { ListBlocksQueryResponse, ListBlocksQueryParams, ListBlocks422 } from '../../types/ListBlocks.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, UseSuspenseQueryOptions, UseSuspenseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  ListBlocksQueryResponse,
+  ListBlocksQueryParams,
+  ListBlocks422,
+} from '../../types/ListBlocks.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  UseSuspenseQueryOptions,
+  UseSuspenseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 
-export const listBlocksSuspenseQueryKey = (params?: ListBlocksQueryParams) => [{ url: '/v1/blocks/' }, ...(params ? [params] : [])] as const
+export const listBlocksSuspenseQueryKey = (params?: ListBlocksQueryParams) =>
+  [{ url: '/v1/blocks/' }, ...(params ? [params] : [])] as const;
 
-export type ListBlocksSuspenseQueryKey = ReturnType<typeof listBlocksSuspenseQueryKey>
+export type ListBlocksSuspenseQueryKey = ReturnType<
+  typeof listBlocksSuspenseQueryKey
+>;
 
 /**
  * @summary List Blocks
  * {@link /v1/blocks/}
  */
-export async function listBlocksSuspense(params?: ListBlocksQueryParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const { client: request = client, ...requestConfig } = config
+export async function listBlocksSuspense(
+  params?: ListBlocksQueryParams,
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<ListBlocksQueryResponse, ResponseErrorConfig<ListBlocks422>, unknown>({
+  const res = await request<
+    ListBlocksQueryResponse,
+    ResponseErrorConfig<ListBlocks422>,
+    unknown
+  >({
     method: 'GET',
     url: `/v1/blocks/`,
     params,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
-export function listBlocksSuspenseQueryOptions(params?: ListBlocksQueryParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const queryKey = listBlocksSuspenseQueryKey(params)
-  return queryOptions<ResponseConfig<ListBlocksQueryResponse>, ResponseErrorConfig<ListBlocks422>, ResponseConfig<ListBlocksQueryResponse>, typeof queryKey>({
+export function listBlocksSuspenseQueryOptions(
+  params?: ListBlocksQueryParams,
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const queryKey = listBlocksSuspenseQueryKey(params);
+  return queryOptions<
+    ResponseConfig<ListBlocksQueryResponse>,
+    ResponseErrorConfig<ListBlocks422>,
+    ResponseConfig<ListBlocksQueryResponse>,
+    typeof queryKey
+  >({
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return listBlocksSuspense(params, config)
+      config.signal = signal;
+      return listBlocksSuspense(params, config);
     },
-  })
+  });
 }
 
 /**
@@ -47,29 +78,44 @@ export function listBlocksSuspenseQueryOptions(params?: ListBlocksQueryParams, c
 export function useListBlocksSuspense<
   TData = ResponseConfig<ListBlocksQueryResponse>,
   TQueryData = ResponseConfig<ListBlocksQueryResponse>,
-  TQueryKey extends QueryKey = ListBlocksSuspenseQueryKey,
+  TQueryKey extends QueryKey = ListBlocksSuspenseQueryKey
 >(
   params?: ListBlocksQueryParams,
   options: {
-    query?: Partial<UseSuspenseQueryOptions<ResponseConfig<ListBlocksQueryResponse>, ResponseErrorConfig<ListBlocks422>, TData, TQueryKey>> & {
-      client?: QueryClient
-    }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    query?: Partial<
+      UseSuspenseQueryOptions<
+        ResponseConfig<ListBlocksQueryResponse>,
+        ResponseErrorConfig<ListBlocks422>,
+        TData,
+        TQueryKey
+      >
+    > & {
+      client?: QueryClient;
+    };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? listBlocksSuspenseQueryKey(params)
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey = queryOptions?.queryKey ?? listBlocksSuspenseQueryKey(params);
 
   const query = useSuspenseQuery(
     {
-      ...(listBlocksSuspenseQueryOptions(params, config) as unknown as UseSuspenseQueryOptions),
+      ...(listBlocksSuspenseQueryOptions(
+        params,
+        config
+      ) as unknown as UseSuspenseQueryOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<UseSuspenseQueryOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<ListBlocks422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<ListBlocks422>> & {
+    queryKey: TQueryKey;
+  };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

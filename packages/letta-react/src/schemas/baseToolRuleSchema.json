@@ -1,1 +1,10 @@
-{"properties":{"tool_name":{"type":"string","title":"Tool Name"},"type":{"type":"string","title":"Type"}},"type":"object","required":["tool_name","type"],"title":"BaseToolRuleSchema","x-readme-ref-name":"BaseToolRuleSchema"}
+{
+  "properties": {
+    "tool_name": { "type": "string", "title": "Tool Name" },
+    "type": { "type": "string", "title": "Type" }
+  },
+  "type": "object",
+  "required": ["tool_name", "type"],
+  "title": "BaseToolRuleSchema",
+  "x-readme-ref-name": "BaseToolRuleSchema"
+}

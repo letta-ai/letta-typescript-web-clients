@@ -3,20 +3,27 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
+import client from '@kubb/plugin-client/clients/axios';
 import type {
   SendGroupMessageStreamingMutationRequest,
   SendGroupMessageStreamingMutationResponse,
   SendGroupMessageStreamingPathParams,
   SendGroupMessageStreaming422,
-} from '../../types/SendGroupMessageStreaming.ts'
-import type { RequestConfig, ResponseConfig, ResponseErrorConfig } from '@kubb/plugin-client/clients/axios'
-import type { UseMutationOptions, QueryClient } from '@tanstack/react-query'
-import { useMutation } from '@tanstack/react-query'
+} from '../../types/SendGroupMessageStreaming.ts';
+import type {
+  RequestConfig,
+  ResponseConfig,
+  ResponseErrorConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type { UseMutationOptions, QueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-export const sendGroupMessageStreamingMutationKey = () => [{ url: '/v1/groups/{group_id}/messages/stream' }] as const
+export const sendGroupMessageStreamingMutationKey = () =>
+  [{ url: '/v1/groups/{group_id}/messages/stream' }] as const;
 
-export type SendGroupMessageStreamingMutationKey = ReturnType<typeof sendGroupMessageStreamingMutationKey>
+export type SendGroupMessageStreamingMutationKey = ReturnType<
+  typeof sendGroupMessageStreamingMutationKey
+>;
 
 /**
  * @description Process a user message and return the group's responses.This endpoint accepts a message from a user and processes it through agents in the group based on the specified pattern.It will stream the steps of the response always, and stream the tokens if 'stream_tokens' is set to True.
@@ -26,16 +33,23 @@ export type SendGroupMessageStreamingMutationKey = ReturnType<typeof sendGroupMe
 export async function sendGroupMessageStreaming(
   group_id: SendGroupMessageStreamingPathParams['group_id'],
   data: SendGroupMessageStreamingMutationRequest,
-  config: Partial<RequestConfig<SendGroupMessageStreamingMutationRequest>> & { client?: typeof client } = {},
+  config: Partial<RequestConfig<SendGroupMessageStreamingMutationRequest>> & {
+    client?: typeof client;
+  } = {}
 ) {
-  const { client: request = client, ...requestConfig } = config
+  const { client: request = client, ...requestConfig } = config;
 
   const res = await request<
     SendGroupMessageStreamingMutationResponse,
     ResponseErrorConfig<SendGroupMessageStreaming422>,
     SendGroupMessageStreamingMutationRequest
-  >({ method: 'POST', url: `/v1/groups/${group_id}/messages/stream`, data, ...requestConfig })
-  return res
+  >({
+    method: 'POST',
+    url: `/v1/groups/${group_id}/messages/stream`,
+    data,
+    ...requestConfig,
+  });
+  return res;
 }
 
 /**
@@ -48,28 +62,40 @@ export function useSendGroupMessageStreaming<TContext>(
     mutation?: UseMutationOptions<
       ResponseConfig<SendGroupMessageStreamingMutationResponse>,
       ResponseErrorConfig<SendGroupMessageStreaming422>,
-      { group_id: SendGroupMessageStreamingPathParams['group_id']; data: SendGroupMessageStreamingMutationRequest },
+      {
+        group_id: SendGroupMessageStreamingPathParams['group_id'];
+        data: SendGroupMessageStreamingMutationRequest;
+      },
       TContext
-    > & { client?: QueryClient }
-    client?: Partial<RequestConfig<SendGroupMessageStreamingMutationRequest>> & { client?: typeof client }
-  } = {},
+    > & { client?: QueryClient };
+    client?: Partial<
+      RequestConfig<SendGroupMessageStreamingMutationRequest>
+    > & { client?: typeof client };
+  } = {}
 ) {
-  const { mutation: { client: queryClient, ...mutationOptions } = {}, client: config = {} } = options ?? {}
-  const mutationKey = mutationOptions?.mutationKey ?? sendGroupMessageStreamingMutationKey()
+  const {
+    mutation: { client: queryClient, ...mutationOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const mutationKey =
+    mutationOptions?.mutationKey ?? sendGroupMessageStreamingMutationKey();
 
   return useMutation<
     ResponseConfig<SendGroupMessageStreamingMutationResponse>,
     ResponseErrorConfig<SendGroupMessageStreaming422>,
-    { group_id: SendGroupMessageStreamingPathParams['group_id']; data: SendGroupMessageStreamingMutationRequest },
+    {
+      group_id: SendGroupMessageStreamingPathParams['group_id'];
+      data: SendGroupMessageStreamingMutationRequest;
+    },
     TContext
   >(
     {
       mutationFn: async ({ group_id, data }) => {
-        return sendGroupMessageStreaming(group_id, data, config)
+        return sendGroupMessageStreaming(group_id, data, config);
       },
       mutationKey,
       ...mutationOptions,
     },
-    queryClient,
-  )
+    queryClient
+  );
 }

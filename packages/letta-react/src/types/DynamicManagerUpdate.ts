@@ -8,8 +8,8 @@ export type DynamicManagerUpdate = {
    * @default "dynamic"
    * @type string | undefined
    */
-  manager_type?: 'dynamic'
-  manager_agent_id?: string | null
-  termination_token?: string | null
-  max_turns?: number | null
-}
+  manager_type?: 'dynamic';
+  manager_agent_id?: string | null;
+  termination_token?: string | null;
+  max_turns?: number | null;
+};

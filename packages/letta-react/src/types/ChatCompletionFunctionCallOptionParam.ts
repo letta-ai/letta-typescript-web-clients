@@ -7,5 +7,5 @@ export type ChatCompletionFunctionCallOptionParam = {
   /**
    * @type string
    */
-  name: string
-}
+  name: string;
+};

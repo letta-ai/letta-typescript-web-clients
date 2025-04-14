@@ -3,35 +3,59 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { ListMcpServersQueryResponse, ListMcpServersHeaderParams, ListMcpServers422 } from '../../types/ListMcpServers.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  ListMcpServersQueryResponse,
+  ListMcpServersHeaderParams,
+  ListMcpServers422,
+} from '../../types/ListMcpServers.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  QueryObserverOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
-export const listMcpServersQueryKey = () => [{ url: '/v1/tools/mcp/servers' }] as const
+export const listMcpServersQueryKey = () =>
+  [{ url: '/v1/tools/mcp/servers' }] as const;
 
-export type ListMcpServersQueryKey = ReturnType<typeof listMcpServersQueryKey>
+export type ListMcpServersQueryKey = ReturnType<typeof listMcpServersQueryKey>;
 
 /**
  * @description Get a list of all configured MCP servers
  * @summary List Mcp Servers
  * {@link /v1/tools/mcp/servers}
  */
-export async function listMcpServers(headers?: ListMcpServersHeaderParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const { client: request = client, ...requestConfig } = config
+export async function listMcpServers(
+  headers?: ListMcpServersHeaderParams,
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<ListMcpServersQueryResponse, ResponseErrorConfig<ListMcpServers422>, unknown>({
+  const res = await request<
+    ListMcpServersQueryResponse,
+    ResponseErrorConfig<ListMcpServers422>,
+    unknown
+  >({
     method: 'GET',
     url: `/v1/tools/mcp/servers`,
     ...requestConfig,
     headers: { ...headers, ...requestConfig.headers },
-  })
-  return res
+  });
+  return res;
 }
 
-export function listMcpServersQueryOptions(headers?: ListMcpServersHeaderParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const queryKey = listMcpServersQueryKey()
+export function listMcpServersQueryOptions(
+  headers?: ListMcpServersHeaderParams,
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const queryKey = listMcpServersQueryKey();
   return queryOptions<
     ResponseConfig<ListMcpServersQueryResponse>,
     ResponseErrorConfig<ListMcpServers422>,
@@ -40,10 +64,10 @@ export function listMcpServersQueryOptions(headers?: ListMcpServersHeaderParams,
   >({
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return listMcpServers(headers, config)
+      config.signal = signal;
+      return listMcpServers(headers, config);
     },
-  })
+  });
 }
 
 /**
@@ -54,29 +78,45 @@ export function listMcpServersQueryOptions(headers?: ListMcpServersHeaderParams,
 export function useListMcpServers<
   TData = ResponseConfig<ListMcpServersQueryResponse>,
   TQueryData = ResponseConfig<ListMcpServersQueryResponse>,
-  TQueryKey extends QueryKey = ListMcpServersQueryKey,
+  TQueryKey extends QueryKey = ListMcpServersQueryKey
 >(
   headers?: ListMcpServersHeaderParams,
   options: {
-    query?: Partial<QueryObserverOptions<ResponseConfig<ListMcpServersQueryResponse>, ResponseErrorConfig<ListMcpServers422>, TData, TQueryData, TQueryKey>> & {
-      client?: QueryClient
-    }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    query?: Partial<
+      QueryObserverOptions<
+        ResponseConfig<ListMcpServersQueryResponse>,
+        ResponseErrorConfig<ListMcpServers422>,
+        TData,
+        TQueryData,
+        TQueryKey
+      >
+    > & {
+      client?: QueryClient;
+    };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? listMcpServersQueryKey()
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey = queryOptions?.queryKey ?? listMcpServersQueryKey();
 
   const query = useQuery(
     {
-      ...(listMcpServersQueryOptions(headers, config) as unknown as QueryObserverOptions),
+      ...(listMcpServersQueryOptions(
+        headers,
+        config
+      ) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseQueryResult<TData, ResponseErrorConfig<ListMcpServers422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseQueryResult<TData, ResponseErrorConfig<ListMcpServers422>> & {
+    queryKey: TQueryKey;
+  };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

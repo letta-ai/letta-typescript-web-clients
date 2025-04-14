@@ -1,1 +1,19 @@
-{"properties":{"uuid":{"type":"string","format":"uuid","title":"Uuid","description":"UUID of the user"},"is_admin":{"anyOf":[{"type":"boolean"},{"type":"null"}],"title":"Is Admin","description":"Whether the user is an admin"}},"type":"object","required":["uuid"],"title":"AuthResponse","x-readme-ref-name":"AuthResponse"}
+{
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Uuid",
+      "description": "UUID of the user"
+    },
+    "is_admin": {
+      "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+      "title": "Is Admin",
+      "description": "Whether the user is an admin"
+    }
+  },
+  "type": "object",
+  "required": ["uuid"],
+  "title": "AuthResponse",
+  "x-readme-ref-name": "AuthResponse"
+}

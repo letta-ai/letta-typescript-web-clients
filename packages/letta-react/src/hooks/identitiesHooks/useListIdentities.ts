@@ -3,35 +3,59 @@
  * Do not edit manually.
  */
 
-import client from '@kubb/plugin-client/clients/axios'
-import type { ListIdentitiesQueryResponse, ListIdentitiesQueryParams, ListIdentities422 } from '../../types/ListIdentities.ts'
-import type { RequestConfig, ResponseErrorConfig, ResponseConfig } from '@kubb/plugin-client/clients/axios'
-import type { QueryKey, QueryClient, QueryObserverOptions, UseQueryResult } from '@tanstack/react-query'
-import { queryOptions, useQuery } from '@tanstack/react-query'
+import client from '@kubb/plugin-client/clients/axios';
+import type {
+  ListIdentitiesQueryResponse,
+  ListIdentitiesQueryParams,
+  ListIdentities422,
+} from '../../types/ListIdentities.ts';
+import type {
+  RequestConfig,
+  ResponseErrorConfig,
+  ResponseConfig,
+} from '@kubb/plugin-client/clients/axios';
+import type {
+  QueryKey,
+  QueryClient,
+  QueryObserverOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
-export const listIdentitiesQueryKey = (params?: ListIdentitiesQueryParams) => [{ url: '/v1/identities/' }, ...(params ? [params] : [])] as const
+export const listIdentitiesQueryKey = (params?: ListIdentitiesQueryParams) =>
+  [{ url: '/v1/identities/' }, ...(params ? [params] : [])] as const;
 
-export type ListIdentitiesQueryKey = ReturnType<typeof listIdentitiesQueryKey>
+export type ListIdentitiesQueryKey = ReturnType<typeof listIdentitiesQueryKey>;
 
 /**
  * @description Get a list of all identities in the database
  * @summary List Identities
  * {@link /v1/identities/}
  */
-export async function listIdentities(params?: ListIdentitiesQueryParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const { client: request = client, ...requestConfig } = config
+export async function listIdentities(
+  params?: ListIdentitiesQueryParams,
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const { client: request = client, ...requestConfig } = config;
 
-  const res = await request<ListIdentitiesQueryResponse, ResponseErrorConfig<ListIdentities422>, unknown>({
+  const res = await request<
+    ListIdentitiesQueryResponse,
+    ResponseErrorConfig<ListIdentities422>,
+    unknown
+  >({
     method: 'GET',
     url: `/v1/identities/`,
     params,
     ...requestConfig,
-  })
-  return res
+  });
+  return res;
 }
 
-export function listIdentitiesQueryOptions(params?: ListIdentitiesQueryParams, config: Partial<RequestConfig> & { client?: typeof client } = {}) {
-  const queryKey = listIdentitiesQueryKey(params)
+export function listIdentitiesQueryOptions(
+  params?: ListIdentitiesQueryParams,
+  config: Partial<RequestConfig> & { client?: typeof client } = {}
+) {
+  const queryKey = listIdentitiesQueryKey(params);
   return queryOptions<
     ResponseConfig<ListIdentitiesQueryResponse>,
     ResponseErrorConfig<ListIdentities422>,
@@ -40,10 +64,10 @@ export function listIdentitiesQueryOptions(params?: ListIdentitiesQueryParams, c
   >({
     queryKey,
     queryFn: async ({ signal }) => {
-      config.signal = signal
-      return listIdentities(params, config)
+      config.signal = signal;
+      return listIdentities(params, config);
     },
-  })
+  });
 }
 
 /**
@@ -54,29 +78,45 @@ export function listIdentitiesQueryOptions(params?: ListIdentitiesQueryParams, c
 export function useListIdentities<
   TData = ResponseConfig<ListIdentitiesQueryResponse>,
   TQueryData = ResponseConfig<ListIdentitiesQueryResponse>,
-  TQueryKey extends QueryKey = ListIdentitiesQueryKey,
+  TQueryKey extends QueryKey = ListIdentitiesQueryKey
 >(
   params?: ListIdentitiesQueryParams,
   options: {
-    query?: Partial<QueryObserverOptions<ResponseConfig<ListIdentitiesQueryResponse>, ResponseErrorConfig<ListIdentities422>, TData, TQueryData, TQueryKey>> & {
-      client?: QueryClient
-    }
-    client?: Partial<RequestConfig> & { client?: typeof client }
-  } = {},
+    query?: Partial<
+      QueryObserverOptions<
+        ResponseConfig<ListIdentitiesQueryResponse>,
+        ResponseErrorConfig<ListIdentities422>,
+        TData,
+        TQueryData,
+        TQueryKey
+      >
+    > & {
+      client?: QueryClient;
+    };
+    client?: Partial<RequestConfig> & { client?: typeof client };
+  } = {}
 ) {
-  const { query: { client: queryClient, ...queryOptions } = {}, client: config = {} } = options ?? {}
-  const queryKey = queryOptions?.queryKey ?? listIdentitiesQueryKey(params)
+  const {
+    query: { client: queryClient, ...queryOptions } = {},
+    client: config = {},
+  } = options ?? {};
+  const queryKey = queryOptions?.queryKey ?? listIdentitiesQueryKey(params);
 
   const query = useQuery(
     {
-      ...(listIdentitiesQueryOptions(params, config) as unknown as QueryObserverOptions),
+      ...(listIdentitiesQueryOptions(
+        params,
+        config
+      ) as unknown as QueryObserverOptions),
       queryKey,
       ...(queryOptions as unknown as Omit<QueryObserverOptions, 'queryKey'>),
     },
-    queryClient,
-  ) as UseQueryResult<TData, ResponseErrorConfig<ListIdentities422>> & { queryKey: TQueryKey }
+    queryClient
+  ) as UseQueryResult<TData, ResponseErrorConfig<ListIdentities422>> & {
+    queryKey: TQueryKey;
+  };
 
-  query.queryKey = queryKey as TQueryKey
+  query.queryKey = queryKey as TQueryKey;
 
-  return query
+  return query;
 }

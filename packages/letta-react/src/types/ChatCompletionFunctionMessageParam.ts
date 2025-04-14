@@ -4,13 +4,13 @@
  */
 
 export type ChatCompletionFunctionMessageParam = {
-  content: string | null
+  content: string | null;
   /**
    * @type string
    */
-  name: string
+  name: string;
   /**
    * @type string
    */
-  role: 'function'
-}
+  role: 'function';
+};

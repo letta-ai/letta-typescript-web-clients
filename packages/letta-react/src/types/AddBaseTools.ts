@@ -3,22 +3,22 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { Tool } from './Tool.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Tool } from './Tool.ts';
 
 /**
  * @description Successful Response
  */
-export type AddBaseTools200 = Tool[]
+export type AddBaseTools200 = Tool[];
 
 /**
  * @description Validation Error
  */
-export type AddBaseTools422 = HTTPValidationError
+export type AddBaseTools422 = HTTPValidationError;
 
-export type AddBaseToolsMutationResponse = AddBaseTools200
+export type AddBaseToolsMutationResponse = AddBaseTools200;
 
 export type AddBaseToolsMutation = {
-  Response: AddBaseTools200
-  Errors: AddBaseTools422
-}
+  Response: AddBaseTools200;
+  Errors: AddBaseTools422;
+};

@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { Source } from './Source.ts'
-import type { SourceUpdate } from './SourceUpdate.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Source } from './Source.ts';
+import type { SourceUpdate } from './SourceUpdate.ts';
 
 export type ModifySourcePathParams = {
   /**
    * @type string
    */
-  source_id: string
-}
+  source_id: string;
+};
 
 /**
  * @description Successful Response
  */
-export type ModifySource200 = Source
+export type ModifySource200 = Source;
 
 /**
  * @description Validation Error
  */
-export type ModifySource422 = HTTPValidationError
+export type ModifySource422 = HTTPValidationError;
 
-export type ModifySourceMutationRequest = SourceUpdate
+export type ModifySourceMutationRequest = SourceUpdate;
 
-export type ModifySourceMutationResponse = ModifySource200
+export type ModifySourceMutationResponse = ModifySource200;
 
 export type ModifySourceMutation = {
-  Response: ModifySource200
-  Request: ModifySourceMutationRequest
-  PathParams: ModifySourcePathParams
-  Errors: ModifySource422
-}
+  Response: ModifySource200;
+  Request: ModifySourceMutationRequest;
+  PathParams: ModifySourcePathParams;
+  Errors: ModifySource422;
+};

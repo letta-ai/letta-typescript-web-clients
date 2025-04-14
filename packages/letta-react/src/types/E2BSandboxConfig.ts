@@ -9,13 +9,13 @@ export type E2BSandboxConfig = {
    * @default 300
    * @type integer | undefined
    */
-  timeout?: number
+  timeout?: number;
   /**
    * @description The E2B template id (docker image).
    */
-  template?: string | null
+  template?: string | null;
   /**
    * @description A list of pip packages to install on the E2B Sandbox
    */
-  pip_requirements?: string[] | null
-}
+  pip_requirements?: string[] | null;
+};

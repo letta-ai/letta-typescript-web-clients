@@ -1,1 +1,67 @@
-{"properties":{"id":{"type":"string","title":"Id"},"date":{"type":"string","format":"date-time","title":"Date"},"name":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Name"},"otid":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Otid"},"message_type":{"type":"string","const":"assistant_message","title":"Message Type","default":"assistant_message","enum":["assistant_message"]},"content":{"anyOf":[{"items":{"oneOf":[{"properties":{"type":{"type":"string","const":"text","title":"Type","description":"The type of the message.","default":"text","enum":["text"]},"text":{"type":"string","title":"Text","description":"The text content of the message."}},"type":"object","required":["text","type","type","type"],"title":"TextContent","x-readme-ref-name":"TextContent"}],"discriminator":{"propertyName":"type","mapping":{"text":"#/components/schemas/TextContent"}},"x-readme-ref-name":"LettaAssistantMessageContentUnion","properties":{"type":{"enum":["text"]}}},"type":"array"},{"type":"string"}],"title":"Content","description":"The message content sent by the agent (can be a string or an array of content parts)"}},"type":"object","required":["id","date","content","message_type"],"title":"AssistantMessage","description":"A message sent by the LLM in response to user input. Used in the LLM context.\n\nArgs:\n    id (str): The ID of the message\n    date (datetime): The date the message was created in ISO format\n    name (Optional[str]): The name of the sender of the message\n    content (Union[str, List[LettaAssistantMessageContentUnion]]): The message content sent by the agent (can be a string or an array of content parts)","x-readme-ref-name":"AssistantMessage"}
+{
+  "properties": {
+    "id": { "type": "string", "title": "Id" },
+    "date": { "type": "string", "format": "date-time", "title": "Date" },
+    "name": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Name"
+    },
+    "otid": {
+      "anyOf": [{ "type": "string" }, { "type": "null" }],
+      "title": "Otid"
+    },
+    "message_type": {
+      "type": "string",
+      "const": "assistant_message",
+      "title": "Message Type",
+      "default": "assistant_message",
+      "enum": ["assistant_message"]
+    },
+    "content": {
+      "anyOf": [
+        {
+          "items": {
+            "oneOf": [
+              {
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "text",
+                    "title": "Type",
+                    "description": "The type of the message.",
+                    "default": "text",
+                    "enum": ["text"]
+                  },
+                  "text": {
+                    "type": "string",
+                    "title": "Text",
+                    "description": "The text content of the message."
+                  }
+                },
+                "type": "object",
+                "required": ["text", "type", "type", "type"],
+                "title": "TextContent",
+                "x-readme-ref-name": "TextContent"
+              }
+            ],
+            "discriminator": {
+              "propertyName": "type",
+              "mapping": { "text": "#/components/schemas/TextContent" }
+            },
+            "x-readme-ref-name": "LettaAssistantMessageContentUnion",
+            "properties": { "type": { "enum": ["text"] } }
+          },
+          "type": "array"
+        },
+        { "type": "string" }
+      ],
+      "title": "Content",
+      "description": "The message content sent by the agent (can be a string or an array of content parts)"
+    }
+  },
+  "type": "object",
+  "required": ["id", "date", "content", "message_type"],
+  "title": "AssistantMessage",
+  "description": "A message sent by the LLM in response to user input. Used in the LLM context.\n\nArgs:\n    id (str): The ID of the message\n    date (datetime): The date the message was created in ISO format\n    name (Optional[str]): The name of the sender of the message\n    content (Union[str, List[LettaAssistantMessageContentUnion]]): The message content sent by the agent (can be a string or an array of content parts)",
+  "x-readme-ref-name": "AssistantMessage"
+}

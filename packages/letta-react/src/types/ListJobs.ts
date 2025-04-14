@@ -3,30 +3,30 @@
  * Do not edit manually.
  */
 
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { Job } from './Job.ts'
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Job } from './Job.ts';
 
 export type ListJobsQueryParams = {
   /**
    * @description Only list jobs associated with the source.
    */
-  source_id?: string | null
-}
+  source_id?: string | null;
+};
 
 /**
  * @description Successful Response
  */
-export type ListJobs200 = Job[]
+export type ListJobs200 = Job[];
 
 /**
  * @description Validation Error
  */
-export type ListJobs422 = HTTPValidationError
+export type ListJobs422 = HTTPValidationError;
 
-export type ListJobsQueryResponse = ListJobs200
+export type ListJobsQueryResponse = ListJobs200;
 
 export type ListJobsQuery = {
-  Response: ListJobs200
-  QueryParams: ListJobsQueryParams
-  Errors: ListJobs422
-}
+  Response: ListJobs200;
+  QueryParams: ListJobsQueryParams;
+  Errors: ListJobs422;
+};

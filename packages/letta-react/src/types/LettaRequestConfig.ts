@@ -9,17 +9,17 @@ export type LettaRequestConfig = {
    * @default true
    * @type boolean | undefined
    */
-  use_assistant_message?: boolean
+  use_assistant_message?: boolean;
   /**
    * @description The name of the designated message tool.
    * @default "send_message"
    * @type string | undefined
    */
-  assistant_message_tool_name?: string
+  assistant_message_tool_name?: string;
   /**
    * @description The name of the message argument in the designated message tool.
    * @default "message"
    * @type string | undefined
    */
-  assistant_message_tool_kwarg?: string
-}
+  assistant_message_tool_kwarg?: string;
+};

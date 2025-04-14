@@ -3,34 +3,34 @@
  * Do not edit manually.
  */
 
-import type { BodyUploadFileToSource } from './BodyUploadFileToSource.ts'
-import type { HTTPValidationError } from './HTTPValidationError.ts'
-import type { Job } from './Job.ts'
+import type { BodyUploadFileToSource } from './BodyUploadFileToSource.ts';
+import type { HTTPValidationError } from './HTTPValidationError.ts';
+import type { Job } from './Job.ts';
 
 export type UploadFileToSourcePathParams = {
   /**
    * @type string
    */
-  source_id: string
-}
+  source_id: string;
+};
 
 /**
  * @description Successful Response
  */
-export type UploadFileToSource200 = Job
+export type UploadFileToSource200 = Job;
 
 /**
  * @description Validation Error
  */
-export type UploadFileToSource422 = HTTPValidationError
+export type UploadFileToSource422 = HTTPValidationError;
 
-export type UploadFileToSourceMutationRequest = BodyUploadFileToSource
+export type UploadFileToSourceMutationRequest = BodyUploadFileToSource;
 
-export type UploadFileToSourceMutationResponse = UploadFileToSource200
+export type UploadFileToSourceMutationResponse = UploadFileToSource200;
 
 export type UploadFileToSourceMutation = {
-  Response: UploadFileToSource200
-  Request: UploadFileToSourceMutationRequest
-  PathParams: UploadFileToSourcePathParams
-  Errors: UploadFileToSource422
-}
+  Response: UploadFileToSource200;
+  Request: UploadFileToSourceMutationRequest;
+  PathParams: UploadFileToSourcePathParams;
+  Errors: UploadFileToSource422;
+};

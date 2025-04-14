@@ -8,26 +8,27 @@ export type AgentsVersionAgentTemplatePathParams = {
    * @description The agent ID of the agent to migrate, if this agent is not a template, it will create a agent template from the agent provided as well
    * @type string
    */
-  agent_id: string
-}
+  agent_id: string;
+};
 
 export type AgentsVersionAgentTemplateQueryParams = {
   /**
    * @type boolean | undefined
    */
-  returnAgentState?: boolean
-}
+  returnAgentState?: boolean;
+};
 
 /**
  * @description 201
  */
-export type AgentsVersionAgentTemplate201 = any
+export type AgentsVersionAgentTemplate201 = any;
 
 export const agentsVersionAgentTemplate404MessageEnum = {
   'Agent not found': 'Agent not found',
-} as const
+} as const;
 
-export type AgentsVersionAgentTemplate404MessageEnum = (typeof agentsVersionAgentTemplate404MessageEnum)[keyof typeof agentsVersionAgentTemplate404MessageEnum]
+export type AgentsVersionAgentTemplate404MessageEnum =
+  (typeof agentsVersionAgentTemplate404MessageEnum)[keyof typeof agentsVersionAgentTemplate404MessageEnum];
 
 /**
  * @description 404
@@ -36,14 +37,15 @@ export type AgentsVersionAgentTemplate404 = {
   /**
    * @type string
    */
-  message: AgentsVersionAgentTemplate404MessageEnum
-}
+  message: AgentsVersionAgentTemplate404MessageEnum;
+};
 
 export const agentsVersionAgentTemplate500MessageEnum = {
   'Failed to version agent template': 'Failed to version agent template',
-} as const
+} as const;
 
-export type AgentsVersionAgentTemplate500MessageEnum = (typeof agentsVersionAgentTemplate500MessageEnum)[keyof typeof agentsVersionAgentTemplate500MessageEnum]
+export type AgentsVersionAgentTemplate500MessageEnum =
+  (typeof agentsVersionAgentTemplate500MessageEnum)[keyof typeof agentsVersionAgentTemplate500MessageEnum];
 
 /**
  * @description 500
@@ -52,8 +54,8 @@ export type AgentsVersionAgentTemplate500 = {
   /**
    * @type string
    */
-  message: AgentsVersionAgentTemplate500MessageEnum
-}
+  message: AgentsVersionAgentTemplate500MessageEnum;
+};
 
 /**
  * @description Body
@@ -62,20 +64,21 @@ export type AgentsVersionAgentTemplateMutationRequest = {
   /**
    * @type boolean | undefined
    */
-  migrate_deployed_agents?: boolean
+  migrate_deployed_agents?: boolean;
   /**
    * @maxLength 140
    * @type string | undefined
    */
-  message?: string
-}
+  message?: string;
+};
 
-export type AgentsVersionAgentTemplateMutationResponse = AgentsVersionAgentTemplate201
+export type AgentsVersionAgentTemplateMutationResponse =
+  AgentsVersionAgentTemplate201;
 
 export type AgentsVersionAgentTemplateMutation = {
-  Response: AgentsVersionAgentTemplate201
-  Request: AgentsVersionAgentTemplateMutationRequest
-  PathParams: AgentsVersionAgentTemplatePathParams
-  QueryParams: AgentsVersionAgentTemplateQueryParams
-  Errors: AgentsVersionAgentTemplate404 | AgentsVersionAgentTemplate500
-}
+  Response: AgentsVersionAgentTemplate201;
+  Request: AgentsVersionAgentTemplateMutationRequest;
+  PathParams: AgentsVersionAgentTemplatePathParams;
+  QueryParams: AgentsVersionAgentTemplateQueryParams;
+  Errors: AgentsVersionAgentTemplate404 | AgentsVersionAgentTemplate500;
+};

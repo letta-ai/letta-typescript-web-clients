@@ -1,1 +1,6 @@
-{"type":"string","enum":["job","run"],"title":"JobType","x-readme-ref-name":"JobType"}
+{
+  "type": "string",
+  "enum": ["job", "run"],
+  "title": "JobType",
+  "x-readme-ref-name": "JobType"
+}

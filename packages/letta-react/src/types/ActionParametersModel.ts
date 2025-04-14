@@ -11,16 +11,16 @@ export type ActionParametersModel = {
    * @type object
    */
   properties: {
-    [key: string]: any
-  }
+    [key: string]: any;
+  };
   /**
    * @type string
    */
-  title: string
+  title: string;
   /**
    * @type string
    */
-  type: string
-  required?: string[] | null
-  examples?: any[] | null
-}
+  type: string;
+  required?: string[] | null;
+  examples?: any[] | null;
+};
