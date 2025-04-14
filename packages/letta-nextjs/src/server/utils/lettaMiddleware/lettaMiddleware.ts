@@ -53,6 +53,11 @@ export async function lettaMiddleware(
       }
     }
 
+    // enforce trailing slash
+    if (!url.pathname.endsWith('/')) {
+      url.pathname += '/';
+    }
+
     return NextResponse.rewrite(url, {
       headers: requestHeaders,
     });
