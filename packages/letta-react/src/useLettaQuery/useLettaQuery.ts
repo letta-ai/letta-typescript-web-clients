@@ -1,34 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
+import { useRef } from 'react';
+import { LettaClient } from '@letta-ai/letta-client';
+import type { UseQueryOptions } from '@tanstack/react-query/src/types.ts';
 
-export function getQueryKey<Request>(
-  operationName: string,
-  request: Request
-): [string, Request] {
-  return [operationName, request];
-}
+type Query<Res> = (client: LettaClient) => Res;
 
-export function useLettaQuery<
-  Request extends Record<string, any> = Record<string, any>,
-  Options extends Record<string, any> = Record<string, any>,
-  Response = unknown
->(
-  operation: (request: Request, options?: Options) => Response,
-  request: Request,
-  options?: Options,
-  queryOptions = {}
-): ReturnType<
-  typeof useQuery<
-    Awaited<Response>,
-    Error,
-    Awaited<Response>,
-    [string, Request]
-  >
-> {
-  return useQuery<Response, Error, Awaited<Response>, [string, Request]>({
-    queryKey: getQueryKey<Request>(operation.name, request),
-    queryFn: () => {
-      return operation(request, options);
+type Options<Res> = Omit<UseQueryOptions<Res>, 'queryFn'>;
+
+export function useLettaQuery<Res>(
+  operation: Query<Promise<Res>>,
+  queryOptions: Options<Res>
+) {
+  const client = useRef(new LettaClient());
+
+  return useQuery<Res>({
+    ...queryOptions,
+    queryFn: async () => {
+      return operation(client.current);
     },
-    ...(queryOptions || {}),
   });
 }
