@@ -11,7 +11,12 @@ export function useLettaQuery<Res>(
   operation: Query<Promise<Res>>,
   queryOptions: Options<Res>
 ) {
-  const client = useRef(new LettaClient());
+  const client = useRef(
+    new LettaClient({
+      // force to use the default base URL, you should by proxy it in your server
+      baseUrl: '/',
+    })
+  );
 
   return useQuery<Res>({
     ...queryOptions,
