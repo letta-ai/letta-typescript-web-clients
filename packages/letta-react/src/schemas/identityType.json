@@ -1,7 +1,0 @@
-{
-  "type": "string",
-  "enum": ["org", "user", "other"],
-  "title": "IdentityType",
-  "description": "Enum to represent the type of the identity.",
-  "x-readme-ref-name": "IdentityType"
-}
