@@ -1,11 +1,19 @@
 {
-  "include": ["src"],
+  "include": [
+    "src",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.json"
+  ],
   "exclude": [
     "dist",
     "build",
     "node_modules",
     "**/*.spec.ts",
     "**/*.test.ts",
+    "**/*.test.tsx",
     "**/*.stories.tsx"
   ],
   "compilerOptions": {
