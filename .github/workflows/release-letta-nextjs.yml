@@ -2,6 +2,8 @@ name: Release @letta-ai/letta-nextjs
 on:
   push:
     branches: [main]
+    paths:
+      - 'packages/letta-nextjs/**'
 
 jobs:
   compile:
