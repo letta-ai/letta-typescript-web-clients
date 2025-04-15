@@ -1,7 +1,0 @@
-{
-  "type": "string",
-  "enum": ["string", "number", "boolean", "json"],
-  "title": "IdentityPropertyType",
-  "description": "Enum to represent the type of the identity property.",
-  "x-readme-ref-name": "IdentityPropertyType"
-}

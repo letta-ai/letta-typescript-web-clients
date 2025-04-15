@@ -1,13 +1,13 @@
 {
   "name": "@letta-ai/letta-react",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Letta's react library",
   "private": false,
   "main": "./index.js",
   "types": "./index.d.ts",
   "scripts": {
     "build": "esbuild src/index.ts --bundle --platform=browser --outdir=dist --format=esm --sourcemap --external:@tanstack/react-query --external:react --external:react-dom && tsc",
-    "test": "echo \"Pls set up tests\" && exit 0",
+    "test": "jest --passWithNoTests",
     "prepack": "cp -rv dist/. ."
   },
   "repository": {
@@ -21,13 +21,12 @@
   },
   "homepage": "https://github.com/letta-ai/letta-typescript-web-clients#readme",
   "peerDependencies": {
+    "@tanstack/react-query": ">=5.0.0 <6.0.0",
     "react": ">=16.8.0 <20.0.0",
     "react-dom": ">=16.8.0 <20.0.0",
-    "@tanstack/react-query": ">=5.0.0 <6.0.0"
+    "@letta-ai/letta-client": ">=0.1.50"
   },
   "dependencies": {
-    "@kubb/plugin-client": "^3.9.0",
-    "@letta-ai/letta-client": "^0.1.87",
     "axios": "^1.8.4"
   },
   "resolutions": {
@@ -39,7 +38,12 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "esbuild": "^0.25.2",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-fetch-mock": "^3.0.3",
     "jest-mock-extended": "^4.0.0-beta1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "ts-jest": "^29.3.2",
     "typescript": "^5.8.2"
   }
 }

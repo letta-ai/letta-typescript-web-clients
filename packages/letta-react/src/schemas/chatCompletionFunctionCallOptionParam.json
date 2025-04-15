@@ -1,7 +1,0 @@
-{
-  "properties": { "name": { "type": "string", "title": "Name" } },
-  "type": "object",
-  "required": ["name"],
-  "title": "ChatCompletionFunctionCallOptionParam",
-  "x-readme-ref-name": "ChatCompletionFunctionCallOptionParam"
-}
