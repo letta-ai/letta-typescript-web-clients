@@ -1,12 +1,10 @@
 import React from 'react';
 import { renderHook, waitFor } from '@testing-library/react';
-import { useLettaQuery } from './useLettaQuery.ts';
-import { LettaClient } from '@letta-ai/letta-client';
+import { useLettaQuery } from './useLettaQuery';
 import { enableFetchMocks } from 'jest-fetch-mock';
 import fetchMock from 'jest-fetch-mock';
 enableFetchMocks();
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useLetta } from '../useLetta/useLetta.ts';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,9 +32,14 @@ describe('useLettaQuery', () => {
 
     const { result } = renderHook(
       () => {
-        const client = useLetta();
-
-        return useLettaQuery((args) => client.agents.list(args), { limit: 1 });
+        return useLettaQuery(
+          (client) => {
+            return client.agents.list();
+          },
+          {
+            queryKey: ['agents'],
+          }
+        );
       },
       { wrapper }
     );
